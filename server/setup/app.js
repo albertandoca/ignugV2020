@@ -14,7 +14,6 @@ let app = EXPRESS(),
     rutas = require('../rutas/index'),
     modelos = require('../models'),
     imgPersona = require('connect-multiparty'),
-    imgIcon = imgPersona = require('connect-multiparty')require('connect-multiparty')
     sess = {
         secret: process.env.KEY_SESSION,
         resave: false,
@@ -38,9 +37,6 @@ app.use(BODYPARSER.urlencoded({
 app.use(BODYPARSER.json())
 app.use(imgPersona({
     uploadDir: './files/img/persona'
-}))
-app.use(imgIcon({
-    uploadDir: './files/img/icon'
 }))
 app.use(session(sess))
 app.use(passport.initialize())
