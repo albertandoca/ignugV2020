@@ -14,7 +14,7 @@ let app = EXPRESS(),
     rutas = require('../rutas/index'),
     modelos = require('../models'),
     imgPersona = require('connect-multiparty'),
-    imgIcon = imgPersona = require('connect-multiparty')require('connect-multiparty')
+   
     sess = {
         secret: process.env.KEY_SESSION,
         resave: false,
