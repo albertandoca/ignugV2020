@@ -7,17 +7,17 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(20), 
       allowNull: false,
       unique: true,
-      notEmpty: true,
       validate: {
         is: /^[a-zA-Z0-9]+$/i,
-        len: [5, 20]
+        len: [5, 20],
+        notEmpty: true,
       }
     },
     primerNombre: {
       type: DataTypes.STRING(50), 
       allowNull: false,
       validate: {
-        is: /^[a-zA-Z áéíóúñÑüÁÉÍÓÚÜ]+$/i,
+        is: /^[A-Z ÑÁÉÍÓÚÜ]+$/i,
         isUppercase: true,
         notEmpty: true
       }
@@ -26,16 +26,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(50), 
       allowNull: true,
       validate: {
-        is: /^[a-zA-Z áéíóúñÑüÁÉÍÓÚÜ]+$/i,
+        is: /^[A-Z ÑÁÉÍÓÚÜ]+$/i,
         isUppercase: true,
-        notEmpty: true
       }
     },
     apellidoPaterno: {
       type: DataTypes.STRING(50), 
       allowNull: false,
       validate: {
-        is: /^[a-zA-Z áéíóúñÑüÁÉÍÓÚÜ]+$/i,
+        is: /^[A-Z ÑÁÉÍÓÚÜ]+$/i,
         isUppercase: true,
         notEmpty: true
       }
@@ -44,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(50), 
       allowNull: false,
       validate: {
-        is: /^[a-zA-Z áéíóúñÑüÁÉÍÓÚÜ]+$/i,
+        is: /^[A-Z ÑÁÉÍÓÚÜ]+$/i,
         isUppercase: true,
         notEmpty: true
       }
