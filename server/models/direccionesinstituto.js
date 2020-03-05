@@ -1,20 +1,19 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const direccionesInstituto = sequelize.define('direccionesInstituto', {
-    id: DataTypes.STRING,
-    idInstitutos: DataTypes.STRING,
-    idLugar: DataTypes.STRING,
-    idTipoCampus: DataTypes.STRING,
+  const DireccionesInstitutos = sequelize.define('DireccionesInstitutos', {
     direccion:{
-      type: DataTypes.STRING(25),
+      type: DataTypes.STRING(75),
+      allowNull: true,
       validate: {
         isAlphanumeric: true,
       }
     },
     codigoPostal: {
       type: DataTypes.STRING(6),
+      allowNull: true,
       validate: {
         is: /^[0-9]+$/i,
+        len: [6-6]
       }
     },
     estado: {
@@ -23,8 +22,12 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
     }
   }, {});
-  direccionesInstituto.associate = function(models) {
+  DireccionesInstitutos.associate = function(models) {
     // associations can be defined here
+    DireccionesInstitutos.belongTo (models.Institutos)
+    DireccionesInstitutos.belongTo (models.Lugares)
+    DireccionesInstitutos.belongTo (models.TiposCampus)
   };
-  return direccionesInstituto;
+
+  return DireccionesInstitutos;
 };

@@ -1,22 +1,22 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const periodoLectivo = sequelize.define('periodoLectivo', {
+  const PeriodosLectivos = sequelize.define('PeriodosLectivos', {
     descripcion: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(20),
       allowNull: false,
       unique: true
     },
     fechaInicio: {
-      type: DataTypes.STRING(6),
+      type: DataTypes.Date,
       validate: {
-        is: /^[0-9]+$/i,
-    }
+        isDate: true
+      }
     },
     fechaFin: {
-      type: DataTypes.STRING(6),
+      type: DataTypes.Date,
       validate: {
-        is: /^[0-9]+$/i,
-    }
+        isDate: true
+      }
     },
     estado: {
       type: DataTypes.BOOLEAN,
@@ -24,8 +24,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
     }
   }, {});
-  periodoLectivo.associate = function(models) {
+  PeriodosLectivos.associate = function(models) {
     // associations can be defined here
   };
-  return periodoLectivo;
+  return PeriodosLectivos;
 };
