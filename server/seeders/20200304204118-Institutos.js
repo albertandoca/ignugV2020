@@ -5,6 +5,7 @@ module.exports = {
 
       Example:
       return queryInterface.bulkInsert('Institutos', [{
+<<<<<<< HEAD
         //InstitutosEmailId: 1,
         //InstitutosTelefonoId:1,
         razonSocial: 'Yavirac',
@@ -14,6 +15,13 @@ module.exports = {
         urlStatuto: 'http//acreditacion.com',
         categoria: 'Público',
         urlLogotipo:'https://sequ'
+=======
+        razonSocial: 'Yavirac',
+        ruc: '65a4sd654as',
+        urlAcreditacion: 'http//acreditacion.com',
+        categoria: 'publico',
+        urlLogotipo:'https://sequelize.org/master/manual/getting-started.html'
+>>>>>>> dccba40ba45acf61399ae4e87e84b90f9318d1d1
       }], {});
 
   },

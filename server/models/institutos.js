@@ -7,22 +7,37 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         is: /^[a-zA-Z0-9]+$/i,
+<<<<<<< HEAD
         len: [5, 50],
         notEmpty: true
+=======
+        len: [5, 20],
+        notEmpty: true,
+>>>>>>> dccba40ba45acf61399ae4e87e84b90f9318d1d1
       } 
     }, 
     ruc: 
     {
+<<<<<<< HEAD
       type: DataTypes.STRING(13),
       allowNull: false,
       validate: {
         is: /^[0-9]+$/i,
         len: [13, 13],
         notEmpty: true
+=======
+      type: DataTypes.STRING(50),
+      allowNull: false,
+      validate: {
+        is: /^[a-zA-Z0-9]+$/i,
+        len: [5, 20],
+        notEmpty: true,
+>>>>>>> dccba40ba45acf61399ae4e87e84b90f9318d1d1
       } 
     },
     urlAcreditacion:
     {
+<<<<<<< HEAD
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -75,6 +90,39 @@ module.exports = (sequelize, DataTypes) => {
     //Institutos.hasOne(models.DireccionesInstitutos)
     //Institutos.hasOne(models.Carreras)
 
+=======
+      type: DataTypes.STRING(50),
+      allowNull: false,
+      validate: {
+        is: /^[a-zA-Z0-9]+$/i,
+        len: [5, 20],
+        notEmpty: true,
+      }
+    },
+    categoria:
+    {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+      validate: {
+        is: /^[a-zA-Z0-9]+$/i,
+        len: [5, 20],
+        notEmpty: true,
+      }
+    },
+    urlLogotipo:
+    {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+      validate: {
+        is: /^[a-zA-Z0-9]+$/i,
+        len: [5, 20],
+        notEmpty: true,
+      }
+    } 
+  }, {});
+  Institutos.associate = function(models) {
+    // associations can be defined here
+>>>>>>> dccba40ba45acf61399ae4e87e84b90f9318d1d1
   };
   return Institutos;
 };
