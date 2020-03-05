@@ -5,12 +5,6 @@ module.exports = {
   
     return queryInterface.bulkInsert('Roles', [
       {
-        descripcion: 'Coordinador Académico',
-        estado: true,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
         descripcion: 'Coordinador académico',
         estado: true,
         createdAt: new Date(),

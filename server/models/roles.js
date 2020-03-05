@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
     }
   }, {});
-  Roles.associate = function(models) {
+  Roles.associate = function(models)  {
     // associations can be defined here
     Roles.belongsToMany(models.Personas,
       {
@@ -20,9 +20,9 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: {
           type: DataTypes.INTEGER,
           name: 'idPersona',
-          allowNull: false,
+          allowNull: false
         },
-        targetKey: 'id'
+        sourceKey: 'id'
       }
     );
   };
