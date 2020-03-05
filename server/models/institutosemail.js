@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const institutosEmail = sequelize.define('institutosEmail', {
+  const institutosEmail = sequelize.define('InstitutosEmails', {
     eMail: {
       type: DataTypes.STRING(80), 
       allowNull: false,
@@ -17,8 +17,9 @@ module.exports = (sequelize, DataTypes) => {
       default: 'Actualiza'
     }
   }, {});
-  institutosEmail.associate = function(models) {
+  InstitutosEmails.associate = function(models) {
     // associations can be defined here
-  };
-  return institutosEmail;
+      Mallas.hasMany(models.Institutos)
+    };
+  return InstitutosEmails;
 };

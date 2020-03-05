@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const tiposAsignatura = sequelize.define('tiposAsignatura', {
+  const UnidadesCurrilares = sequelize.define('UnidadesCurrilares', {
     descripcion:{
       type: DataTypes.STRING(20), 
       allowNull: false,
@@ -17,8 +17,10 @@ module.exports = (sequelize, DataTypes) => {
       default: 'Actualiza'
     }
   }, {});
-  tiposAsignatura.associate = function(models) {
+  UnidadesCurrilares.associate = function(models) {
     // associations can be defined here
-  };
-  return tiposAsignatura;
+        UnidadesCurrilares.hasOne(models.Asignaturas)
+      };
+
+  return UnidadesCurrilares;
 };

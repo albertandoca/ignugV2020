@@ -49,6 +49,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Mallas.associate = function(models) {
     // associations can be defined here
+    Mallas.belongsTo(models.Carreras)
   };
   return Mallas;
 };

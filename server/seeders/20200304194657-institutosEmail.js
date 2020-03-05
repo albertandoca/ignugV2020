@@ -2,16 +2,19 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('institutosEmail', [
+    return queryInterface.bulkInsert('InstitutosEmails', [
       {
+        InstitutoID: 1,
         eMail: 'Direccion de E-mail',
         estado: false,
       },
       {
+        InstitutoID: 1,
         eMail: 'Direccion de E-mail',
         estado: false,
       },
       {
+        InstitutoID: 1,
         eMail: 'Direccion de E-mail',
         estado: false,
       },
@@ -20,6 +23,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('institutosEmail', null, {});
+    return queryInterface.bulkDelete('InstitutosEmails', null, {});
   }
 };
