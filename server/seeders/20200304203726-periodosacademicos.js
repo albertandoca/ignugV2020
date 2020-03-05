@@ -2,20 +2,16 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('PeriodosAcademicos', [
+    return queryInterface.bulkInsert('periodosacademicos', [
       {
         
-        Institutos: '1717171717',
-        Carreras: 'GABRIELA',
-        mallas: 'ESTEFANÍA',
-        PeriodosAcademicos: 'RIVERA',
-        Asignaturas: 'SALAZAR',
-        Jornadas: 'ger@ss.aa',
-        Paralelos: '123',
-      },
+        Nivel: 'Primero',
+        Numero: '5',
+        
+      
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('PeriodosAcademicos', null, {});
+    return queryInterface.bulkDelete('periodosacademicos', null, {});
   }
 };

@@ -2,24 +2,35 @@
 module.exports = (sequelize, DataTypes) => {
   const Carreras = sequelize.define('Carreras', {
     descripcion: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING,
+      allowNull: false,
       validate: {
         is: /^[a-zA-Z áéíóúñÑüÁÉÍÓÚÜ]+$/i,
         notEmpty: true
       }
     },
-    modalidad: {
-      type:  DataTypes.STRING(50),
+    urlAcreditacion: {
+      type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        is: /^[a-zA-Z áéíóúñÑüÁÉÍÓÚÜ]+$/i,
-        notEmpty: true
+        isUrl: true,
+        notEmpty: true,
+      }
 
-      }
     },
-    estado: DataTypes.BOOLEAN   
+    estado: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
+    }    
   }, {});
+
   Carreras.associate = function(models) {
-    // associations can be defined here
+    Carreras.hasMany(models.Mallas)
+    Carreras.belongTo(models.Institutos)
+    Carreras.belongTo(models.Modalidades)
   };
+
+
   return Carreras;
 };

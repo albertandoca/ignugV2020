@@ -17,6 +17,10 @@ module.exports = {
           updatedAt: new Date()
         },
         {
+          urlAcreditacion: 'http//acreditacion.com'
+
+        },
+        {
           modalidad: 'dual',
           estado: true,
           createdAt: new Date(),

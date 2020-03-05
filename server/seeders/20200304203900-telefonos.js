@@ -26,6 +26,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('TipoIdentificaciones', null, {});
+    return queryInterface.bulkDelete('telefonos', null, {});
   }
 };

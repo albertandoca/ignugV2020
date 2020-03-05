@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Telefonos = sequelize.define('Telefonos', {
+  const Telefonos = sequelize.define('telefonos', {
     codigopais: {
       type: DataTypes.INTEGER,
       validate: {
@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     operadora: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING(15),
       validate: {
         is: /^[a-zA-Z]+$/i,
 
