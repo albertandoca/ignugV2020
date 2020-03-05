@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
      
   }, {});
   InstitutosTelefonos.associate = function(models) {
-    InstitutosTelefonos.belongTo(models.Institutos)
+    InstitutosTelefonos.belongsTo(models.Institutos)
   };
   return InstitutosTelefonos;
 };

@@ -24,9 +24,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   DireccionesInstitutos.associate = function(models) {
     // associations can be defined here
-    DireccionesInstitutos.belongTo (models.Institutos)
-    DireccionesInstitutos.belongTo (models.Lugares)
-    DireccionesInstitutos.belongTo (models.TiposCampus)
+    DireccionesInstitutos.belongsTo(models.Institutos)
+    DireccionesInstitutos.belongsTo(models.Lugares)
+    DireccionesInstitutos.belongsTo(models.TiposCampus)
   };
 
   return DireccionesInstitutos;

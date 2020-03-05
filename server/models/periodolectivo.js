@@ -7,13 +7,13 @@ module.exports = (sequelize, DataTypes) => {
       unique: true
     },
     fechaInicio: {
-      type: DataTypes.Date,
+      type: DataTypes.DATE,
       validate: {
         isDate: true
       }
     },
     fechaFin: {
-      type: DataTypes.Date,
+      type: DataTypes.DATE,
       validate: {
         isDate: true
       }

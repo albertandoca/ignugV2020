@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Lugar = sequelize.define('Lugar', {
+  const Lugares = sequelize.define('Lugares', {
     padre: {
       type: DataTypes.STRING(100),
       allowNull: false,
@@ -25,8 +25,8 @@ module.exports = (sequelize, DataTypes) => {
     allowNull: true
   }
   }, {});
-  Lugar.associate = function(models) {
+  Lugares.associate = function(models) {
     // associations can be defined here
   };
-  return Lugar;
+  return Lugares;
 };
