@@ -2,12 +2,19 @@
 module.exports = (sequelize, DataTypes) => {
   const TiposInstitutos = sequelize.define('TiposInstitutos', {
     descripcion: {
-      type: DataTypes.STRING(100),
+      type: DataTypes.STRING(),
+      allowNull: false,
       validate: {
-        is: /^[a-zA-Z áéíóúñÑüÁÉÍÓÚÜ]+$/i,
+        is: /^[A-Z ÑÁÉÍÓÚÜ]+$/i,
+        notEmpty: true
       }
+
     },
-    estado: DataTypes.STRING
+    estado: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+      allowNull: true
+    }
   }, {});
   TiposInstitutos.associate = function(models) {
     // associations can be defined here
