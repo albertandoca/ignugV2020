@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('TipoCampus', [
+    return queryInterface.bulkInsert('TiposCampus', [
       {
         descripcion: 'tipo',
         estado: false,
@@ -20,6 +20,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('TipoCampus', null, {});
+    return queryInterface.bulkDelete('TiposCampus', null, {});
   }
 };
