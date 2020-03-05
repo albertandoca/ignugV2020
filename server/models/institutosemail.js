@@ -6,20 +6,19 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
       validate: {
-        is: /^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/i,
+        // is: /^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/i,
         isEmail: true
       } 
     },
     estado: {
-      type: DataTypes.ENUM,
-      values: ['Activo', 'Actualiza', 'Inactivo'], 
+      type: DataTypes.BOOLEAN, 
       allowNull: false,
-      default: 'Actualiza'
+      defaultValue: true
     }
   }, {});
   InstitutosEmails.associate = function(models) {
     // associations can be defined here
-      Mallas.hasMany(models.Institutos)
+    InstitutosEmails.hasMany(models.Institutos)
     };
   return InstitutosEmails;
 };

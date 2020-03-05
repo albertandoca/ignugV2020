@@ -2,19 +2,18 @@
 module.exports = (sequelize, DataTypes) => {
   const UnidadesCurrilares = sequelize.define('UnidadesCurrilares', {
     descripcion:{
-      type: DataTypes.STRING(20), 
+      type: DataTypes.STRING(50), 
       allowNull: false,
-      unique: false,
-      notEmpty: true,
+      unique: true,
       validate: {
         is: /^[a-zA-Z áéíóúñÑüÁÉÍÓÚÜ]+$/i,
-        len: [15, 30]
+        len: [5, 50],
+        notEmpty: true,
       } },
     estado: {
-      type: DataTypes.ENUM,
-      values: ['Activo', 'Actualiza', 'Inactivo'], 
+      type: DataTypes.BOOLEAN, 
       allowNull: false,
-      default: 'Actualiza'
+      defaultValue: true
     }
   }, {});
   UnidadesCurrilares.associate = function(models) {

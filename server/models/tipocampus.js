@@ -1,27 +1,27 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const TipoCampus = sequelize.define('TipoCampus', {
+  const TiposCampus = sequelize.define('TiposCampus', {
     descripcion:{
       type: DataTypes.STRING(20), 
       allowNull: false,
       unique: false,
-      notEmpty: true,
       validate: {
         is: /^[a-zA-Z áéíóúñÑüÁÉÍÓÚÜ]+$/i,
-        len: [15, 30]
-      } },
+        len: [3-20],
+        notEmpty: true,
+      } 
+    },
     estado: {
-      type: DataTypes.ENUM,
-      values: ['Activo', 'Actualiza', 'Inactivo'], 
+      type: DataTypes.BOOLEAN, 
       allowNull: false,
-      default: 'Actualiza'
+      defaultValue: true
     }
   }, {});
  
-  TipoCampus.associate = function(models) {
+  TiposCampus.associate = function(models) {
     // associations can be defined here
-        TipoCampus.hasMany(models.Direcciones)
+        TiposCampus.hasMany(models.DireccionesInstitutos)
       };
 
-  return TipoCampus;
+  return TiposCampus;
 };
