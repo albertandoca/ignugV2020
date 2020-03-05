@@ -20,9 +20,9 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: {
           type: DataTypes.INTEGER,
           name: 'idPersona',
-          allowNull: false,
+          allowNull: false
         },
-        targetKey: 'id'
+        sourceKey: 'id'
       }
     );
   };

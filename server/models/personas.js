@@ -113,9 +113,9 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: {
         type: DataTypes.INTEGER,
         name: 'idRol',
-        allowNull: false,
+        allowNull: false
       },
-      targetKey: 'id'
+      sourceKey: 'id'
     });
     Personas.belongsTo(models.TipoIdentificaciones);
   };
