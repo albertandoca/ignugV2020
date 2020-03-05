@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const institutosEmail = sequelize.define('InstitutosEmails', {
+  const InstitutosEmails = sequelize.define('InstitutosEmails', {
     eMail: {
       type: DataTypes.STRING(80), 
       allowNull: false,
