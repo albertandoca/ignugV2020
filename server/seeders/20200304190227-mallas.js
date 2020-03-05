@@ -9,7 +9,7 @@ module.exports = {
         fecha: new Date(),
         urlAcreditacion: 'Archivo Acreditacion',
         titulo: 'tecnologo',
-        numeroDePeriodoAcademico:5,
+        numeroPeriodoAcademico:5,
         estado: false,
       },
       {
@@ -18,7 +18,7 @@ module.exports = {
         fecha: new Date(),
         urlAcreditacion: 'Archivo Acreditacion',
         titulo: 'tecnologo',
-        numeroDePeriodoAcademico: 5,
+        numeroPeriodoAcademico: 5,
         estado: false,
       },
       {
@@ -27,7 +27,7 @@ module.exports = {
         fecha: new Date(),
         urlAcreditacion: 'Archivo Acreditacion',
         titulo: 'tecnologo',
-        numeroDePeriodoAcademico: 5,
+        numeroPeriodoAcademico: 5,
         estado: false,
       },
       {
@@ -36,7 +36,7 @@ module.exports = {
         fecha: new Date(),
         urlAcreditacion: 'Archivo Acreditacion',
         titulo: 'tecnologo',
-        numeroDePeriodoAcademico: 5,
+        numeroPeriodoAcademico: 5,
         estado: false,
       }
     ], {});

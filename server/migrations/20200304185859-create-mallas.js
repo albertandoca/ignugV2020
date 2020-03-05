@@ -20,7 +20,7 @@ module.exports = {
       titulo: {
         type: Sequelize.STRING
       },
-      numeroDePeriodoAcademico: {
+      numeroPeriodoAcademico: {
         type: Sequelize.INTEGER
       },
       estado: {
