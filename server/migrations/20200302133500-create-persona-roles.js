@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      pdfDesignacion: {
+      urlDesignacion: {
         type: Sequelize.STRING
       },
       observaciones: {
