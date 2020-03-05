@@ -3,8 +3,7 @@ let env = require('dotenv').config()
 
 const EXPRESS =  require('express'),
       BODYPARSER = require('body-parser'),
-      // COOKIEPARSER = require('cookie-parser')
-      HELMET = require('helmet')
+      HELMET = require('helmet'),
       TIEMPO = 1 * 60 * 1000
 
 let app = EXPRESS(),
@@ -13,8 +12,7 @@ let app = EXPRESS(),
     parseurl = require('parseurl'),
     rutas = require('../rutas/index'),
     modelos = require('../models'),
-    imgPersona = require('connect-multiparty'),
-   
+    multiparty = require('connect-multiparty'),
     sess = {
         secret: process.env.KEY_SESSION,
         resave: false,
@@ -36,11 +34,8 @@ app.use(BODYPARSER.urlencoded({
     extended: true
 }))
 app.use(BODYPARSER.json())
-app.use(imgPersona({
-    uploadDir: './files/img/persona'
-}))
-app.use(imgIcon({
-    uploadDir: './files/img/icon'
+app.use(multiparty({
+    uploadDir: './files'
 }))
 app.use(session(sess))
 app.use(passport.initialize())
