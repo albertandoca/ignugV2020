@@ -1,13 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Lugares = sequelize.define('Lugares', {
-<<<<<<< HEAD:server/models/lugares.js
-    padre: {
-      type: DataTypes.STRING(100),
-=======
     descripcion: {
       type: DataTypes.STRING(),
->>>>>>> master:server/models/lugares.js
       allowNull: false,
       unique: true,
       validate: {
@@ -21,11 +16,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
     },
     idPadre: {
-      type: DataTypes.STRING(100),
+      type: DataTypes.INTEGER,
       allowNull: false,
       unique: true,
       validate: {
-        is: /^[A-Z ÑÁÉÍÓÚÜ]+$/i,
+        isNumber: true,
         notEmpty: true,
       }
     }
