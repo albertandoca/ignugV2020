@@ -109,15 +109,16 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     // Personas.hasOne(models.Estados);
     Personas.belongsToMany(models.Roles, {
-      through: 'PersonaRoles',
+      through: 'PersonasRoles',
       foreignKey: {
         type: DataTypes.INTEGER,
         name: 'idRol',
-        allowNull: false
+        allowNull: false,
+        unique: false
       },
       sourceKey: 'id'
     });
-    Personas.belongsTo(models.TipoIdentificaciones);
+    Personas.belongsTo(models.TiposIdentificaciones);
   };
   return Personas;
 };

@@ -4,40 +4,48 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Mallas', [
       {
-        CarreraID: 1,
+        CarreraId: 1,
         descripcion: 'Descripcion Malla',
         fecha: new Date(),
         urlAcreditacion: 'Archivo Acreditacion',
         titulo: 'tecnologo',
         numeroPeriodoAcademico:5,
         estado: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
       {
-        CarreraID: 1,
+        CarreraId: 1,
         descripcion: 'Descripcion Malla',
         fecha: new Date(),
         urlAcreditacion: 'Archivo Acreditacion',
         titulo: 'tecnologo',
         numeroPeriodoAcademico: 5,
         estado: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
       {
-        CarreraID: 1,
+        CarreraId: 1,
         descripcion: 'Descripcion Malla',
         fecha: new Date(),
         urlAcreditacion: 'Archivo Acreditacion',
         titulo: 'tecnologo',
         numeroPeriodoAcademico: 5,
         estado: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
       {
-        CarreraID: 1,
+        CarreraId: 1,
         descripcion: 'Descripcion Malla',
         fecha: new Date(),
         urlAcreditacion: 'Archivo Acreditacion',
         titulo: 'tecnologo',
         numeroPeriodoAcademico: 5,
         estado: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ], {});
   },

@@ -1,8 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const DireccionesInstitutos = sequelize.define('DireccionesInstitutos', {
+  const Instalaciones = sequelize.define('Instalaciones', {
     direccion:{
-      type: DataTypes.STRING(75),
+      type: DataTypes.STRING,
       allowNull: true,
       validate: {
         isAlphanumeric: true,
@@ -22,12 +22,18 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
     }
   }, {});
-  DireccionesInstitutos.associate = function(models) {
+  Instalaciones.associate = function(models) {
     // associations can be defined here
+<<<<<<< HEAD:server/models/direccionesinstituto.js
     DireccionesInstitutos.belongsTo(models.Institutos)
     DireccionesInstitutos.belongsTo(models.Lugares)
     DireccionesInstitutos.belongsTo(models.TiposCampus)
+=======
+    Instalaciones.belongsTo(models.Institutos)
+    Instalaciones.belongsTo(models.Lugares)
+    Instalaciones.belongsTo(models.TiposInstalaciones)
+>>>>>>> master:server/models/instalaciones.js
   };
 
-  return DireccionesInstitutos;
+  return Instalaciones;
 };

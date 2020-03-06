@@ -70,10 +70,11 @@ module.exports = (sequelize, DataTypes) => {
     } 
   }, {});
     Institutos.associate = function(models) {
-    //Institutos.belongsTo(models.InstitutosEmails)
-    //Institutos.belongsTo(models.InstitutosTelefonos)
-    //Institutos.hasOne(models.DireccionesInstitutos)
-    //Institutos.hasOne(models.Carreras)
+    Institutos.belongsTo(models.Modalidades)
+    Institutos.hasOne(models.InstitutosEmails)
+    Institutos.hasOne(models.InstitutosTelefonos)
+    Institutos.hasOne(models.Instalaciones)
+    Institutos.hasOne(models.Carreras)
 
   };
   return Institutos;

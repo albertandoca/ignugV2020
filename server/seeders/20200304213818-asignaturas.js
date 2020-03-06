@@ -2,35 +2,57 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('asignaturas', [
+    return queryInterface.bulkInsert('Asignaturas', [
       
       {
-        descripcion: 'Aqui va la descripcion de la asignatura que se le asigno al estudiante',
+        descripcion: 'Matemáticas',
+        creditos: 3,
+        horasDocente: 1,
+        horasPracticas: 2,
+        horasAutonomas: 2,
         estado: true,
+        MallaId: 1,
+        PeriodosAcademicoId: 1,
+        UnidadesCurriculareId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        creditos: '50',
+        descripcion: 'Programación',
+        creditos: 3,
+        horasDocente: 1,
+        horasPracticas: 2,
+        horasAutonomas: 2,
         estado: true,
+        MallaId: 1,
+        PeriodosAcademicoId: 1,
+        UnidadesCurriculareId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        horasDocente: '504',
+        descripcion: 'Lenguaje',
+        creditos: 3,
+        horasDocente: 1,
+        horasPracticas: 2,
+        horasAutonomas: 2,
         estado: true,
+        MallaId: 1,
+        PeriodosAcademicoId: 1,
+        UnidadesCurriculareId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        horasPracticas: '534',
+        descripcion: 'Geometría',
+        creditos: 3,
+        horasDocente: 1,
+        horasPracticas: 2,
+        horasAutonomas: 2,
         estado: true,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        horasAutonomas: '534',
-        estado: true,
+        MallaId: 1,
+        PeriodosAcademicoId: 1,
+        UnidadesCurriculareId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       }
@@ -38,7 +60,7 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('asignaturas', null, {});
+    return queryInterface.bulkDelete('Asignaturas', null, {});
   }
 };
 

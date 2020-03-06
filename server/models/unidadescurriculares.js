@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       validate: {
         is: /^[a-zA-Z áéíóúñÑüÁÉÍÓÚÜ]+$/i,
-        len: [5, 50],
+        len: [5,50],
         notEmpty: true,
       } },
     estado: {

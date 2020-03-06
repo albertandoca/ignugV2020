@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         is: /^[a-zA-Z]+$/i,
         notEmpty: true,
-        len: [3-20],
+        len: [3,20],
       },
       estado: {
         type: DataTypes.BOOLEAN,
@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Modalidades.associate = function(models) {
     // associations can be defined here
+    Modalidades.hasMany(models.Institutos)
   };
   return Modalidades;
 };

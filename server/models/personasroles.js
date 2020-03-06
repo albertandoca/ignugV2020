@@ -1,16 +1,16 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const PersonaRoles = sequelize.define('PersonaRoles', {
+  const PersonasRoles = sequelize.define('PersonasRoles', {
     urlDesignacion: DataTypes.STRING,
-    observaciones: DataTypes.STRING,
+    observaciones: DataTypes.TEXT,
     estado: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
       allowNull: true
     }
   }, {});
-  PersonaRoles.associate = function(models) {
+  PersonasRoles.associate = function(models) {
     // associations can be defined here
   };
-  return PersonaRoles;
+  return PersonasRoles;
 };

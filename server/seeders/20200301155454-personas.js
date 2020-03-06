@@ -4,7 +4,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Personas', [
       {
-        TipoIdentificacioneId: 1,
+        TiposIdentificacioneId: 1,
         identificacion: '1717171717',
         primerNombre: 'GABRIELA',
         segundoNombre: 'ESTEFANÍA',
@@ -20,7 +20,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        TipoIdentificacioneId: 1,
+        TiposIdentificacioneId: 1,
         identificacion: '1717171716',
         primerNombre: 'GABRIELA1',
         segundoNombre: 'ESTEFANÍA',
@@ -36,7 +36,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        TipoIdentificacioneId: 1,
+        TiposIdentificacioneId: 1,
         identificacion: '1717171715',
         primerNombre: 'gabriela',
         segundoNombre: 'ESTEFANÍA',

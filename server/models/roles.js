@@ -16,11 +16,12 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     Roles.belongsToMany(models.Personas,
       {
-        through: 'PersonaRoles',
+        through: 'PersonasRoles',
         foreignKey: {
           type: DataTypes.INTEGER,
           name: 'idPersona',
-          allowNull: false
+          allowNull: false,
+          unique: false
         },
         sourceKey: 'id'
       }

@@ -19,8 +19,7 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true
       } 
     },
-    urlAcreditacion: DataTypes.STRING,
-    titulo: {
+    urlAcreditacion: {
       type: DataTypes.STRING, 
       allowNull: false,
       validate: {
@@ -28,19 +27,17 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true,
       } 
     },
-    dtitulo: {
-      type: DataTypes.STRING(20), 
+    titulo: {
+      type: DataTypes.STRING, 
       allowNull: false,
       validate: {
         is: /^[a-zA-Z0-9 áéíóúñÑüÁÉÍÓÚÜ]+$/i,
-        len: [3, 20],
         notEmpty: true,
       }
     },
     numeroPeriodoAcademico: {
       type: DataTypes.INTEGER, 
       allowNull: false,
-      unique: false,
       validate: {
         isNumeric: true
       } 
