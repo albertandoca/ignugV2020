@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('TipoIdentificaciones', [
+    return queryInterface.bulkInsert('TiposIdentificaciones', [
       {
         descripcion: 'Cédula',
         estado: true,
@@ -31,6 +31,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('TipoIdentificaciones', null, {});
+    return queryInterface.bulkDelete('TiposIdentificaciones', null, {});
   }
 };

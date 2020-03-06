@@ -2,30 +2,33 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('telefonos', [
+    return queryInterface.bulkInsert('Lugares', [
       {
-        codigopais: '593',
+        descripcion: 'Pichincha',
+        idPadre: 0,
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        numero: '125417281218',
+        descripcion: 'Quito',
+        idPadre: 1,
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        operadora: 'telefonia',
+        descripcion: 'Conocoto',
+        idPadre: 2,
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
-      },
-      
+      }
+     
     ], {});
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('telefonos', null, {});
+    return queryInterface.bulkDelete('Lugares', null, {});
   }
 };

@@ -47,9 +47,9 @@ module.exports = (sequelize, DataTypes) => {
   Asignaturas.associate = function(models) {
     // associations can be defined here
     
-    Asignaturas.belongTo(models.Mallas)
-    Asignaturas.belongTo(models.PeriodosAcademicos)
-    Asignaturas.belongTo(models.UnidadesCurriculares)
+    Asignaturas.belongsTo(models.Mallas)
+    Asignaturas.belongsTo(models.PeriodosAcademicos)
+    Asignaturas.belongsTo(models.UnidadesCurriculares)
   };
   return Asignaturas;
 };

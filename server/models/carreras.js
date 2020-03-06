@@ -27,8 +27,8 @@ module.exports = (sequelize, DataTypes) => {
 
   Carreras.associate = function(models) {
     Carreras.hasMany(models.Mallas)
-    Carreras.belongTo(models.Institutos)
-    Carreras.belongTo(models.Modalidades)
+    Carreras.belongsTo(models.Institutos)
+    Carreras.belongsTo(models.Modalidades)
   };
 
 

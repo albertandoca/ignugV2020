@@ -2,33 +2,30 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('InstitutosEmails', [
+    return queryInterface.bulkInsert('TiposInstalaciones', [
       {
-        InstitutoId: 1,
-        eMail: 'aaa@aaa.aa',
+        descripcion: 'Matriz',
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        InstitutoId: 1,
-        eMail: 'aaa@aaa.ab',
+        descripcion: 'Campus',
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        InstitutoId: 1,
-        eMail: 'aaa@aaa.ac',
+        descripcion: 'Extensión',
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
-      },
+      }
       
     ], {});
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('InstitutosEmails', null, {});
+    return queryInterface.bulkDelete('TiposInstalaciones', null, {});
   }
 };

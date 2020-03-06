@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   InstitutosEmails.associate = function(models) {
     // associations can be defined here
-    InstitutosEmails.hasMany(models.Institutos)
+    InstitutosEmails.belongsTo(models.Institutos)
     };
   return InstitutosEmails;
 };

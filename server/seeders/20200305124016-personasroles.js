@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-      return queryInterface.bulkInsert('PersonaRoles', [
+      return queryInterface.bulkInsert('PersonasRoles', [
       {
         idPersona: 1,
         idRol: 1,
@@ -14,7 +14,7 @@ module.exports = {
       },
       {
         idPersona: 1,
-        idRol: 1,
+        idRol: 2,
         urlDesignacion: 'sin url',
         observaciones: 'no hay observaciones',
         estado: true,
@@ -22,7 +22,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        idPersona: 1,
+        idPersona: 2,
         idRol: 1,
         urlDesignacion: 'sin url',
         observaciones: 'no hay observaciones',
@@ -61,6 +61,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-      return queryInterface.bulkDelete('PersonaRoles', null, {});
+      return queryInterface.bulkDelete('PersonasRoles', null, {});
   }
 };

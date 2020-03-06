@@ -2,24 +2,30 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('UnidadesCurrilares', [
+    return queryInterface.bulkInsert('UnidadesCurriculares', [
       {
-        descripcion: 'tipo',
+        descripcion: 'tipoa',
         estado: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
       {
-        descripcion: 'tipo',
+        descripcion: 'tipob',
         estado: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
       {
-        descripcion: 'tipo',
+        descripcion: 'tipoc',
         estado: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
       
     ], {});
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('UnidadesCurrilares', null, {});
+    return queryInterface.bulkDelete('UnidadesCurriculares', null, {});
   }
 };

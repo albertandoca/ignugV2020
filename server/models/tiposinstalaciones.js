@@ -1,13 +1,13 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const TiposCampus = sequelize.define('TiposCampus', {
+  const TiposInstalaciones = sequelize.define('TiposInstalaciones', {
     descripcion:{
       type: DataTypes.STRING(20), 
-      allowNull: false,
-      unique: false,
+      allowNull: true,
+      unique: true,
       validate: {
         is: /^[a-zA-Z áéíóúñÑüÁÉÍÓÚÜ]+$/i,
-        len: [3-20],
+        len: [3,20],
         notEmpty: true,
       } 
     },
@@ -18,10 +18,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
  
-  TiposCampus.associate = function(models) {
+  TiposInstalaciones.associate = function(models) {
     // associations can be defined here
-        TiposCampus.hasMany(models.DireccionesInstitutos)
+        TiposInstalaciones.hasMany(models.Instalaciones)
       };
 
-  return TiposCampus;
+  return TiposInstalaciones;
 };

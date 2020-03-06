@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const TipoIdentificaciones = sequelize.define('TipoIdentificaciones', {
+  const TiposIdentificaciones = sequelize.define('TiposIdentificaciones', {
     descripcion: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -12,9 +12,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
     }
   }, {});
-  TipoIdentificaciones.associate = function(models) {
+  TiposIdentificaciones.associate = function(models) {
     // associations can be defined here
-    TipoIdentificaciones.hasOne(models.Personas)
+    TiposIdentificaciones.hasOne(models.Personas)
   };
-  return TipoIdentificaciones;
+  return TiposIdentificaciones;
 };

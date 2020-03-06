@@ -1,13 +1,13 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const UnidadesCurrilares = sequelize.define('UnidadesCurrilares', {
+  const UnidadesCurriculares = sequelize.define('UnidadesCurriculares', {
     descripcion:{
       type: DataTypes.STRING(50), 
       allowNull: false,
       unique: true,
       validate: {
         is: /^[a-zA-Z áéíóúñÑüÁÉÍÓÚÜ]+$/i,
-        len: [5, 50],
+        len: [5,50],
         notEmpty: true,
       } },
     estado: {
@@ -16,10 +16,10 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: true
     }
   }, {});
-  UnidadesCurrilares.associate = function(models) {
+  UnidadesCurriculares.associate = function(models) {
     // associations can be defined here
-        UnidadesCurrilares.hasOne(models.Asignaturas)
+        UnidadesCurriculares.hasOne(models.Asignaturas)
       };
 
-  return UnidadesCurrilares;
+  return UnidadesCurriculares;
 };
