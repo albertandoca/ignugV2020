@@ -24,9 +24,15 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Instalaciones.associate = function(models) {
     // associations can be defined here
+<<<<<<< HEAD:server/models/direccionesinstituto.js
+    DireccionesInstitutos.belongsTo(models.Institutos)
+    DireccionesInstitutos.belongsTo(models.Lugares)
+    DireccionesInstitutos.belongsTo(models.TiposCampus)
+=======
     Instalaciones.belongsTo(models.Institutos)
     Instalaciones.belongsTo(models.Lugares)
     Instalaciones.belongsTo(models.TiposInstalaciones)
+>>>>>>> master:server/models/instalaciones.js
   };
 
   return Instalaciones;

@@ -48,7 +48,11 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     
     Asignaturas.belongsTo(models.Mallas)
+<<<<<<< HEAD
+    // Asignaturas.belongsTo(models.PeriodosAcademicos)
+=======
     Asignaturas.belongsTo(models.PeriodosAcademicos)
+>>>>>>> master
     Asignaturas.belongsTo(models.UnidadesCurriculares)
   };
   return Asignaturas;
