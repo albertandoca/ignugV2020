@@ -24,9 +24,33 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Instalaciones.associate = function(models) {
     // associations can be defined here
-    Instalaciones.belongsTo(models.Institutos)
-    Instalaciones.belongsTo(models.Lugares)
-    Instalaciones.belongsTo(models.TiposInstalaciones)
+    Instalaciones.belongsTo(models.Institutos, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idInstituto',
+        allowNull: false,
+        unique: false
+      },
+      targetKey: 'id'
+    })
+    Instalaciones.belongsTo(models.Lugares, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idLugar',
+        allowNull: false,
+        unique: false
+      },
+      targetKey: 'id'
+    })
+    Instalaciones.belongsTo(models.TiposInstalaciones, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idTipoInstalacion',
+        allowNull: false,
+        unique: false
+      },
+      targetKey: 'id'
+    })
   };
 
   return Instalaciones;

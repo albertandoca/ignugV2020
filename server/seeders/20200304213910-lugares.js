@@ -4,27 +4,37 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Lugares', [
       {
+        codigo: '0',
+        descripcion: 'Padre',
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        codigoLugar: '0'
+      },
+      {
+        codigo: '1',
         descripcion: 'Pichincha',
-        idPadre: 0,
         estado: true,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        codigoLugar: '0'
       },
       {
+        codigo: '2',
         descripcion: 'Quito',
-        idPadre: 1,
         estado: true,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        codigoLugar: '1'
       },
       {
+        codigo: '3',
         descripcion: 'Conocoto',
-        idPadre: 2,
         estado: true,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        codigoLugar: '2'
       }
-     
     ], {});
   },
 

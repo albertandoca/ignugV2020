@@ -11,10 +11,21 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: true,
       allowNull: true
     }
-  }, {});
+  }, {
+    freezeTableName: true
+  });
+  
   TiposIdentificaciones.associate = function(models) {
     // associations can be defined here
-    TiposIdentificaciones.hasOne(models.Personas)
+    TiposIdentificaciones.hasMany(models.Personas, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idTipoIdentificacion',
+        allowNull: false,
+        unique: false
+      },
+      sourceKey: 'id'
+    })
   };
   return TiposIdentificaciones;
 };

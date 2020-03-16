@@ -30,7 +30,15 @@ module.exports = (sequelize, DataTypes) => {
      
   }, {});
   InstitutosTelefonos.associate = function(models) {
-    InstitutosTelefonos.belongsTo(models.Institutos)
+    InstitutosTelefonos.belongsTo(models.Institutos, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idInstituto',
+        allowNull: false,
+        unique: false
+      },
+      targetKey: 'id'
+    })
   };
   return InstitutosTelefonos;
 };

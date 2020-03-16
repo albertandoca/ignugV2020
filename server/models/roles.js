@@ -11,15 +11,17 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: true,
       allowNull: true
     }
-  }, {});
+  }, {
+    freezeTableName: true
+  });
+  
   Roles.associate = function(models)  {
     // associations can be defined here
-    Roles.belongsToMany(models.Personas,
+    Roles.hasMany(models.PersonasRoles,
       {
-        through: 'PersonasRoles',
         foreignKey: {
           type: DataTypes.INTEGER,
-          name: 'idPersona',
+          name: 'idRol',
           allowNull: false,
           unique: false
         },

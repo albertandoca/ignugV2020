@@ -3,8 +3,10 @@ let jwt = require('jsonwebtoken')
 
 let autenticado = (req, res, next) => {
     let token = req.headers.authorization
+    let semilla = req.sessionID
+    console.log(token)
     if (token) {
-        jwt.verify(token, process.env.KEY_JWT, (err, decoded) => {
+        jwt.verify(token, semilla, (err, decoded) => {
             if (err) {
                 res.status(401).json({
                     transaccion: false,
@@ -13,11 +15,12 @@ let autenticado = (req, res, next) => {
                 })
             } else {
                 req.decoded = decoded
+                console.log(decoded)
                 next()
             }
         })
     } else {
-        res.status(403).json({
+        return res.status(403).json({
             transaccion: false,
             data: null,
             msg: 'No se envió el token'

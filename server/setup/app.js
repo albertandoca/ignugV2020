@@ -13,15 +13,22 @@ let app = EXPRESS(),
     rutas = require('../rutas/index'),
     modelos = require('../models'),
     multiparty = require('connect-multiparty'),
+    cors = require('cors'),
+    morgan = require('morgan'),
     sess = {
         secret: process.env.KEY_SESSION,
         resave: false,
         saveUninitialized: false,
         name : 'sessionId',
         cookie: {
+            httpOnly: true,
             expires: new Date(Date.now() + TIEMPO),
             maxAge: TIEMPO
         }
+    },
+    corsOptions = {
+        origin: 'http://localhost:4200',
+        optionsSuccessStatus: 200
     }
 
     if (process.env.NODE_ENV === 'production') {
@@ -29,18 +36,21 @@ let app = EXPRESS(),
         sess.cookie.secure = true
     }
     
-//app.use(COOKIEPARSER())
+app.use(HELMET())
+
 app.use(BODYPARSER.urlencoded({
     extended: true
 }))
 app.use(BODYPARSER.json())
+app.use(cors(corsOptions))
+app.use(morgan('combined'))
 app.use(multiparty({
     uploadDir: './files'
 }))
 app.use(session(sess))
 app.use(passport.initialize())
 app.use(passport.session());
-app.use(HELMET())
+
 app.use((req, res, next) => {
     if (!req.session.views) {
         req.session.views = {}

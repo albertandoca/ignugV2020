@@ -50,8 +50,33 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Mallas.associate = function(models) {
     // associations can be defined here
-    Mallas.belongsTo(models.Carreras)
-    Mallas.hasMany(models.Asignaturas)
+    Mallas.belongsTo(models.Carreras, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idCarrera',
+        allowNull: false,
+        unique: false
+      },
+      targetKey: 'id'
+    })
+    Mallas.belongsTo(models.Modalidades, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idModalidad',
+        allowNull: false,
+        unique: false
+      },
+      targetKey: 'id'
+    })
+    Mallas.hasMany(models.Asignaturas, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idMalla',
+        allowNull: false,
+        unique: false
+      },
+      sourceKey: 'id'
+    })
   };
   return Mallas;
 };

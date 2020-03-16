@@ -18,7 +18,15 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   UnidadesCurriculares.associate = function(models) {
     // associations can be defined here
-        UnidadesCurriculares.hasOne(models.Asignaturas)
+        UnidadesCurriculares.hasOne(models.Asignaturas, {
+          foreignKey: {
+            type: DataTypes.INTEGER,
+            name: 'idUnidadCurricular',
+            allowNull: false,
+            unique: false
+          },
+          sourceKey: 'id'
+        })
       };
 
   return UnidadesCurriculares;

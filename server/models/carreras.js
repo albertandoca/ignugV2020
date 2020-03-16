@@ -26,9 +26,24 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
 
   Carreras.associate = function(models) {
-    Carreras.hasMany(models.Mallas)
-    Carreras.belongsTo(models.Institutos)
-    Carreras.belongsTo(models.Modalidades)
+    Carreras.hasMany(models.Mallas, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idCarrera',
+        allowNull: false,
+        unique: false
+      },
+      sourceKey: 'id'
+    })
+    Carreras.belongsTo(models.Institutos, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idInstituto',
+        allowNull: false,
+        unique: false
+      },
+      targetKey: 'id'
+    })
   };
 
 

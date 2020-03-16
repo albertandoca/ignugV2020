@@ -18,7 +18,15 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   InstitutosEmails.associate = function(models) {
     // associations can be defined here
-    InstitutosEmails.belongsTo(models.Institutos)
+    InstitutosEmails.belongsTo(models.Institutos, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idInstituto',
+        allowNull: false,
+        unique: false
+      },
+      targetKey: 'id'
+    })
     };
   return InstitutosEmails;
 };

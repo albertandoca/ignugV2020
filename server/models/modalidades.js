@@ -18,7 +18,15 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Modalidades.associate = function(models) {
     // associations can be defined here
-    Modalidades.hasMany(models.Institutos)
+    Modalidades.hasMany(models.Mallas, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idModalidad',
+        allowNull: false,
+        unique: false
+      },
+      sourcetKey: 'id'
+    })
   };
   return Modalidades;
 };

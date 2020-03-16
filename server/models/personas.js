@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         is: /^[a-zA-Z0-9]+$/i,
         len: [5, 20],
-        notEmpty: true,
+        // notEmpty: true,
       }
     },
     primerNombre: {
@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         is: /^[A-Z ÑÁÉÍÓÚÜ]+$/i,
-        isUppercase: true,
+        // isUppercase: true,
         notEmpty: true
       }
     },
@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
       validate: {
         is: /^[A-Z ÑÁÉÍÓÚÜ]+$/i,
-        isUppercase: true,
+        // isUppercase: true,
       }
     },
     apellidoPaterno: {
@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         is: /^[A-Z ÑÁÉÍÓÚÜ]+$/i,
-        isUppercase: true,
+        //isUppercase: true,
         notEmpty: true
       }
     },
@@ -44,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         is: /^[A-Z ÑÁÉÍÓÚÜ]+$/i,
-        isUppercase: true,
+        //isUppercase: true,
         notEmpty: true
       }
     },
@@ -88,7 +88,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       default: 'Actualiza'
     }
-  }, {});
+  }, 
+  {
+    freezeTableName: true
+  });
 
   Personas.beforeSave((persona, options) => {
     if (persona.changed('psw')) {
@@ -96,29 +99,37 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
-  Personas.prototype.comparePsw = (psw, cb) => {
-    bcrypt.compare(psw, this.psw, (err, isMatch) => {
+  Personas.beforeUpdate((persona, option) => {
+    
+  })
+
+  Personas.prototype.comparePassword = function (passw, cb) {
+    bcrypt.compare(passw, this.psw, function (err, isMatch) {
       if (err) {
-        return cb(err);
+        return cb(err)
       }
-      // Cambiar último ingreso, crear registro de entrada
       cb(null, isMatch);
     })
   }
   Personas.associate = function(models) {
-    // associations can be defined here
-    // Personas.hasOne(models.Estados);
-    Personas.belongsToMany(models.Roles, {
-      through: 'PersonasRoles',
+    Personas.hasMany(models.PersonasRoles, {
       foreignKey: {
         type: DataTypes.INTEGER,
-        name: 'idRol',
+        name: 'idPersona',
         allowNull: false,
         unique: false
       },
       sourceKey: 'id'
     });
-    Personas.belongsTo(models.TiposIdentificaciones);
+    Personas.belongsTo(models.TiposIdentificaciones, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idTipoIdentificacion',
+        allowNull: false,
+        unique: false
+      },
+      targetKey: 'id'
+    });
   };
   return Personas;
 };
