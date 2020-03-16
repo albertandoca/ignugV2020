@@ -47,9 +47,33 @@ module.exports = (sequelize, DataTypes) => {
   Asignaturas.associate = function(models) {
     // associations can be defined here
     
-    Asignaturas.belongsTo(models.Mallas)
-    Asignaturas.belongsTo(models.PeriodosAcademicos)
-    Asignaturas.belongsTo(models.UnidadesCurriculares)
+    Asignaturas.belongsTo(models.Mallas, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idMalla',
+        allowNull: false,
+        unique: false
+      },
+      targetKey: 'id'
+    })
+    Asignaturas.belongsTo(models.PeriodosAcademicos, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idPeriodoAcademico',
+        allowNull: false,
+        unique: false
+      },
+      targetKey: 'id'
+    })
+    Asignaturas.belongsTo(models.UnidadesCurriculares, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idUnidadCurricular',
+        allowNull: false,
+        unique: false
+      },
+      targetKey: 'id'
+    })
   };
   return Asignaturas;
 };

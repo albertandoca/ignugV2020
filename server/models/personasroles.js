@@ -8,9 +8,37 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: true,
       allowNull: true
     }
-  }, {});
+  }, {
+    freezeTableName: true
+  });
   PersonasRoles.associate = function(models) {
-    // associations can be defined here
+    PersonasRoles.belongsTo(models.Personas, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idPersona',
+        allowNull: false,
+        unique: false
+      },
+      targetKey: 'id'
+    })
+    PersonasRoles.belongsTo(models.Roles, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idRol',
+        allowNull: false,
+        unique: false
+      },
+      targetKey: 'id'
+    })
+    PersonasRoles.belongsTo(models.Institutos, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idInstituto',
+        allowNull: false,
+        unique: false
+      },
+      targetKey: 'id'
+    })
   };
   return PersonasRoles;
 };

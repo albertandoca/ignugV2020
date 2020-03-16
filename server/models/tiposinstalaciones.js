@@ -20,7 +20,15 @@ module.exports = (sequelize, DataTypes) => {
  
   TiposInstalaciones.associate = function(models) {
     // associations can be defined here
-        TiposInstalaciones.hasMany(models.Instalaciones)
+        TiposInstalaciones.hasMany(models.Instalaciones, {
+          foreignKey: {
+            type: DataTypes.INTEGER,
+            name: 'idTipoInstalacion',
+            allowNull: false,
+            unique: false
+          },
+          sourceKey: 'id'
+        })
       };
 
   return TiposInstalaciones;

@@ -4,7 +4,8 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Mallas', [
       {
-        CarreraId: 1,
+        idCarrera: 1,
+        idModalidad: 2,
         descripcion: 'Descripcion Malla',
         fecha: new Date(),
         urlAcreditacion: 'Archivo Acreditacion',
@@ -15,7 +16,8 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        CarreraId: 1,
+        idCarrera: 1,
+        idModalidad: 2,
         descripcion: 'Descripcion Malla',
         fecha: new Date(),
         urlAcreditacion: 'Archivo Acreditacion',
@@ -26,7 +28,8 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        CarreraId: 1,
+        idCarrera: 2,
+        idModalidad: 3,
         descripcion: 'Descripcion Malla',
         fecha: new Date(),
         urlAcreditacion: 'Archivo Acreditacion',
@@ -37,7 +40,8 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        CarreraId: 1,
+        idCarrera: 2,
+        idModalidad: 4,
         descripcion: 'Descripcion Malla',
         fecha: new Date(),
         urlAcreditacion: 'Archivo Acreditacion',

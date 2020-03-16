@@ -2,19 +2,26 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-
-      Example:
-      return queryInterface.bulkInsert('Institutos', [{
+    return queryInterface.bulkInsert('Institutos', [
+      {
         razonSocial: 'Yavirac',
         ruc: '1234567891235',
-        urlAcreditacion: 'http//acreditacion.com',
-        urlOrganigrama: 'http//acreditacion.com',
-        urlStatuto: 'http//acreditacion.com',
+        urlResolucion: 'http//Resolucion.com',
         categoria: 'Público',
         urlLogotipo:'https://sequ',
         createdAt: new Date(),
         updatedAt: new Date()
-      }], {});
+      },
+      {
+        razonSocial: 'Gran Colombia',
+        ruc: '1234567891237',
+        urlResolucion: 'http//Resolucion1.com',
+        categoria: 'Público',
+        urlLogotipo:'https://sequ1',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+    ], {});
 
   },
 

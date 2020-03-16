@@ -21,25 +21,7 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true
       } 
     },
-    urlAcreditacion:
-    {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isUrl: true,
-        notEmpty: true
-      }
-    },
-    urlOrganigrama:
-    {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isUrl: true,
-        notEmpty: true
-      }
-    },
-    urlStatuto:
+    urlResolucion:
     {
       type: DataTypes.STRING,
       allowNull: false,
@@ -69,13 +51,43 @@ module.exports = (sequelize, DataTypes) => {
     }
     } 
   }, {});
-    Institutos.associate = function(models) {
-    Institutos.belongsTo(models.Modalidades)
-    Institutos.hasOne(models.InstitutosEmails)
-    Institutos.hasOne(models.InstitutosTelefonos)
-    Institutos.hasOne(models.Instalaciones)
-    Institutos.hasOne(models.Carreras)
-
+  Institutos.associate = function(models) {
+    Institutos.hasMany(models.PersonasRoles, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idInstituto',
+        allowNull: false,
+        unique: false
+      },
+      sourceKey: 'id'
+    })
+    Institutos.hasMany(models.InstitutosEmails, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idInstituto',
+        allowNull: false,
+        unique: false
+      },
+      sourceKey: 'id'
+    })
+    Institutos.hasMany(models.InstitutosTelefonos, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idInstituto',
+        allowNull: false,
+        unique: false
+      },
+      sourceKey: 'id'
+    })
+    Institutos.hasMany(models.Instalaciones, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idInstituto',
+        allowNull: false,
+        unique: false
+      },
+      sourceKey: 'id'
+    })
   };
   return Institutos;
 };

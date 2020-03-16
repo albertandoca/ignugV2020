@@ -5,7 +5,7 @@ module.exports = {
   
     return queryInterface.bulkInsert('InstitutosTelefonos', [
       {
-        InstitutoId: 1,
+        idInstituto: 1,
         codigoPais: '593',
         numero: '0943587126',
         operadora: 'Claro',
@@ -13,7 +13,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        InstitutoId: 1,
+        idInstituto: 1,
         codigoPais: '593',
         numero: '0943587127',
         operadora: 'Claro',
@@ -21,7 +21,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        InstitutoId: 1,
+        idInstituto: 1,
         codigoPais: '593',
         numero: '0943587128',
         operadora: 'Claro',
