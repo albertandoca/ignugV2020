@@ -11,13 +11,15 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material.module';
+import { OlvidoPswComponent } from './login/olvido-psw/olvido-psw.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    OlvidoPswComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +34,9 @@ import { MaterialModule } from './material.module';
   exports: [
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    OlvidoPswComponent
+  ]
 })
 export class AppModule { }

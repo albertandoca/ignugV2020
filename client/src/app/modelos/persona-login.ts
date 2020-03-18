@@ -1,5 +1,6 @@
+import { PersonaRol } from './persona-rol';
 import { TipoIdentificacion } from './tipo-identificacion';
-export interface Persona {
+export interface PersonaLogin {
   id: number;
   idTipoIdentificacion?: number;
   identificacion: string;
@@ -9,11 +10,7 @@ export interface Persona {
   apellidoMaterno: string;
   emailPersonal: string;
   emailInstitucional: string;
-  psw?: string;
-  semilla?: string;
-  enLinea?: Date;
-  estado?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
   TiposIdentificacione: TipoIdentificacion;
+  PersonasRoles: PersonaRol;
+  token: string;
 }

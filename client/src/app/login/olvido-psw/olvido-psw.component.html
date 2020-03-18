@@ -1,0 +1,35 @@
+<h3 mat-dialog-title>Restablecer contraseña</h3>
+
+<mat-dialog-content [formGroup]="olvidoPswForm">
+  <p>Para recuperar su contraseña debe ingresar su número de identificación y el email institucional</p>
+  <mat-form-field>
+    <mat-label>No. identificación</mat-label>
+    <input matInput formControlName="identificacion" placeholder="Ej: 1717171717">
+    <mat-icon matPrefix color="primary">credit_card</mat-icon>
+    <mat-icon matSuffix style="color:#4CAF50;" *ngIf="olvidoPswForm.get('identificacion').valid">check</mat-icon>
+
+    <mat-error *ngIf="olvidoPswForm.get('identificacion').hasError('pattern')">
+      Por favor ingrese un número de identificación válido
+    </mat-error>
+    <mat-error *ngIf="olvidoPswForm.get('identificacion').hasError('required')">
+      El número de identificación es <strong>necesario</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="emailInstitucional" placeholder="Ej: cds.jacome@yavirac.edu.ec">
+    <mat-icon matPrefix color="primary">email</mat-icon>
+    <mat-icon matSuffix style="color:#4CAF50;" *ngIf="olvidoPswForm.get('emailInstitucional').valid">check</mat-icon>
+
+    <mat-error *ngIf="olvidoPswForm.get('emailInstitucional').hasError('pattern')">
+      Por favor ingrese un email válido
+    </mat-error>
+    <mat-error *ngIf="olvidoPswForm.get('emailInstitucional').hasError('required')">
+      Email es <strong>necesario</strong>
+    </mat-error>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</mat-dialog-actions>
