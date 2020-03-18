@@ -1,0 +1,173 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.fondo {
+    position: fixed;
+    height: 100%;
+    width: 60%;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+main {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 7rem;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+mat-card-title {
+    font-size: 48;
+    color: #da4f04;
+}
+
+mat-card-title, mat-card-subtitle {
+    font-family: 'Poppins', sans-serif;
+ }
+
+.img {
+    width: 36rem;
+    padding-top: 25%;
+    padding-left: 10%;
+}
+
+mat-card {
+    width: 20rem;
+    height: 28rem;
+    margin-top: 10%;
+    margin-left: 25%;
+    padding-top: 4.5vh;
+    border-radius: 3rem;
+    background-color: #f77129c2;
+}
+mat-card-header {
+    display: inline-block;
+    text-align: center;
+}
+
+.logo {
+    padding-top: 0;
+    width: 50%;
+    //padding-right: 2rem;
+}
+
+.img2 {
+    padding-top: 0;
+    width: 40%;
+}
+
+mat-card-content {
+    width: 100%;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+}
+
+mat-card-content * {
+    width: 100%;
+}
+
+mat-icon {
+    vertical-align: middle;
+    padding-right: 1.8rem
+}
+
+mat-card-action {
+    width: 100%;
+}
+
+.btnLogin {
+    border-radius: 20px;
+    width: 80%;
+}
+
+input, a, button {
+    font-family: 'Poppins', sans-serif;
+}
+
+a {
+    font-size: 9pt;
+    font-style: italic;
+}
+
+@media screen and (max-width: 1200px) {
+    mat-card {
+        margin-left: 2vw;
+    }
+    .img {
+        width: 23rem;
+        padding-top: 45%;
+        padding-left: 8%;
+    }
+    .fondo {
+        width: 50%;
+    }
+
+}
+
+@media screen and (max-width: 1000px) {
+    mat-card {
+        margin-left: 2vw;
+    }
+    .img {
+        width: 20rem;
+        padding-top: 45%;
+        padding-left: 8%;
+    }
+    .fondo {
+        width: 50%;
+    }
+
+}
+
+@media screen and (max-width: 800px) {
+    mat-card {
+        margin-left: 0;
+    }
+    .img {
+        width: 18rem;
+        padding-top: 65%;
+        padding-left: 8%;
+    }
+    .fondo {
+        width: 55%;
+    }
+
+}
+
+@media screen and (max-width: 700px) {
+    .img {
+        display: none;
+    }
+
+    main {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        display: inline-flex;
+        grid-template-columns: 1fr;
+        text-align: center;
+        align-items: center;
+        align-content: center;
+    }
+
+    .fondo {
+        display: none;
+    }
+    mat-card {
+        margin: auto;
+        justify-content: center;
+    
+    }
+}

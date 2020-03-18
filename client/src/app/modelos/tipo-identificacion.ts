@@ -1,5 +1,5 @@
 export interface TipoIdentificacion {
-    id?: number;
+    id: number;
     descripcion: string;
     estado?: boolean;
     createdAt?: Date;

@@ -1,1 +1,53 @@
-<p>login works!</p>
+ <img class="fondo" src="../../assets/img/login/wave4.png">
+<main>
+    <div class="img">
+        <img mat-card-image src="../../assets/img/login/undraw_data_xmfy.svg">
+    </div>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                BIENVENID@S
+            </mat-card-title>
+            <img mat-card-image class="logo" src="../../assets/img/login/logoLogin.png">
+            <mat-card-subtitle>
+                Sistema de Gestión Académica
+            </mat-card-subtitle>
+        </mat-card-header>
+    <mat-card-content>
+        <form action="" [formGroup]="loginForm">
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email"
+                       placeholder="Ej: cds.jacome@yavirac.edu.ec">
+                <mat-icon matPrefix color="primary">email</mat-icon>
+                <mat-icon matSuffix style="color:#4CAF50;" *ngIf="loginForm.get('email').valid">check</mat-icon>
+
+                <mat-error *ngIf="loginForm.get('email').hasError('pattern')">
+                  Por favor ingrese un email válido
+                </mat-error>
+                <mat-error *ngIf="loginForm.get('email').hasError('required')">
+                  Email es <strong>necesario</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Contraseña</mat-label>
+                <input matInput formControlName="psw" type="password">
+                       <mat-icon matPrefix color="primary">vpn_key</mat-icon>
+                       <mat-icon matSuffix style="color:#4CAF50;" *ngIf="loginForm.get('psw').valid">check</mat-icon>
+                <mat-error *ngIf="loginForm.get('psw').hasError('pattern')">
+                  Ingrese una contraseña válida
+                </mat-error>
+                <mat-error *ngIf="loginForm.get('psw').hasError('required')">
+                  La contraseña es <strong>necesaria</strong>
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button class="btnLogin" color="primary" [disabled]="loginForm.invalid" (click)="ingresar()">Ingresar</button>
+    </mat-card-actions>
+    <mat-card-footer>
+        <a routerLink="." (click)="openDialog()">¿Olvido su contraseña?</a>
+    </mat-card-footer>
+    </mat-card>
+</main>

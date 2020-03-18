@@ -195,7 +195,7 @@ let modificar = (req, res) => {
 
 }
 
-let entrar = (req, res) => {
+let ingresar = (req, res) => {
     let email = req.params.emailInstitucional
     let psw = req.params.psw
     let semilla = req.sessionID
@@ -252,9 +252,9 @@ let entrar = (req, res) => {
         if (persona.id > 0) {
             if (persona.enLinea > fecha) {
                 console.log(persona.fecha)
-                res.status(404).json({
+                res.status(200).json({
                     transaccion: false,
-                    data: datos,
+                    data: [],
                     msg: 'Usuario en línea'
                 })
             } else {
@@ -296,7 +296,7 @@ let entrar = (req, res) => {
                     } else {
                         res.status(404).json({
                             transaccion: false,
-                            data: datos,
+                            data: [],
                             msg: 'Usuario o contraseña incorrectos'
                         })
                     }
@@ -305,7 +305,7 @@ let entrar = (req, res) => {
         } else {
             res.status(404).json({
                 transaccion: false,
-                data: datos,
+                data: [],
                 msg: 'Usuario o contraseña incorrectos'
             })
         }
@@ -329,5 +329,5 @@ module.exports = {
     crearMasivo,
     borrar,
     modificar,
-    entrar
+    ingresar
 }

@@ -1,0 +1,26 @@
+
+.mat-dialog-title {
+  width: 100%;
+  margin-top: -24px;
+  margin-bottom: 0.5rem;
+  margin-left: -24px;
+  margin-right: -24px;
+  background-color: #f77129c2;
+  padding: 0.7rem 1.5rem ;
+  font-family: 'Poppins', sans-serif;
+  color: #da4f04;
+}
+
+mat-dialog-content {
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+}
+
+mat-dialog-content * {
+  width: 100%;
+}
+
+mat-icon {
+  vertical-align: middle;
+  padding-right: 0.5rem
+}

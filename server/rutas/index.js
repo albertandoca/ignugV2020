@@ -12,7 +12,7 @@ let api = EXPRESS.Router(),
 api.get('/leer', personasControl.leer)
 api.get('/leer-id', [autenticarControl.autenticado, sesionControl.actualiza], personasControl.leerId)
 api.post('/persona-crear', personasControl.crear)
-api.get('/entrar/:emailInstitucional/:psw', personasControl.entrar)
+api.get('/ingresar/:emailInstitucional/:psw', personasControl.ingresar)
 api.get('/modificar', personasControl.modificar)
 api.get('/mallas-leer', mallasControl.leer)
 api.get('/leer-tipos-identificaciones', tiposIdentificacionesControl.leer)
