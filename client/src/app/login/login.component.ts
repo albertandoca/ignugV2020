@@ -7,7 +7,7 @@ import { ApiUrlService } from './../servicios/api-url.service';
 import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private html: HttpClient,
+    private http: HttpClient,
     private apiUrl: ApiUrlService,
     private autorizado: AutorizadoService,
     public dialog: MatDialog
@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.identificacion = '1213141516';
   }
 
   crearLoginForm() {
@@ -48,20 +49,22 @@ export class LoginComponent implements OnInit {
       // const mail = this.loginForm.get('email').value;
       // const pass = this.loginForm.get('psw').value;
       this.loginForm.reset();
-      this.html.get<DataRx>(`${this.apiUrl.url}ingresar/${login.email}/${login.psw}`)
-      .subscribe(res => {
-        if (res.transaccion) {
-          if (res.data.length.toString() == res.msg) {
-            this.personaLogin = res.data;
-            this.autorizado.personaLogin = this.personaLogin[0];
-            console.log('jjj ' + JSON.stringify(this.autorizado.personaLogin));
+      this.http.get<DataRx>(`${this.apiUrl.url}ingresar-persona/${login.email}/${login.psw}`)
+        .subscribe(res => {
+          if (res.transaccion) {
+            if (res.data.length.toString() == res.msg) {
+              this.personaLogin = res.data;
+              this.autorizado.personaLogin = this.personaLogin[0];
+              // console.log('jjj ' + JSON.stringify(this.autorizado.personaLogin));
+            } else {
+              alert('Ingreso no autorizado');
+            }
           } else {
-            alert('Ingreso no autorizado');
+            console.log(res.msg);
           }
-        } else {
-          console.log(res.msg);
-        }
-      });
+        });
+    } else {
+      alert('sin datos');
     }
   }
 
@@ -78,6 +81,7 @@ export class LoginComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(res => {
+
       console.log(res);
     });
   }

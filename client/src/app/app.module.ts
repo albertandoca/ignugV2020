@@ -1,5 +1,5 @@
 import { NotFoundComponent } from './not-found/not-found.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+
 import { LoginComponent } from './login/login.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,7 +17,6 @@ import { OlvidoPswComponent } from './login/olvido-psw/olvido-psw.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent,
     NotFoundComponent,
     OlvidoPswComponent
   ],

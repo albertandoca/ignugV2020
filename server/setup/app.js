@@ -12,7 +12,6 @@ let app = EXPRESS(),
     parseurl = require('parseurl'),
     rutas = require('../rutas/index'),
     modelos = require('../models'),
-    multiparty = require('connect-multiparty'),
     cors = require('cors'),
     morgan = require('morgan'),
     sess = {
@@ -44,9 +43,7 @@ app.use(BODYPARSER.urlencoded({
 app.use(BODYPARSER.json())
 app.use(cors(corsOptions))
 app.use(morgan('combined'))
-app.use(multiparty({
-    uploadDir: './files'
-}))
+
 app.use(session(sess))
 app.use(passport.initialize())
 app.use(passport.session());

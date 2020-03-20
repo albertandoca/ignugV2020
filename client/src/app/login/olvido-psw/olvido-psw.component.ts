@@ -20,7 +20,7 @@ export class OlvidoPswComponent implements OnInit {
     public dialogRef: MatDialogRef<OlvidoPswComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private fb: FormBuilder
-  ) { this.crearOlvidoPswForm();}
+  ) { this.crearOlvidoPswForm(); }
 
   ngOnInit(): void {
   }
