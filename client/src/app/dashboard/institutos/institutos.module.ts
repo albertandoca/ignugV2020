@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './../../material.module';
 import { NgModule } from '@angular/core';
@@ -12,6 +13,8 @@ import { InstitutosComponent } from './institutos.component';
   imports: [
     CommonModule,
     InstitutosRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     FlexLayoutModule,
     MaterialModule
   ]

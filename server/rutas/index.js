@@ -11,6 +11,7 @@ let api = EXPRESS.Router(),
     imagenPersonaMiddleware = MULTIPARTY({uploadDir: './files/imagen/persona'}),
     filePdfMiddleware = MULTIPARTY({uploadDir: './files/pdf'}),
     resolucionPdfMiddleware = MULTIPARTY({uploadDir: './files/pdf/resolucion'}),
+    rucPdfMiddleware = MULTIPARTY({uploadDir: './files/pdf/ruc'}),
     // filePdfMiddleware = MULTIPARTY({uploadDir: './files/pdf'}),
     personasControl = require('../controles/personas'),
     mallasControl = require('../controles/mallas'),
@@ -50,6 +51,7 @@ api.post('/imagen-persona', imagenPersonaMiddleware, filesControl.upload)
 // api.post('/imagen-...', imagenAgendaMiddleware, filesControl.upload)
 api.post('/pdf', filePdfMiddleware, filesControl.upload)
 api.post('/pdf-resolucion', resolucionPdfMiddleware, filesControl.upload)
+api.post('/pdf-ruc', rucPdfMiddleware, filesControl.upload)
 
 api.get('/ver-archivo/:urlFile/:directorio', filesControl.verArchivo)
 api.delete('/eliminar-archivo/:urlFile/:directorio', filesControl.eliminarArchivo)
