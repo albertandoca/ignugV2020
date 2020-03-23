@@ -1,7 +1,76 @@
+@import '../../../sass/mixins';
+
 main, table {
-  width: 100%;
+  width: 97%;
 }
 
-.mat-column-razonSocial {
-  flex: 0 0 20%;
+
+.logoInstituto {
+  width: 100px;
+  height: 50px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+
+.filtro{
+  width: 100%;
+  padding: 0.5rem 2rem;
+}
+
+.filtro * {
+  width:  100%;
+}
+
+.botonesPrincipal {
+  width: 100%;
+  padding: 0.5rem 2rem;
+  text-align: center;
+}
+
+.icono {
+  vertical-align: middle;
+  margin-right: 1rem;
+}
+
+
+
+.contenedorTabla{
+  height: 78%;
+  width: 97%;
+  overflow: auto;
+  padding-left: 2rem;
+  //padding-right: 1rem;
+}
+
+.encabezadoTabla {
+  background-color: #f77129c2;
+  font-family: 'Poppins', sans-serif;
+}
+
+.paginador {
+  padding: 0;
+  margin-top: 0;
+}
+
+@include mat-table-columns((
+  codigoIes: (width: 4rem, padding-left: 0.5rem),
+  razonSocial: (width: 20rem),
+  ruc: (width: 7rem),
+  pdfRuc: (width: 5rem, aling: center),
+  resolucion: (width: 7rem),
+  pdfResolucion: (width: 5rem, aling: center),
+  categoria: (width: 4rem),
+  logotipo: (width: 7rem, aling: center),
+  createdAt: (width: 8rem, color: gray),
+  updatedAt: (width: 8rem, color: gray),
+  evento: (width: 1.5rem, aling: center)
+));
+
+/*.mat-table-sticky:first-child {
+  border-right: 1px solid #e0e0e0;
+}*/
+
+.mat-table-sticky:last-child {
+  border-left: 1px solid #e0e0e0;
 }

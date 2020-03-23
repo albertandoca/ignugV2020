@@ -1,3 +1,4 @@
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './../../material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -11,6 +12,7 @@ import { InstitutosComponent } from './institutos.component';
   imports: [
     CommonModule,
     InstitutosRoutingModule,
+    FlexLayoutModule,
     MaterialModule
   ]
 })

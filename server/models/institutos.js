@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Institutos = sequelize.define('Institutos', {
-      codigoIES:
+      codigoIes:
       {
         type: DataTypes.STRING(8),
         allowNull: false,
@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(50),
         allowNull: false,
         validate: {
-          is: /^[a-zA-Z0-9]+$/i,
+          is: /^[A-Z0-9 -_ÁÉÍÓÚÑÜ/#&]+$/i,
           len: [5, 50]
         } 
       }, 
@@ -29,12 +29,30 @@ module.exports = (sequelize, DataTypes) => {
           len: [13, 13]
         } 
       },
-      urlResolucion:
+      pdfRuc:
       {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          isUrl: true,
+          is: /^[a-zA-Z0-9ñÑ_-]*(.pdf)+$/i, 
+          notEmpty: true
+        }
+      },
+      resolucion: 
+      {
+        type: DataTypes.STRING(30),
+        allowNull: false,
+        validate: {
+          is: /^[A-ZA-Z0-9 -_áéíóúñüÁÉÍÓÚÑÜ/#&.]+$/i,
+          len: [13, 13]
+        } 
+      },
+      pdfResolucion:
+      {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          is: /^[a-zA-Z0-9ñÑ_-]*(.pdf)+$/i,  
           notEmpty: true
         }
       },
@@ -44,12 +62,12 @@ module.exports = (sequelize, DataTypes) => {
         values: ['Público', 'Privado'],
         default: 'Público'
       },
-      urlLogotipo:
+      logotipo:
       {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          isUrl: true,
+          is: /^[a-zA-Z0-9_-]*(.jpg|.svg|.png)+$/i,
           notEmpty: true
         }
       },
@@ -60,6 +78,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false
       }
   }, {});
+
   Institutos.associate = function(models) {
     Institutos.hasMany(models.PersonasRoles, {
       foreignKey: {

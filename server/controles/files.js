@@ -15,6 +15,7 @@ let path = require('path')
 
 let upload = (req, res, err) => {
   let file = req.files.upload
+  console.log(file)
   if (file.originalFilename == '') {
     fs.unlinkSync(file.path)
     return res.status(200).json({
@@ -119,6 +120,9 @@ let validaPath = (urlFile, directorio) => {
   }
   if(directorio == 'pdf'){
     pathFile = `./files/pdf/${urlFile}`
+  }
+  if(directorio == 'pdf-resolucion'){
+    pathFile = `./files/pdf/resolucion/${urlFile}`
   }
 
 
