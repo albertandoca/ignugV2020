@@ -14,7 +14,7 @@ let fs = require('fs')
 let path = require('path')
 
 let upload = (req, res, err) => {
-  let file = req.files.upload
+  let file = req.files.upload[0]
   console.log(file)
   if (file.originalFilename == '') {
     fs.unlinkSync(file.path)
@@ -123,6 +123,9 @@ let validaPath = (urlFile, directorio) => {
   }
   if(directorio == 'pdf-resolucion'){
     pathFile = `./files/pdf/resolucion/${urlFile}`
+  }
+  if(directorio == 'pdf-ruc'){
+    pathFile = `./files/pdf/ruc/${urlFile}`
   }
 
 

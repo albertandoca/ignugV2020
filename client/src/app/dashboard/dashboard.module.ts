@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './../material.module';
 import { DashboardComponent } from './dashboard.component';
@@ -13,6 +14,8 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     CommonModule,
     DashboardRoutingModule,
     FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
     MaterialModule
   ]
 })

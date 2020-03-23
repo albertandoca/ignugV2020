@@ -22,6 +22,9 @@ export class InstitutosComponent implements OnInit {
   dataSource: any;
   selection: any;
   url: string;
+  nuevo: boolean;
+  selectedFile: File[];
+  nombreArchivo: string[];
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
@@ -37,7 +40,8 @@ export class InstitutosComponent implements OnInit {
    }
 
   ngOnInit(): void {
-
+    this.nuevo = false;
+    this.nombreArchivo = [];
 
   }
 
@@ -94,13 +98,39 @@ export class InstitutosComponent implements OnInit {
 
   }
 
+  crearRegistro() {
+    this.nuevo = true;
+  }
 
+  guardarRegistro() {
+    this.nuevo = false;
+  }
+
+
+  pdfRucSeleccionado(e) {
+    this.selectedFile = e.target.files;
+    let formData = new FormData;
+    console.log(this.selectedFile);
+    formData.append('upload[]', this.selectedFile[0], this.selectedFile[0].name);
+    console.log(formData);
+    this.http.post<DataRx>(`${this.apiUrl.url}pdf-ruc`, formData)
+    .subscribe(res => {
+      console.log(res);
+      if (res.transaccion) {
+        if (res.data.length.toString() == res.msg){
+          this.nombreArchivo = res.data;
+          //this.institutoForm.controls['pdfRuc'].value(this.nombreArchivo[0]);
+
+        }
+      }
+    });
+  }
   // Funciones para crear archivos descargables
-  crearPdf(){
+  crearPdf() {
 
   }
 
-  crearXls(){
+  crearXls() {
 
   }
 
@@ -112,7 +142,6 @@ export class InstitutosComponent implements OnInit {
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
-    console.log(this.selection)
     return numSelected === numRows;
   }
 
