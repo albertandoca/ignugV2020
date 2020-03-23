@@ -10,6 +10,7 @@ let api = EXPRESS.Router(),
     imagenMenuMiddleware = MULTIPARTY({uploadDir: './files/imagen/menu'}),
     imagenPersonaMiddleware = MULTIPARTY({uploadDir: './files/imagen/persona'}),
     filePdfMiddleware = MULTIPARTY({uploadDir: './files/pdf'}),
+    resolucionPdfMiddleware = MULTIPARTY({uploadDir: './files/pdf/resolucion'}),
     // filePdfMiddleware = MULTIPARTY({uploadDir: './files/pdf'}),
     personasControl = require('../controles/personas'),
     mallasControl = require('../controles/mallas'),
@@ -47,11 +48,11 @@ api.post('/imagen-logotipo', imagenLogotipoMiddleware, filesControl.upload)
 api.post('/imagen-menu', imagenMenuMiddleware, filesControl.upload)
 api.post('/imagen-persona', imagenPersonaMiddleware, filesControl.upload)
 // api.post('/imagen-...', imagenAgendaMiddleware, filesControl.upload)
-api.post('/pdf-...', filePdfMiddleware, filesControl.upload)
+api.post('/pdf', filePdfMiddleware, filesControl.upload)
+api.post('/pdf-resolucion', resolucionPdfMiddleware, filesControl.upload)
 
 api.get('/ver-archivo/:urlFile/:directorio', filesControl.verArchivo)
 api.delete('/eliminar-archivo/:urlFile/:directorio', filesControl.eliminarArchivo)
-
 
 api.put('/imagen-agenda/:urlFile/:directorio', imagenAgendaMiddleware, filesControl.modificarArchivo)
 api.put('/imagen-logotipo/:urlFile/:directorio', imagenLogotipoMiddleware, filesControl.modificarArchivo)

@@ -1,3 +1,4 @@
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './../material.module';
 import { DashboardComponent } from './dashboard.component';
 import { NgModule } from '@angular/core';
@@ -11,6 +12,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
   imports: [
     CommonModule,
     DashboardRoutingModule,
+    FlexLayoutModule,
     MaterialModule
   ]
 })

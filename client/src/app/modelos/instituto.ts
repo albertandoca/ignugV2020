@@ -1,12 +1,14 @@
 export interface Instituto {
   id: number;
-  codigoIES?: string;
+  codigoIes?: string;
   razonSocial: string;
   ruc?: string;
-  urlResolucion?: string;
+  pdfRuc: string;
+  resolucion?: string;
+  pdfResolucion?: string;
   categoria?: string;
-  urlLogotipo?: string;
-  estado?: boolean
+  logotipo?: string;
+  estado?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 }
