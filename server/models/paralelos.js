@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Paralelos = sequelize.define('Paralelos', {
-    descripcion: {
+    detalle: {
       type: DataTypes.STRING(5), 
       allowNull: false,
       validate: {

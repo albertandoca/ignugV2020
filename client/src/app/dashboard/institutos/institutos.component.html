@@ -104,7 +104,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="encabezadoTabla"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
 
   </table>
 </main>
@@ -115,7 +115,7 @@
 
 
 <!-- formulario de ingreso o modificación de datos -->
-<main >
+<main *ngIf="nuevo">
 
 <!-- lado izquierdo  -->
 

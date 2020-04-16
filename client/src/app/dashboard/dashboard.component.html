@@ -1,1 +1,63 @@
-<p>dashboard works!</p>
+<main>
+  <mat-toolbar fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+    <div class="logo" fxFlex="10%">
+      <img src="../../assets/img/logo/ignug2020.png" alt="Logo Ignug">
+    </div>
+    <div class="menu" fxFlex="10%">
+      <button mat-icon-button color="primary" aria-label="Menu" (click)="menuPrincipal()" [disabled]="global.verMenu" matTooltip="Menu principal">
+        <mat-icon>{{global.iconoMenu}}</mat-icon>
+      </button>
+      <button mat-icon-button color="primary" aria-label="Agenga" (click)="reglamentos()" matTooltip="Reglamentos">
+        <mat-icon>policy</mat-icon>
+      </button>
+    </div>
+    <div class="titulo" fxFlex="42%">
+      {{global.titulo | uppercase}}
+    </div>
+    <div class="avisos" fxFlex="10%">
+      <button mat-icon-button [color]="colorMensaje" aria-label="Menu" (click)="menuPrincipal()" matTooltip="Mensajes">
+        <mat-icon>chat</mat-icon>
+      </button>
+      <button mat-icon-button [color]="colorNotificacion" aria-label="Agenga" (click)="reglamentos()" matTooltip="Notificaciones">
+        <mat-icon>notifications</mat-icon>
+      </button>
+    </div>
+    <div class="usuario" fxFlex="20%">
+      <p>{{personaLogin.primerNombre | titlecase}} {{personaLogin.segundoNombre | titlecase}} {{personaLogin.apellidoPaterno | titlecase}} {{personaLogin.apellidoMaterno | titlecase}}</p>
+    </div>
+    <div class="usuario" fxFlex="4%">
+      <button mat-fab color="primary" [matMenuTriggerFor]="menuPersona">
+         <img src="{{url}}ver-archivo/{{personaLogin.foto}}/imagen-persona" alt="">
+      </button>
+      <mat-menu #menuPersona="matMenu" xPosition="before">
+        <button mat-menu-item>Item 1</button>
+        <button mat-menu-item>Item 2</button>
+        <button mat-menu-item>Item 3</button>
+      </mat-menu>
+    </div>
+    <div class="agenda" fxFlex="4%">
+      <button mat-icon-button color="primary" aria-label="Agenga" (click)="agenda()">
+        <mat-icon>{{iconoAgenda}}</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <mat-sidenav-container>
+      <mat-sidenav #agendaSidenav mode="side" position="end" [opened]="verAgenda">
+          <h6>Agenda</h6>
+          <div>
+            <mat-form-field>
+              <mat-label>Buscar</mat-label>
+              <input matInput (keyup)="applyFilter($event)" >
+            </mat-form-field>
+          </div>
+          <div>
+            <!-- <app-agenda></app-agenda>  -->
+          </div>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+  </mat-sidenav-container>
+
+</main>

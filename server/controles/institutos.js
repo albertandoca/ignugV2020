@@ -18,10 +18,10 @@ let leer = (req, res) => {
         attributes: {
             exclude: [
                 'estado'
-            ],
-            where:{
-                estado: true
-            }
+            ]
+        },
+        where:{
+            estado: true
         }
     }).then(institutos => {
         return res.status(200).json({

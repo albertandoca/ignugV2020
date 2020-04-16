@@ -1,5 +1,5 @@
 export interface DataRx {
     transaccion: boolean;
-    data: [];
+    data: Array<any>;
     msg: string;
 }

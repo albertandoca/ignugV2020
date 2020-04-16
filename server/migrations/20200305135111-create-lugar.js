@@ -11,7 +11,7 @@ module.exports = {
       padre: {
         type: Sequelize.STRING
       },
-      descripcion: {
+      detalle: {
         type: Sequelize.STRING
       },
       createdAt: {

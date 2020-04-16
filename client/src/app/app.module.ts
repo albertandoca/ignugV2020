@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material.module';
 import { OlvidoPswComponent } from './login/olvido-psw/olvido-psw.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { OlvidoPswComponent } from './login/olvido-psw/olvido-psw.component';
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    MaterialModule
+    MaterialModule,
+    ToastrModule.forRoot()
   ],
   exports: [
   ],

@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       razonSocial:
       {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING(100),
         allowNull: false,
         validate: {
           is: /^[A-Z0-9 -_ÁÉÍÓÚÑÜ/#&]+$/i,

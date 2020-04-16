@@ -1,10 +1,11 @@
+import { AutorizadoService } from './../../servicios/autorizado.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
-import { ApiUrlService } from './../../servicios/api-url.service';
+import { GlobalService } from '../../servicios/global.service';
 import { DataRx } from './../../modelos/data-rx';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Instituto } from 'src/app/modelos/instituto';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatPaginator } from '@angular/material/paginator';
 import { SelectionModel } from '@angular/cdk/collections';
 
@@ -25,32 +26,36 @@ export class InstitutosComponent implements OnInit {
   nuevo: boolean;
   selectedFile: File[];
   nombreArchivo: string[];
+  casa: number;
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
   constructor(
     private http: HttpClient,
-    private apiUrl: ApiUrlService,
+    private global: GlobalService,
+    private autorizado: AutorizadoService,
     private fb: FormBuilder
-  ) {
-      this.url = apiUrl.url;
-      this.leerInstitutos();
-      this.crearInstitutoForm();
-      this.selection = new SelectionModel<Instituto>(true, []);
-   }
+  ) { }
 
   ngOnInit(): void {
+    this.url = this.global.urlApi;
     this.nuevo = false;
+    this.institutos = [];
+    this.leerInstitutos();
+    this.crearInstitutoForm();
+    this.selection = new SelectionModel<Instituto>(true, []);
     this.nombreArchivo = [];
+
 
   }
 
 
   // Trae los datos, establece columnas de la tabla, asigna datasource, paginator y selection (checkbox)
   leerInstitutos() {
-    this.http.get<DataRx>(`${this.apiUrl.url}leer-institutos`)
-    .subscribe(res => {
+    this.http.get<DataRx>(`${this.global.urlApi}leer-institutos`, this.autorizado.headersOptions())
+    .subscribe( async res => {
       if (res.transaccion) {
+        // tslint:disable-next-line: triple-equals
         if (res.data.length.toString() == res.msg) {
           this.institutos = res.data;
           this.displayedColumns = [
@@ -83,23 +88,30 @@ export class InstitutosComponent implements OnInit {
 
   // Visualiza PDF en una pestaña
   verFile(url: string, directorio: string) {
-    window.open(`${this.apiUrl.url}ver-archivo/${url}/${directorio}`, 'blank');
+    window.open(`${this.global.urlApi}ver-archivo/${url}/${directorio}`, 'blank');
   }
 
 
   // Funciones de gestión de registros
   editar(id: number) {
-    console.log(id);
-    this.instituto = this.institutos.find(element => element.id = id);
-    console.log(this.instituto)
+    console.log(this.institutos);
+    this.instituto = this.institutos.find(element => element.id === id);
+    this.institutoForm.setValue(this.instituto);
+    console.log('jjj');
+    console.log(this.institutoForm.value);
   }
 
   eliminar(id: number) {
-
+    alert('hola');
   }
 
   crearRegistro() {
     this.nuevo = true;
+    const campo = 'createdAt';
+    this.institutoForm.reset();
+    this.institutoForm.controls[campo].setValue(new Date(Date.now()));
+    console.log(this.institutoForm.value);
+
   }
 
   guardarRegistro() {
@@ -109,17 +121,18 @@ export class InstitutosComponent implements OnInit {
 
   pdfRucSeleccionado(e) {
     this.selectedFile = e.target.files;
-    let formData = new FormData;
+    const formData = new FormData();
     console.log(this.selectedFile);
     formData.append('upload[]', this.selectedFile[0], this.selectedFile[0].name);
     console.log(formData);
-    this.http.post<DataRx>(`${this.apiUrl.url}pdf-ruc`, formData)
+    this.http.post<DataRx>(`${this.global.urlApi}pdf-ruc`, formData)
     .subscribe(res => {
       console.log(res);
       if (res.transaccion) {
-        if (res.data.length.toString() == res.msg){
+        // tslint:disable-next-line: triple-equals
+        if (res.data.length.toString() == res.msg) {
           this.nombreArchivo = res.data;
-          //this.institutoForm.controls['pdfRuc'].value(this.nombreArchivo[0]);
+          // this.institutoForm.controls['pdfRuc'].value(this.nombreArchivo[0]);
 
         }
       }
@@ -171,6 +184,9 @@ export class InstitutosComponent implements OnInit {
       pdfResolucion: ['', [Validators.required, Validators.pattern('^[A-ZA-Z0-9 -_áéíóúñüÁÉÍÓÚÑÜ/#&.]*(.pdf)$')]],
       categoria: ['', [Validators.required, Validators.pattern('^[A-Z0-9 -_ÁÉÍÓÚÑÜ/#&]*$')]],
       logotipo: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_-]*(.jpg|.svg|.png)$')]],
+      estado: true,
+      createdAt: [''],
+      updatedAt: ['']
     });
   }
 

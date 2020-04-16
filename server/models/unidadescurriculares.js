@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const UnidadesCurriculares = sequelize.define('UnidadesCurriculares', {
-    descripcion:{
+    detalle:{
       type: DataTypes.STRING(50), 
       allowNull: false,
       unique: true,

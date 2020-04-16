@@ -1,8 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Mallas = sequelize.define('Mallas', {
-    descripcion: {
-      type: DataTypes.STRING(20), 
+    detalle: {
+      type: DataTypes.STRING(60), 
       allowNull: false,
       validate: {
         is: /^[a-zA-Z0-9 áéíóúñÑüÁÉÍÓÚÜ]+$/i,

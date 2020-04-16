@@ -5,49 +5,49 @@ module.exports = {
   
     return queryInterface.bulkInsert('Roles', [
       {
-        descripcion: 'Coordinador académico',
+        detalle: 'Coordinador académico',
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        descripcion: 'Coordinador de carrera',
+        detalle: 'Coordinador de carrera',
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        descripcion: 'Docente',
+        detalle: 'Docente',
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        descripcion: 'Estudiante',
+        detalle: 'Estudiante',
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        descripcion: 'Sistemas',
+        detalle: 'Sistemas',
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        descripcion: 'Administrador Sistema',
+        detalle: 'Administrador Sistema',
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        descripcion: 'Secretaría General',
+        detalle: 'Secretaría General',
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        descripcion: 'Administrativo',
+        detalle: 'Administrativo',
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()

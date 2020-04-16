@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const TiposInstalaciones = sequelize.define('TiposInstalaciones', {
-    descripcion:{
+    detalle:{
       type: DataTypes.STRING(20), 
       allowNull: true,
       unique: true,

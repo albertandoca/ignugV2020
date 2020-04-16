@@ -5,7 +5,7 @@ module.exports = {
     return queryInterface.bulkInsert('Asignaturas', [
       
       {
-        descripcion: 'Matemáticas',
+        detalle: 'Matemáticas',
         creditos: 3,
         horasDocente: 1,
         horasPracticas: 2,
@@ -18,7 +18,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        descripcion: 'Programación',
+        detalle: 'Programación',
         creditos: 3,
         horasDocente: 1,
         horasPracticas: 2,
@@ -31,7 +31,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        descripcion: 'Lenguaje',
+        detalle: 'Lenguaje',
         creditos: 3,
         horasDocente: 1,
         horasPracticas: 2,
@@ -44,7 +44,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        descripcion: 'Geometría',
+        detalle: 'Geometría',
         creditos: 3,
         horasDocente: 1,
         horasPracticas: 2,

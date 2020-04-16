@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const PeriodosLectivos = sequelize.define('PeriodosLectivos', {
-    descripcion: {
+    detalle: {
       type: DataTypes.STRING(40),
       allowNull: false,
       unique: true
@@ -42,6 +42,15 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   PeriodosLectivos.associate = function(models) {
     // associations can be defined here
+    PeriodosLectivos.hasMany(models.CuposAsignaturas, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idPeriodoLectivo',
+        allowNull: false,
+        unique: false
+      },
+      sourceKey: 'id'
+    });
   };
   return PeriodosLectivos;
 };
