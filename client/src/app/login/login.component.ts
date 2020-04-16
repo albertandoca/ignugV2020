@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
           if (res.transaccion) {
             if (res.data.length.toString() === res.msg.toString()) {
               const token = res.data[0];
-              console.log(res);
+              // console.log(res);
               if (this.autorizado.tokenData(token)) {
                 this.router.navigate(['/dashboard']);
                } else {

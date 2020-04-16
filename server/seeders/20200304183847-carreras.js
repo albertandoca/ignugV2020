@@ -7,7 +7,6 @@ module.exports = {
         {
           idInstituto: 3,
           detalle: 'Desarrollo de Software',
-          urlAcreditacion: 'http//acreditacion.com',
           estado: true,
           createdAt: new Date(),
           updatedAt: new Date()
@@ -15,7 +14,6 @@ module.exports = {
         {
           idInstituto: 2,
           detalle: 'Diseño de Modas',
-          urlAcreditacion: 'http//acreditacion.com',
           estado: true,
           createdAt: new Date(),
           updatedAt: new Date()
@@ -23,7 +21,6 @@ module.exports = {
         {
           idInstituto: 1,
           detalle: 'Arte Culinario',
-          urlAcreditacion: 'http//acreditacion.com',
           estado: true,
           createdAt: new Date(),
           updatedAt: new Date()
@@ -31,7 +28,6 @@ module.exports = {
         {
           idInstituto: 1,
           detalle: 'Marketing',
-          urlAcreditacion: 'http//acreditacion.com',
           estado: true,
           createdAt: new Date(),
           updatedAt: new Date()

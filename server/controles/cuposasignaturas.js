@@ -25,12 +25,38 @@ let promocionCupos = (req, res) => {
 let obtenerCupo = (req, res) => {
     let id = req.params.id
     let idPeriodoLectivo = req.params.idPeriodoLectivo
+    let idCarrera = req.params.idCarrera
     modelos.CuposAsignaturas.findAll({
         where: {
             id: id,
             idPeriodoLectivo: idPeriodoLectivo,
             estado: 'Asignado'
-        }
+        },
+        include: [
+            {
+                model: modelos.Asignaturas,
+                attributes: ['id', 'detalle', 'codigo'],
+                required: true,
+                include: [
+                    {
+                        model: modelos.Mallas,
+                        attributes: ['id', 'detalle'],
+                        required: true,
+                        include: [
+                            {
+                                model: modelos.Carreras,
+                                attributes: ['id'],
+                                required: true,
+                                where: {
+                                    id: idCarrera
+                                }
+                            }
+                        ]
+                    }
+                    
+                ]
+            }
+        ]
     }).then(data => {
         return res.status(200).json({
             transaccion: true,

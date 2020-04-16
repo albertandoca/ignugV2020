@@ -9,15 +9,6 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true
       }
     },
-    urlAcreditacion: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isUrl: true,
-        notEmpty: true,
-      }
-
-    },
     estado: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
@@ -43,6 +34,15 @@ module.exports = (sequelize, DataTypes) => {
         unique: false
       },
       targetKey: 'id'
+    })
+    Carreras.hasMany(models.PersonasRoles, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idInstituto',
+        allowNull: false,
+        unique: false
+      },
+      sourceKey: 'id'
     })
   };
 

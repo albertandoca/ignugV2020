@@ -1,0 +1,50 @@
+<div>
+  <mat-form-field>
+    <mat-label>Carrera</mat-label>
+    <mat-select [(ngModel)]="carreraSeleccionada" (change)=datosFormulario()>
+      <mat-option value=999 disabled=true>Seleccione Carrera</mat-option>
+      <mat-option *ngFor="let carrera of careras" [value]=carrera.id>
+        {{carrera.detalle}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+
+<mat-horizontal-stepper linear #stepper *ngIf="verCuposAsignaturas">
+  <mat-step [stepControl]="cuposAsignaturasForm">
+    <form [formGroup]="cuposAsignaturasForm">
+      <ng-template matStepLabel>Selección de asignatura</ng-template>
+      <div *ngFor="let cupoAsignatura of cuposAsignaturas; let i = index">
+        <mat-checkbox (change)="modificarEstado(i)" [(ngModel)]="valorCheckbox[]">{{cupoAsignatura.codigo}}</mat-checkbox>
+        <label for="">{{cupoAsignatura.asignatura}}</label>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="documentosMatrículaForm" [optional]="isOptional">
+    <form [formGroup]="documentosMatrículaForm">
+      <ng-template matStepLabel>Documentos de matrícula</ng-template>
+
+        /// para subir los archivos pdf
+      <button (click)="leerDatosMatricula" *ngIf="botonDatosMatrula">Reintentar</button>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Descargar pdf</ng-template>
+    <p>Vista del PDF</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+
+<div *ngIf="!verCuposAsignaturas">
+  // agregar una imagen
+  <h2>No tiene cupos asignados para ninguna materia</h2>
+</div>
+

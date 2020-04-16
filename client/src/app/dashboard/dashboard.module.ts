@@ -6,10 +6,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { AvisoLegalComponent } from './solicitud-matricula/aviso-legal/aviso-legal.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, AvisoLegalComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
@@ -17,6 +18,9 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule
+  ],
+  entryComponents: [
+    AvisoLegalComponent
   ]
 })
 export class DashboardModule { }

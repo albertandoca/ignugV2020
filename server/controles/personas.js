@@ -200,7 +200,7 @@ let logIn = (req, res) => {
     let psw = req.body.psw
     let fecha = new Date(Date.now())
     let token = null
-    let datos = []
+    let datos = new Array(any)
     modelos.Personas.findOne({
         attributes: {
             exclude: [

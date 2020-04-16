@@ -80,15 +80,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
 
   Institutos.associate = function(models) {
-    Institutos.hasMany(models.PersonasRoles, {
-      foreignKey: {
-        type: DataTypes.INTEGER,
-        name: 'idInstituto',
-        allowNull: false,
-        unique: false
-      },
-      sourceKey: 'id'
-    })
     Institutos.hasMany(models.InstitutosEmails, {
       foreignKey: {
         type: DataTypes.INTEGER,

@@ -1,4 +1,4 @@
-import { Instituto } from './instituto';
+import { Carrera } from './carrera';
 import { Rol } from './rol';
 import { Persona } from './persona';
 export interface PersonaRol {
@@ -13,5 +13,5 @@ export interface PersonaRol {
   updatedAt: Date;
   Persona?: Persona;
   Role: Rol;
-  Instituto: Instituto;
+  Carrera: Carrera;
 }

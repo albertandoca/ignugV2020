@@ -17,7 +17,7 @@ export class AutorizadoService {
 
   tokenData(token) {
     const decoded = jwt_decode(token);
-    this.personaLogin = decoded.data;
+    this.personaLogin = decoded.data || null;
     this.iat = decoded.iat;
     this.token = token;
     localStorage.setItem('loginKey', JSON.stringify(this.personaLogin));

@@ -30,10 +30,10 @@ module.exports = (sequelize, DataTypes) => {
       },
       targetKey: 'id'
     })
-    PersonasRoles.belongsTo(models.Institutos, {
+    PersonasRoles.belongsTo(models.Carreras, {
       foreignKey: {
         type: DataTypes.INTEGER,
-        name: 'idInstituto',
+        name: 'idCarrera',
         allowNull: false,
         unique: false
       },
