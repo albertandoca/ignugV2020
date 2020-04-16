@@ -6,22 +6,22 @@ module.exports = {
 
       Example:
       return queryInterface.bulkInsert('Modalidades', [{
-        descripcion: 'Presencial',
+        detalle: 'Presencial',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        descripcion: 'SemiPresencial',
+        detalle: 'SemiPresencial',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        descripcion: 'Dual',
+        detalle: 'Dual',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        descripcion: 'Distancia',
+        detalle: 'Distancia',
         createdAt: new Date(),
         updatedAt: new Date()
       }], {});

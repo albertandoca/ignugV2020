@@ -5,11 +5,11 @@ module.exports = {
     return queryInterface.bulkInsert('Mallas', [
       {
         idCarrera: 1,
-        idModalidad: 2,
-        descripcion: 'Descripcion Malla',
+        idModalidad: 3,
+        detalle: 'RPC-SO-2 2-No.427 -2017',
         fecha: new Date(),
         urlAcreditacion: 'Archivo Acreditacion',
-        titulo: 'tecnologo',
+        titulo: 'Tecnólogo Superior en Desarrollo de Software',
         numeroPeriodoAcademico:5,
         estado: false,
         createdAt: new Date(),
@@ -18,7 +18,7 @@ module.exports = {
       {
         idCarrera: 1,
         idModalidad: 2,
-        descripcion: 'Descripcion Malla',
+        detalle: 'detalle Malla',
         fecha: new Date(),
         urlAcreditacion: 'Archivo Acreditacion',
         titulo: 'tecnologo',
@@ -30,7 +30,7 @@ module.exports = {
       {
         idCarrera: 2,
         idModalidad: 3,
-        descripcion: 'Descripcion Malla',
+        detalle: 'detalle Malla',
         fecha: new Date(),
         urlAcreditacion: 'Archivo Acreditacion',
         titulo: 'tecnologo',
@@ -42,7 +42,7 @@ module.exports = {
       {
         idCarrera: 2,
         idModalidad: 4,
-        descripcion: 'Descripcion Malla',
+        detalle: 'detalle Malla',
         fecha: new Date(),
         urlAcreditacion: 'Archivo Acreditacion',
         titulo: 'tecnologo',

@@ -1,0 +1,86 @@
+
+main {
+  width: 100%;
+}
+
+mat-toolbar {
+ height: 3.3rem;
+ background-color: #da4f04;
+ padding: 0;
+}
+
+.logo img {
+  height: 50px;
+  padding-left: 1.5rem;
+  vertical-align: middle;
+  margin-top: 0.05rem;
+}
+
+.titulo {
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  margin-top: 0.8rem;
+}
+
+.menu {
+  margin-top: 0.6rem;
+}
+
+.menu button mat-icon {
+  font-size: 24pt;
+}
+
+.usuario {
+  display: inline-block;
+}
+
+.usuario button {
+  padding: 0;
+  height: 48px;
+  width: 48px;
+  margin-top: 0.1rem;
+}
+
+.usuario button img {
+  height: 47px;
+  width: 47px;
+  margin-top: -1rem;
+  padding: 0;
+  border-radius: 100%;
+  // border:1px solid #666;
+}
+
+.usuario p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10pt;
+  text-align: right;
+  margin-top: 1.2rem;
+}
+
+.avisos {
+  margin-top: 0.9rem;
+  text-align: right;
+}
+
+.avisos button mat-icon {
+  font-size: 12pt;
+}
+
+.agenda {
+  margin-top: 0.5rem;
+}
+
+mat-sidenav-container {
+  height: 550px;
+}
+
+mat-sidenav {
+  width: 17rem;
+  background-color: #f77129c2;
+  height: 550px;
+}
+
+mat-sidenav-content {
+  background-color: #fff;
+  height: 550px;
+}

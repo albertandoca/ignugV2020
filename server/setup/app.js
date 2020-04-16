@@ -1,10 +1,10 @@
 ;
 let env = require('dotenv').config()
+console.log(process.env)
 
 const EXPRESS =  require('express'),
       BODYPARSER = require('body-parser'),
-      HELMET = require('helmet'),
-      TIEMPO = 1 * 60 * 1000
+      HELMET = require('helmet')
 
 let app = EXPRESS(),
     passport = require('passport'),
@@ -17,12 +17,12 @@ let app = EXPRESS(),
     sess = {
         secret: process.env.KEY_SESSION,
         resave: false,
-        saveUninitialized: false,
-        name : 'sessionId',
+        saveUninitialized: true,
+        name : 'sessionID',
         cookie: {
-            httpOnly: true,
-            expires: new Date(Date.now() + TIEMPO),
-            maxAge: TIEMPO
+            httpOnly: false,
+            // expires: new Date(Date.now() + process.env.TIEMPO),
+            maxAge: parseInt(process.env.TIEMPO)
         }
     },
     corsOptions = {
@@ -66,11 +66,13 @@ modelos.sequelize.sync().then(() => {
 app.get('/foo', (req, res, next) => {
     res.send('las visitas de esta página son ' + req.session.views['/foo'])
     console.log(req.session)
+    console.log(req.sessionID)
 })
 
 app.get('/bar', (req, res, next) => {
     res.send('las visitas de esta página son ' + req.session.views['/bar'])
     console.log(req.session)
+    console.log(req.sessionID)
 })
 
 app.use('/server', rutas)

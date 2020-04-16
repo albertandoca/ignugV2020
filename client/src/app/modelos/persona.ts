@@ -9,6 +9,7 @@ export interface Persona {
   apellidoMaterno: string;
   emailPersonal: string;
   emailInstitucional: string;
+  foto: string;
   psw?: string;
   semilla?: string;
   enLinea?: Date;

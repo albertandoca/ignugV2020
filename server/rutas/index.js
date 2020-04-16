@@ -17,17 +17,24 @@ let api = EXPRESS.Router(),
     mallasControl = require('../controles/mallas'),
     autenticarControl = require('../controles/autenticar'),
     sesionControl = require('../controles/sesion'),
-    tiposIdentificacionesControl = require('../controles/tiposIdentificaciones')
+    tiposIdentificacionesControl = require('../controles/tiposIdentificaciones'),
     institutosControl = require('../controles/institutos'),
-    filesControl = require('../controles/files')
+    filesControl = require('../controles/files'),
+    cuposAsignaturasControl = require('../controles/cuposasignaturas'),
+    documentosMatriculaControl = require('../controles/documentosmatricula'),
+    solicitudMatriculaControl = require('../controles/solicitudesMatricula')
 
 
 // EndPoint Personas
 api.get('/leer-persona', personasControl.leer)
 api.get('/leer-id-persona', [autenticarControl.autenticado, sesionControl.actualiza], personasControl.leerId)
 api.post('/crear-persona', personasControl.crear)
-api.get('/ingresar-persona/:emailInstitucional/:psw', personasControl.ingresar)
 api.get('/modificar-persona', personasControl.modificar)
+
+
+// EndPoint Log
+api.post('/login', personasControl.logIn)
+// api.post('/logout', personasControl.logOut)
 
 // EndPoint Mallas
 api.get('/leer-mallas', mallasControl.leer)
@@ -39,7 +46,7 @@ api.get('/leer-tipos-identificaciones', tiposIdentificacionesControl.leer)
 
 
 // EndPoint Institutos
-api.get('/leer-institutos', institutosControl.leer)
+api.get('/leer-institutos', [autenticarControl.autenticado, sesionControl.actualiza], institutosControl.leer)
 
 
 
@@ -60,6 +67,21 @@ api.put('/imagen-agenda/:urlFile/:directorio', imagenAgendaMiddleware, filesCont
 api.put('/imagen-logotipo/:urlFile/:directorio', imagenLogotipoMiddleware, filesControl.modificarArchivo)
 api.put('/imagen-menu/:urlFile/:directorio', imagenMenuMiddleware, filesControl.modificarArchivo)
 api.put('/imagen-persona/:urlFile/:directorio', imagenPersonaMiddleware, filesControl.modificarArchivo)
+
+// EndPoint CuposAsignaturas
+api.get('/obtener-cupo/:id/:idPeriodoLectivo', cuposAsignaturasControl.obtenerCupo)
+api.put('/aplicar-cupo', cuposAsignaturasControl.aplicarCupo)
+
+// EndPoint documentosMatricula
+api.get('/leer-documentos-matricula/:id/:idCarrera', documentosMatriculaControl.leerDocumentosMatricula)
+api.post('/upload-documentos-matricula', documentosMatriculaControl.uploadDocumentosMatricula)
+api.put('/update.documentos.matricula', documentosMatriculaControl.updateDocumentosMatricula)
+
+
+// EndPoint solicitudMatricula
+api.get('/leer-solicitud-matricula/:id/:idPeriodoAcademico', solicitudMatriculaControl.leerSolicitudMatricula)
+api.post('/upload-solicitud-matricula', solicitudMatriculaControl.uploadSolicitudMatricula)
+api.put('/update.solicitud.matricula', solicitudMatriculaControl.updateSolicitudMatricula)
 
 
 

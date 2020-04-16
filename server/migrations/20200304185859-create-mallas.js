@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      descripcion: {
+      detalle: {
         type: Sequelize.STRING
       },
       fecha: {

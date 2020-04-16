@@ -64,6 +64,15 @@ module.exports = (sequelize, DataTypes) => {
         isEmail: true
       }
     },
+    foto:
+      {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          is: /^[a-zA-Z0-9_-]*(.jpg|.svg|.png)+$/i,
+          notEmpty: true
+        }
+      },
     psw: {
       type: DataTypes.STRING,
       allowNull: false
@@ -130,6 +139,16 @@ module.exports = (sequelize, DataTypes) => {
       },
       targetKey: 'id'
     });
+    Personas.hasMany(models.CuposAsignaturas, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idEstudiante',
+        allowNull: false,
+        unique: false
+      },
+      sourceKey: 'id'
+    });
   };
+  
   return Personas;
 };

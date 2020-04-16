@@ -3,7 +3,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
       return queryInterface.bulkInsert('PeriodosLectivos', [{
-        descripcion: 'mayo 2019 - octubre 2109',
+        detalle: 'mayo 2019 - octubre 2109',
         anio: '2019',
         periodo: '01',
         fechaInicio: new Date(),

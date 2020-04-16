@@ -1,16 +1,14 @@
 let jwt = require('jsonwebtoken')
 
-
 let autenticado = (req, res, next) => {
     let token = req.headers.authorization
     let semilla = req.sessionID
-    console.log(token)
     if (token) {
-        jwt.verify(token, semilla, (err, decoded) => {
+        jwt.verify(token, process.env.KEY_JWT, (err, decoded) => {
             if (err) {
                 res.status(401).json({
                     transaccion: false,
-                    data: null,
+                    data: err,
                     msg: 'falló autenticación'
                 })
             } else {

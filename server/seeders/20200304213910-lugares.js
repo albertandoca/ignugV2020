@@ -5,7 +5,7 @@ module.exports = {
     return queryInterface.bulkInsert('Lugares', [
       {
         codigo: '0',
-        descripcion: 'Padre',
+        detalle: 'Padre',
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -13,7 +13,7 @@ module.exports = {
       },
       {
         codigo: '1',
-        descripcion: 'Pichincha',
+        detalle: 'Pichincha',
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -21,7 +21,7 @@ module.exports = {
       },
       {
         codigo: '2',
-        descripcion: 'Quito',
+        detalle: 'Quito',
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -29,7 +29,7 @@ module.exports = {
       },
       {
         codigo: '3',
-        descripcion: 'Conocoto',
+        detalle: 'Conocoto',
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date(),

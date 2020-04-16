@@ -4,19 +4,19 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('TiposInstalaciones', [
       {
-        descripcion: 'Matriz',
+        detalle: 'Matriz',
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        descripcion: 'Campus',
+        detalle: 'Campus',
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        descripcion: 'Extensión',
+        detalle: 'Extensión',
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()

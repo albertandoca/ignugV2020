@@ -42,7 +42,7 @@ let leer = (req, res) => {
         include: [
             {
                 model: modelos.TiposIdentificaciones,
-                attributes: ['id', 'descripcion'],
+                attributes: ['id', 'detalle'],
                 required: true
             },
             {
@@ -55,7 +55,7 @@ let leer = (req, res) => {
                 include: [
                     {
                         model: modelos.Roles,
-                        attributes: ['id', 'descripcion'],
+                        attributes: ['id', 'detalle'],
                         required: true
                     },
                     {
@@ -98,13 +98,13 @@ let leerId = (req, res) => {
         include: [
             {
                 model: modelos.Lugares,
-                attributes: ['codigo', 'descripcion'],
+                attributes: ['codigo', 'detalle'],
                 required: true,
                 // right: true,
                 include: [
                     {
                         model: modelos.Lugares,
-                        attributes: ['codigo', 'descripcion'],
+                        attributes: ['codigo', 'detalle'],
                         required: true,
                         // right: true,
                         
@@ -195,10 +195,9 @@ let modificar = (req, res) => {
 
 }
 
-let ingresar = (req, res) => {
-    let email = req.params.emailInstitucional
-    let psw = req.params.psw
-    let semilla = req.sessionID
+let logIn = (req, res) => {
+    let email = req.body.emailInstitucional
+    let psw = req.body.psw
     let fecha = new Date(Date.now())
     let token = null
     let datos = []
@@ -221,7 +220,7 @@ let ingresar = (req, res) => {
         include: [
             {
                 model: modelos.TiposIdentificaciones,
-                attributes: ['id', 'descripcion'],
+                attributes: ['id', 'detalle'],
                 required: true
             },
             {
@@ -234,12 +233,12 @@ let ingresar = (req, res) => {
                 include: [
                     {
                         model: modelos.Roles,
-                        attributes: ['id', 'descripcion'],
+                        attributes: ['id', 'detalle'],
                         required: true
                     },
                     {
                         model: modelos.Institutos,
-                        attributes: ['id', 'razonSocial'],
+                        attributes: ['id', 'razonSocial', 'logotipo'],
                         required: true
                     }
                 ]
@@ -251,29 +250,27 @@ let ingresar = (req, res) => {
     }).then(persona => {
         if (persona.id > 0) {
             if (persona.enLinea > fecha) {
-                console.log(persona.fecha)
                 res.status(200).json({
                     transaccion: false,
                     data: [],
                     msg: 'Usuario en línea'
                 })
             } else {
-                
                 persona.comparePassword(psw, (err, isMatch) => {
                     if (isMatch && !err) {
                         persona = persona.toJSON()
                         delete persona.psw
                         delete persona.enLinea
-                        token = jwt.sign({data: persona}, semilla, {
-                            algorithm: 'HS256'
+                        let semilla = req.sessionID
+                        token = jwt.sign({data: persona}, process.env.KEY_JWT, {
+                            algorithm: 'HS256',
+                            expiresIn: process.env.TIEMPO
                         })
-                        datos.push({
-                            data: persona,
-                            token: token
-                        })
+                        datos.push(token)
                         modelos.Personas.update(
                             {
-                            enLinea: req.session.cookie._expires
+                                semilla: semilla,
+                                enLinea: req.session.cookie._expires
                             },
                             {
                                 where: {
@@ -329,5 +326,5 @@ module.exports = {
     crearMasivo,
     borrar,
     modificar,
-    ingresar
+    logIn
 }

@@ -4,25 +4,25 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('TiposIdentificaciones', [
       {
-        descripcion: 'Cédula',
+        detalle: 'Cédula',
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        descripcion: 'Pasaporte',
+        detalle: 'Pasaporte',
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        descripcion: 'Carné refugiado',
+        detalle: 'Carné refugiado',
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        descripcion: 'Otro',
+        detalle: 'Otro',
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()

@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Asignaturas = sequelize.define('Asignaturas', {
-    descripcion: {
+    detalle: {
       type: DataTypes.STRING(),
       allowNull: false,
       validate: {
@@ -55,7 +55,7 @@ module.exports = (sequelize, DataTypes) => {
         unique: false
       },
       targetKey: 'id'
-    })
+    });
     Asignaturas.belongsTo(models.PeriodosAcademicos, {
       foreignKey: {
         type: DataTypes.INTEGER,
@@ -64,7 +64,7 @@ module.exports = (sequelize, DataTypes) => {
         unique: false
       },
       targetKey: 'id'
-    })
+    });
     Asignaturas.belongsTo(models.UnidadesCurriculares, {
       foreignKey: {
         type: DataTypes.INTEGER,
@@ -73,7 +73,17 @@ module.exports = (sequelize, DataTypes) => {
         unique: false
       },
       targetKey: 'id'
-    })
+    }); 
+    Asignaturas.hasMany(models.CuposAsignaturas, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idAsignatura',
+        allowNull: false,
+        unique: false
+      },
+      sourceKey: 'id'
+    });
   };
+  
   return Asignaturas;
 };

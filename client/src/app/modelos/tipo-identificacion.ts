@@ -1,6 +1,6 @@
 export interface TipoIdentificacion {
     id: number;
-    descripcion: string;
+    detalle: string;
     estado?: boolean;
     createdAt?: Date;
     updatedAt?: Date;
