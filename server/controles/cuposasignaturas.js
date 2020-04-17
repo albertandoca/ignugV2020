@@ -47,11 +47,8 @@ let obtenerCupo = (req, res) => {
                         include: [
                             {
                                 model: modelos.Carreras,
-                                attributes: ['id'],
-                                required: true,
-                                where: {
-                                    id: idCarrera
-                                }
+                                attributes: ['id', 'detalle'],
+                                required: true
                             }
                         ]
                     }
@@ -73,6 +70,7 @@ let obtenerCupo = (req, res) => {
         })
     })
 }
+
 
 // Estudiante
 let aplicarCupo = (req, res) => {

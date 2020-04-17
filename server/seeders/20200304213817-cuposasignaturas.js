@@ -124,7 +124,27 @@ module.exports = {
           estado:'Asignado',
           createdAt: new Date(),
           updatedAt: new Date()
-        }
+        },
+        {
+          idEstudiante: 10,
+          idAsignatura: 33,
+          idPeriodoLectivo:3,
+          creadoPor: 10,
+          modificadoPor: 10,
+          estado:'Asignado',
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          idEstudiante: 10,
+          idAsignatura: 34,
+          idPeriodoLectivo:3,
+          creadoPor: 10,
+          modificadoPor: 10,
+          estado:'Asignado',
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
     ], {});
     
   },
