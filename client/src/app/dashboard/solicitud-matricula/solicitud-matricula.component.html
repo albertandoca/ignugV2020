@@ -1,7 +1,7 @@
-<main fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+<main fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" *ngIf="verFiltro">
   <div fxFlex="60%" class="filtro">
     <mat-label>Carrera</mat-label>
-    <mat-select [(ngModel)]="carreraSelecionada" (change)=datosFormulario()>
+    <mat-select [(ngModel)]="carreraSelecionada" (selectionChange)=datosFormulario()>
       <mat-option value=999 disabled=true>Seleccione Carrera</mat-option>
       <mat-option *ngFor="let carrera of carreras" [value]=carrera.id>
         {{carrera.detalle}}
@@ -15,13 +15,13 @@
   </div>
 </main>
 
-<main *ngIf="verCuposAsignaturas">
+<main *ngIf="verCuposAsignaturas === 1">
   <mat-horizontal-stepper linear #stepper>
     <mat-step>
         <ng-template matStepLabel>Selección de asignatura</ng-template>
-        <div *ngFor="let cupoAsignatura of cuposAsignaturas; let i = index">
-          <mat-checkbox (change)="modificarEstado(i)" [(ngModel)]="valorCheckbox[i]">{{cupoAsignatura}}</mat-checkbox>
-          <label for="">{{cupoAsignatura}}</label>
+        <div *ngFor="let cupoFiltrado of cuposFiltrados; let i = index">
+          <mat-checkbox (selectionChange)="modificarEstado(i)" [(ngModel)]="valorCheckbox[i]">{{cupoFiltrado.Asignatura.codigoAsignatura}}</mat-checkbox>
+          <label for="">{{cupoFiltrado.Asignatura.detalle}}</label>
         </div>
     </mat-step>
     <mat-step [stepControl]="documentosMatriculaForm" [optional]="isOptional">
@@ -54,7 +54,7 @@
   </mat-horizontal-stepper>
 </main>
 
-<main *ngIf="!verCuposAsignaturas">
+<main *ngIf="verCuposAsignaturas === 2">
   // agregar una imagen
   <h2>No tiene cupos asignados para ninguna materia</h2>
 </main>
