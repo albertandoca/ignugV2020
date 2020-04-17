@@ -1,6 +1,14 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Asignaturas = sequelize.define('Asignaturas', {
+    codigoAsignatura: {
+      type: DataTypes.STRING(),
+      allowNull: false,
+      validate:{
+        is: /^[A-ZA-Z0-9 -_áéíóúñüÁÉÍÓÚÑÜ/#&.]+$/i,
+        notEmpty:true
+      }
+    },
     detalle: {
       type: DataTypes.STRING(),
       allowNull: false,

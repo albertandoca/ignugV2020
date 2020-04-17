@@ -1,38 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const cuposAsignaturas = sequelize.define('CuposAsignaturas', {
-    pdfTituloGrado: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        is: /^[a-zA-Z0-9ñÑ_-]*(.pdf)+$/i, 
-        notEmpty: true
-      }
-    },
-    pdfAsignacionCupo: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        is: /^[a-zA-Z0-9ñÑ_-]*(.pdf)+$/i, 
-        notEmpty: true
-      }
-    },
-    pdfCedula: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        is: /^[a-zA-Z0-9ñÑ_-]*(.pdf)+$/i, 
-        notEmpty: true
-      }
-    },
-    pdfSolicitud: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        is: /^[a-zA-Z0-9ñÑ_-]*(.pdf)+$/i, 
-        notEmpty: true
-      }
-    },
     creadoPor: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -69,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
     cuposAsignaturas.belongsTo(models.Asignaturas, {
       foreignKey: {
         type: DataTypes.INTEGER,
-        name: 'idAsignaturas',
+        name: 'idAsignatura',
         allowNull: false,
         unique: false
       },

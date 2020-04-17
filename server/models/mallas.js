@@ -19,14 +19,6 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true
       } 
     },
-    urlAcreditacion: {
-      type: DataTypes.STRING, 
-      allowNull: false,
-      validate: {
-        isUrl: true,
-        notEmpty: true,
-      } 
-    },
     titulo: {
       type: DataTypes.STRING, 
       allowNull: false,
@@ -41,6 +33,15 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         isNumeric: true
       } 
+    },
+    pdfResolucion:
+    {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        is: /^[a-zA-Z0-9ñÑ_-]*(.pdf)+$/i,  
+        notEmpty: true
+      }
     },
     estado: {
       type: DataTypes.BOOLEAN, 

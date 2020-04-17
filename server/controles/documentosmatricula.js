@@ -15,9 +15,11 @@ let Op = Sequelize.Op;
 let leerDocumentosMatricula = (req, res) => {
     let id = req.params.id
     let idCarrera = req.params.idCarrera
-    modelos.DocumentosMatricula.findOne({
+    console.log(id)
+    console.log(idCarrera)
+    modelos.DocumentosMatriculas.findOne({
         where: {
-            id: id,
+            idEstudiante: id,
             idCarrera: idCarrera
         }
     }).then(data => {
@@ -37,11 +39,11 @@ let leerDocumentosMatricula = (req, res) => {
 
 let uploadDocumentosMatricula = (req, res) => {
     let documentosMatricula = req.body.DocumentosMatricula
-    modelos.DocumentosMatricula.create(documentosMatricula)
+    modelos.DocumentosMatriculas.create(documentosMatricula)
     .then(data => {
         return res.status(200).json({
             transaccion: true,
-            data: data,
+            data: data.dataValues,
             msg: data.length
         })
     }).catch(err => {

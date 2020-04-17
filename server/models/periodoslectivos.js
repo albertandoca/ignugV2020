@@ -50,7 +50,7 @@ module.exports = (sequelize, DataTypes) => {
         unique: false
       },
       sourceKey: 'id'
-    });
+    })
   };
   return PeriodosLectivos;
 };

@@ -4,19 +4,19 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('UnidadesCurriculares', [
       {
-        detalle: 'tipoa',
+        detalle: 'Básica',
         estado: false,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        detalle: 'tipob',
+        detalle: 'Profesional',
         estado: false,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        detalle: 'tipoc',
+        detalle: 'Titulación',
         estado: false,
         createdAt: new Date(),
         updatedAt: new Date()
