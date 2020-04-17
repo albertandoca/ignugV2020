@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material.module';
 import { OlvidoPswComponent } from './login/olvido-psw/olvido-psw.component';
 import { ToastrModule } from 'ngx-toastr';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ToastrModule } from 'ngx-toastr';
     ReactiveFormsModule,
     FlexLayoutModule,
     MaterialModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MaterialFileInputModule
   ],
   exports: [
   ],

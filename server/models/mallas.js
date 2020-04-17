@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true,
       }
     },
-    numeroPeriodoAcademico: {
+    numeroPeriodosAcademicos: {
       type: DataTypes.INTEGER, 
       allowNull: false,
       validate: {

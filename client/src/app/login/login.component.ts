@@ -73,6 +73,7 @@ export class LoginComponent implements OnInit {
             }
           }
         }, err => {
+          console.log(err.error)
           this.toastr.error(err.error.msg, '!Acceso denegado¡')
         });
     } else {

@@ -200,7 +200,7 @@ let logIn = (req, res) => {
     let psw = req.body.psw
     let fecha = new Date(Date.now())
     let token = null
-    let datos = new Array(any)
+    let datos = []
     modelos.Personas.findOne({
         attributes: {
             exclude: [
@@ -237,8 +237,8 @@ let logIn = (req, res) => {
                         required: true
                     },
                     {
-                        model: modelos.Institutos,
-                        attributes: ['id', 'razonSocial', 'logotipo'],
+                        model: modelos.Carreras,
+                        attributes: ['id', 'detalle'],
                         required: true
                     }
                 ]
@@ -248,7 +248,8 @@ let logIn = (req, res) => {
             [modelos.PersonasRoles, 'id']
         ]
     }).then(persona => {
-        if (persona.id > 0) {
+        console.log(persona)
+        if (persona) {
             if (persona.enLinea > fecha) {
                 res.status(200).json({
                     transaccion: false,
@@ -263,8 +264,8 @@ let logIn = (req, res) => {
                         delete persona.enLinea
                         let semilla = req.sessionID
                         token = jwt.sign({data: persona}, process.env.KEY_JWT, {
-                            algorithm: 'HS256',
-                            expiresIn: process.env.TIEMPO
+                            algorithm: 'HS256'//,
+                            //expiresIn: process.env.TIEMPO
                         })
                         datos.push(token)
                         modelos.Personas.update(
@@ -307,7 +308,7 @@ let logIn = (req, res) => {
             })
         }
     }).catch(err => {
-        //console.log(err)
+        console.log(err)
         res.status(500).json({
             transaccion: false,
             data: err,

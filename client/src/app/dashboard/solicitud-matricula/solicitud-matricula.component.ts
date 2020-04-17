@@ -1,3 +1,4 @@
+import { Carrera } from './../../modelos/carrera';
 import { element } from 'protractor';
 import { Router } from '@angular/router';
 import { CupoAsignatura } from './../../modelos/cupo-asignatura';
@@ -29,6 +30,8 @@ export class SolicitudMatriculaComponent implements OnInit {
   botonDatosMatricula: boolean;
   continuar: boolean;
   valorCheckbox: Array<boolean>;
+  carreras: Carrera[];
+  isOptional: boolean;
 
   constructor(
     private dialog: MatDialog,

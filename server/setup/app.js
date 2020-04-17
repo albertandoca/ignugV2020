@@ -1,6 +1,5 @@
 ;
 let env = require('dotenv').config()
-console.log(process.env)
 
 const EXPRESS =  require('express'),
       BODYPARSER = require('body-parser'),

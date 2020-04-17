@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 
 import { InstitutosRoutingModule } from './institutos-routing.module';
 import { InstitutosComponent } from './institutos.component';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { InstitutosComponent } from './institutos.component';
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    MaterialModule
+    MaterialModule,
+    MaterialFileInputModule
   ]
 })
 export class InstitutosModule { }
