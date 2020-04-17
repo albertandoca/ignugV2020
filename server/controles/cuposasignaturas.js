@@ -23,14 +23,16 @@ let promocionCupos = (req, res) => {
 
 // Estudiante
 let obtenerCupo = (req, res) => {
-    let id = req.params.id
+    let idEstudiante = req.params.idEstudiante
     let idPeriodoLectivo = req.params.idPeriodoLectivo
     let idCarrera = req.params.idCarrera
     modelos.CuposAsignaturas.findAll({
         where: {
-            id: id,
+            idEstudiante: idEstudiante,
             idPeriodoLectivo: idPeriodoLectivo,
-            estado: 'Asignado'
+            estado: {
+                [Op.or]: ['Asignado', 'Aplicado']
+            }
         },
         include: [
             {
