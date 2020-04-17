@@ -69,7 +69,7 @@ api.put('/imagen-menu/:urlFile/:directorio', imagenMenuMiddleware, filesControl.
 api.put('/imagen-persona/:urlFile/:directorio', imagenPersonaMiddleware, filesControl.modificarArchivo)
 
 // EndPoint CuposAsignaturas
-api.get('/obtener-cupos/:id/:idPeriodoLectivo:/idCarrera', cuposAsignaturasControl.obtenerCupo)
+api.get('/obtener-cupos/:id/:idPeriodoLectivo/:idCarrera', cuposAsignaturasControl.obtenerCupo)
 api.put('/aplicar-cupos', cuposAsignaturasControl.aplicarCupo)
 
 // EndPoint documentosMatricula
@@ -82,6 +82,7 @@ api.put('/update.documentos.matricula', documentosMatriculaControl.updateDocumen
 api.get('/leer-solicitud-matricula/:id/:idPeriodoAcademico', solicitudMatriculaControl.leerSolicitudMatricula)
 api.post('/upload-solicitud-matricula', solicitudMatriculaControl.uploadSolicitudMatricula)
 api.put('/update.solicitud.matricula', solicitudMatriculaControl.updateSolicitudMatricula)
+
 
 
 

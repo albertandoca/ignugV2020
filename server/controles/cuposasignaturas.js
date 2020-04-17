@@ -35,7 +35,7 @@ let obtenerCupo = (req, res) => {
         include: [
             {
                 model: modelos.Asignaturas,
-                attributes: ['id', 'detalle', 'codigo'],
+                attributes: ['id', 'detalle', 'codigoAsignatura'],
                 required: true,
                 include: [
                     {
@@ -77,7 +77,7 @@ let aplicarCupo = (req, res) => {
     let cuposAsignaturas = req.body.cuposAsignaturas
     let datos = []
     let error = []
-    cuposAsignaturas.array.forEach(element => {
+    cuposAsignaturas.forEach(element => {
         modelos.CuposAsignaturas.update(
             {estado: cuposAsignaturas.estado},
             {

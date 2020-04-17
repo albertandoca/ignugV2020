@@ -62,6 +62,66 @@ module.exports = {
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      {
+        idPersona: 6,
+        idRol: 6,
+        idCarrera: 1,
+        urlDesignacion: 'sin url',
+        observaciones: 'no hay observaciones',
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        idPersona: 7,
+        idRol: 6,
+        idCarrera: 1,
+        urlDesignacion: 'sin url',
+        observaciones: 'no hay observaciones',
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        idPersona: 8,
+        idRol: 6,
+        idCarrera: 1,
+        urlDesignacion: 'sin url',
+        observaciones: 'no hay observaciones',
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        idPersona: 9,
+        idRol: 6,
+        idCarrera: 1,
+        urlDesignacion: 'sin url',
+        observaciones: 'no hay observaciones',
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        idPersona: 10,
+        idRol: 4,
+        idCarrera: 1,
+        urlDesignacion: 'sin url',
+        observaciones: 'no hay observaciones',
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        idPersona: 11,
+        idRol: 4,
+        idCarrera: 1,
+        urlDesignacion: 'sin url',
+        observaciones: 'no hay observaciones',
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ], {});
   },
