@@ -20,6 +20,46 @@ let asiganrNuevoCupo = (req, res) => {
 let promocionCupos = (req, res) => {
 
 }
+let carrerasCupo = (req , res)=>{
+    let idEstudiante = req.params.idEstudiante
+    let idPeriodoLectivo = req.params.idPeriodoLectivo
+    modelos.CuposAsignaturas.findAll({
+        where:{
+            idEstudiante: idEstudiante,
+            idPeriodoLectivo: idPeriodoLectivo,
+            estado:{
+                [Op.or]:['Asignado','Aplicado']
+            }
+        },
+        include: [
+            {
+                model: modelos.Asignaturas,
+                attributes: ['id', 'detalle', 'codigoAsignatura'],
+                required: true,
+                include:[
+                    {
+                        model: modelos.Carreras,
+                        attributes: ['id','detalle'],
+                        required: true
+                    }
+                ]
+            }
+        ]
+
+    }).then(data =>{
+        return res.status(200).json({
+            transaccion: true,
+            data: data,
+            msg: data.length
+        })
+    }).catch(err =>{
+        return res.status(500).json({
+            transaccion: false,
+            data: null,
+            msg: 'Error del servidor'
+        })
+    })
+}
 
 // Estudiante
 let obtenerCupo = (req, res) => {
@@ -47,7 +87,7 @@ let obtenerCupo = (req, res) => {
                         include: [
                             {
                                 model: modelos.Carreras,
-                                attributes: ['id'],
+                                attributes: ['id','detalle'],
                                 required: true,
                                 where: {
                                     id: idCarrera
@@ -104,5 +144,6 @@ let aplicarCupo = (req, res) => {
 
 module.exports = {
     obtenerCupo,
-    aplicarCupo
+    aplicarCupo,
+    carrerasCupo
 }

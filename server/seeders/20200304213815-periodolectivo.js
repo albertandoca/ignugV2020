@@ -9,7 +9,7 @@ module.exports = {
         periodo: '01',
         fechaInicio: new Date(),
         fechaFin: new Date(),
-        estado: true,
+        estado: false,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -19,7 +19,7 @@ module.exports = {
         periodo: '01',
         fechaInicio: new Date(),
         fechaFin: new Date(),
-        estado: true,
+        estado: false,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -39,7 +39,7 @@ module.exports = {
         periodo: '01',
         fechaInicio: new Date(),
         fechaFin: new Date(),
-        estado: true,
+        estado: false,
         createdAt: new Date(),
         updatedAt: new Date()
       }
