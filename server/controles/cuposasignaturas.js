@@ -73,13 +73,13 @@ let obtenerCupo = (req, res) => {
 
 
 // Estudiante
-let aplicarCupo = (req, res) => {
-    let cuposAsignaturas = req.body.cuposAsignaturas
+let aplicarCupo = async (req, res) => {
+    let cuposAsignaturas = req.body
     let datos = []
     let error = []
-    cuposAsignaturas.forEach(element => {
-        modelos.CuposAsignaturas.update(
-            {estado: cuposAsignaturas.estado},
+    await cuposAsignaturas.forEach(async element => {
+        await modelos.CuposAsignaturas.update(
+            {estado: element.estado},
             {
                 where: {
                     id: element.id,
@@ -87,12 +87,16 @@ let aplicarCupo = (req, res) => {
                         [Op.or]: ['Asignado', 'Aplicado']
                     }
                 }
-            }).then(data => {
-                datos.push(data)
-            }).catch(err => {
-                error.push(element)
+            }).then(async data => {
+                console.log(element.Asignatura.detalle)
+                await datos.push(element.Asignatura.detalle)
+            }).catch(async err => {
+                console.log(error)
+                await error.push(element)
             })
     });
+    console.log(datos)
+    console.log('jjjjS')
     return res.status(200).json({
         transaccion: true,
         data: datos,
