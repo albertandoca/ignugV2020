@@ -20,21 +20,43 @@
     <mat-step>
         <ng-template matStepLabel>Selección de asignatura</ng-template>
         <div *ngFor="let cupoFiltrado of cuposFiltrados; let i = index">
-          <mat-checkbox (selectionChange)="modificarEstado(i)" [(ngModel)]="valorCheckbox[i]">{{cupoFiltrado.Asignatura.codigoAsignatura}}</mat-checkbox>
+          <mat-checkbox (change)="modificarEstado(i)" [(ngModel)]="valorCheckbox[i]">{{cupoFiltrado.Asignatura.codigoAsignatura}}</mat-checkbox>
           <label for="">{{cupoFiltrado.Asignatura.detalle}}</label>
         </div>
+        <button mat-button matStepperNext (click)="aplicarCupos()">Next</button>
     </mat-step>
     <mat-step [stepControl]="documentosMatriculaForm" [optional]="isOptional">
         <ng-template matStepLabel>Documentos de matrícula</ng-template>
-          <mat-form-field>
-            <mat-label>Titulo de bachillerato</mat-label>
-            <ngx-mat-file-input #tituloBachiller  placeholder="PDF título de bachillerato" accept="application/pdf"></ngx-mat-file-input>
-            <mat-icon matPrefix color="primary">picture_as_pdf</mat-icon>
-            <mat-icon matSuffix style="color:#4CAF50;" *ngIf="!tituloBachiller.empty">check</mat-icon>
-            <mat-error *ngIf="tituloBachiller.empty">
-              El PDF del título de grado es <strong>necesario</strong>
-            </mat-error>
-          </mat-form-field>
+          <form enctype="multipart/form-data">
+            <mat-form-field>
+              <mat-label>Titulo de bachillerato</mat-label>
+              <ngx-mat-file-input #tituloBachiller  placeholder="PDF título de bachillerato" accept="application/pdf" (change)="pdfMatriculaSeleccionado($event)"></ngx-mat-file-input>
+              <mat-icon matPrefix color="primary">picture_as_pdf</mat-icon>
+              <mat-icon matSuffix style="color:#4CAF50;" *ngIf="!tituloBachiller.empty">check</mat-icon>
+              <mat-error *ngIf="tituloBachiller.empty">
+                El PDF del título de grado es <strong>necesario</strong>
+              </mat-error>
+            </mat-form-field>
+                   {{nombreArchivo}}
+            <mat-form-field>
+              <mat-label>Asignación de cupo</mat-label>
+              <ngx-mat-file-input #asignacionCupo  placeholder="PDF asignación cupo" accept="application/pdf"></ngx-mat-file-input>
+              <mat-icon matPrefix color="primary">picture_as_pdf</mat-icon>
+              <mat-icon matSuffix style="color:#4CAF50;" *ngIf="!asignacionCupo.empty">check</mat-icon>
+              <mat-error *ngIf="asignacionCupo.empty">
+                El PDF del título de grado es <strong>necesario</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Cedula</mat-label>
+              <ngx-mat-file-input #cedula  placeholder="PDF cédula" accept="application/pdf"></ngx-mat-file-input>
+              <mat-icon matPrefix color="primary">picture_as_pdf</mat-icon>
+              <mat-icon matSuffix style="color:#4CAF50;" *ngIf="!cedula.empty">check</mat-icon>
+              <mat-error *ngIf="cedula.empty">
+                El PDF del título de grado es <strong>necesario</strong>
+              </mat-error>
+            </mat-form-field>
+          </form>
 
           /// para subir los archivos pdf
         <button (click)="leerDocumentosMatricula()" *ngIf="botonDatosMatricula">Reintentar</button>

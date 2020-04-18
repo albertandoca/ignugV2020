@@ -36,6 +36,8 @@ export class SolicitudMatriculaComponent implements OnInit {
   realizado: boolean;
   verFiltro: boolean;
   cuposFiltrados: CupoAsignatura[];
+  selectedFile: File;
+  nombreArchivo: string;
 
   constructor(
     private dialog: MatDialog,
@@ -89,35 +91,32 @@ export class SolicitudMatriculaComponent implements OnInit {
     this.verCuposAsignaturas = 0;
     this.verFiltro = true;
     this.http.get<DataRx>(
-      `${this.global.urlApi}obtener-cupos/11/${this.idPeriodoLectivo}`
-      )
-    .subscribe(async res => {
+      `${this.global.urlApi}obtener-cupos/10/${this.idPeriodoLectivo}`  // ${this.pesonaLogin.id}
+      ).subscribe(async res => {
       if (res.transaccion) {
         if (res.data.length.toString() === res.msg.toString()) {
           if (res.data.length === 0) {
             this.verCuposAsignaturas = 2;
           } else {
             this.cuposAsignaturas = res.data;
-            let arrayAux = [];
+            let carreraAux = [];
             this.cuposAsignaturas.forEach(async element => {
-              await arrayAux.push(element.Asignatura.Malla.Carrera);
+              await carreraAux.push(element.Asignatura.Malla.Carrera);
             });
-            console.log(arrayAux);
-            for (let i = 1; i < arrayAux.length; i++) {
+            // eliminar dupĺicados
+            for (let i = 1; i < carreraAux.length; i++) {
               let bandera = true;
               for (let j = 0; j < this.carreras.length; j++) {
-                if (arrayAux[i].id === this.carreras[j].id) {
+                if (carreraAux[i].id === this.carreras[j].id) {
                   bandera = false;
                 }
               }
               if (bandera) {
-                this.carreras.push(arrayAux[i]);
+                this.carreras.push(carreraAux[i]);
               }
             }
-            console.log(this.carreras);
             if (this.carreras.length <= 1) {
               this.cuposFiltrados = this.cuposAsignaturas
-              console.log(this.cuposFiltrados);
               this.valorCheckbox = [];
               this.cuposFiltrados.forEach(element => {
                 if (element.estado == 'Asignado') {
@@ -170,8 +169,9 @@ export class SolicitudMatriculaComponent implements OnInit {
 
   aplicarCupos() {
     this.continuar = true;
-    this.http.put<DataRx>(`${this.global.urlApi}leer-datos-matricula`, this.cuposAsignaturas)
+    this.http.put<DataRx>(`${this.global.urlApi}aplicar-cupos`, this.cuposFiltrados)
     .subscribe(res => {
+      console.log(res);
       if (res.transaccion) {
         if (res.error) {
           res.error.forEach(element => {
@@ -196,11 +196,11 @@ export class SolicitudMatriculaComponent implements OnInit {
 
   modificarEstado(i) {
     this.cuposAsignaturas[i].estado = this.valorCheckbox[i] ? 'Aplicado' : 'Asignado';
+    console.log(this.cuposAsignaturas[i].estado);
   }
 
 
   datosFormulario() {
-    console.log(this.carreraSelecionada);
     this.cuposFiltrados = this.cuposAsignaturas.filter(element => element.Asignatura.Malla.Carrera.id === this.carreraSelecionada);
     console.log(this.cuposFiltrados);
     this.valorCheckbox = [];
@@ -217,5 +217,24 @@ export class SolicitudMatriculaComponent implements OnInit {
 
   }
 
+  pdfMatriculaSeleccionado(e) {
+    alert('hhh');
+    this.selectedFile = e.target.files;
+    const formData = new FormData();
+    console.log(this.selectedFile);
+    formData.append('upload[]', this.selectedFile[0], this.selectedFile[0].name);
+    console.log(formData);
+    this.http.post<DataRx>(`${this.global.urlApi}pdf-matricula`, formData)
+    .subscribe(res => {
+      console.log(res);
+      if (res.transaccion) {
+        if (res.data.length.toString() == res.msg) {
+          this.nombreArchivo = res.data[0];
+          // this.institutoForm.controls['pdfRuc'].value(this.nombreArchivo[0]);
+
+        }
+      }
+    });
+  }
 
 }
