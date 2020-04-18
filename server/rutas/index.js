@@ -22,7 +22,8 @@ let api = EXPRESS.Router(),
     filesControl = require('../controles/files'),
     cuposAsignaturasControl = require('../controles/cuposasignaturas'),
     documentosMatriculaControl = require('../controles/documentosmatricula'),
-    solicitudMatriculaControl = require('../controles/solicitudesMatricula')
+    solicitudMatriculaControl = require('../controles/solicitudesMatricula'),
+    periodosLectivosControl = require('../controles/periodoslectivos')
 
 
 // EndPoint Personas
@@ -69,9 +70,10 @@ api.put('/imagen-menu/:urlFile/:directorio', imagenMenuMiddleware, filesControl.
 api.put('/imagen-persona/:urlFile/:directorio', imagenPersonaMiddleware, filesControl.modificarArchivo)
 
 // EndPoint CuposAsignaturas
-api.get('/obtener-cupos/:idEstudiante/:idPeriodoLectivo/:idCarrera', cuposAsignaturasControl.obtenerCupo)
+api.get('/obtener-cupos/:idEstudiante/:idPeriodoLectivo', cuposAsignaturasControl.obtenerCupo)
 api.put('/aplicar-cupos', cuposAsignaturasControl.aplicarCupo)
 api.get('/carreras-cupos/:idEstudiante/:idPeriodoLectivo',cuposAsignaturasControl.carrerasCupo)
+
 
 // EndPoint documentosMatricula
 api.get('/leer-documentos-matricula/:id/:idCarrera', documentosMatriculaControl.leerDocumentosMatricula)
@@ -85,6 +87,8 @@ api.post('/upload-solicitud-matricula', solicitudMatriculaControl.uploadSolicitu
 api.put('/update.solicitud.matricula', solicitudMatriculaControl.updateSolicitudMatricula)
 
 
+// endPoint PeriodosLectivos
+api.get('/periodo-lectivo-activo', periodosLectivosControl.periodoLectivoActivo)
 
 
 module.exports = api

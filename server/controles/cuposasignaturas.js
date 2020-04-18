@@ -30,7 +30,7 @@ let carrerasCupo = (req , res)=>{
             estado:{
                 [Op.or]:['Asignado','Aplicado']
             }
-        },
+        },  
         include: [
             {
                 model: modelos.Asignaturas,
@@ -121,7 +121,7 @@ let aplicarCupo = (req, res) => {
     let error = []
     cuposAsignaturas.forEach(element => {
         modelos.CuposAsignaturas.update(
-            {estado: cuposAsignaturas.estado},
+            {estado: element.estado},
             {
                 where: {
                     id: element.id,

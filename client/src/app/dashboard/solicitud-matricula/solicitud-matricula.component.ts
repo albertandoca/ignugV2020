@@ -1,3 +1,4 @@
+import { async } from '@angular/core/testing';
 import { Carrera } from './../../modelos/carrera';
 import { element } from 'protractor';
 import { Router } from '@angular/router';
@@ -19,7 +20,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SolicitudMatriculaComponent implements OnInit {
 
-  verCuposAsignaturas: boolean;
+  verCuposAsignaturas: number;
   documentosMatriculaForm: FormGroup;
   cuposAsignaturasForm: FormGroup;
   dataRx: DataRx;
@@ -29,9 +30,12 @@ export class SolicitudMatriculaComponent implements OnInit {
   documentosMatricula: any;  // crear modelo
   botonDatosMatricula: boolean;
   continuar: boolean;
-  valorCheckbox: Array<boolean>;
+  valorCheckbox: boolean[];
   carreras: Carrera[];
   isOptional: boolean;
+  realizado: boolean;
+  verFiltro: boolean;
+  cuposFiltrados: CupoAsignatura[];
 
   constructor(
     private dialog: MatDialog,
@@ -63,29 +67,69 @@ export class SolicitudMatriculaComponent implements OnInit {
   }
 
   periodoLectivoActivo() {
-    this.http.get<DataRx>(`${this.global.urlApi}leer-periodo-lectivo-activo`)
-    .subscribe(res => {
+    this.http.get<DataRx>(`${this.global.urlApi}periodo-lectivo-activo`)
+    .subscribe (res => {
       if (res.transaccion) {
-        if (res.data.length.toString() === res.msg.toString()){
+        if (res.data.length.toString() === res.msg.toString()) {
           this.idPeriodoLectivo = res.data[0].id;
+          this.obtenerCupos();
         } else {
           this.toastr.error('La transacción no se pudo completar correctamente', 'Periodo lectivo sin acceso')
+          return false;
         }
       }
     }, err => {
       this.toastr.error('La transacción no se pudo completar correctamente', 'Periodo lectivo sin acceso')
+      return false;
     });
   }
 
   obtenerCupos() {
+    this.carreras = [];
+    this.verCuposAsignaturas = 0;
+    this.verFiltro = true;
     this.http.get<DataRx>(
-      `${this.global.urlApi}obtener-cupos/${this.autorizado.personaLogin.id}/${this.idPeriodoLectivo}/${this.carreraSelecionada}`
+      `${this.global.urlApi}obtener-cupos/11/${this.idPeriodoLectivo}`
       )
-    .subscribe(res => {
+    .subscribe(async res => {
       if (res.transaccion) {
         if (res.data.length.toString() === res.msg.toString()) {
-          this.cuposAsignaturas = res.data;
-          this.verCuposAsignaturas = this.cuposAsignaturas.length === 0 ? true : false;
+          if (res.data.length === 0) {
+            this.verCuposAsignaturas = 2;
+          } else {
+            this.cuposAsignaturas = res.data;
+            let arrayAux = [];
+            this.cuposAsignaturas.forEach(async element => {
+              await arrayAux.push(element.Asignatura.Malla.Carrera);
+            });
+            console.log(arrayAux);
+            for (let i = 1; i < arrayAux.length; i++) {
+              let bandera = true;
+              for (let j = 0; j < this.carreras.length; j++) {
+                if (arrayAux[i].id === this.carreras[j].id) {
+                  bandera = false;
+                }
+              }
+              if (bandera) {
+                this.carreras.push(arrayAux[i]);
+              }
+            }
+            console.log(this.carreras);
+            if (this.carreras.length <= 1) {
+              this.cuposFiltrados = this.cuposAsignaturas
+              console.log(this.cuposFiltrados);
+              this.valorCheckbox = [];
+              this.cuposFiltrados.forEach(element => {
+                if (element.estado == 'Asignado') {
+                  this.valorCheckbox.push(false);
+                } else {
+                  this.valorCheckbox.push(true);
+                }
+              });
+              this.verFiltro = false;
+              this.verCuposAsignaturas = 1;
+            }
+          }
         } else {
           this.toastr.error('La transacción no se pudo completar correctamente', 'Cupos Asignaturas sin acceso')
           this.router.navigate(['/dashboard/menu']);
@@ -156,8 +200,21 @@ export class SolicitudMatriculaComponent implements OnInit {
 
 
   datosFormulario() {
-    this.obtenerCupos();
-    this.leerDocumentosMatricula();
+    console.log(this.carreraSelecionada);
+    this.cuposFiltrados = this.cuposAsignaturas.filter(element => element.Asignatura.Malla.Carrera.id === this.carreraSelecionada);
+    console.log(this.cuposFiltrados);
+    this.valorCheckbox = [];
+    this.cuposFiltrados.forEach(element => {
+      if (element.estado == 'Asignado') {
+        this.valorCheckbox.push(false);
+      } else {
+        this.valorCheckbox.push(true);
+      }
+    });
+    this.verCuposAsignaturas = 1;
+
+    // this.leerDocumentosMatricula();
+
   }
 
 
