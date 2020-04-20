@@ -152,7 +152,7 @@
 
 <mat-form-field>
   <mat-label>Titulo de bachillerato</mat-label>
-  <ngx-mat-file-input #tituloBachiller  placeholder="PDF tulo de bachillerato" accept="application/pdf" (change)="sendFilen($event, 'imagen-persona')"></ngx-mat-file-input>
+  <ngx-mat-file-input #tituloBachiller  placeholder="PDF tulo de bachillerato" accept="application/pdf" (change)="sendFile($event, 'imagen-persona')"></ngx-mat-file-input>
   <mat-icon matPrefix color="primary">picture_as_pdf</mat-icon>
   <mat-icon matSuffix style="color:#4CAF50;" *ngIf="!tituloBachiller.empty">check</mat-icon>
   <mat-error *ngIf="tituloBachiller.empty">

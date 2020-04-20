@@ -12,7 +12,13 @@ export class AutorizadoService {
   private token: string;
 
   constructor() {
-    this.destruirToken();
+    const data = JSON.parse(localStorage.getItem('loginKey')) || null;
+    if (data) {
+      this.personaLogin = data.persona;
+      this.token = data.tok;
+    }
+
+    // this.destruirToken();
   }
 
   tokenData(token): boolean {
@@ -21,7 +27,11 @@ export class AutorizadoService {
     this.iat = decoded.iat;
     this.token = token;
     console.log(this.personaLogin);
-    // localStorage.setItem('loginKey', JSON.stringify(this.personaLogin));
+    const data =  {
+      persona: this.personaLogin,
+      tok: this.token
+    };
+    localStorage.setItem('loginKey', JSON.stringify(data));
     return this.personaLogin ? true : false;
   }
 
