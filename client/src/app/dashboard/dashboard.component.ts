@@ -1,8 +1,10 @@
-import { GlobalService } from '../servicios/global.service';
+import { apiService } from './../servicios/api.service';
+import { MenuPrincipalService } from '../servicios/menu-principal.service';
 import { AutorizadoService } from './../servicios/autorizado.service';
 import { PersonaLogin } from './../modelos/persona-login';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ServerService } from '../servicios/server.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,34 +12,36 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+
   personaLogin: PersonaLogin;
-  url: string;
-  tituloModulo: string;
   iconoAgenda: string;
   verAgenda: boolean;
   colorMensaje: string;
   colorNotificacion: string;
+  url: string;
+  fotoPersona: any;
 
   constructor(
     private autorizado: AutorizadoService,
-    public global: GlobalService,
-    private router: Router
+    public menuService: MenuPrincipalService,
+    private router: Router,
+    private server: ServerService,
+    private api: apiService
   ) { }
 
   ngOnInit(): void {
-      this.personaLogin = this.autorizado.personaLogin;
-      console.log(this.personaLogin);
-      this.url = this.global.urlApi;
-      this.verAgenda = true;
-      this.iconoAgenda = 'more_vert';
-      this.mensaje();
-      this.notificacion();
-      this.router.navigate(['dashboard/menu']);
+    this.url = this.server.getUrl();
+    this.personaLogin = this.autorizado.getPersonaLogin();
+    this.verAgenda = true;
+    this.iconoAgenda = 'more_vert';
+    this.mensaje();
+    this.notificacion();
+    this.router.navigate(['dashboard/menu']);
   }
 
-  menuPrincipal() {
-    this.global.cambiarTitulo('Menu principal');
-    this.global.estadoMenu(true, 'menu_open');
+  controlMenuPrincipal() {
+    this.menuService.cambiarTitulo('Menu principal');
+    this.menuService.estadoMenu(true, 'menu_open');
     this.router.navigate(['dashboard/menu']);
   }
 
@@ -64,4 +68,15 @@ export class DashboardComponent implements OnInit {
     // this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  async verImagen( nombreFile: string, carpeta: string): Promise<any> {
+    alert('iiiii');
+    const datos = {
+      urlFile: nombreFile,
+      directorio: carpeta
+    };
+    let res: any;
+    res = await this.api.verFileServer('ver-archivo', datos);
+    console.log(res);
+    return res;
+  }
 }

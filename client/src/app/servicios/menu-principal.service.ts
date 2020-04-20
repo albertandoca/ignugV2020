@@ -3,26 +3,23 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class GlobalService {
+export class MenuPrincipalService {
 
-  urlApi: string;
   titulo: string;
   verMenu: boolean;
   iconoMenu: string;
 
   constructor() {
-    this.urlApi = 'http://localhost:3000/server/';
     this.estadoMenu(true, 'menu_open');
     this.cambiarTitulo('Menú principal');
   }
 
-  cambiarTitulo(nuevoTitulo) {
+  cambiarTitulo(nuevoTitulo): void {
     this.titulo = nuevoTitulo;
   }
 
-  estadoMenu(estado, icono) {
+  estadoMenu(estado, icono): void {
     this.verMenu = estado;
     this.iconoMenu = icono;
   }
-
 }

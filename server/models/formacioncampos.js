@@ -1,13 +1,13 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const CamposFormacion = sequelize.define('CamposFormacion', {
-    detalle:{
-      type: DataTypes.STRING(50), 
+    detalle: {
+      type: DataTypes.STRING(80), 
       allowNull: false,
       unique: true,
       validate: {
         is: /^[a-zA-Z áéíóúñÑüÁÉÍÓÚÜ]+$/i,
-        len: [5,50],
+        len: [5,80],
         notEmpty: true,
       } },
     estado: {
@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: true
     }
-  }, {});
+  }, {
+  });
   CamposFormacion.associate = function(models) {
     // associations can be defined here
         CamposFormacion.hasOne(models.Asignaturas, {

@@ -9,7 +9,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
     }
   }, {
-    freezeTableName: true
   });
   PersonasRoles.associate = function(models) {
     PersonasRoles.belongsTo(models.Personas, {

@@ -35,82 +35,14 @@ let leer = (req, res) => {
     }).catch(err => {
         res.status(500).json({
             transaccion: false,
-            data: err,
-            msg: 'Servidor no disponible'
+            data: null,
+            msg: 'Error del servidor, sí el problema persiste por favor comuníquese con el adminsitrador del sistema'
         })
     })
-}
-let leerId = (req, res) => {
-    modelos.Personas.findAll()
-    .then(respuesta => {
-        let datos = JSON.stringify(respuesta)
-        datos = JSON.parse(datos)
-        res.status(200).json({
-            transaccion: true,
-            data: datos,
-            msg: datos.length
-        }) 
-    })
-}
-let leerPaginado = (req, res) => {
-    
-}
-let crear = (req, res) => {
-    let data = req.body.data
-    data.semilla = req.sessionID
-    data.enLinea = req.session.cookie._expires
-    data.estado = 'Actualiza'
-    modelos.Personas.create(data)
-    .then(respuesta => {
-        let datos = limpiarDatos(respuesta)
-        res.status(200).json({
-            transaccion: true,
-            data: datos,
-            msg: datos.length
-        })
-    })
-    .catch(err => {
-        let errors = []
-        let msg = ''
-        if (err.parent) {
-            errors.push(err.parent.detail)
-            msg = 'Registro duplicado'
-        }
-        if (err.errors.length > 0) {
-            err.errors.forEach(element => {
-                errors.push(element.path)
-            });
-            msg = 'Datos no validos'
-        }
-        res.status(400).json({
-            transaccion: false,
-            data: errors,
-            msg: msg
-        })
-    })
-}
-let crearMasivo = (req, res) => {
-
-}
-let borrar = (req, res) => {
-
-}
-let modificar = (req, res) => {
-
-}
-let entrar = (req, res) => {
-
 }
 
 
 
 module.exports = {
-    leer,
-    leerId,
-    leerPaginado,
-    crear,
-    crearMasivo,
-    borrar,
-    modificar,
-    entrar
+    leer
 }

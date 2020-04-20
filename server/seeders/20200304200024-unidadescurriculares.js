@@ -5,19 +5,19 @@ module.exports = {
     return queryInterface.bulkInsert('UnidadesCurriculares', [
       {
         detalle: 'Básica',
-        estado: false,
+        estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         detalle: 'Profesional',
-        estado: false,
+        estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         detalle: 'Titulación',
-        estado: false,
+        estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
       },

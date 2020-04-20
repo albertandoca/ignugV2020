@@ -1,3 +1,5 @@
+import { AutorizadoService } from './../../servicios/autorizado.service';
+import { MenuPrincipalService } from './../../servicios/menu-principal.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 

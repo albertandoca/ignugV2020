@@ -12,7 +12,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
     }
   }, {
-    freezeTableName: true
   });
   
   TiposIdentificaciones.associate = function(models) {

@@ -21,15 +21,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      ,
       {
         detalle: 'Integración de saberes, conotextos y cultura',
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
-      },
-      
-    ], {});
+      }
+    ], {
+      // freezeTableName: true
+    });
   },
 
   down: (queryInterface, Sequelize) => {

@@ -1,13 +1,12 @@
+import { LogService } from './../servicios/log.service';
 import { Router } from '@angular/router';
 import { OlvidoPswComponent } from './olvido-psw/olvido-psw.component';
 
 import { AutorizadoService } from './../servicios/autorizado.service';
 import { PersonaLogin } from './../modelos/persona-login';
 import { DataRx } from './../modelos/data-rx';
-import { GlobalService } from '../servicios/global.service';
-import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 
@@ -24,12 +23,12 @@ export class LoginComponent implements OnInit {
   personaLogin: PersonaLogin;
   identificacion: string;
   emailInstitucional: string;
+  dataRx: DataRx;
 
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient,
-    private global: GlobalService,
+    private logService: LogService,
     private autorizado: AutorizadoService,
     public dialog: MatDialog,
     private router: Router,
@@ -56,31 +55,26 @@ export class LoginComponent implements OnInit {
       // const mail = this.loginForm.get('email').value;
       // const pass = this.loginForm.get('psw').value;
       this.loginForm.reset();
-      this.http.post<DataRx>(`${this.global.urlApi}login`, login)
-        .subscribe(res => {
-          if (res.transaccion) {
-            if (res.data.length.toString() === res.msg.toString()) {
-              const token = res.data[0];
-              // console.log(res);
-              if (this.autorizado.tokenData(token)) {
-                this.router.navigate(['/dashboard']);
-               } else {
-                console.log('Datos incorrectos');
-                this.router.navigate(['/login']);
-               }
+      this.logService.logIn(login)
+      .subscribe(res => {
+        if (res.transaccion || res.data.length.toString() === res.msg.toString()) {
+          const token = res.data[0];
+          if (this.autorizado.tokenData(token)) {
+            this.router.navigate(['/dashboard']);
             } else {
-              alert('Ingreso no autorizado');
+            console.log('Datos incorrectos');
+            this.router.navigate(['/login']);
             }
-          }
-        }, err => {
-          console.log(err.error)
-          this.toastr.error(err.error.msg, '!Acceso denegado¡')
-        });
+        } else {
+          this.toastr.warning('Ingrese datos validos', 'Acceso denegado');
+        }
+      }, err => {
+        this.toastr.error(err.error.msg, 'Acceso denegado');
+      });
     } else {
-      alert('sin datos');
+      this.toastr.warning('Ingrese datos validos', 'Acceso denegado');
     }
   }
-
 
   openDialog(): void {
     const dialogRef = this.dialog.open(OlvidoPswComponent, {

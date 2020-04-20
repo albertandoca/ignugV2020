@@ -1,3 +1,5 @@
+import { apiService } from './../../servicios/api.service';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 
 import { MaterialModule } from './../../material.module';
@@ -19,7 +21,8 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     SolicitudMatriculaRoutingModule,
     FormsModule,
     MaterialModule,
-    MaterialFileInputModule
+    MaterialFileInputModule,
+    FlexLayoutModule
   ]
 })
 export class SolicitudMatriculaModule { }
