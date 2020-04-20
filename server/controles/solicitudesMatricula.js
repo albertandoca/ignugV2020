@@ -15,12 +15,12 @@ let Op = Sequelize.Op;
 let leerSolicitudMatricula = (req, res) => {
     let idEstudiante = null
     let idPeriodoAcademico = null
-    if (req.body.data.idEstudiante) {
+    if (req.body.data.idEstudiante == undefined) {
         idEstudiante = req.body.idPersona
-        idPeriodoAcademico = req.body.data
+        idPeriodoLectivo = req.body.data
     } else {
-        idEstudiante = req.body.idPersona
-        idPeriodoAcademico = req.body.data
+        idEstudiante = req.body.data.idEstudiante
+        idPeriodoLectivo = req.body.data
     }
     
     console.log(id)
@@ -75,6 +75,7 @@ let updateSolicitudMatricula = (req, res) => {
         return res.status(200).json({
             transaccion: true,
             data: data,
+            token: req.token,
             msg: data.length
         })
     }).catch(err => {

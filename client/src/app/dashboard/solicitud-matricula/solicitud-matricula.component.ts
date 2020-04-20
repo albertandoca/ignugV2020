@@ -64,9 +64,13 @@ export class SolicitudMatriculaComponent implements OnInit {
     });
   }
 
+   // res.data simpre es un array;
   async periodoLectivoActivo() {
     const res = await this.api.sendApi('periodo-lectivo-activo');
+    console.log(res);
     this.periodoLectivo = res[0] || null;
+    console.log(this.periodoLectivo);
+    this.obtenerCupos();
   }
 
   async obtenerCupos() {
@@ -74,8 +78,10 @@ export class SolicitudMatriculaComponent implements OnInit {
     this.verCuposAsignaturas = 0;
     this.verFiltro = true;
     this.cuposAsignaturas = await this.api.sendApi('obtener-cupos', this.periodoLectivo.id);
+    console.log(this.cuposAsignaturas);
     if (this.cuposAsignaturas) {
       this.verCuposAsignaturas = 2;
+      this.verFiltro = false;
     } else {
       const carrerasAux = [];
       for (const cupo of this.cuposAsignaturas) {
@@ -121,7 +127,7 @@ export class SolicitudMatriculaComponent implements OnInit {
 
   async aplicarCupos() {
     this.continuar = true;
-    const res = await this.api.sendApi('this.carreraSelecionada', this.cuposFiltrados);
+    const res = await this.api.sendApiPut('this.carreraSelecionada', this.cuposFiltrados);
     if (res) {
       this.continuar = false;
       this.botonDatosMatricula = true;

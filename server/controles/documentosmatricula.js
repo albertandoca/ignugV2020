@@ -15,12 +15,12 @@ let Op = Sequelize.Op;
 let leerDocumentosMatricula = (req, res) => {
     let idEstudiante = null
     let idCarrera = null
-    if (req.body.data.idEstudiante) {
+    if (req.body.data.idEstudiante == undefined) {
         idEstudiante = req.body.idPersona
-        idCarrera = req.body.data
+        idPeriodoLectivo = req.body.data
     } else {
-        idEstudiante = req.body.idPersona
-        idCarrera = req.body.data
+        idEstudiante = req.body.data.idEstudiante
+        idPeriodoLectivo = req.body.data
     }
     
     modelos.DocumentosMatriculas.findOne({
@@ -32,6 +32,7 @@ let leerDocumentosMatricula = (req, res) => {
         return res.status(200).json({
             transaccion: true,
             data: data,
+            token: req.token,
             msg: data.length
         })
     }).catch(err => {
@@ -50,6 +51,7 @@ let uploadDocumentosMatricula = (req, res) => {
         return res.status(200).json({
             transaccion: true,
             data: data.dataValues,
+            token: req.token,
             msg: data.length
         })
     }).catch(err => {
@@ -73,6 +75,7 @@ let updateDocumentosMatricula = (req, res) => {
         return res.status(200).json({
             transaccion: true,
             data: data,
+            token: req.token,
             msg: data.length
         })
     }).catch(err => {

@@ -36,7 +36,6 @@ let autenticado = (req, res, next) => {
                             algorithm: 'HS256',
                             expiresIn: process.env.TIEMPO
                         })
-                        console.log(req)
                         next()
                     }
                 })

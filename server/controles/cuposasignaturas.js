@@ -23,14 +23,16 @@ let promocionCupos = (req, res) => {
 
 // Estudiante
 let obtenerCupo = (req, res) => {
+    console.log(req.body)
     let idEstudiante = null
-    let idCarrera = null
-    if (req.body.data.idEstudiante) {
+    let idPeriodoLectivo = null
+    if (typeof req.body.data.idEstudiante == 'undefined') {
+        console.log('holaaaa')
         idEstudiante = req.body.idPersona
-        idCarrera = req.body.data
+        idPeriodoLectivo = req.body.data
     } else {
-        idEstudiante = req.body.idPersona
-        idCarrera = req.body.data
+        idEstudiante = req.body.data.idEstudiante
+        idPeriodoLectivo = req.body.data.idPeriodoLectivo
     }
 
     modelos.CuposAsignaturas.findAll({
@@ -67,6 +69,7 @@ let obtenerCupo = (req, res) => {
         return res.status(200).json({
             transaccion: true,
             data: data,
+            token: req.token,
             msg: data.length
         })
     }).catch(err => {
@@ -104,6 +107,7 @@ let aplicarCupo = (req, res) => {
     return res.status(200).json({
         transaccion: true,
         data: datos,
+        token: req.token,
         error: error
     })
 }
@@ -130,6 +134,7 @@ let matricularCupo = (req, res) => {
     return res.status(200).json({
         transaccion: true,
         data: datos,
+        token: req.token,
         error: error
     })
 }
@@ -156,6 +161,7 @@ let anularCupo = (req, res) => {
     return res.status(200).json({
         transaccion: true,
         data: datos,
+        token: req.token,
         error: error
     })
 }
@@ -182,6 +188,7 @@ let noUtilizadoCupo = (req, res) => {
     return res.status(200).json({
         transaccion: true,
         data: datos,
+        token: req.token,
         error: error
     })
 }
@@ -210,6 +217,7 @@ let eliminarCupo = (req, res) => {
     return res.status(200).json({
         transaccion: true,
         data: datos,
+        token: req.token,
         error: error
     })
 }

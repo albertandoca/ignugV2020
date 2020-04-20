@@ -12,7 +12,7 @@ import { Injectable } from '@angular/core';
 })
 export class LogService {
 
-  url: string;
+  private url: string;
 
   constructor(
     private http: HttpClient,
@@ -23,7 +23,6 @@ export class LogService {
   }
 
   logIn(datos: any): Observable<DataRx> {
-    console.log(datos);
     return this.http.post<DataRx>(`${this.url}login`, datos);
   }
 }

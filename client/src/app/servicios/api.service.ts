@@ -38,7 +38,9 @@ export class apiService {
     let data = null;
     await this.http.post<DataRx>(`${this.url}${endPoint}`, dataTx, optionsHeaders).toPromise<DataRx>()
     .then(res => {
-      this.autorizado.tokenData(res.token);
+      if (res.token !== undefined) {
+        this.autorizado.tokenData(res.token);
+      }
       if (res.transaccion || res.data.length.toString() === res.msg.toString()) {
         data = res.data;
       } else {
@@ -58,7 +60,6 @@ export class apiService {
         this.toastr.warning('No se pudo completar la transacción, verifique su conección a internet', 'Error en la conección');
         this.router.navigate(['/dashboard/menu']);
       }
-
     });
     return data;
   }
