@@ -4,18 +4,18 @@
       <img src="../../assets/img/logo/ignug2020.png" alt="Logo Ignug">
     </div>
     <div class="menu" fxFlex="10%">
-      <button mat-icon-button color="primary" aria-label="Menu" (click)="menuPrincipal()" [disabled]="global.verMenu" matTooltip="Menu principal">
-        <mat-icon>{{global.iconoMenu}}</mat-icon>
+      <button mat-icon-button color="primary" aria-label="Menu" (click)="controlMenuPrincipal()" [disabled]="menuService.verMenu" matTooltip="Menu principal">
+        <mat-icon>{{menuService.iconoMenu}}</mat-icon>
       </button>
       <button mat-icon-button color="primary" aria-label="Agenga" (click)="reglamentos()" matTooltip="Reglamentos">
         <mat-icon>policy</mat-icon>
       </button>
     </div>
     <div class="titulo" fxFlex="42%">
-      {{global.titulo | uppercase}}
+      {{menuService.titulo | uppercase}}
     </div>
     <div class="avisos" fxFlex="10%">
-      <button mat-icon-button [color]="colorMensaje" aria-label="Menu" (click)="menuPrincipal()" matTooltip="Mensajes">
+      <button mat-icon-button [color]="colorMensaje" aria-label="Menu" (click)="controlMenuPrincipal()" matTooltip="Mensajes">
         <mat-icon>chat</mat-icon>
       </button>
       <button mat-icon-button [color]="colorNotificacion" aria-label="Agenga" (click)="reglamentos()" matTooltip="Notificaciones">

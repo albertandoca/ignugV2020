@@ -23,9 +23,16 @@ let promocionCupos = (req, res) => {
 
 // Estudiante
 let obtenerCupo = (req, res) => {
-    let idEstudiante = req.params.idEstudiante
-    let idPeriodoLectivo = req.params.idPeriodoLectivo
-    let idCarrera = req.params.idCarrera
+    let idEstudiante = null
+    let idCarrera = null
+    if (req.body.data.idEstudiante) {
+        idEstudiante = req.body.idPersona
+        idCarrera = req.body.data
+    } else {
+        idEstudiante = req.body.idPersona
+        idCarrera = req.body.data
+    }
+
     modelos.CuposAsignaturas.findAll({
         where: {
             idEstudiante: idEstudiante,
@@ -74,12 +81,12 @@ let obtenerCupo = (req, res) => {
 
 
 // Estudiante
-let aplicarCupo = async (req, res) => {
-    let cuposAsignaturas = req.body
+let aplicarCupo = (req, res) => {
+    let cuposAsignaturas = req.body.data
     let datos = []
     let error = []
-   for (let cupo of cuposAsignaturas){
-        await modelos.CuposAsignaturas.update(
+    for (let cupo of cuposAsignaturas) {
+        modelos.CuposAsignaturas.update(
             {estado: cupo.estado},
             {
                 where: {
@@ -89,13 +96,118 @@ let aplicarCupo = async (req, res) => {
                     }
                 }
             }).then(data => {
-                 datos.push(cupo.Asignatura.detalle)
-            }).catch(async err => {
-                 error.push(cuposAsignaturas.detalle)
-            })
+                datos.push(cupo.Asignatura.detalle)
+            }).catch(err => {
+                error.push(cupoAsignatura.detalle)
+            }
+        )
     }
-    console.log(datos)
-    console.log('jjjjS')
+    return res.status(200).json({
+        transaccion: true,
+        data: datos,
+        error: error
+    })
+}
+
+let matricularCupo = (req, res) => {
+    let cuposAsignaturas = req.body.data
+    let datos = []
+    let error = []
+    for (let cupo of cuposAsignaturas) {
+        modelos.CuposAsignaturas.update(
+            {estado: 'Matriculado'},
+            {
+                where: {
+                    id: cupo.id,
+                    estado: 'Aplicado'
+                }
+            }).then(data => {
+                datos.push(cupo.Asignatura.detalle)
+            }).catch(err => {
+                error.push(cupoAsignatura.detalle)
+            }
+        )
+    }
+    return res.status(200).json({
+        transaccion: true,
+        data: datos,
+        error: error
+    })
+}
+
+let anularCupo = (req, res) => {
+    let cuposAsignaturas = req.body.data
+    let datos = []
+    let error = []
+    for (let cupo of cuposAsignaturas) {
+        modelos.CuposAsignaturas.update(
+            {estado:'Anulado'},
+            {
+                where: {
+                    id: cupo.id,
+                    estado: 'Matriculado'
+                }
+            }).then(data => {
+                datos.push(cupo.Asignatura.detalle)
+            }).catch(err => {
+                error.push(cupoAsignatura.detalle)
+            }
+        )
+    }
+    return res.status(200).json({
+        transaccion: true,
+        data: datos,
+        error: error
+    })
+}
+
+let noUtilizadoCupo = (req, res) => {
+    let cuposAsignaturas = req.body.data
+    let datos = []
+    let error = []
+    for (let cupo of cuposAsignaturas) {
+        modelos.CuposAsignaturas.update(
+            {estado: 'No utilizado'},
+            {
+                where: {
+                    id: cupo.id,
+                    estado: 'Asignado'
+                }
+            }).then(data => {
+                datos.push(cupo.Asignatura.detalle)
+            }).catch(err => {
+                error.push(cupoAsignatura.detalle)
+            }
+        )
+    }
+    return res.status(200).json({
+        transaccion: true,
+        data: datos,
+        error: error
+    })
+}
+
+let eliminarCupo = (req, res) => {
+    let cuposAsignaturas = req.body.data
+    let datos = []
+    let error = []
+    for (let cupo of cuposAsignaturas) {
+        modelos.CuposAsignaturas.update(
+            {estado: 'Eliminado'},
+            {
+                where: {
+                    id: cupo.id,
+                    estado: {
+                        [Op.or]: ['Asignado', 'Aplicado']
+                    }
+                }
+            }).then(data => {
+                datos.push(cupo.Asignatura.detalle)
+            }).catch(err => {
+                error.push(cupoAsignatura.detalle)
+            }
+        )
+    }
     return res.status(200).json({
         transaccion: true,
         data: datos,
@@ -105,5 +217,9 @@ let aplicarCupo = async (req, res) => {
 
 module.exports = {
     obtenerCupo,
-    aplicarCupo
+    aplicarCupo,
+    matricularCupo,
+    anularCupo,
+    noUtilizadoCupo,
+    eliminarCupo
 }

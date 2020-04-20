@@ -7,36 +7,47 @@ import { HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AutorizadoService {
-  personaLogin: PersonaLogin;
-  iat: number;
-  token: string;
+  private personaLogin: PersonaLogin;
+  private iat: number;
+  private token: string;
 
   constructor() {
-    this.destruirToken();
+    const data = JSON.parse(localStorage.getItem('loginKey')) || null;
+    if (data) {
+      this.personaLogin = data.persona;
+      this.token = data.tok;
+    }
+
+    // this.destruirToken();
   }
 
-  tokenData(token) {
+  tokenData(token): boolean {
     const decoded = jwt_decode(token);
     this.personaLogin = decoded.data || null;
     this.iat = decoded.iat;
     this.token = token;
-    localStorage.setItem('loginKey', JSON.stringify(this.personaLogin));
+    console.log(this.personaLogin);
+    const data =  {
+      persona: this.personaLogin,
+      tok: this.token
+    };
+    localStorage.setItem('loginKey', JSON.stringify(data));
     return this.personaLogin ? true : false;
   }
 
-  destruirToken() {
+  destruirToken(): void {
     this.personaLogin = null;
     this.iat = null;
     this.token = null;
     localStorage.clear();
   }
 
-  headersOptions() {
-    return {
-      headers: new HttpHeaders({
-        authorization: this.token
-      })
-    };
+  getToken(): string {
+    return this.token;
+  }
+
+  getPersonaLogin(): PersonaLogin {
+    return this.personaLogin;
   }
 
 }

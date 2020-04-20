@@ -1,13 +1,14 @@
-import { AutorizadoService } from './../../servicios/autorizado.service';
+import { ToastrService } from 'ngx-toastr';
+import { async } from '@angular/core/testing';
+import { apiService } from './../../servicios/api.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
-import { GlobalService } from '../../servicios/global.service';
 import { DataRx } from './../../modelos/data-rx';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Instituto } from 'src/app/modelos/instituto';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatPaginator } from '@angular/material/paginator';
 import { SelectionModel } from '@angular/cdk/collections';
+import { ServerService } from 'src/app/servicios/server.service';
 
 @Component({
   selector: 'app-institutos',
@@ -25,60 +26,51 @@ export class InstitutosComponent implements OnInit {
   url: string;
   nuevo: boolean;
   selectedFile: File[];
-  nombreArchivo: string[];
+  nombreArchivo: string;
   casa: number;
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
   constructor(
-    private http: HttpClient,
-    private global: GlobalService,
-    private autorizado: AutorizadoService,
-    private fb: FormBuilder
-  ) { }
+    private fb: FormBuilder,
+    private api: apiService,
+    private server: ServerService,
+    private toastr: ToastrService
+  ) {
+    this.url = this.server.getUrl();
+   }
 
   ngOnInit(): void {
-    this.url = this.global.urlApi;
     this.nuevo = false;
     this.institutos = [];
     this.leerInstitutos();
     this.crearInstitutoForm();
     this.selection = new SelectionModel<Instituto>(true, []);
-    this.nombreArchivo = [];
-
-
+    this.nombreArchivo = '';
   }
-
 
   // Trae los datos, establece columnas de la tabla, asigna datasource, paginator y selection (checkbox)
-  leerInstitutos() {
-    this.http.get<DataRx>(`${this.global.urlApi}leer-institutos`, this.autorizado.headersOptions())
-    .subscribe( async res => {
-      if (res.transaccion) {
-        // tslint:disable-next-line: triple-equals
-        if (res.data.length.toString() == res.msg) {
-          this.institutos = res.data;
-          this.displayedColumns = [
-            'select',
-            'codigoIes',
-            'razonSocial',
-            'ruc',
-            'pdfRuc',
-            'resolucion',
-            'pdfResolucion',
-            'categoria',
-            'logotipo',
-            'createdAt',
-            'updatedAt',
-            'evento'
-          ];
-          this.dataSource = new MatTableDataSource(this.institutos);
-          this.dataSource.paginator = this.paginator;
-        }
-      }
-    });
+  async leerInstitutos() {
+    this.institutos = await this.api.sendApi('leer-institutos');
+    if (this.institutos) {
+      this.displayedColumns = [
+        'select',
+        'codigoIes',
+        'razonSocial',
+        'ruc',
+        'pdfRuc',
+        'resolucion',
+        'pdfResolucion',
+        'categoria',
+        'logotipo',
+        'createdAt',
+        'updatedAt',
+        'evento'
+      ];
+      this.dataSource = new MatTableDataSource(this.institutos);
+      this.dataSource.paginator = this.paginator;
+    }
   }
-
 
   // Filtro de busqueda en la tabla
   applyFilter(event: Event) {
@@ -87,8 +79,8 @@ export class InstitutosComponent implements OnInit {
   }
 
   // Visualiza PDF en una pestaña
-  verFile(url: string, directorio: string) {
-    window.open(`${this.global.urlApi}ver-archivo/${url}/${directorio}`, 'blank');
+  verFile(urlFile: string, directorio: string) {
+    window.open(`${this.url}ver-archivo/${urlFile}/${directorio}`, 'blank');
   }
 
 
@@ -119,25 +111,19 @@ export class InstitutosComponent implements OnInit {
   }
 
 
-  pdfRucSeleccionado(e) {
+  async sendFile(e, endPoint) {
     this.selectedFile = e.target.files;
-    const formData = new FormData();
-    console.log(this.selectedFile);
-    formData.append('upload[]', this.selectedFile[0], this.selectedFile[0].name);
-    console.log(formData);
-    this.http.post<DataRx>(`${this.global.urlApi}pdf-ruc`, formData)
-    .subscribe(res => {
-      console.log(res);
-      if (res.transaccion) {
-        // tslint:disable-next-line: triple-equals
-        if (res.data.length.toString() == res.msg) {
-          this.nombreArchivo = res.data;
-          // this.institutoForm.controls['pdfRuc'].value(this.nombreArchivo[0]);
+    this.nombreArchivo = await this.api.sendFile(endPoint, this.selectedFile);
 
-        }
-      }
-    });
+    // this.institutoForm.controls['pdfRuc'].value(this.nombreArchivo[0]);
   }
+
+  async sendFilen(e, endPoint) {
+    this.selectedFile = e.target.files;
+    this.nombreArchivo =  await this.api.sendFile(endPoint, this.selectedFile);
+  }
+
+
   // Funciones para crear archivos descargables
   crearPdf() {
 
@@ -147,7 +133,16 @@ export class InstitutosComponent implements OnInit {
 
   }
 
-
+  async verImagen( nombreFile: string, carpeta: string): Promise<any> {
+    alert('jjjj');
+    const datos = {
+      urlFile: nombreFile,
+      directorio: carpeta
+    };
+    let res: any;
+    res = await this.api.verFileServer('ver-archivo', datos);
+    return res;
+  }
 
 
   // Funciones para el manejo del checkbox de la tabla

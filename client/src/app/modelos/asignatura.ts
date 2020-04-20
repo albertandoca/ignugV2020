@@ -16,7 +16,7 @@ export interface Asignatura {
   idCampoFormacion?: number;
   Malla?: Malla;
   PeriodosAcademico?: PeriodoAcademico;
-  CamposFormacion?:CampoFormacion;
+  FormacionCampo?: CampoFormacion;
   createdAt?: Date;
   updatedAt?: Date;
 }

@@ -9,7 +9,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
     }
   }, {
-    freezeTableName: true
   });
   PersonasRoles.associate = function(models) {
     PersonasRoles.belongsTo(models.Personas, {
@@ -49,6 +48,15 @@ module.exports = (sequelize, DataTypes) => {
       sourceKey: 'id'
     })
     PersonasRoles.hasMany(models.SolicitudesMatriculas, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idEstudiante',
+        allowNull: false,
+        unique: false
+      },
+      sourceKey: 'id'
+    })
+    PersonasRoles.hasMany(models.Matriculas, {
       foreignKey: {
         type: DataTypes.INTEGER,
         name: 'idEstudiante',

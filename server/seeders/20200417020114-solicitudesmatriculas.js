@@ -21,6 +21,15 @@ module.exports = {
           estado: true,
           createdAt: new Date(),
           updatedAt: new Date()
+        },
+        {
+          pdfSolicitud: '4eo3zg2CEF6MSffN9G8WPFSzF4.pdf',
+          codigoSolicitud: 'ASD12',
+          idEstudiante:7,
+          idPeriodoAcademico:1,
+          estado: true,
+          createdAt: new Date(),
+          updatedAt: new Date()
         }
     ], {});
 

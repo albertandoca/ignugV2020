@@ -1,3 +1,8 @@
+import { MenuPrincipalService } from './servicios/menu-principal.service';
+import { apiService } from './servicios/api.service';
+import { LogService } from './servicios/log.service';
+import { ServerService } from './servicios/server.service';
+import { AutorizadoService } from './servicios/autorizado.service';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 import { LoginComponent } from './login/login.component';
@@ -36,7 +41,13 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
   ],
   exports: [
   ],
-  providers: [],
+  providers: [
+    AutorizadoService,
+    ServerService,
+    LogService,
+    apiService,
+    MenuPrincipalService
+  ],
   bootstrap: [AppComponent],
   entryComponents: [
     OlvidoPswComponent

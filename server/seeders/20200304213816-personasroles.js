@@ -65,7 +65,7 @@ module.exports = {
       },
       {
         idPersona: 6,
-        idRol: 6,
+        idRol: 4,
         idCarrera: 1,
         urlDesignacion: 'sin url',
         observaciones: 'no hay observaciones',

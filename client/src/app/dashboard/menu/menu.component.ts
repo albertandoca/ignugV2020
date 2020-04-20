@@ -1,6 +1,6 @@
+import { MenuPrincipalService } from './../../servicios/menu-principal.service';
 import { Router } from '@angular/router';
-import { GlobalService } from './../../servicios/global.service';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
@@ -10,7 +10,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 export class MenuComponent implements OnInit {
 
   constructor(
-    private global: GlobalService,
+    private MenuService: MenuPrincipalService,
     private router: Router
   ) { }
 
@@ -19,20 +19,20 @@ export class MenuComponent implements OnInit {
   }
 
   personas() {
-    this.global.estadoMenu(false, 'menu');
-    this.global.cambiarTitulo('Personas');
+    this.MenuService.estadoMenu(false, 'menu');
+    this.MenuService.cambiarTitulo('Personas');
     this.router.navigate(['/dashboard/personas']);
   }
 
   institutos() {
-    this.global.estadoMenu(false, 'menu');
-    this.global.cambiarTitulo('Gestión de institutos');
+    this.MenuService.estadoMenu(false, 'menu');
+    this.MenuService.cambiarTitulo('Gestión de institutos');
     this.router.navigate(['/dashboard/institutos']);
   }
 
   solicitudMatricula() {
-    this.global.estadoMenu(false, 'menu');
-    this.global.cambiarTitulo('Solicitud Matricula');
+    this.MenuService.estadoMenu(false, 'menu');
+    this.MenuService.cambiarTitulo('Solicitud Matricula');
     this.router.navigate(['/dashboard/solicitud-matricula']);
   }
 

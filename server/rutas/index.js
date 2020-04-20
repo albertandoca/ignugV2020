@@ -28,10 +28,9 @@ let api = EXPRESS.Router(),
 
 
 // EndPoint Personas
-api.get('/leer-persona', personasControl.leer)
-api.get('/leer-id-persona', [autenticarControl.autenticado, sesionControl.actualiza], personasControl.leerId)
-api.post('/crear-persona', personasControl.crear)
-api.get('/modificar-persona', personasControl.modificar)
+api.post('/leer-persona', [autenticarControl.autenticado, sesionControl.actualiza], personasControl.leer)
+api.post('/crear-persona', [autenticarControl.autenticado, sesionControl.actualiza], personasControl.crear)
+api.post('/modificar-persona', [autenticarControl.autenticado, sesionControl.actualiza], personasControl.modificar)
 
 
 // EndPoint Log
@@ -39,57 +38,57 @@ api.post('/login', personasControl.logIn)
 // api.post('/logout', personasControl.logOut)
 
 // EndPoint Mallas
-api.get('/leer-mallas', mallasControl.leer)
+api.post('/leer-mallas', [autenticarControl.autenticado, sesionControl.actualiza], mallasControl.leer)
 
 
 // EndPoint TiposIdentificaciones
-api.get('/leer-tipos-identificaciones', tiposIdentificacionesControl.leer)
+api.post('/leer-tipos-identificaciones', [autenticarControl.autenticado, sesionControl.actualiza], tiposIdentificacionesControl.leer)
 
 
 
 // EndPoint Institutos
-api.get('/leer-institutos', [autenticarControl.autenticado, sesionControl.actualiza], institutosControl.leer)
+api.post('/leer-institutos', [autenticarControl.autenticado, sesionControl.actualiza], institutosControl.leer)
 
 
 
 // EndPoint Files
-api.post('/imagen-agenda', imagenAgendaMiddleware, filesControl.upload)
-api.post('/imagen-logotipo', imagenLogotipoMiddleware, filesControl.upload)
-api.post('/imagen-menu', imagenMenuMiddleware, filesControl.upload)
-api.post('/imagen-persona', imagenPersonaMiddleware, filesControl.upload)
-// api.post('/imagen-...', imagenAgendaMiddleware, filesControl.upload)
-api.post('/pdf', filePdfMiddleware, filesControl.upload)
-api.post('/pdf-resolucion', resolucionPdfMiddleware, filesControl.upload)
-api.post('/pdf-ruc', rucPdfMiddleware, filesControl.upload)
-api.post('/pdf-matricula', matriculaPdfMiddleware, filesControl.upload)
+api.post('/imagen-agenda', [autenticarControl.autenticado, sesionControl.actualiza, imagenAgendaMiddleware], filesControl.upload)
+api.post('/imagen-logotipo', [autenticarControl.autenticado, sesionControl.actualiza, imagenLogotipoMiddleware], filesControl.upload)
+api.post('/imagen-menu', [autenticarControl.autenticado, sesionControl.actualiza, imagenMenuMiddleware], filesControl.upload)
+api.post('/imagen-persona', [autenticarControl.autenticado, sesionControl.actualiza, imagenPersonaMiddleware], filesControl.upload)
+// api.post('/imagen-...', imagenAgendaMiddleware], filesControl.upload)
+api.post('/pdf', [autenticarControl.autenticado, sesionControl.actualiza, filePdfMiddleware], filesControl.upload)
+api.post('/pdf-resolucion', [autenticarControl.autenticado, sesionControl.actualiza, resolucionPdfMiddleware], filesControl.upload)
+api.post('/pdf-ruc', [autenticarControl.autenticado, sesionControl.actualiza, rucPdfMiddleware], filesControl.upload)
+api.post('/pdf-matricula', [autenticarControl.autenticado, sesionControl.actualiza, matriculaPdfMiddleware], filesControl.upload)
 
 api.get('/ver-archivo/:urlFile/:directorio', filesControl.verArchivo)
-api.delete('/eliminar-archivo/:urlFile/:directorio', filesControl.eliminarArchivo)
+api.delete('/eliminar-archivo', [autenticarControl.autenticado, sesionControl.actualiza], filesControl.eliminarArchivo)
 
-api.put('/imagen-agenda/:urlFile/:directorio', imagenAgendaMiddleware, filesControl.modificarArchivo)
-api.put('/imagen-logotipo/:urlFile/:directorio', imagenLogotipoMiddleware, filesControl.modificarArchivo)
-api.put('/imagen-menu/:urlFile/:directorio', imagenMenuMiddleware, filesControl.modificarArchivo)
-api.put('/imagen-persona/:urlFile/:directorio', imagenPersonaMiddleware, filesControl.modificarArchivo)
+api.put('/imagen-agenda', [autenticarControl.autenticado, sesionControl.actualiza, imagenAgendaMiddleware], filesControl.modificarArchivo)
+api.put('/imagen-logotipo', [autenticarControl.autenticado, sesionControl.actualiza, imagenLogotipoMiddleware], filesControl.modificarArchivo)
+api.put('/imagen-menu', [autenticarControl.autenticado, sesionControl.actualiza, imagenMenuMiddleware], filesControl.modificarArchivo)
+api.put('/imagen-persona', [autenticarControl.autenticado, sesionControl.actualiza, imagenPersonaMiddleware], filesControl.modificarArchivo)
 
 // EndPoint CuposAsignaturas
-api.get('/obtener-cupos/:idEstudiante/:idPeriodoLectivo', cuposAsignaturasControl.obtenerCupo)
-api.put('/aplicar-cupos', cuposAsignaturasControl.aplicarCupo)
+api.post('/obtener-cupos', [autenticarControl.autenticado, sesionControl.actualiza], cuposAsignaturasControl.obtenerCupo)
+api.put('/aplicar-cupos', [autenticarControl.autenticado, sesionControl.actualiza], cuposAsignaturasControl.aplicarCupo)
 
 
 // EndPoint documentosMatricula
-api.get('/leer-documentos-matricula/:id/:idCarrera', documentosMatriculaControl.leerDocumentosMatricula)
-api.post('/upload-documentos-matricula', documentosMatriculaControl.uploadDocumentosMatricula)
-api.put('/update.documentos.matricula', documentosMatriculaControl.updateDocumentosMatricula)
+api.post('/leer-documentos-matricula', [autenticarControl.autenticado, sesionControl.actualiza], documentosMatriculaControl.leerDocumentosMatricula)
+api.post('/upload-documentos-matricula', [autenticarControl.autenticado, sesionControl.actualiza], documentosMatriculaControl.uploadDocumentosMatricula)
+api.put('/update.documentos.matricula', [autenticarControl.autenticado, sesionControl.actualiza], documentosMatriculaControl.updateDocumentosMatricula)
 
 
 // EndPoint solicitudMatricula
-api.get('/leer-solicitud-matricula/:id/:idPeriodoAcademico', solicitudMatriculaControl.leerSolicitudMatricula)
-api.post('/upload-solicitud-matricula', solicitudMatriculaControl.uploadSolicitudMatricula)
-api.put('/update.solicitud.matricula', solicitudMatriculaControl.updateSolicitudMatricula)
+api.post('/leer-solicitud-matricula', [autenticarControl.autenticado, sesionControl.actualiza], solicitudMatriculaControl.leerSolicitudMatricula)
+api.post('/upload-solicitud-matricula', [autenticarControl.autenticado, sesionControl.actualiza], solicitudMatriculaControl.uploadSolicitudMatricula)
+api.put('/update.solicitud.matricula', [autenticarControl.autenticado, sesionControl.actualiza], solicitudMatriculaControl.updateSolicitudMatricula)
 
 
 // endPoint PeriodosLectivos
-api.get('/periodo-lectivo-activo', periodosLectivosControl.periodoLectivoActivo)
+api.post('/periodo-lectivo-activo', [autenticarControl.autenticado, sesionControl.actualiza], periodosLectivosControl.periodoLectivoActivo)
 
 
 module.exports = api

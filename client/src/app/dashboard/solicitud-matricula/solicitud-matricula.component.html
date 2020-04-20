@@ -1,6 +1,6 @@
 
 <main fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" *ngIf="verFiltro">
-  <div fxFlex="60%" class="filtro">
+  <div fxFlex="60%">
     <mat-label>Carrera</mat-label>
     <mat-select [(ngModel)]="carreraSelecionada" (selectionChange)=datosFormulario()>
       <mat-option value=999 disabled=true>Seleccione Carrera</mat-option>
@@ -9,10 +9,10 @@
       </mat-option>
     </mat-select>
   </div>
-  <div fxFlex="40%" class="botonesPrincipal">
-    <!-- <input type="image" class="icono" (click)="crearRegistro() " src="../../../assets/img/icon/plus_32.png" matTooltip="Nuevo registro" >
-    <input type="image" class="icono" (click)="crearPdf() " src="../../../assets/img/icon/adobe_pdf_32.png" matTooltip="Crear Pdf" *ngIf="selection.selected.length > 0">
-    <input type="image" class="icono" (click)="crearXls() " src="../../../assets/img/icon/adobe_pdf_32.png" matTooltip="Crear Xls" *ngIf="selection.selected.length > 0">  -->
+  <div fxFlex="40%">
+    <input type="image" class="icono" src="../../../assets/img/icon/plus_32.png" matTooltip="Nuevo registro" >
+    <!-- <input type="image" class="icono" (click)="crearPo" (click)="crearXls() " src=df() " src="../../../assets/img/icon/adobe_pdf_32.png" matTooltip="Crear Pdf" *ngIf="selection.selected.length > 0">
+    <input type="image" class="icon"../../../assets/img/icon/adobe_pdf_32.png" matTooltip="Crear Xls" *ngIf="selection.selected.length > 0">  -->
   </div>
 </main>
 
@@ -31,7 +31,7 @@
           <form enctype="multipart/form-data">
             <mat-form-field>
               <mat-label>Titulo de bachillerato</mat-label>
-              <ngx-mat-file-input #tituloBachiller  placeholder="PDF título de bachillerato" accept="application/pdf" (change)="pdfMatriculaSeleccionado($event)"></ngx-mat-file-input>
+              <ngx-mat-file-input #tituloBachiller  placeholder="PDF título de bachillerato" accept="application/pdf" (change)="sendFile($event, 'imagen-persona')"></ngx-mat-file-input>
               <mat-icon matPrefix color="primary">picture_as_pdf</mat-icon>
               <mat-icon matSuffix style="color:#4CAF50;" *ngIf="!tituloBachiller.empty">check</mat-icon>
               <mat-error *ngIf="tituloBachiller.empty">
@@ -41,7 +41,7 @@
                    {{nombreArchivo}}
             <mat-form-field>
               <mat-label>Asignación de cupo</mat-label>
-              <ngx-mat-file-input #asignacionCupo  placeholder="PDF asignación cupo" accept="application/pdf"></ngx-mat-file-input>
+              <ngx-mat-file-input #asignacionCupo  placeholder="PDF asignación cupo" accept="application/pdf" (change)="sendFile($event, 'imagen-persona')"></ngx-mat-file-input>
               <mat-icon matPrefix color="primary">picture_as_pdf</mat-icon>
               <mat-icon matSuffix style="color:#4CAF50;" *ngIf="!asignacionCupo.empty">check</mat-icon>
               <mat-error *ngIf="asignacionCupo.empty">

@@ -12,7 +12,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
     }
   }, {
-    freezeTableName: true
   });
   
   Roles.associate = function(models)  {
