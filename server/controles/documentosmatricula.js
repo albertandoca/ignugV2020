@@ -13,13 +13,19 @@ let Op = Sequelize.Op;
 
 
 let leerDocumentosMatricula = (req, res) => {
-    let id = req.params.id
-    let idCarrera = req.params.idCarrera
-    console.log(id)
-    console.log(idCarrera)
+    let idEstudiante = null
+    let idCarrera = null
+    if (req.body.data.idEstudiante) {
+        idEstudiante = req.body.idPersona
+        idCarrera = req.body.data
+    } else {
+        idEstudiante = req.body.idPersona
+        idCarrera = req.body.data
+    }
+    
     modelos.DocumentosMatriculas.findOne({
         where: {
-            idEstudiante: id,
+            idEstudiante: idEstudiante,
             idCarrera: idCarrera
         }
     }).then(data => {
@@ -38,7 +44,7 @@ let leerDocumentosMatricula = (req, res) => {
 }
 
 let uploadDocumentosMatricula = (req, res) => {
-    let documentosMatricula = req.body.DocumentosMatricula
+    let documentosMatricula = req.body.data
     modelos.DocumentosMatriculas.create(documentosMatricula)
     .then(data => {
         return res.status(200).json({
@@ -56,7 +62,7 @@ let uploadDocumentosMatricula = (req, res) => {
 }
 
 let updateDocumentosMatricula = (req, res) => {
-    let documentosMatricula = req.body.DocumentosMatricula
+    let documentosMatricula = req.body.data
     modelos.DocumentosMatricula.update(documentosMatricula, {
         where: {
             id: documentosMatricula.id,
@@ -73,7 +79,7 @@ let updateDocumentosMatricula = (req, res) => {
         return res.status(500).json({
             transaccion: false,
             data: null,
-            msg: 'Error del servidor'
+            msg: 'Error del servidor, sí el problema persiste por favor comuníquese con el adminsitrador del sistema'
         })
     })
 }

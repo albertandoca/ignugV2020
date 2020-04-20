@@ -34,8 +34,8 @@ let periodoLectivoActivo = (req, res) => {
     }).catch(err => {
         return res.status(500).json({
             transaccion: false,
-            data: err,
-            msg: 'Error del servidor'
+            data: null,
+            msg: 'Error del servidor, sí el problema persiste por favor comuníquese con el adminsitrador del sistema'
         })
     })
 }

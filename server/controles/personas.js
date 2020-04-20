@@ -13,15 +13,9 @@ let Op = Sequelize.Op
 // let bcrypt = require('bcrypt-nodejs')
 let jwt = require('jsonwebtoken')
 
-let limpiarDatos = (data) => {
-    data.psw = ''
-    data.semilla = ''
-    data.enLinea = ''
-    return data
-}
 
 let leer = (req, res) => {
-    let condicion = JSON.parse(req.query.condicion) || ['Activo', 'Actualiza'] 
+    let condicion = req.body.data || ['Activo', 'Actualiza'] 
     modelos.Personas.findAll({
         attributes: {
             exclude: [
@@ -88,42 +82,7 @@ let leer = (req, res) => {
         })
     })
 }
-let leerId = (req, res) => {
-    modelos.Lugares.findAll({
-        where: {
-            codigo: {
-                [Op.ne]: '0'
-            }
-        },
-        include: [
-            {
-                model: modelos.Lugares,
-                attributes: ['codigo', 'detalle'],
-                required: true,
-                // right: true,
-                include: [
-                    {
-                        model: modelos.Lugares,
-                        attributes: ['codigo', 'detalle'],
-                        required: true,
-                        // right: true,
-                        
-                    }
-                ]
-            }
-        ]
-    })
-    .then(respuesta => {
-        res.status(200).json({
-            transaccion: true,
-            data: respuesta,
-            msg: respuesta.length
-        }) 
-    })
-}
-let leerPaginado = (req, res) => {
-    
-}
+
 let crear = (req, res) => {
     let datos = req.body.data
     datos.semilla = req.sessionID
@@ -143,11 +102,14 @@ let crear = (req, res) => {
                 }
             ]
         }
-    }).then(persona => {
-        if (persona == null) {
+    }).then(data => {
+        if (data) {
             modelos.Personas.create(datos)
-            .then(persona1 => {
-                datos = limpiarDatos(persona1)
+            .then(dataAux => {
+                datos = dataAux.toJSON()
+                delete datos.semilla,
+                delete datos.psw,
+                delete datos.enLinea
                 res.status(200).json({
                     transaccion: true,
                     data: datos,
@@ -162,7 +124,7 @@ let crear = (req, res) => {
                     err.errors.forEach(element => {
                         errores.push(element.path)
                     });
-                    msg = 'Datos no validos'
+                    msg = 'Los datos se ingresaron incorrectamente'
                 }
                 res.status(400).json({
                     transaccion: false,
@@ -174,14 +136,14 @@ let crear = (req, res) => {
             res.status(400).json({
                 transaccion: false,
                 data: [],
-                msg: 'Registro duplicado'
+                msg: 'La cuenta del usuario ya existe'
             })
         }
     }).catch(err => {
         res.status(500).json({
             transaccion: false,
-            data: err,
-            msg: 'Servidor no disponible'
+            data: null,
+            msg: 'Error del servidor, sí el problema persiste por favor comuníquese con el adminsitrador del sistema'
         })
     })
 }
@@ -254,7 +216,7 @@ let logIn = (req, res) => {
                 res.status(200).json({
                     transaccion: false,
                     data: [],
-                    msg: 'Usuario en línea'
+                    msg: 'Usuario bloqueado momentaneamente por su seguridad, es probable que haya realizado varios intentos de acceso, intente despues de 20 minutos'
                 })
             } else {
                 persona.comparePassword(psw, (err, isMatch) => {
@@ -263,9 +225,9 @@ let logIn = (req, res) => {
                         delete persona.psw
                         delete persona.enLinea
                         let semilla = req.sessionID
-                        token = jwt.sign({data: persona}, process.env.KEY_JWT, {
-                            algorithm: 'HS256'//,
-                            //expiresIn: process.env.TIEMPO
+                        token = jwt.sign({data: persona}, semilla, {
+                            algorithm: 'HS256',
+                            expiresIn: process.env.TIEMPO
                         })
                         datos.push(token)
                         modelos.Personas.update(
@@ -312,7 +274,7 @@ let logIn = (req, res) => {
         res.status(500).json({
             transaccion: false,
             data: err,
-            msg: 'Servidor no disponible'
+            msg: 'Error del servidor, sí el problema persiste por favor comuníquese con el adminsitrador del sistema'
         })
     })
 }
@@ -321,8 +283,6 @@ let logIn = (req, res) => {
 
 module.exports = {
     leer,
-    leerId,
-    leerPaginado,
     crear,
     crearMasivo,
     borrar,

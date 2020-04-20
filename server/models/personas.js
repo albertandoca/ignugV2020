@@ -99,7 +99,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, 
   {
-    freezeTableName: true
   });
 
   Personas.beforeSave((persona, options) => {

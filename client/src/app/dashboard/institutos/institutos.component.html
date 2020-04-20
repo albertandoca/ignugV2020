@@ -1,5 +1,5 @@
 <!-- Tabla de inicio con todos los datos -->
-<main fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" *ngIf="!nuevo">
+<main class="dashboardContenedor" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" *ngIf="!nuevo">
     <div fxFlex="60%" class="filtro">
       <mat-form-field>
         <mat-label>Buscar</mat-label>
@@ -115,7 +115,7 @@
 
 
 <!-- formulario de ingreso o modificación de datos -->
-<main *ngIf="nuevo">
+<main class="dasboardContenedor" *ngIf="nuevo" >
 
 <!-- lado izquierdo  -->
 
@@ -134,9 +134,9 @@
   <!-- Frame interno ver pdf -->
   <br>
   <label for="">Subir PDF RUC</label>
-  <input type="file" accept="application/pdf" (change)="pdfRucSeleccionado($event)">
+  <input type="file" accept="application/pdf" (change)="sendFile($event, 'pdf-ruc')">
   <br>
-  {{nombreArchivo[0]}}
+  {{nombreArchivo}}
 <br>
   <input type="image" (click)="verFile(nombreArchivo[0], 'pdf-ruc')" src="../../../assets/img/icon/adobe_pdf_32.png" >
 
@@ -152,13 +152,14 @@
 
 <mat-form-field>
   <mat-label>Titulo de bachillerato</mat-label>
-  <ngx-mat-file-input #tituloBachiller  placeholder="PDF tulo de bachillerato" accept="application/pdf"></ngx-mat-file-input>
+  <ngx-mat-file-input #tituloBachiller  placeholder="PDF tulo de bachillerato" accept="application/pdf" (change)="sendFilen($event, 'imagen-persona')"></ngx-mat-file-input>
   <mat-icon matPrefix color="primary">picture_as_pdf</mat-icon>
   <mat-icon matSuffix style="color:#4CAF50;" *ngIf="!tituloBachiller.empty">check</mat-icon>
   <mat-error *ngIf="tituloBachiller.empty">
     Email es <strong>necesario</strong>
   </mat-error>
 </mat-form-field>
+{{nombreArchivo}}
 
 <!-- 3  upload Logotipo -->
 

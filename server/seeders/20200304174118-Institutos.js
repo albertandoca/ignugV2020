@@ -11,7 +11,7 @@ module.exports = {
         resolucion: '123456789',
         pdfResolucion: '4eo3zg2CEF6MSN9G8WPFSzF4.pdf',
         categoria: 'Público',
-        logotipo:'_BlcIWEp5e5yp8fRurTaz8Gq.png',
+        logotipo:'RY_HXiBUa8hXq_BjtgGydZfK.png',
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -24,7 +24,7 @@ module.exports = {
         resolucion: '123456789',
         pdfResolucion: '4eo3zg2CEF6MSN9G8WPFSzF4.pdf',
         categoria: 'Público',
-        logotipo:'a7rj-62M2en0COQ3zS2XYERe.png',
+        logotipo:'MSEBstahh8lMFMzCJ2sGqsIA.png',
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -37,7 +37,7 @@ module.exports = {
         resolucion: '123456789',
         pdfResolucion: '4eo3zg2CEF6MSN9G8WPFSzF4.pdf',
         categoria: 'Público',
-        logotipo:'aDcTPFBlN54X3VlcFe_kDk3O.jpg',
+        logotipo:'lpg-QMSz4jFTU_7U46WWJPC6.png',
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()

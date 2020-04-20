@@ -1,4 +1,5 @@
 ;
+let jwt = require('jsonwebtoken')
 const Sequelize = require('sequelize')
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.js')[env]
@@ -26,7 +27,7 @@ let actualiza = (req, res, next) => {
         res.status(404).json({
             transaccion: false,
             data: err,
-            msg: 'Fallo actualización'
+            msg: 'La sesion no se actualizo correctamente'
         })
     })
 }

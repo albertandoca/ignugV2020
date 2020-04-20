@@ -8,7 +8,8 @@ module.exports = {
     database: process.env.NAME_DB || 'Ignug',
     host: process.env.HOST_DB || 'localhost',
     dialect: 'postgres',
-    operatorsAliases: 0
+    operatorsAliases: 0,
+    define: {freezeTableName: true}
   },
   test: {
     username: 'root',

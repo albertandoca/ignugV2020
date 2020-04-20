@@ -15,10 +15,9 @@ let path = require('path')
 
 let upload = (req, res, err) => {
   let file = req.files.upload[0]
-  console.log(file)
   if (file.originalFilename == '') {
     fs.unlinkSync(file.path)
-    return res.status(200).json({
+    return res.status(400).json({
       transaccion: false,
       data: [],
       msg: 'No existe el archivo de origen'
@@ -42,6 +41,8 @@ let verArchivo = (req, res) => {
   let pathFile = validaPath(urlFile, directorio)
   
   fs.exists(pathFile, (exists) => {
+    console.log(pathFile)
+    console.log(path.resolve(pathFile))
     if (exists) {
       return res.status(200).sendFile(path.resolve(pathFile))
     } else {
@@ -51,8 +52,8 @@ let verArchivo = (req, res) => {
 }
 
 let eliminarArchivo = (req, res) => {
-  let urlFile = req.params.urlFile
-  let directorio = req.params.directorio
+  let urlFile = req.body.data.urlFile
+  let directorio = req.body.data.directorio
   let pathFile = validaPath(urlFile, directorio)
   fs.exists(pathFile, (exists) => {
     if (exists) {
@@ -65,10 +66,9 @@ let eliminarArchivo = (req, res) => {
 }
 
 let modificarArchivo = (req, res) => {
-  console.log(req)
-  let file = req.files.upload
-  let urlFile = req.params.urlFile
-  let directorio = req.params.directorio
+  console.log(req)   // crear funcion es apiService
+  let urlFile = req.body.data.urlFile
+  let directorio = req.body.data.directorio
   let pathFile = validaPath(urlFile, directorio)
   if (file.originalFilename == '') {
     fs.unlinkSync(file.path)

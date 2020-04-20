@@ -13,8 +13,16 @@ let Op = Sequelize.Op;
 
 
 let leerSolicitudMatricula = (req, res) => {
-    let id = req.params.id
-    let idPeriodoAcademico = req.params.idPeriodoAcademico
+    let idEstudiante = null
+    let idPeriodoAcademico = null
+    if (req.body.data.idEstudiante) {
+        idEstudiante = req.body.idPersona
+        idPeriodoAcademico = req.body.data
+    } else {
+        idEstudiante = req.body.idPersona
+        idPeriodoAcademico = req.body.data
+    }
+    
     console.log(id)
     console.log(idPeriodoAcademico)
     modelos.SolicitudesMatriculas.findOne({
@@ -38,7 +46,7 @@ let leerSolicitudMatricula = (req, res) => {
 }
 
 let uploadSolicitudMatricula = (req, res) => {
-    let solicitudMatricula = req.body.solicitudMatricula
+    let solicitudMatricula = req.body.data
     modelos.SolicitudesMatricula.create(solicitudMatricula)
     .then(data => {
         return res.status(200).json({
@@ -56,7 +64,7 @@ let uploadSolicitudMatricula = (req, res) => {
 }
 
 let updateSolicitudMatricula = (req, res) => {
-    let solicitudMatricula = req.body.solicitudMatricula
+    let solicitudMatricula = req.body.data
     modelos.solicitudesMatricula.update(solicitudMatricula, {
         where: {
             id: solicitudMatricula.id,
