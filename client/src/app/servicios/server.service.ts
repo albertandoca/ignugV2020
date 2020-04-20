@@ -8,7 +8,7 @@ export class ServerService {
   private url: string;
 
   constructor() {
-    this.url = 'http://localhost:3000/server/'
+    this.url = 'http://localhost:3000/server/';
   }
 
   getUrl() {

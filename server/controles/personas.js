@@ -72,6 +72,7 @@ let leer = (req, res) => {
         res.status(200).json({
             transaccion: true,
             data: personas,
+            token: req.token,
             msg: personas.length
         }) 
     }).catch(err => {
@@ -113,6 +114,7 @@ let crear = (req, res) => {
                 res.status(200).json({
                     transaccion: true,
                     data: datos,
+                    token: req.token,
                     msg: datos.length
                 })
             })
@@ -213,7 +215,7 @@ let logIn = (req, res) => {
         console.log(persona)
         if (persona) {
             if (persona.enLinea > fecha) {
-                res.status(200).json({
+                res.status(400).json({
                     transaccion: false,
                     data: [],
                     msg: 'Usuario bloqueado momentaneamente por su seguridad, es probable que haya realizado varios intentos de acceso, intente despues de 20 minutos'
@@ -244,6 +246,7 @@ let logIn = (req, res) => {
                             res.status(200).json({
                                 transaccion: true,
                                 data: datos,
+                                token: req.token,
                                 msg: datos.length
                             })
                         }).catch(err => {

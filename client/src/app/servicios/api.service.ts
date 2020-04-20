@@ -58,7 +58,6 @@ export class apiService {
         this.toastr.warning('No se pudo completar la transacción, verifique su conección a internet', 'Error en la conección');
         this.router.navigate(['/dashboard/menu']);
       }
-
     });
     return data;
   }
