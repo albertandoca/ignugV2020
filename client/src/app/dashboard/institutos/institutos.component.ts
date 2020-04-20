@@ -1,4 +1,3 @@
-import { apinService } from './../../servicios/apin.service';
 import { ToastrService } from 'ngx-toastr';
 import { async } from '@angular/core/testing';
 import { apiService } from './../../servicios/api.service';
@@ -35,7 +34,6 @@ export class InstitutosComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private api: apiService,
-    private apin: apinService,
     private server: ServerService,
     private toastr: ToastrService
   ) {
