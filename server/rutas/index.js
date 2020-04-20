@@ -5,14 +5,14 @@ const filePdf = require('connect-multiparty')
 
 
 let api = EXPRESS.Router(),
-    imagenAgendaMiddleware = MULTIPARTY({uploadDir: './files/imagen/agenda'}),
-    imagenLogotipoMiddleware = MULTIPARTY({uploadDir: './files/imagen/logotipo'}),
-    imagenMenuMiddleware = MULTIPARTY({uploadDir: './files/imagen/menu'}),
-    imagenPersonaMiddleware = MULTIPARTY({uploadDir: './files/imagen/persona'}),
-    filePdfMiddleware = MULTIPARTY({uploadDir: './files/pdf'}),
-    resolucionPdfMiddleware = MULTIPARTY({uploadDir: './files/pdf/resolucion'}),
-    rucPdfMiddleware = MULTIPARTY({uploadDir: './files/pdf/ruc'}),
-    matriculaPdfMiddleware = MULTIPARTY({uploadDir: './files/pdf/matricula'}),
+    imagenAgendaMiddleware = MULTIPARTY({ uploadDir: './files/imagen/agenda' }),
+    imagenLogotipoMiddleware = MULTIPARTY({ uploadDir: './files/imagen/logotipo' }),
+    imagenMenuMiddleware = MULTIPARTY({ uploadDir: './files/imagen/menu' }),
+    imagenPersonaMiddleware = MULTIPARTY({ uploadDir: './files/imagen/persona' }),
+    filePdfMiddleware = MULTIPARTY({ uploadDir: './files/pdf' }),
+    resolucionPdfMiddleware = MULTIPARTY({ uploadDir: './files/pdf/resolucion' }),
+    rucPdfMiddleware = MULTIPARTY({ uploadDir: './files/pdf/ruc' }),
+    matriculaPdfMiddleware = MULTIPARTY({ uploadDir: './files/pdf/matricula' }),
     // filePdfMiddleware = MULTIPARTY({uploadDir: './files/pdf'}),
     personasControl = require('../controles/personas'),
     mallasControl = require('../controles/mallas'),
@@ -35,7 +35,7 @@ api.post('/modificar-persona', [autenticarControl.autenticado, sesionControl.act
 
 // EndPoint Log
 api.post('/login', personasControl.logIn)
-// api.post('/logout', personasControl.logOut)
+    // api.post('/logout', personasControl.logOut)
 
 // EndPoint Mallas
 api.post('/leer-mallas', [autenticarControl.autenticado, sesionControl.actualiza], mallasControl.leer)
@@ -56,7 +56,7 @@ api.post('/imagen-agenda', [autenticarControl.autenticado, sesionControl.actuali
 api.post('/imagen-logotipo', [autenticarControl.autenticado, sesionControl.actualiza, imagenLogotipoMiddleware], filesControl.upload)
 api.post('/imagen-menu', [autenticarControl.autenticado, sesionControl.actualiza, imagenMenuMiddleware], filesControl.upload)
 api.post('/imagen-persona', [autenticarControl.autenticado, sesionControl.actualiza, imagenPersonaMiddleware], filesControl.upload)
-// api.post('/imagen-...', imagenAgendaMiddleware], filesControl.upload)
+    // api.post('/imagen-...', imagenAgendaMiddleware], filesControl.upload)
 api.post('/pdf', [autenticarControl.autenticado, sesionControl.actualiza, filePdfMiddleware], filesControl.upload)
 api.post('/pdf-resolucion', [autenticarControl.autenticado, sesionControl.actualiza, resolucionPdfMiddleware], filesControl.upload)
 api.post('/pdf-ruc', [autenticarControl.autenticado, sesionControl.actualiza, rucPdfMiddleware], filesControl.upload)
@@ -85,6 +85,10 @@ api.put('/update.documentos.matricula', [autenticarControl.autenticado, sesionCo
 api.post('/leer-solicitud-matricula', [autenticarControl.autenticado, sesionControl.actualiza], solicitudMatriculaControl.leerSolicitudMatricula)
 api.post('/upload-solicitud-matricula', [autenticarControl.autenticado, sesionControl.actualiza], solicitudMatriculaControl.uploadSolicitudMatricula)
 api.put('/update.solicitud.matricula', [autenticarControl.autenticado, sesionControl.actualiza], solicitudMatriculaControl.updateSolicitudMatricula)
+
+// EndPoint DocentesAsignaturas
+api.post('/obtener-materias', [autenticarControl.autenticado, sesionControl.actualiza], cuposAsignaturasControl.obtenerMateria)
+api.put('/aplicar-materias', [autenticarControl.autenticado, sesionControl.actualiza], cuposAsignaturasControl.aplicarMateria)
 
 
 // endPoint PeriodosLectivos
