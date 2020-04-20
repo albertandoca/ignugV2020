@@ -23,14 +23,16 @@ let promocionCupos = (req, res) => {
 
 // Estudiante
 let obtenerCupo = (req, res) => {
+    console.log(req.body)
     let idEstudiante = null
-    let idCarrera = null
-    if (req.body.data.idEstudiante) {
+    let idPeriodoLectivo = null
+    if (typeof req.body.data.idEstudiante == 'undefined') {
+        console.log('holaaaa')
         idEstudiante = req.body.idPersona
-        idCarrera = req.body.data
+        idPeriodoLectivo = req.body.data
     } else {
-        idEstudiante = req.body.idPersona
-        idCarrera = req.body.data
+        idEstudiante = req.body.data.idEstudiante
+        idPeriodoLectivo = req.body.data.idPeriodoLectivo
     }
 
     modelos.CuposAsignaturas.findAll({
