@@ -67,6 +67,7 @@ let obtenerCupo = (req, res) => {
         return res.status(200).json({
             transaccion: true,
             data: data,
+            token: req.token,
             msg: data.length
         })
     }).catch(err => {
@@ -104,6 +105,7 @@ let aplicarCupo = (req, res) => {
     return res.status(200).json({
         transaccion: true,
         data: datos,
+        token: req.token,
         error: error
     })
 }
@@ -130,6 +132,7 @@ let matricularCupo = (req, res) => {
     return res.status(200).json({
         transaccion: true,
         data: datos,
+        token: req.token,
         error: error
     })
 }
@@ -156,6 +159,7 @@ let anularCupo = (req, res) => {
     return res.status(200).json({
         transaccion: true,
         data: datos,
+        token: req.token,
         error: error
     })
 }
@@ -182,6 +186,7 @@ let noUtilizadoCupo = (req, res) => {
     return res.status(200).json({
         transaccion: true,
         data: datos,
+        token: req.token,
         error: error
     })
 }
@@ -210,6 +215,7 @@ let eliminarCupo = (req, res) => {
     return res.status(200).json({
         transaccion: true,
         data: datos,
+        token: req.token,
         error: error
     })
 }

@@ -30,6 +30,7 @@ let leer = (req, res) => {
         res.status(200).json({
             transaccion: true,
             data: tiposIdentificaciones,
+            token: req.token,
             msg: tiposIdentificaciones.length
         }) 
     }).catch(err => {

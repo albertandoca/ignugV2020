@@ -32,6 +32,7 @@ let leerDocumentosMatricula = (req, res) => {
         return res.status(200).json({
             transaccion: true,
             data: data,
+            token: req.token,
             msg: data.length
         })
     }).catch(err => {
@@ -50,6 +51,7 @@ let uploadDocumentosMatricula = (req, res) => {
         return res.status(200).json({
             transaccion: true,
             data: data.dataValues,
+            token: req.token,
             msg: data.length
         })
     }).catch(err => {
@@ -73,6 +75,7 @@ let updateDocumentosMatricula = (req, res) => {
         return res.status(200).json({
             transaccion: true,
             data: data,
+            token: req.token,
             msg: data.length
         })
     }).catch(err => {

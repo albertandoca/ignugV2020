@@ -75,6 +75,7 @@ let updateSolicitudMatricula = (req, res) => {
         return res.status(200).json({
             transaccion: true,
             data: data,
+            token: req.token,
             msg: data.length
         })
     }).catch(err => {
