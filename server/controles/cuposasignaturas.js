@@ -20,46 +20,6 @@ let asiganrNuevoCupo = (req, res) => {
 let promocionCupos = (req, res) => {
 
 }
-let carrerasCupo = (req , res)=>{
-    let idEstudiante = req.params.idEstudiante
-    let idPeriodoLectivo = req.params.idPeriodoLectivo
-    modelos.CuposAsignaturas.findAll({
-        where:{
-            idEstudiante: idEstudiante,
-            idPeriodoLectivo: idPeriodoLectivo,
-            estado:{
-                [Op.or]:['Asignado','Aplicado']
-            }
-        },  
-        include: [
-            {
-                model: modelos.Asignaturas,
-                attributes: ['id', 'detalle', 'codigoAsignatura'],
-                required: true,
-                include:[
-                    {
-                        model: modelos.Carreras,
-                        attributes: ['id','detalle'],
-                        required: true
-                    }
-                ]
-            }
-        ]
-
-    }).then(data =>{
-        return res.status(200).json({
-            transaccion: true,
-            data: data,
-            msg: data.length
-        })
-    }).catch(err =>{
-        return res.status(500).json({
-            transaccion: false,
-            data: null,
-            msg: 'Error del servidor'
-        })
-    })
-}
 
 // Estudiante
 let obtenerCupo = (req, res) => {
@@ -70,6 +30,7 @@ let obtenerCupo = (req, res) => {
         where: {
             idEstudiante: idEstudiante,
             idPeriodoLectivo: idPeriodoLectivo,
+            
             estado: {
                 [Op.or]: ['Asignado', 'Aplicado']
             }
@@ -87,11 +48,8 @@ let obtenerCupo = (req, res) => {
                         include: [
                             {
                                 model: modelos.Carreras,
-                                attributes: ['id','detalle'],
-                                required: true,
-                                where: {
-                                    id: idCarrera
-                                }
+                                attributes: ['id', 'detalle'],
+                                required: true
                             }
                         ]
                     }
@@ -114,34 +72,28 @@ let obtenerCupo = (req, res) => {
     })
 }
 
+
 // Estudiante
 let aplicarCupo = async (req, res) => {
     let cuposAsignaturas = req.body
     let datos = []
     let error = []
-<<<<<<< HEAD
-    cuposAsignaturas.forEach(element => {
-        modelos.CuposAsignaturas.update(
-=======
-    await cuposAsignaturas.forEach(async element => {
+   for (let cupo of cuposAsignaturas){
         await modelos.CuposAsignaturas.update(
->>>>>>> c90384037a160fb130830baf67bafa14b6b71591
-            {estado: element.estado},
+            {estado: cupo.estado},
             {
                 where: {
-                    id: element.id,
+                    id: cupo.id,
                     estado: {
                         [Op.or]: ['Asignado', 'Aplicado']
                     }
                 }
-            }).then(async data => {
-                console.log(element.Asignatura.detalle)
-                await datos.push(element.Asignatura.detalle)
+            }).then(data => {
+                 datos.push(cupo.Asignatura.detalle)
             }).catch(async err => {
-                console.log(error)
-                await error.push(element)
+                 error.push(cuposAsignaturas.detalle)
             })
-    });
+    }
     console.log(datos)
     console.log('jjjjS')
     return res.status(200).json({
@@ -153,6 +105,5 @@ let aplicarCupo = async (req, res) => {
 
 module.exports = {
     obtenerCupo,
-    aplicarCupo,
-    carrerasCupo
+    aplicarCupo
 }

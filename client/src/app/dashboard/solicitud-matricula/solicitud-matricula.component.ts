@@ -104,7 +104,7 @@ export class SolicitudMatriculaComponent implements OnInit {
               await carreraAux.push(element.Asignatura.Malla.Carrera);
             });
             // eliminar dupĺicados
-            for (let i = 1; i < carreraAux.length; i++) {
+           for (let i = 1; i < carreraAux.length; i++) {
               let bandera = true;
               for (let j = 0; j < this.carreras.length; j++) {
                 if (carreraAux[i].id === this.carreras[j].id) {
@@ -115,7 +115,7 @@ export class SolicitudMatriculaComponent implements OnInit {
                 this.carreras.push(carreraAux[i]);
               }
             }
-            if (this.carreras.length <= 1) {
+           if (this.carreras.length <= 1) {
               this.cuposFiltrados = this.cuposAsignaturas
               this.valorCheckbox = [];
               this.cuposFiltrados.forEach(element => {
@@ -202,6 +202,7 @@ export class SolicitudMatriculaComponent implements OnInit {
 
   datosFormulario() {
     this.cuposFiltrados = this.cuposAsignaturas.filter(element => element.Asignatura.Malla.Carrera.id === this.carreraSelecionada);
+    console.log('Estos son los cupos filtrados')
     console.log(this.cuposFiltrados);
     this.valorCheckbox = [];
     this.cuposFiltrados.forEach(element => {

@@ -74,7 +74,6 @@ api.put('/imagen-persona/:urlFile/:directorio', imagenPersonaMiddleware, filesCo
 // EndPoint CuposAsignaturas
 api.get('/obtener-cupos/:idEstudiante/:idPeriodoLectivo', cuposAsignaturasControl.obtenerCupo)
 api.put('/aplicar-cupos', cuposAsignaturasControl.aplicarCupo)
-api.get('/carreras-cupos/:idEstudiante/:idPeriodoLectivo',cuposAsignaturasControl.carrerasCupo)
 
 
 // EndPoint documentosMatricula

@@ -73,15 +73,6 @@ module.exports = (sequelize, DataTypes) => {
       },
       targetKey: 'id'
     });
-    Asignaturas.belongsTo(models.CamposFormacion, {
-      foreignKey: {
-        type: DataTypes.INTEGER,
-        name: 'idCampoFormacion',
-        allowNull: false,
-        unique: false
-      },
-      targetKey: 'id'
-    }); 
     Asignaturas.belongsTo(models.UnidadesCurriculares, {
       foreignKey: {
         type: DataTypes.INTEGER,
