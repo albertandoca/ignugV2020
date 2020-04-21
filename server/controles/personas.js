@@ -282,6 +282,37 @@ let logIn = (req, res) => {
 }
 
 
+let logOut = (req, res) => {
+    let idPersona = req.body.idPersona
+    let datos = []
+    modelos.Personas.update(
+        {
+            semilla: 'nulnulnul',
+            enLinea: 100100100
+        },
+        {
+            where: {
+                id: idPersona
+            }
+        }
+    ).then(data => {
+        console.log(data)
+        datos.push(data)
+        res.status(200).json({
+            transaccion: true,
+            data: datos,
+            msg: datos.length
+        })
+    }).catch(err => {
+        res.status(404).json({
+            transaccion: false,
+            data: err,
+            msg: 'Fallo actualización'
+        })
+    })
+}
+
+
 
 module.exports = {
     leer,
@@ -289,5 +320,6 @@ module.exports = {
     crearMasivo,
     borrar,
     modificar,
-    logIn
+    logIn,
+    logOut
 }

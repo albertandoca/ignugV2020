@@ -1,10 +1,13 @@
+import { ToastrService } from 'ngx-toastr';
+import { LogService } from './../servicios/log.service';
 import { apiService } from './../servicios/api.service';
 import { MenuPrincipalService } from '../servicios/menu-principal.service';
 import { AutorizadoService } from './../servicios/autorizado.service';
 import { PersonaLogin } from './../modelos/persona-login';
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, HostListener} from '@angular/core';
 import { Router } from '@angular/router';
 import { ServerService } from '../servicios/server.service';
+import { log } from 'util';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,7 +29,9 @@ export class DashboardComponent implements OnInit {
     public menuService: MenuPrincipalService,
     private router: Router,
     private server: ServerService,
-    private api: apiService
+    private api: apiService,
+    private logService: LogService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -36,6 +41,7 @@ export class DashboardComponent implements OnInit {
     this.iconoAgenda = 'more_vert';
     this.mensaje();
     this.notificacion();
+
   }
 
   controlMenuPrincipal() {
@@ -77,5 +83,33 @@ export class DashboardComponent implements OnInit {
     res = await this.api.verFileServer('ver-archivo', datos);
     console.log(res);
     return res;
+  }
+
+  logOut() {
+    localStorage.removeItem('loginKey');
+    localStorage.removeItem('titulo');
+    this.logService.logOut().subscribe(res => {
+      if (res.data[0] > 0) {
+        this.router.navigate(['/login']);
+      } else {
+        this.toastr.warning('No hay comunicación con el servidor, intente nuevamente', 'Logout fallo');
+      }
+    }, err => {
+      this.toastr.warning('No hay comunicación con el servidor, intente nuevamente', 'Logout fallo');
+    });
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  handleKeyDown(event: KeyboardEvent) {
+    if (event.key === 'F5' || event.code === 'F5') {
+      event.stopPropagation();
+      this.router.navigate([this.router.url]);
+    }
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  unloadHandler(event: Event) {
+    localStorage.setItem('titulo', this.menuService.titulo);
+    return;
   }
 }

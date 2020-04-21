@@ -46,7 +46,6 @@ export class SolicitudMatriculaComponent implements OnInit {
 
   ngOnInit(): void {
     this.carreraSelecionada = 999;
-    this.openDialog();
     this.periodoLectivoActivo();
   }
 
@@ -82,6 +81,7 @@ export class SolicitudMatriculaComponent implements OnInit {
       this.verCuposAsignaturas = 2;
       this.verFiltro = false;
     } else {
+      this.openDialog();
       const carrerasAux = [];
       for (const cupo of this.cuposAsignaturas) {
         await carrerasAux.push(cupo.Asignatura.Malla.Carrera);
