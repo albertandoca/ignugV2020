@@ -29,6 +29,7 @@ let upload = (req, res, err) => {
     return res.status(200).json({
       transaccion: true,
       data: urlFile,
+      token: req.token,
       msg: urlFile.length
     })
   }
@@ -72,7 +73,7 @@ let modificarArchivo = (req, res) => {
   let pathFile = validaPath(urlFile, directorio)
   if (file.originalFilename == '') {
     fs.unlinkSync(file.path)
-    return res.status(200).json({
+    return res.status(400).json({
       transaccion: false,
       data: [],
       msg: 'No existe el archivo de origen'
@@ -88,12 +89,14 @@ let modificarArchivo = (req, res) => {
         return res.status(200).json({
           transaccion: true,
           data: urlFile,
+          token: req.token,
           msg: urlFile.length
         })
       } else {
-        return res.status(200).json({
+        return res.status(400).json({
           transaccion: false,
           data: [],
+          token: req.token,
           msg: 'No existe el archivo de origen'
         })
       }

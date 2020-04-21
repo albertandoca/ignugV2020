@@ -6,7 +6,7 @@ module.exports = {
 
       return queryInterface.bulkInsert('Matriculas', [
         {
-          idEstudiante: 7,
+          idEstudiante: 10,
           idAsignatura: 1,
           codigo:'2020_3_DS_MD_1',
           tipoMatricula: 'Ordinaria',
@@ -14,10 +14,12 @@ module.exports = {
           pdfMatricula: '4eo3zg2CEF6MSffN9G8WPFSzF4.pdf',
           creadoPor:7,
           modificadoPor:7,
-          estado:true
+          estado:true,
+          createdAt: new Date(),
+          updatedAt: new Date()
         },
         {
-          idEstudiante: 7,
+          idEstudiante: 10,
           idAsignatura: 2,
           codigo:'2020_3_DS_MD_1',
           tipoMatricula: 'Ordinaria',
@@ -25,10 +27,12 @@ module.exports = {
           pdfMatricula: '4eo3zg2CEF6MSffN9G8WPFSzF4.pdf',
           creadoPor:7,
           modificadoPor:7,
-          estado:true
+          estado:true,
+          createdAt: new Date(),
+          updatedAt: new Date()
         },
         {
-          idEstudiante: 7,
+          idEstudiante: 10,
           idAsignatura: 3,
           codigo:'2020_3_DS_MD_1',
           tipoMatricula: 'Ordinaria',
@@ -36,10 +40,12 @@ module.exports = {
           pdfMatricula: '4eo3zg2CEF6MSffN9G8WPFSzF4.pdf',
           creadoPor:7,
           modificadoPor:7,
-          estado:true
+          estado:true,
+          createdAt: new Date(),
+          updatedAt: new Date()
         },
         {
-          idEstudiante: 7,
+          idEstudiante: 10,
           idAsignatura: 4,
           codigo:'2020_3_DS_MD_1',
           tipoMatricula: 'Ordinaria',
@@ -47,10 +53,12 @@ module.exports = {
           pdfMatricula: '4eo3zg2CEF6MSffN9G8WPFSzF4.pdf',
           creadoPor:7,
           modificadoPor:7,
-          estado:true
+          estado:true,
+          createdAt: new Date(),
+          updatedAt: new Date()
         },
         {
-          idEstudiante: 7,
+          idEstudiante: 10,
           idAsignatura: 5,
           codigo:'2020_3_DS_MD_1',
           tipoMatricula: 'Ordinaria',
@@ -58,10 +66,12 @@ module.exports = {
           pdfMatricula: '4eo3zg2CEF6MSffN9G8WPFSzF4.pdf',
           creadoPor:7,
           modificadoPor:7,
-          estado:true
+          estado:true,
+          createdAt: new Date(),
+          updatedAt: new Date()
         },
         {
-          idEstudiante: 7,
+          idEstudiante: 10,
           idAsignatura: 6,
           codigo:'2020_3_DS_MD_1',
           tipoMatricula: 'Ordinaria',
@@ -69,7 +79,9 @@ module.exports = {
           pdfMatricula: '4eo3zg2CEF6MSffN9G8WPFSzF4.pdf',
           creadoPor:7,
           modificadoPor:7,
-          estado:true
+          estado:true,
+          createdAt: new Date(),
+          updatedAt: new Date()
         }
     ], {});
     

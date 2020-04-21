@@ -12,7 +12,7 @@ import { Injectable } from '@angular/core';
 })
 export class LogService {
 
-    private url: string;
+  private url: string;
 
   constructor(
     private http: HttpClient,

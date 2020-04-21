@@ -24,8 +24,8 @@ let api = EXPRESS.Router(),
     cuposAsignaturasControl = require('../controles/cuposasignaturas'),
     documentosMatriculaControl = require('../controles/documentosmatricula'),
     solicitudMatriculaControl = require('../controles/solicitudesMatricula'),
-    periodosLectivosControl = require('../controles/periodoslectivos')
-
+    periodosLectivosControl = require('../controles/periodoslectivos'),
+    matriculaControl = require('../controles/matriculas')
 
 // EndPoint Personas
 api.post('/leer-persona', [autenticarControl.autenticado, sesionControl.actualiza], personasControl.leer)
@@ -76,13 +76,14 @@ api.put('/aplicar-cupos', [autenticarControl.autenticado, sesionControl.actualiz
 
 
 // EndPoint documentosMatricula
-api.post('/leer-documentos-matricula', [autenticarControl.autenticado, sesionControl.actualiza], documentosMatriculaControl.leerDocumentosMatricula)
+api.post('/leer-documentos-matricula', /*[autenticarControl.autenticado, sesionControl.actualiza],*/ documentosMatriculaControl.leerDocumentosMatricula)
 api.post('/upload-documentos-matricula', [autenticarControl.autenticado, sesionControl.actualiza], documentosMatriculaControl.uploadDocumentosMatricula)
 api.put('/update.documentos.matricula', [autenticarControl.autenticado, sesionControl.actualiza], documentosMatriculaControl.updateDocumentosMatricula)
 
 
 // EndPoint solicitudMatricula
-api.post('/leer-solicitud-matricula', [autenticarControl.autenticado, sesionControl.actualiza], solicitudMatriculaControl.leerSolicitudMatricula)
+api.post('/leer-solicitudes-matriculas',solicitudMatriculaControl.leerSolicitudesMatriculas)
+api.post('/leer-solicitud-matricula', /*[autenticarControl.autenticado, sesionControl.actualiza], */solicitudMatriculaControl.leerSolicitudMatricula)
 api.post('/upload-solicitud-matricula', [autenticarControl.autenticado, sesionControl.actualiza], solicitudMatriculaControl.uploadSolicitudMatricula)
 api.put('/update.solicitud.matricula', [autenticarControl.autenticado, sesionControl.actualiza], solicitudMatriculaControl.updateSolicitudMatricula)
 
@@ -90,5 +91,8 @@ api.put('/update.solicitud.matricula', [autenticarControl.autenticado, sesionCon
 // endPoint PeriodosLectivos
 api.post('/periodo-lectivo-activo', [autenticarControl.autenticado, sesionControl.actualiza], periodosLectivosControl.periodoLectivoActivo)
 
+//End Point Matricula
+api.post('/guardar-matricula',matriculaControl.guardarMatricula)
 
 module.exports = api
+

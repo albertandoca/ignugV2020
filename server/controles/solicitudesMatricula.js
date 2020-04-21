@@ -12,23 +12,44 @@ let modelos = require('../models')
 let Op = Sequelize.Op;
 
 
+let leerSolicitudesMatriculas = (req, res) => {
+    
+    modelos.SolicitudesMatriculas.findAll({
+        where: {
+            estado: true
+        }
+    }).then(data => {
+        return res.status(200).json({
+            transaccion: true,
+            data: data,
+            msg: data.length
+        })
+    }).catch(err => {
+        return res.status(500).json({
+            transaccion: false,
+            data: null,
+            msg: 'Error del servidor'
+        })
+    })
+}
+
 let leerSolicitudMatricula = (req, res) => {
     let idEstudiante = null
-    let idPeriodoAcademico = null
+    let idPeriodoLectivo = null
     if (req.body.data.idEstudiante == undefined) {
         idEstudiante = req.body.idPersona
         idPeriodoLectivo = req.body.data
     } else {
         idEstudiante = req.body.data.idEstudiante
-        idPeriodoLectivo = req.body.data
+        idPeriodoLectivo = req.body.data.idPeriodoLectivo
     }
     
-    console.log(id)
-    console.log(idPeriodoAcademico)
+    console.log(idEstudiante)
+    console.log(idPeriodoLectivo)
     modelos.SolicitudesMatriculas.findOne({
         where: {
-            idEstudiante: id,
-            idPeriodoAcademico: idPeriodoAcademico
+            idEstudiante: idEstudiante,
+            idPeriodoLectivo: idPeriodoLectivo
         }
     }).then(data => {
         return res.status(200).json({
@@ -90,5 +111,6 @@ let updateSolicitudMatricula = (req, res) => {
 module.exports = {
     leerSolicitudMatricula,
     uploadSolicitudMatricula,
-    updateSolicitudMatricula
+    updateSolicitudMatricula,
+    leerSolicitudesMatriculas
 }

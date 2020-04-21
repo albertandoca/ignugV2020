@@ -1,3 +1,4 @@
+import { MaterialModule } from './../../material.module';
 import { AutorizadoService } from './../../servicios/autorizado.service';
 import { MenuPrincipalService } from './../../servicios/menu-principal.service';
 import { NgModule } from '@angular/core';
@@ -11,7 +12,8 @@ import { MenuComponent } from './menu.component';
   declarations: [MenuComponent],
   imports: [
     CommonModule,
-    MenuRoutingModule
+    MenuRoutingModule,
+    MaterialModule
   ]
 })
 export class MenuModule { }

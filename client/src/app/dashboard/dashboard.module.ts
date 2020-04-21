@@ -7,10 +7,11 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { AvisoLegalComponent } from './solicitud-matricula/aviso-legal/aviso-legal.component';
+import { AceptarMatriculaComponent } from './aceptar-matricula/aceptar-matricula.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent, AvisoLegalComponent],
+  declarations: [DashboardComponent, AvisoLegalComponent, AceptarMatriculaComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

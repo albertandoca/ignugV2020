@@ -2,10 +2,10 @@
 module.exports = (sequelize, DataTypes) => {
   const Matriculas = sequelize.define('Matriculas', {
     codigo:{
-      type: DataTypes.STRING(10),
+      type: DataTypes.STRING(50),
       validate: {
         is: /^[A-Za-z0-9 -_áéíóúñüÁÉÍÓÚÑÜ]+$/i,
-        len: [3, 10]
+        len: [3, 50]
       },
       notEmpty: true
  
@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     numeroMatricula:
     {
       type: DataTypes.ENUM,
-      values: ['Primera ', 'Segunda','Tercera'],
+      values: ['Primera', 'Segunda','Tercera'],
       notEmpty: true
 
     },

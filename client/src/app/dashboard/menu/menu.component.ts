@@ -35,5 +35,10 @@ export class MenuComponent implements OnInit {
     this.MenuService.cambiarTitulo('Solicitud Matricula');
     this.router.navigate(['/dashboard/solicitud-matricula']);
   }
+  aceptarMatricula(){
+    this.MenuService.estadoMenu(false,'menu');
+    this.MenuService.cambiarTitulo('Aceptar Matricula');
+    this.router.navigate(['/dashboard/aceptar-matricula']);
+  }
 
 }
