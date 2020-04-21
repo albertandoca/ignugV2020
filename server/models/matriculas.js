@@ -1,16 +1,69 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const matriculas = sequelize.define('matriculas', {
-    codigo: DataTypes.STRING,
-    tipoMatricula: DataTypes.STRING,
-    numeroMatricula: DataTypes.STRING,
-    pdfMatricula: DataTypes.STRING,
-    estado: DataTypes.BOOLEAN,
-    updatedA: DataTypes.DATE,
-    createdAt: DataTypes.DATE
+  const Matriculas = sequelize.define('Matriculas', {
+    codigo: {
+    type: DataTypes.STRING(50),
+    allowNull: false,
+    validate:{
+      is: /^[a-zA-Z0-9 áéíóúñüÁÉÍÓÚÑÜ]+$/i,
+      notEmpty:true
+      }
+    },
+    tipoMatricula: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      isIn: [['Ordinario', 'Extraordinario', 'Especial']],
+      }
+    },
+    numeroMatricula: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isIn: [['Primera', 'Segunda', 'Tercera']],
+        }
+      },
+    pdfMatricula: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        is: /^[a-zA-Z0-9ñÑ_-]*(.pdf)+$/i,  
+        notEmpty: true
+      }
+    },
+    creadoPor: {
+      type: DataTypes.STRING,
+      notEmpty: true
+    },
+    modificadoPor: {
+      type: DataTypes.STRING,
+      notEmpty: true
+    },
+    estado: {
+      type: DataTypes.BOOLEAN, 
+      allowNull: false,
+      defaultValue: true
+    }
   }, {});
-  matriculas.associate = function(models) {
-    // associations can be defined here
+  Matriculas.associate = function(models) {
+    Matriculas.belongsTo(models.PersonasRoles, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idEstudiante',
+        allowNull: false,
+        unique: false
+      },
+      targetKey: 'id'
+    })
+    Matriculas.belongsTo(models.Asignaturas, {
+        foreignKey: {
+          type: DataTypes.INTEGER,
+          name: 'idAsignatura',
+          allowNull: false,
+          unique: false
+        },
+        targetKey: 'id'
+      })
   };
-  return matriculas;
+  return Matriculas;
 };

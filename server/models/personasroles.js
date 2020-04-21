@@ -56,6 +56,15 @@ module.exports = (sequelize, DataTypes) => {
       },
       sourceKey: 'id'
     })
+    PersonasRoles.hasMany(models.Matriculas, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idMatricula',
+        allowNull: false,
+        unique: false
+      },
+      sourceKey: 'id'
+    })
   };
   return PersonasRoles;
 };

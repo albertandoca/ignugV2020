@@ -7,10 +7,11 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { AvisoLegalComponent } from './solicitud-matricula/aviso-legal/aviso-legal.component';
+import { InformacionComponent } from './aceptar-matricula/informacion/informacion.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent, AvisoLegalComponent],
+  declarations: [DashboardComponent, AvisoLegalComponent, InformacionComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
@@ -20,7 +21,8 @@ import { AvisoLegalComponent } from './solicitud-matricula/aviso-legal/aviso-leg
     MaterialModule
   ],
   entryComponents: [
-    AvisoLegalComponent
+    AvisoLegalComponent,
+    InformacionComponent
   ]
 })
 export class DashboardModule { }

@@ -11,6 +11,27 @@ if (config.use_env_variable) {
 let modelos = require('../models')
 let Op = Sequelize.Op;
 
+let leerSolicitudesMatricula = (req, res) => {
+
+    modelos.Matriculas.findAll({
+        where: {
+            estado: true
+        }
+    }).then(data => {
+        return res.status(200).json({
+            transaccion: true,
+            data: data,
+            msg: data.length
+        })
+    }).catch(err => {
+        return res.status(500).json({
+            transaccion: false,
+            data: null,
+            msg: 'Error del servidor'
+        })
+    })
+}
+
 
 let leerSolicitudMatricula = (req, res) => {
     let idEstudiante = null
@@ -88,6 +109,7 @@ let updateSolicitudMatricula = (req, res) => {
 }
 
 module.exports = {
+    leerSolicitudesMatricula,
     leerSolicitudMatricula,
     uploadSolicitudMatricula,
     updateSolicitudMatricula

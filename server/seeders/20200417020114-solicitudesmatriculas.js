@@ -8,7 +8,7 @@ module.exports = {
           pdfSolicitud: '4eo3zg2CEF6MSNs9G8WPFSzF4.pdf',
           codigoSolicitud: 'ASFD12',
           idEstudiante:10,
-          idPeriodoAcademico:1,
+          idPeriodoLectivo:1,
           estado: true,
           createdAt: new Date(),
           updatedAt: new Date()
@@ -17,7 +17,7 @@ module.exports = {
           pdfSolicitud: '4eo3zg2CEF6MSffN9G8WPFSzF4.pdf',
           codigoSolicitud: 'ASD12',
           idEstudiante:11,
-          idPeriodoAcademico:1,
+          idPeriodoLectivo:1,
           estado: true,
           createdAt: new Date(),
           updatedAt: new Date()

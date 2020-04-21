@@ -90,7 +90,7 @@ module.exports = (sequelize, DataTypes) => {
         unique: false
       },
       targetKey: 'id'
-    }); 
+    });
     Asignaturas.hasMany(models.CuposAsignaturas, {
       foreignKey: {
         type: DataTypes.INTEGER,
@@ -99,6 +99,15 @@ module.exports = (sequelize, DataTypes) => {
         unique: false
       },
       sourceKey: 'id'
+    });
+    Asignaturas.hasMany(models.Matriculas, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idMatricula',
+        allowNull: false,
+        unique: false
+      },
+      targetKey: 'id'
     });
   };
   
