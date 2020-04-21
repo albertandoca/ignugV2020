@@ -1,6 +1,6 @@
 import { ToastrService } from 'ngx-toastr';
 import { async } from '@angular/core/testing';
-import { apiService } from './../../servicios/api.service';
+import { ApiService } from './../../servicios/api.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { DataRx } from './../../modelos/data-rx';
@@ -33,7 +33,7 @@ export class InstitutosComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private api: apiService,
+    private api: ApiService,
     private server: ServerService,
     private toastr: ToastrService
   ) {
