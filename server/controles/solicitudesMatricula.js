@@ -15,8 +15,42 @@ let leerSolicitudesMatricula = (req, res) => {
 
     modelos.Matriculas.findAll({
         where: {
-            estado: true
-        }
+            estado: 'Aplicado'
+        },
+        include: [
+            {
+                model: modelos.PeriodoLectivo,
+                attributes: ['detalle', 'fechaInicio','fechaFin'],
+                require: true,
+            },
+            {
+                model: modelos.PersonasRoles,
+                require: true,
+                include: [
+                    {
+                        model: modelos.Personas,
+                        attributes:{
+                            exclude: [
+                                'id',
+                                'emailPersonal',
+                                'psw',
+                                'semilla',
+                                'enLinea',
+                                'estado',
+                                'createdAt',
+                                'updatedAt'
+                            ]
+                        },
+                        require: true
+                    },
+                    {
+                        model: modelos.Carreras,
+                        attributes: ['detalle', 'id'],
+                        require: true
+                    }
+                ]
+            }
+        ]
     }).then(data => {
         return res.status(200).json({
             transaccion: true,

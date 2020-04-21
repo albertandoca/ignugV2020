@@ -19,11 +19,13 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty:true
       }
     },
-    estado: {
-      type: DataTypes.BOOLEAN, 
+    estado:{
+      type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: true
-    }
+      validate: {
+        isIn: [['Asignado', 'Aplicado', 'Matriculado']],
+        }
+      },
   }, {});
   SolicitudesMatriculas.associate = function(models) {
     SolicitudesMatriculas.belongsTo(models.PersonasRoles,{

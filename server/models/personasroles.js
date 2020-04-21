@@ -59,7 +59,7 @@ module.exports = (sequelize, DataTypes) => {
     PersonasRoles.hasMany(models.Matriculas, {
       foreignKey: {
         type: DataTypes.INTEGER,
-        name: 'idMatricula',
+        name: 'idEstudiante',
         allowNull: false,
         unique: false
       },

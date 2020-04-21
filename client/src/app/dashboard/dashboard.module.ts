@@ -1,3 +1,4 @@
+import { MenuComponent } from './menu/menu.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './../material.module';
@@ -11,7 +12,7 @@ import { InformacionComponent } from './aceptar-matricula/informacion/informacio
 
 
 @NgModule({
-  declarations: [DashboardComponent, AvisoLegalComponent, InformacionComponent],
+  declarations: [DashboardComponent, AvisoLegalComponent, MenuComponent, InformacionComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

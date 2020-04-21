@@ -9,7 +9,7 @@ module.exports = {
           codigoSolicitud: 'ASFD12',
           idEstudiante:10,
           idPeriodoLectivo:1,
-          estado: true,
+          estado: 'Aplicado',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -18,7 +18,7 @@ module.exports = {
           codigoSolicitud: 'ASD12',
           idEstudiante:11,
           idPeriodoLectivo:1,
-          estado: true,
+          estado: 'Aplicado',
           createdAt: new Date(),
           updatedAt: new Date()
         }
