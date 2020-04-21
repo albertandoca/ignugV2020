@@ -35,7 +35,7 @@ api.post('/modificar-persona', [autenticarControl.autenticado, sesionControl.act
 
 // EndPoint Log
 api.post('/login', personasControl.logIn)
-// api.post('/logout', personasControl.logOut)
+api.post('/logout', personasControl.logOut)
 
 // EndPoint Mallas
 api.post('/leer-mallas', [autenticarControl.autenticado, sesionControl.actualiza], mallasControl.leer)
@@ -71,7 +71,7 @@ api.put('/imagen-menu', [autenticarControl.autenticado, sesionControl.actualiza,
 api.put('/imagen-persona', [autenticarControl.autenticado, sesionControl.actualiza, imagenPersonaMiddleware], filesControl.modificarArchivo)
 
 // EndPoint CuposAsignaturas
-api.post('/obtener-cupos', [autenticarControl.autenticado, sesionControl.actualiza], cuposAsignaturasControl.obtenerCupo)
+api.post('/obtener-cupos', /*[autenticarControl.autenticado, sesionControl.actualiza], */cuposAsignaturasControl.obtenerCupo)
 api.put('/aplicar-cupos', [autenticarControl.autenticado, sesionControl.actualiza], cuposAsignaturasControl.aplicarCupo)
 
 
