@@ -78,8 +78,7 @@ export class SolicitudMatriculaComponent implements OnInit {
     this.verCuposAsignaturas = 0;
     this.verFiltro = true;
     this.cuposAsignaturas = await this.api.sendApi('obtener-cupos', this.periodoLectivo.id);
-    console.log(this.cuposAsignaturas);
-    if (this.cuposAsignaturas) {
+    if (!this.cuposAsignaturas || this.cuposAsignaturas.length === 0) {
       this.verCuposAsignaturas = 2;
       this.verFiltro = false;
     } else {
@@ -111,6 +110,8 @@ export class SolicitudMatriculaComponent implements OnInit {
         }
         this.verFiltro = false;
         this.verCuposAsignaturas = 1;
+      } else {
+        this.verFiltro = true;
       }
     }
   }

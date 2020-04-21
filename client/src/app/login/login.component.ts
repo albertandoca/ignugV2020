@@ -1,3 +1,4 @@
+import { LoginKey } from './../modelos/login-key';
 import { LogService } from './../servicios/log.service';
 import { Router } from '@angular/router';
 import { OlvidoPswComponent } from './olvido-psw/olvido-psw.component';
@@ -38,8 +39,13 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    localStorage.clear();
-    this.identificacion = '1213141516';
+    // localStorage.clear();
+    // this.identificacion = '1213141516';
+    const loginKey: LoginKey = JSON.parse(localStorage.getItem('loginKey') || null);
+    if (loginKey) {
+      this.autorizado.tokenData(loginKey.tok);
+      this.router.navigate(['/dashboard']);
+    }
   }
 
   crearLoginForm() {
@@ -62,8 +68,8 @@ export class LoginComponent implements OnInit {
           if (this.autorizado.tokenData(token)) {
             this.router.navigate(['/dashboard']);
             } else {
-            console.log('Datos incorrectos');
-            this.router.navigate(['/login']);
+              this.toastr.warning('Ingrese datos validos', 'Acceso denegado');
+              this.router.navigate(['/login']);
             }
         } else {
           this.toastr.warning('Ingrese datos validos', 'Acceso denegado');
@@ -82,8 +88,8 @@ export class LoginComponent implements OnInit {
       disableClose: true,
       autoFocus: true,
       data: {
-        identificacion: this.identificacion,
-        emailInstitucional: this.emailInstitucional
+        // identificacion: this.identificacion,
+        // emailInstitucional: this.emailInstitucional
       }
     });
 
