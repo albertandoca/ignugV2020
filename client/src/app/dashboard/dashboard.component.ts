@@ -2,7 +2,7 @@ import { apiService } from './../servicios/api.service';
 import { MenuPrincipalService } from '../servicios/menu-principal.service';
 import { AutorizadoService } from './../servicios/autorizado.service';
 import { PersonaLogin } from './../modelos/persona-login';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { ServerService } from '../servicios/server.service';
 
@@ -36,7 +36,6 @@ export class DashboardComponent implements OnInit {
     this.iconoAgenda = 'more_vert';
     this.mensaje();
     this.notificacion();
-    this.router.navigate(['dashboard/menu']);
   }
 
   controlMenuPrincipal() {

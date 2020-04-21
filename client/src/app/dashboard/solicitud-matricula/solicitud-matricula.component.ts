@@ -111,6 +111,8 @@ export class SolicitudMatriculaComponent implements OnInit {
         }
         this.verFiltro = false;
         this.verCuposAsignaturas = 1;
+      } else {
+        this.verFiltro = true;
       }
     }
   }
