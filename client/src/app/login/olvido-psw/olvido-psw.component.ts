@@ -23,7 +23,6 @@ export class OlvidoPswComponent implements OnInit {
   ) { this.crearOlvidoPswForm(); }
 
   ngOnInit(): void {
-    console.log(this.data);
   }
 
   onNoClick(): void {

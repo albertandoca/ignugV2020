@@ -101,7 +101,6 @@ export class LoginComponent implements OnInit {
 
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent) {
-    console.log(event);
     if (event.key === 'Enter' || event.code === 'Enter') {
       event.preventDefault();
       this.logIn();

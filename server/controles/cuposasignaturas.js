@@ -23,7 +23,6 @@ let promocionCupos = (req, res) => {
 
 // Estudiante
 let obtenerCupo = (req, res) => {
-    console.log(req.body)
     let idEstudiante = null
     let idPeriodoLectivo = null
     if (typeof req.body.data.idEstudiante == 'undefined') {

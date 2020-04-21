@@ -86,11 +86,8 @@ export class InstitutosComponent implements OnInit {
 
   // Funciones de gestión de registros
   editar(id: number) {
-    console.log(this.institutos);
     this.instituto = this.institutos.find(element => element.id === id);
     this.institutoForm.setValue(this.instituto);
-    console.log('jjj');
-    console.log(this.institutoForm.value);
   }
 
   eliminar(id: number) {
@@ -102,8 +99,6 @@ export class InstitutosComponent implements OnInit {
     const campo = 'createdAt';
     this.institutoForm.reset();
     this.institutoForm.controls[campo].setValue(new Date(Date.now()));
-    console.log(this.institutoForm.value);
-
   }
 
   guardarRegistro() {

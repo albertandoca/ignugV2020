@@ -122,7 +122,6 @@ let crear = (req, res) => {
                 let errores = []
                 let msg = ''
                 if (err.errors.length > 0) {
-                    console.log(err.errors)
                     err.errors.forEach(element => {
                         errores.push(element.path)
                     });
@@ -212,7 +211,6 @@ let logIn = (req, res) => {
             [modelos.PersonasRoles, 'id']
         ]
     }).then(persona => {
-        console.log(persona)
         if (persona) {
             if (persona.enLinea > fecha) {
                 res.status(400).json({
@@ -272,7 +270,6 @@ let logIn = (req, res) => {
             })
         }
     }).catch(err => {
-        console.log(err)
         res.status(500).json({
             transaccion: false,
             data: err,
@@ -296,7 +293,6 @@ let logOut = (req, res) => {
             }
         }
     ).then(data => {
-        console.log(data)
         datos.push(data)
         res.status(200).json({
             transaccion: true,
