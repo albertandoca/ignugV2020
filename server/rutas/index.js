@@ -24,7 +24,9 @@ let api = EXPRESS.Router(),
     cuposAsignaturasControl = require('../controles/cuposasignaturas'),
     documentosMatriculaControl = require('../controles/documentosmatricula'),
     solicitudMatriculaControl = require('../controles/solicitudesMatricula'),
-    periodosLectivosControl = require('../controles/periodoslectivos')
+    docentesAsignaturasControl = require('../controles/docentesasignaturas'),
+    periodosLectivosControl = require('../controles/periodoslectivos'),
+    perfilesDocentesControl = require('../controles/perfilesdocentes')
 
 
 // EndPoint Personas
@@ -87,8 +89,14 @@ api.post('/upload-solicitud-matricula', [autenticarControl.autenticado, sesionCo
 api.put('/update.solicitud.matricula', [autenticarControl.autenticado, sesionControl.actualiza], solicitudMatriculaControl.updateSolicitudMatricula)
 
 // EndPoint DocentesAsignaturas
-api.post('/obtener-materias', [autenticarControl.autenticado, sesionControl.actualiza], cuposAsignaturasControl.obtenerMateria)
-api.put('/aplicar-materias', [autenticarControl.autenticado, sesionControl.actualiza], cuposAsignaturasControl.aplicarMateria)
+api.post('/leer-docente-materia', /*[autenticarControl.autenticado, sesionControl.actualiza]*/ docentesAsignaturasControl.leerDocenteMateria)
+api.post('/obtener-docente-materia', /*[autenticarControl.autenticado, sesionControl.actualiza]*/ docentesAsignaturasControl.obtenerDocenteMateria)
+api.put('/establecer-docente-materia', /*[autenticarControl.autenticado, sesionControl.actualiza]*/ docentesAsignaturasControl.establecerDocenteMateria)
+
+// PerfilesDocentes
+api.post('/leer-perfiles-docentes', [autenticarControl.autenticado, sesionControl.actualiza], perfilesDocentesControl.leerPerfilDocente)
+api.post('/crear-perfiles-docentes', [autenticarControl.autenticado, sesionControl.actualiza], perfilesDocentesControl.crearPerfilDocente)
+api.put('/modificar-perfiles-docentes', [autenticarControl.autenticado, sesionControl.actualiza], perfilesDocentesControl.modificarPerfilDocente)
 
 
 // endPoint PeriodosLectivos

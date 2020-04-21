@@ -2,13 +2,16 @@
 module.exports = (sequelize, DataTypes) => {
     const DocentesAsignaturas = sequelize.define('DocentesAsignaturas', {
         estado: {
-            type: DataTypes.STRING,
+            type: DataTypes.BOOLEAN,
             allowNull: false,
-            validate: {
-                isIn: [
-                    ['Asignado', 'Aplicado', 'Matriculado', 'No utilizado', 'Eliminado']
-                ],
-            }
+            defaultValue: true
+                /*type: DataTypes.STRING,
+                allowNull: false,
+                validate: {
+                    isIn: [
+                        ['Asignado', 'Establecido', 'Cancelado', 'Eliminado']
+                    ],
+                }*/
         }
     }, {});
     DocentesAsignaturas.associate = function(models) {

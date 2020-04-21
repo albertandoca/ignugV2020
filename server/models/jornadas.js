@@ -9,14 +9,6 @@ module.exports = (sequelize, DataTypes) => {
                 len: [5, 50]
             }
         },
-        informacion: {
-            type: DataTypes.STRING(150),
-            allowNull: false,
-            validate: {
-                is: /^[A-ZA-Z0-9 -_áéíóúñüÁÉÍÓÚÑÜ/#&.]+$/i,
-                len: [5, 150]
-            }
-        },
         estado: {
             type: DataTypes.BOOLEAN,
             allowNull: false,

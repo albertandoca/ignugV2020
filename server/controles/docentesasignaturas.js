@@ -11,12 +11,32 @@ if (config.use_env_variable) {
 let modelos = require('../models')
 let Op = Sequelize.Op;
 
-
-
-
 // Docente
-let obtenerMateria = (req, res) => {
-    let idDocente = null
+let leerDocenteMateria = (req, res) => {
+    modelos.DocentesAsignaturas.findAll({
+        attributes: {
+            exclude: [
+                'estado'
+            ]
+        }
+    }).then(docentesAsignaturas => {
+        return res.status(200).json({
+            transaccion: true,
+            data: docentesAsignaturas,
+            token: req.token,
+            msg: docentesAsignaturas.length
+        })
+    }).catch(err => {
+        return res.status(500).json({
+            transaccion: false,
+            data: err,
+            msg: 'Servidor no disponible'
+        })
+    })
+}
+
+let obtenerDocenteMateria = (req, res) => {
+    /*let idDocente = null
     let idCarrera = null
     if (req.body.data.idDocente) {
         idDocente = req.body.idPersona
@@ -24,15 +44,24 @@ let obtenerMateria = (req, res) => {
     } else {
         idDocente = req.body.idPersona
         idCarrera = req.body.data
+    }*/
+    console.log(req.body)
+    let idDocente = null
+    let idPeriodoLectivo = null
+    if (typeof req.body.data.idDocente == 'undefined') {
+        console.log('holaaaa')
+        idDocente = req.body.idPersona
+        idPeriodoLectivo = req.body.data
+    } else {
+        idDocente = req.body.data.idDocente
+        idPeriodoLectivo = req.body.data.idPeriodoLectivo
     }
 
-    modelos.materiasAsignaturas.findAll({
+    modelos.DocentesAsignaturas.findAll({
         where: {
             idDocente: idDocente,
             idPeriodoLectivo: idPeriodoLectivo,
-            estado: {
-                [Op.or]: ['Asignado', 'Aplicado']
-            }
+
         },
         include: [{
             model: modelos.Asignaturas,
@@ -68,23 +97,24 @@ let obtenerMateria = (req, res) => {
 }
 
 
+
+
+
 // Docente
-let aplicarMateria = (req, res) => {
-    let materiasAsignaturas = req.body.data
+let establecerDocenteMateria = (req, res) => {
+    let docentesAsignaturas = req.body.data
     let datos = []
     let error = []
-    for (let materia of materiasAsignaturas) {
-        modelos.DocentesAsignaturas.update({ estado: materia.estado }, {
+    for (let docente of docentesAsignaturas) {
+        modelos.DocentesAsignaturas.update({ estado: docente.estado }, {
+
             where: {
-                id: materia.id,
-                estado: {
-                    [Op.or]: ['Asignado', 'Aplicado']
-                }
+                id: docente.id
             }
         }).then(data => {
-            datos.push(materia.Asignatura.detalle)
+            datos.push(docente.Asignatura.detalle)
         }).catch(err => {
-            error.push(materiaAsignatura.detalle)
+            error.push(docenteAsignatura.detalle)
         })
     }
     return res.status(200).json({
@@ -95,20 +125,19 @@ let aplicarMateria = (req, res) => {
     })
 }
 
-let asignarrMateria = (req, res) => {
-    let cuposAsignaturas = req.body.data
+let asignarDocenteMateria = (req, res) => {
+    let docentesAsignaturas = req.body.data
     let datos = []
     let error = []
-    for (let cupo of cuposAsignaturas) {
-        modelos.DocentesAsignaturas.update({ estado: 'asignardo' }, {
+    for (let docente of docentesAsignaturas) {
+        modelos.DocentesAsignaturas.update({
             where: {
-                id: cupo.id,
-                estado: 'Aplicado'
+                id: docente.id
             }
         }).then(data => {
-            datos.push(cupo.Asignatura.detalle)
+            datos.push(docente.Asignatura.detalle)
         }).catch(err => {
-            error.push(materiaAsignatura.detalle)
+            error.push(docenteAsignatura.detalle)
         })
     }
     return res.status(200).json({
@@ -119,20 +148,19 @@ let asignarrMateria = (req, res) => {
     })
 }
 
-let anularMateria = (req, res) => {
-    let materiasAsignaturas = req.body.data
+let anularDocenteMateria = (req, res) => {
+    let docentesAsignaturas = req.body.data
     let datos = []
     let error = []
-    for (let materia of materiasAsignaturas) {
-        modelos.DocentesAsignaturas.update({ estado: 'Anulado' }, {
+    for (letvdocente of docentesAsignaturas) {
+        modelos.DocentesAsignaturas.update({
             where: {
-                id: materia.id,
-                estado: 'asignardo'
+                id: docente.id
             }
         }).then(data => {
-            datos.push(materia.Asignatura.detalle)
+            datos.push(docente.Asignatura.detalle)
         }).catch(err => {
-            error.push(materiaAsignatura.detalle)
+            error.push(docenteAsignatura.detalle)
         })
     }
     return res.status(200).json({
@@ -143,22 +171,20 @@ let anularMateria = (req, res) => {
     })
 }
 
-let eliminarMateria = (req, res) => {
-    let materiasAsignaturas = req.body.data
+let eliminarDocenteMateria = (req, res) => {
+    let docentesAsignaturas = req.body.data
     let datos = []
     let error = []
-    for (let materia of materiasAsignaturas) {
-        modelos.DocentesAsignaturas.update({ estado: 'Eliminado' }, {
+    for (let docente of docentesAsignaturas) {
+        modelos.DocentesAsignaturas.update({
             where: {
-                id: materia.id,
-                estado: {
-                    [Op.or]: ['Asignado', 'Aplicado']
-                }
+                id: docente.id,
+
             }
         }).then(data => {
-            datos.push(materia.Asignatura.detalle)
+            datos.push(docente.Asignatura.detalle)
         }).catch(err => {
-            error.push(materiaAsignatura.detalle)
+            error.push(docenteAsignatura.detalle)
         })
     }
     return res.status(200).json({
@@ -170,9 +196,10 @@ let eliminarMateria = (req, res) => {
 }
 
 module.exports = {
-    obtenerMateria,
-    aplicarMateria,
-    asignarrMateria,
-    anularMateria,
-    eliminarMateria
+    leerDocenteMateria,
+    obtenerDocenteMateria,
+    asignarDocenteMateria,
+    establecerDocenteMateria,
+    anularDocenteMateria,
+    eliminarDocenteMateria
 }

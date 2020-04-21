@@ -144,7 +144,25 @@ module.exports = (sequelize, DataTypes) => {
             },
             sourceKey: 'id'
         });
-        Personas.hasMany(models.CuposAsignaturas, {
+        Personas.hasMany(models.DocentesAsignaturas, {
+            foreignKey: {
+                type: DataTypes.INTEGER,
+                name: 'idDocente',
+                allowNull: false,
+                unique: false
+            },
+            sourceKey: 'id'
+        });
+        Personas.hasMany(models.PerfilesDocentes, {
+            foreignKey: {
+                type: DataTypes.INTEGER,
+                name: 'idDocente',
+                allowNull: false,
+                unique: false
+            },
+            sourceKey: 'id'
+        });
+        Personas.hasMany(models.MaxHorasDocente, {
             foreignKey: {
                 type: DataTypes.INTEGER,
                 name: 'idDocente',
