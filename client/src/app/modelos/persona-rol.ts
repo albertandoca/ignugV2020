@@ -11,7 +11,7 @@ export interface PersonaRol {
   estado: boolean;
   createdAt: Date;
   updatedAt: Date;
-  Persona?: Persona;
+  Persona: Persona;
   Role: Rol;
   Carrera: Carrera;
 }

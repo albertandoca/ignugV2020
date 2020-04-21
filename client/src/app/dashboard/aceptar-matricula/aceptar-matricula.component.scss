@@ -1,0 +1,21 @@
+@import '../../../sass/mixins';
+
+@include mat-table-columns((
+  foto: (width: 4rem, padding-left: 0.5rem,aling: center),
+  identificacion: (width: 5rem,aling: center),
+  primerNombre: (width: 4rem,aling: center),
+  apellidoPaterno: (width: 4rem, aling: center),
+  codigoSolicitud: (width: 7rem),
+  createdAt: (width: 5rem, aling: center),
+  detalle: (width: 4rem),
+));
+.fotografiaPersona{
+  width: 80px;
+  height: 40px;
+  padding-top: 0.2rem;
+  padding-bottom: 0;
+}
+.paginador {
+  padding: 0;
+  margin-top: 0;
+}

@@ -1,1 +1,86 @@
-<p>informacion works!</p>
+<mat-tab-group mat-align-tabs="center">
+  <mat-tab label="Informacion">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image">
+          <img class ="usuario"src= "{{url}}ver-archivo/{{personaLogeada.foto}}/imagen-persona">
+        </div>
+        <mat-card-title>
+          {{personaLogeada.primerNombre}}
+          {{personaLogeada.apellidoPaterno}}
+        </mat-card-title>
+        <mat-card-subtitle>{{personaLogeada.emailInstitucional}}</mat-card-subtitle>
+      </mat-card-header>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!--Columnas-->
+
+        <ng-container matColumnDef="codigoAsignatura">
+          <th mat-header-cell *matHeaderCellDef> Codigo de Asignatura </th>
+          <td mat-cell *matCellDef="let element"> {{element.Asignatura?.codigoAsignatura}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="detalle">
+          <th mat-header-cell *matHeaderCellDef> Nombre de la asignatura </th>
+          <td mat-cell *matCellDef="let element"> {{element.Asignatura?.detalle}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="creditos">
+          <th mat-header-cell *matHeaderCellDef> Número de créditos </th>
+          <td mat-cell *matCellDef="let element"> {{element.Asignatura?.creditos}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nivel">
+          <th mat-header-cell *matHeaderCellDef> Nivel </th>
+          <td mat-cell *matCellDef="let element"> {{element.Asignatura?.PeriodosAcademico?.nivel}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="encabezadoTabla"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+
+      </table>
+      <mat-card-content>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-tab>
+
+  <mat-tab label="Asignaturas">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <!--Columnas-->
+
+      <ng-container matColumnDef="codigoAsignatura">
+        <th mat-header-cell *matHeaderCellDef> Codigo de Asignatura </th>
+        <td mat-cell *matCellDef="let element"> {{element.Asignatura?.codigoAsignatura}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="detalle">
+        <th mat-header-cell *matHeaderCellDef> Nombre de la asignatura </th>
+        <td mat-cell *matCellDef="let element"> {{element.Asignatura?.detalle}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="creditos">
+        <th mat-header-cell *matHeaderCellDef> Número de créditos </th>
+        <td mat-cell *matCellDef="let element"> {{element.Asignatura?.creditos}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="nivel">
+        <th mat-header-cell *matHeaderCellDef> Nivel </th>
+        <td mat-cell *matCellDef="let element"> {{element.Asignatura?.PeriodosAcademico?.nivel}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="encabezadoTabla"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+
+    </table>
+  </mat-tab>
+
+  <mat-tab label="Documentos">
+
+  </mat-tab>
+
+</mat-tab-group>

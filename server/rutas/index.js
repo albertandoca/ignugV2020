@@ -73,7 +73,7 @@ api.put('/imagen-persona', [autenticarControl.autenticado, sesionControl.actuali
 // EndPoint CuposAsignaturas
 api.post('/obtener-cupos', [autenticarControl.autenticado, sesionControl.actualiza], cuposAsignaturasControl.obtenerCupo)
 api.put('/aplicar-cupos', [autenticarControl.autenticado, sesionControl.actualiza], cuposAsignaturasControl.aplicarCupo)
-
+api.post('/obtener-asignaturas',/*[autenticarControl.autenticado, sesionControl.actualiza],*/cuposAsignaturasControl.obtenerAsignaturas)
 
 // EndPoint documentosMatricula
 api.post('/leer-documentos-matricula', /*[autenticarControl.autenticado, sesionControl.actualiza],*/ documentosMatriculaControl.leerDocumentosMatricula)

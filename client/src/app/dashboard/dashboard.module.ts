@@ -1,3 +1,5 @@
+import { InformacionComponent } from './aceptar-matricula/informacion/informacion.component';
+import { MenuComponent } from './menu/menu.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './../material.module';
@@ -7,11 +9,10 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { AvisoLegalComponent } from './solicitud-matricula/aviso-legal/aviso-legal.component';
-import { AceptarMatriculaComponent } from './aceptar-matricula/aceptar-matricula.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent, AvisoLegalComponent, AceptarMatriculaComponent],
+  declarations: [DashboardComponent, AvisoLegalComponent, InformacionComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

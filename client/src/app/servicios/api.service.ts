@@ -25,10 +25,12 @@ export class apiService {
   }
 
   async sendApi(endPoint: string, datos: any = null): Promise<any> {
+    console.log(datos)
     const dataTx: DataTx = {
       idPersona: this.autorizado.getPersonaLogin().id,
       data: datos
     };
+    console.log(dataTx)
     const optionsHeaders = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -51,6 +53,7 @@ export class apiService {
       if (!err.error.transaccion) {
         if (err.error.msg === 'Falló autenticación') {
           this.toastr.warning('Su sesión caduco, por favor ingrese al sistema nuevamente', err.msg);
+          localStorage.removeItem('loginKey');
           this.router.navigate(['/login']);
         } else {
           this.toastr.warning(err.msg, 'Error en la conección');
