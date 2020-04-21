@@ -27,7 +27,6 @@ let obtenerCupo = (req, res) => {
     let idEstudiante = null
     let idPeriodoLectivo = null
     if (typeof req.body.data.idEstudiante == 'undefined') {
-        console.log('holaaaa')
         idEstudiante = req.body.idPersona
         idPeriodoLectivo = req.body.data
     } else {

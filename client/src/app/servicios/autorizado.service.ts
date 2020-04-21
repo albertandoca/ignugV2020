@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { PersonaLogin } from './../modelos/persona-login';
 import { Injectable } from '@angular/core';
 import * as jwt_decode from 'jwt-decode';
@@ -9,13 +10,15 @@ import { HttpHeaders } from '@angular/common/http';
 export class AutorizadoService {
   private personaLogin: PersonaLogin;
   private iat: number;
+  private exp: number;
   private token: string;
 
-  constructor() {
+  constructor(
+    private router: Router
+  ) {
     const data = JSON.parse(localStorage.getItem('loginKey')) || null;
     if (data) {
-      this.personaLogin = data.persona;
-      this.token = data.tok;
+      this.tokenData(data.tok);
     }
 
     // this.destruirToken();
@@ -25,14 +28,24 @@ export class AutorizadoService {
     const decoded = jwt_decode(token);
     this.personaLogin = decoded.data || null;
     this.iat = decoded.iat;
+    this.exp = decoded.exp;
     this.token = token;
     console.log(this.personaLogin);
     const data =  {
       persona: this.personaLogin,
       tok: this.token
     };
-    localStorage.setItem('loginKey', JSON.stringify(data));
-    return this.personaLogin ? true : false;
+    console.log(this.iat, '   ', this.exp , '  ', Date.now());
+    if (this.exp * 1000 < Date.now() || !this.exp ) {
+      console.log('menr');
+      localStorage.removeItem('loginKey');
+      //this.router.navigate(['/login']);
+      return false;
+    } else {
+      localStorage.setItem('loginKey', JSON.stringify(data));
+      return true;
+    }
+
   }
 
   destruirToken(): void {

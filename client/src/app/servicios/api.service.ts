@@ -51,6 +51,7 @@ export class apiService {
       if (!err.error.transaccion) {
         if (err.error.msg === 'Falló autenticación') {
           this.toastr.warning('Su sesión caduco, por favor ingrese al sistema nuevamente', err.msg);
+          localStorage.removeItem('loginKey');
           this.router.navigate(['/login']);
         } else {
           this.toastr.warning(err.msg, 'Error en la conección');
