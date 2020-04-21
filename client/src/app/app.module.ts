@@ -1,5 +1,5 @@
 import { MenuPrincipalService } from './servicios/menu-principal.service';
-import { apiService } from './servicios/api.service';
+import { ApiService } from './servicios/api.service';
 import { LogService } from './servicios/log.service';
 import { ServerService } from './servicios/server.service';
 import { AutorizadoService } from './servicios/autorizado.service';
@@ -45,7 +45,7 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     AutorizadoService,
     ServerService,
     LogService,
-    apiService,
+    ApiService,
     MenuPrincipalService
   ],
   bootstrap: [AppComponent],

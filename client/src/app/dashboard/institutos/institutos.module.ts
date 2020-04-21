@@ -1,5 +1,5 @@
 import { ServerService } from './../../servicios/server.service';
-import { apiService } from './../../servicios/api.service';
+import { ApiService } from './../../servicios/api.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './../../material.module';

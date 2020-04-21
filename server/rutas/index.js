@@ -26,7 +26,8 @@ let api = EXPRESS.Router(),
     solicitudMatriculaControl = require('../controles/solicitudesMatricula'),
     docentesAsignaturasControl = require('../controles/docentesasignaturas'),
     periodosLectivosControl = require('../controles/periodoslectivos'),
-    perfilesDocentesControl = require('../controles/perfilesdocentes')
+    perfilesDocentesControl = require('../controles/perfilesdocentes'),
+    prbControl = require('../controles/pruebadoc')
 
 
 // EndPoint Personas
@@ -72,9 +73,11 @@ api.put('/imagen-logotipo', [autenticarControl.autenticado, sesionControl.actual
 api.put('/imagen-menu', [autenticarControl.autenticado, sesionControl.actualiza, imagenMenuMiddleware], filesControl.modificarArchivo)
 api.put('/imagen-persona', [autenticarControl.autenticado, sesionControl.actualiza, imagenPersonaMiddleware], filesControl.modificarArchivo)
 
-// EndPoint CuposAsignaturas
-api.post('/obtener-cupos', [autenticarControl.autenticado, sesionControl.actualiza], cuposAsignaturasControl.obtenerCupo)
-api.put('/aplicar-cupos', [autenticarControl.autenticado, sesionControl.actualiza], cuposAsignaturasControl.aplicarCupo)
+api.post('/prb', prbControl.prb)
+api.post('/gestionar-docente-asignatura', /*[autenticarControl.autenticado, sesionControl.actualiza]*/ docentesAsignaturasControl.gestionarDocenteAsignatura)
+    // EndPoint CuposAsignaturas
+api.post('/obtener-cupos', /*[autenticarControl.autenticado, sesionControl.actualiza],*/ cuposAsignaturasControl.obtenerCupo)
+api.put('/aplicar-cupos', /*[autenticarControl.autenticado, sesionControl.actualiza]*/ cuposAsignaturasControl.aplicarCupo)
 
 
 // EndPoint documentosMatricula
@@ -89,9 +92,9 @@ api.post('/upload-solicitud-matricula', [autenticarControl.autenticado, sesionCo
 api.put('/update.solicitud.matricula', [autenticarControl.autenticado, sesionControl.actualiza], solicitudMatriculaControl.updateSolicitudMatricula)
 
 // EndPoint DocentesAsignaturas
-api.post('/leer-docente-materia', /*[autenticarControl.autenticado, sesionControl.actualiza]*/ docentesAsignaturasControl.leerDocenteMateria)
-api.post('/obtener-docente-materia', /*[autenticarControl.autenticado, sesionControl.actualiza]*/ docentesAsignaturasControl.obtenerDocenteMateria)
-api.put('/establecer-docente-materia', /*[autenticarControl.autenticado, sesionControl.actualiza]*/ docentesAsignaturasControl.establecerDocenteMateria)
+api.post('/leer-docente-asignatura', /*[autenticarControl.autenticado, sesionControl.actualiza]*/ docentesAsignaturasControl.leerDocenteAsignatura)
+api.post('/obtener-docente-asignatura', /*[autenticarControl.autenticado, sesionControl.actualiza]*/ docentesAsignaturasControl.obtenerDocenteAsignatura)
+
 
 // PerfilesDocentes
 api.post('/leer-perfiles-docentes', [autenticarControl.autenticado, sesionControl.actualiza], perfilesDocentesControl.leerPerfilDocente)

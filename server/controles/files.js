@@ -4,9 +4,9 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.js')[env]
 let sequelize;
 if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+    sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
+    sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 let modelos = require('../models')
 let Op = Sequelize.Op
@@ -14,130 +14,130 @@ let fs = require('fs')
 let path = require('path')
 
 let upload = (req, res, err) => {
-  let file = req.files.upload[0]
-  if (file.originalFilename == '') {
-    fs.unlinkSync(file.path)
-    return res.status(400).json({
-      transaccion: false,
-      data: [],
-      msg: 'No existe el archivo de origen'
-    })
-  } else {
-    let url = file.path
-    url = url.split('/')
-    let urlFile = [url[url.length - 1]]
-    return res.status(200).json({
-      transaccion: true,
-      data: urlFile,
-      token: req.token,
-      msg: urlFile.length
-    })
-  }
-}
-
-
-let verArchivo = (req, res) => {
-  let urlFile = req.params.urlFile
-  let directorio = req.params.directorio
-  let pathFile = validaPath(urlFile, directorio)
-  
-  fs.exists(pathFile, (exists) => {
-    console.log(pathFile)
-    console.log(path.resolve(pathFile))
-    if (exists) {
-      return res.status(200).sendFile(path.resolve(pathFile))
+    let file = req.files.upload[0]
+    if (file.originalFilename == '') {
+        fs.unlinkSync(file.path)
+        return res.status(400).json({
+            transaccion: false,
+            data: [],
+            msg: 'No existe el archivo de origen'
+        })
     } else {
-      return res.status(200).send('No existe el archivo')
-    }
-  })
-}
-
-let eliminarArchivo = (req, res) => {
-  let urlFile = req.body.data.urlFile
-  let directorio = req.body.data.directorio
-  let pathFile = validaPath(urlFile, directorio)
-  fs.exists(pathFile, (exists) => {
-    if (exists) {
-      fs.unlinkSync(pathFile)
-      return res.status(200).send('Archivo eliminado')
-    } else {
-      return res.status(200).send('No existe el archivo')
-    }
-  })
-}
-
-let modificarArchivo = (req, res) => {
-  console.log(req)   // crear funcion es apiService
-  let urlFile = req.body.data.urlFile
-  let directorio = req.body.data.directorio
-  let pathFile = validaPath(urlFile, directorio)
-  if (file.originalFilename == '') {
-    fs.unlinkSync(file.path)
-    return res.status(400).json({
-      transaccion: false,
-      data: [],
-      msg: 'No existe el archivo de origen'
-    })
-  } else {
-    console.log(pathFile)
-    fs.exists(pathFile, (exists) => {
-      if (exists) {
-        fs.unlinkSync(pathFile)
         let url = file.path
         url = url.split('/')
         let urlFile = [url[url.length - 1]]
         return res.status(200).json({
-          transaccion: true,
-          data: urlFile,
-          token: req.token,
-          msg: urlFile.length
+            transaccion: true,
+            data: urlFile,
+            token: req.token,
+            msg: urlFile.length
         })
-      } else {
-        return res.status(400).json({
-          transaccion: false,
-          data: [],
-          token: req.token,
-          msg: 'No existe el archivo de origen'
-        })
-      }
+    }
+}
+
+
+let verArchivo = (req, res) => {
+    let urlFile = req.params.urlFile
+    let directorio = req.params.directorio
+    let pathFile = validaPath(urlFile, directorio)
+
+    fs.exists(pathFile, (exists) => {
+        console.log(pathFile)
+        console.log(path.resolve(pathFile))
+        if (exists) {
+            return res.status(200).sendFile(path.resolve(pathFile))
+        } else {
+            return res.status(200).send('No existe el archivo')
+        }
     })
-  }
+}
+
+let eliminarArchivo = (req, res) => {
+    let urlFile = req.body.data.urlFile
+    let directorio = req.body.data.directorio
+    let pathFile = validaPath(urlFile, directorio)
+    fs.exists(pathFile, (exists) => {
+        if (exists) {
+            fs.unlinkSync(pathFile)
+            return res.status(200).send('Archivo eliminado')
+        } else {
+            return res.status(200).send('No existe el archivo')
+        }
+    })
+}
+
+let modificarArchivo = (req, res) => {
+    console.log(req) // crear funcion es ApiService
+    let urlFile = req.body.data.urlFile
+    let directorio = req.body.data.directorio
+    let pathFile = validaPath(urlFile, directorio)
+    if (file.originalFilename == '') {
+        fs.unlinkSync(file.path)
+        return res.status(400).json({
+            transaccion: false,
+            data: [],
+            msg: 'No existe el archivo de origen'
+        })
+    } else {
+        console.log(pathFile)
+        fs.exists(pathFile, (exists) => {
+            if (exists) {
+                fs.unlinkSync(pathFile)
+                let url = file.path
+                url = url.split('/')
+                let urlFile = [url[url.length - 1]]
+                return res.status(200).json({
+                    transaccion: true,
+                    data: urlFile,
+                    token: req.token,
+                    msg: urlFile.length
+                })
+            } else {
+                return res.status(400).json({
+                    transaccion: false,
+                    data: [],
+                    token: req.token,
+                    msg: 'No existe el archivo de origen'
+                })
+            }
+        })
+    }
 }
 
 
 
 // agregar validaciones si hay más carpetas, no colocar en module.export
 let validaPath = (urlFile, directorio) => {
-  let pathFile = ''
-  if(directorio == 'imagen-agenda'){
-    pathFile = `./files/imagen/agenda/${urlFile}`
-  }
-  if(directorio == 'imagen-logotipo'){
-    pathFile = `./files/imagen/logotipo/${urlFile}`
-  }
-  if(directorio == 'imagen-menu'){
-    pathFile = `./files/imagen/menu/${urlFile}`
-  }
-  if(directorio == 'imagen-persona'){
-    pathFile = `./files/imagen/persona/${urlFile}`
-  }
-  if(directorio == 'pdf'){
-    pathFile = `./files/pdf/${urlFile}`
-  }
-  if(directorio == 'pdf-resolucion'){
-    pathFile = `./files/pdf/resolucion/${urlFile}`
-  }
-  if(directorio == 'pdf-ruc'){
-    pathFile = `./files/pdf/ruc/${urlFile}`
-  }
+    let pathFile = ''
+    if (directorio == 'imagen-agenda') {
+        pathFile = `./files/imagen/agenda/${urlFile}`
+    }
+    if (directorio == 'imagen-logotipo') {
+        pathFile = `./files/imagen/logotipo/${urlFile}`
+    }
+    if (directorio == 'imagen-menu') {
+        pathFile = `./files/imagen/menu/${urlFile}`
+    }
+    if (directorio == 'imagen-persona') {
+        pathFile = `./files/imagen/persona/${urlFile}`
+    }
+    if (directorio == 'pdf') {
+        pathFile = `./files/pdf/${urlFile}`
+    }
+    if (directorio == 'pdf-resolucion') {
+        pathFile = `./files/pdf/resolucion/${urlFile}`
+    }
+    if (directorio == 'pdf-ruc') {
+        pathFile = `./files/pdf/ruc/${urlFile}`
+    }
 
 
-  return pathFile
+    return pathFile
 }
 
 module.exports = {
-  upload,
-  verArchivo,
-  eliminarArchivo,
-  modificarArchivo
+    upload,
+    verArchivo,
+    eliminarArchivo,
+    modificarArchivo
 }

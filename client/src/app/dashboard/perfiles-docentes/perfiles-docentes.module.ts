@@ -1,28 +1,26 @@
 import { ApiService } from './../../servicios/api.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
 import { MaterialModule } from './../../material.module';
-import { SolicitudMatriculaComponent } from './solicitud-matricula.component';
+import { PerfilesDocentesComponent } from './perfiles-docentes.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SolicitudMatriculaRoutingModule } from './solicitud-matricula-routing.module';
+import { PerfilesDocentesRoutingModule } from './perfiles-docentes-routing.module';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 
-
 @NgModule({
-  declarations: [
-    SolicitudMatriculaComponent
-  ],
+  declarations: [ PerfilesDocentesComponent],
   imports: [
     CommonModule,
-    SolicitudMatriculaRoutingModule,
+    PerfilesDocentesRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     MaterialModule,
     MaterialFileInputModule,
     FlexLayoutModule
   ]
 })
-export class SolicitudMatriculaModule { }
+export class PerfilesDocentesModule { }

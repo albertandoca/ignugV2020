@@ -1,8 +1,9 @@
-import { apiService } from './../../servicios/api.service';
+import { ApiService } from './../../servicios/api.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 
 import { MaterialModule } from './../../material.module';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { DocentesAsignaturasComponent } from './docentes-asignaturas.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -22,4 +23,4 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     FlexLayoutModule
   ]
 })
-export class DocentesAsignaturasModule { }
+export class DocentesAsignaturasModule {}

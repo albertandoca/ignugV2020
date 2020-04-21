@@ -1,4 +1,4 @@
-import { apiService } from './../servicios/api.service';
+import { ApiService } from './../servicios/api.service';
 import { MenuPrincipalService } from '../servicios/menu-principal.service';
 import { AutorizadoService } from './../servicios/autorizado.service';
 import { PersonaLogin } from './../modelos/persona-login';
@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
     public menuService: MenuPrincipalService,
     private router: Router,
     private server: ServerService,
-    private api: apiService
+    private api: ApiService
   ) { }
 
   ngOnInit(): void {

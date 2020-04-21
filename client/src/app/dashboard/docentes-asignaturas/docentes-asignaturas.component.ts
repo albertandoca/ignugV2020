@@ -1,15 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 @Component({
   selector: 'app-docentes-asignaturas',
   templateUrl: './docentes-asignaturas.component.html',
   styleUrls: ['./docentes-asignaturas.component.scss']
 })
-export class DocentesAsignaturasComponent implements OnInit {
+export class DocentesAsignaturasComponent {
+  todo = [
+  'Get to work',
+  'Pick up groceries',
+  'Go home',
+  'Fall asleep'
+];
 
-  constructor() { }
+done = [
+  'Get up',
+  'Brush teeth',
+  'Take a shower',
+  'Check e-mail',
+  'Walk dog'
+];
 
-  ngOnInit(): void {
+drop(event: CdkDragDrop <string[]>) {
+  if (event.previousContainer === event.container) {
+    moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+  } else {
+    transferArrayItem(event.previousContainer.data,
+                      event.container.data,
+                      event.previousIndex,
+                      event.currentIndex);
   }
-
+}
 }

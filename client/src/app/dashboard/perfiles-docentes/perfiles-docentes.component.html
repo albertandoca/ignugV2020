@@ -1,0 +1,43 @@
+<!--<main class="paginador" *ngIf="!nuevo">
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</main>-->
+
+formulario de ingreso o modificación de datos
+
+<!-- lado izquierdo  -->
+
+<!-- <main *ngIf="nuevo">-->
+
+<!-- lado izquierdo  -->
+<!--<form [formGroup]="tipoInstalacionForm" enctype="multipart/form-data">
+    <mat-grid-list cols="2" rowHeight="500px">
+        <div class="controlesRegistro">
+            <input type="hidden" formControlName="id">
+            <div class="controlesRegistro">
+                <button (click)="agregarDescripcion() " mat-raised-button color="primary">+ Añadir</button>
+            </div>
+            <h3>
+                <b>Ingrese el tipo de instalación:</b>
+            </h3>
+            <div formArrayName="descripciones" *ngFor="let descripcion of descripciones.controls; let i = index">
+                <div [formGroupName]="i">
+                    <div class="controlesRegistro row">
+                        <label [attr.for]="'descripcion' + i"></label >
+                             <input  type = "text" [attr.id] = "'descripcion' + i" matInput formControlName="descripcion" matInput placeholder="Descripción" >
+                                <mat-error>Este campo es obligatorio</mat-error>
+                                <div class="controlesRegistro">
+                                    <button (click)="removerDescripcion(i)" mat-raised-button color="accent">- Borrar</button>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="controlesRegistro">
+                        <button *ngIf="!agregar" (click)="guardarRegistro(i) " mat-raised-button color="primary">Agregar</button>
+                        <button  *ngIf="!modificar" (click)="guardarEditar(i) " mat-raised-button color="primary">Modificar</button>
+                        <button (click)="cancelado()" mat-raised-button color="warn">Cancelar</button>
+                    </div>
+                </div>
+                    
+            </div>
+        </mat-grid-list>
+    </form>
+</main> -->

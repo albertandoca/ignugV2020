@@ -12,7 +12,7 @@ let modelos = require('../models')
 let Op = Sequelize.Op;
 
 // Docente
-let leerDocenteMateria = (req, res) => {
+let leerDocenteAsignatura = (req, res) => {
     modelos.DocentesAsignaturas.findAll({
         attributes: {
             exclude: [
@@ -35,7 +35,7 @@ let leerDocenteMateria = (req, res) => {
     })
 }
 
-let obtenerDocenteMateria = (req, res) => {
+let obtenerDocenteAsignatura = (req, res) => {
     /*let idDocente = null
     let idCarrera = null
     if (req.body.data.idDocente) {
@@ -101,12 +101,53 @@ let obtenerDocenteMateria = (req, res) => {
 
 
 // Docente
-let establecerDocenteMateria = (req, res) => {
-    let docentesAsignaturas = req.body.data
+let gestionarDocenteAsignatura = (req, res) => {
+    let docenteAsignatura = req.body.data
     let datos = []
-    let error = []
+    if (!docenteAsignatura.id) {
+        modelos.DocentesAsignaturas.create(docenteAsignatura)
+            .then(data => {
+                datos.push(data.toJSON())
+                return res.status(200).json({
+                    transaccion: true,
+                    data: datos,
+                    token: req.token || null,
+                    msg: datos.length
+                })
+            }).catch(err => {
+                return res.status(400).json({
+                    transaccion: false,
+                    data: err,
+                    msg: 'Error al actualizar el registro'
+                })
+            })
+    } else {
+        modelos.DocentesAsignaturas.update(docenteAsignatura, {
+            where: {
+                id: docenteAsignatura.id
+            }
+        }).then(data => {
+            datos.push(data)
+            return res.status(200).json({
+                transaccion: true,
+                data: datos,
+                token: req.token || null,
+                msg: datos.length
+            })
+        }).catch(err => {
+            return res.status(400).json({
+                transaccion: false,
+                data: err,
+                msg: 'Error al actualizar el registro'
+            })
+        })
+    }
+}
+
+let establecerDocenteAsignatura = (req, res) => {
+    let docenteAsignatura = req.body.data
     for (let docente of docentesAsignaturas) {
-        modelos.DocentesAsignaturas.update({ estado: docente.estado }, {
+        modelos.DocentesAsignaturas.update(docenteAsignatura, {
 
             where: {
                 id: docente.id
@@ -125,7 +166,7 @@ let establecerDocenteMateria = (req, res) => {
     })
 }
 
-let asignarDocenteMateria = (req, res) => {
+let asignarDocenteAsignatura = (req, res) => {
     let docentesAsignaturas = req.body.data
     let datos = []
     let error = []
@@ -148,7 +189,7 @@ let asignarDocenteMateria = (req, res) => {
     })
 }
 
-let anularDocenteMateria = (req, res) => {
+let anularDocenteAsignatura = (req, res) => {
     let docentesAsignaturas = req.body.data
     let datos = []
     let error = []
@@ -171,7 +212,7 @@ let anularDocenteMateria = (req, res) => {
     })
 }
 
-let eliminarDocenteMateria = (req, res) => {
+let eliminarDocenteAsignatura = (req, res) => {
     let docentesAsignaturas = req.body.data
     let datos = []
     let error = []
@@ -196,10 +237,11 @@ let eliminarDocenteMateria = (req, res) => {
 }
 
 module.exports = {
-    leerDocenteMateria,
-    obtenerDocenteMateria,
-    asignarDocenteMateria,
-    establecerDocenteMateria,
-    anularDocenteMateria,
-    eliminarDocenteMateria
+    leerDocenteAsignatura,
+    obtenerDocenteAsignatura,
+    gestionarDocenteAsignatura,
+    asignarDocenteAsignatura,
+    establecerDocenteAsignatura,
+    anularDocenteAsignatura,
+    eliminarDocenteAsignatura
 }

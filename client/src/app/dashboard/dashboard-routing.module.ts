@@ -18,7 +18,9 @@ const routes: Routes = [
       {path: 'solicitud-matricula', loadChildren: () => import('./solicitud-matricula/solicitud-matricula.module')
       .then(m => m.SolicitudMatriculaModule)},
       {path: 'docentes-asignaturas', loadChildren: () => import('./docentes-asignaturas/docentes-asignaturas.module')
-      .then(m => m.DocentesAsignaturasModule)}
+      .then(m => m.DocentesAsignaturasModule)},
+      {path: 'perfiles-docentes', loadChildren: () => import('./perfiles-docentes/perfiles-docentes.module')
+      .then(m => m.PerfilesDocentesModule)},
     ]
   }
 ];

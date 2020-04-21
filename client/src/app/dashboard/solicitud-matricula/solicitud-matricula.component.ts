@@ -1,5 +1,5 @@
 import { PeriodoAcademico } from './../../modelos/periodo-academico';
-import { apiService } from './../../servicios/api.service';
+import { ApiService } from './../../servicios/api.service';
 import { async } from '@angular/core/testing';
 import { Carrera } from './../../modelos/carrera';
 import { Router } from '@angular/router';
@@ -41,7 +41,7 @@ export class SolicitudMatriculaComponent implements OnInit {
     private dialog: MatDialog,
     private toastr: ToastrService,
     private router: Router,
-    private api: apiService
+    private api: ApiService
   ) { }
 
   ngOnInit(): void {
