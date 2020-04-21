@@ -31,7 +31,6 @@ export class AutorizadoService {
     this.iat = decoded.iat;
     this.exp = decoded.exp;
     this.token = token;
-    console.log(this.personaLogin);
     const data =  {
       persona: this.personaLogin,
       tok: this.token

@@ -22,9 +22,7 @@ let leerSolicitudMatricula = (req, res) => {
         idEstudiante = req.body.data.idEstudiante
         idPeriodoLectivo = req.body.data
     }
-    
-    console.log(id)
-    console.log(idPeriodoAcademico)
+
     modelos.SolicitudesMatriculas.findOne({
         where: {
             idEstudiante: id,

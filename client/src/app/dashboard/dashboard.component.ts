@@ -81,7 +81,6 @@ export class DashboardComponent implements OnInit {
     };
     let res: any;
     res = await this.api.verFileServer('ver-archivo', datos);
-    console.log(res);
     return res;
   }
 
