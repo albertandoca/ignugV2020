@@ -1,31 +1,26 @@
-<<<<<<< HEAD
 import { ApiService } from './../../servicios/api.service';
-=======
->>>>>>> d282a7f13557adaf4eae91b445ad01b6f92e0daa
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 
 import { MaterialModule } from './../../material.module';
-import { SolicitudMatriculaComponent } from './solicitud-matricula.component';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { DocentesAsignaturasComponent } from './docentes-asignaturas.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SolicitudMatriculaRoutingModule } from './solicitud-matricula-routing.module';
+import { DocentesAsignaturasRoutingModule } from './docentes-asignaturas-routing.module';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 
-
 @NgModule({
-  declarations: [
-    SolicitudMatriculaComponent
-  ],
+  declarations: [DocentesAsignaturasComponent],
   imports: [
     CommonModule,
-    SolicitudMatriculaRoutingModule,
+    DocentesAsignaturasRoutingModule,
     FormsModule,
     MaterialModule,
     MaterialFileInputModule,
     FlexLayoutModule
   ]
 })
-export class SolicitudMatriculaModule { }
+export class DocentesAsignaturasModule {}

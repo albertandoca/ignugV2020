@@ -10,6 +10,10 @@ import { DataRx } from '../modelos/data-rx';
 @Injectable({
   providedIn: 'root'
 })
+<<<<<<< HEAD
+
+=======
+>>>>>>> d282a7f13557adaf4eae91b445ad01b6f92e0daa
 export class ApiService {
   url: string;
   selectedFle: File;

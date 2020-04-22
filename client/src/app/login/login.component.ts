@@ -88,8 +88,13 @@ export class LoginComponent implements OnInit {
       disableClose: true,
       autoFocus: true,
       data: {
+<<<<<<< HEAD
+        // identificacion: this.identificacion,
+        // emailInstitucional: this.emailInstitucional
+=======
         identificacion: 'son mis datos',
         emailInstitucional: this.emailInstitucional
+>>>>>>> d282a7f13557adaf4eae91b445ad01b6f92e0daa
       }
     });
 

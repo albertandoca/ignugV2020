@@ -3,7 +3,7 @@ import { ApiService } from './../../servicios/api.service';
 import { async } from '@angular/core/testing';
 import { Carrera } from './../../modelos/carrera';
 import { Router } from '@angular/router';
-import { CupoAsignatura } from './../../modelos/cupo-asignatura';
+import { DocenteAsignatura } from './../../modelos/docente-asignatura';
 import { ToastrService } from 'ngx-toastr';
 import { DataRx } from './../../modelos/data-rx';
 import { FormGroup } from '@angular/forms';
@@ -23,7 +23,7 @@ export class SolicitudMatriculaComponent implements OnInit {
   cuposAsignaturasForm: FormGroup;
   dataRx: DataRx;
   periodoLectivo: PeriodoAcademico;
-  cuposAsignaturas: Array<CupoAsignatura>;
+  docentesAsignaturas: Array<DocenteAsignatura>;
   carreraSelecionada: number;
   documentosMatricula: any;  // crear modelo
   botonDatosMatricula: boolean;
@@ -33,7 +33,7 @@ export class SolicitudMatriculaComponent implements OnInit {
   isOptional: boolean;
   realizado: boolean;
   verFiltro: boolean;
-  cuposFiltrados: CupoAsignatura[];
+  cuposFiltrados: DocenteAsignatura[];
   selectedFile: File[];
   nombreArchivo: string;
 
@@ -76,14 +76,20 @@ export class SolicitudMatriculaComponent implements OnInit {
     this.carreras = [];
     this.verCuposAsignaturas = 0;
     this.verFiltro = true;
+<<<<<<< HEAD
+    this.docentesAsignaturas = await this.api.sendApi('obtener-cupos', this.periodoLectivo.id);
+    console.log(this.docentesAsignaturas);
+    if (this.docentesAsignaturas) {
+=======
     this.cuposAsignaturas = await this.api.sendApi('obtener-cupos', this.periodoLectivo.id);
     if (!this.cuposAsignaturas || this.cuposAsignaturas.length === 0) {
+>>>>>>> d282a7f13557adaf4eae91b445ad01b6f92e0daa
       this.verCuposAsignaturas = 2;
       this.verFiltro = false;
     } else {
       this.openDialog();
       const carrerasAux = [];
-      for (const cupo of this.cuposAsignaturas) {
+      for (const cupo of this.docentesAsignaturas) {
         await carrerasAux.push(cupo.Asignatura.Malla.Carrera);
       }
       // eliminar dupĺicados
@@ -99,7 +105,7 @@ export class SolicitudMatriculaComponent implements OnInit {
         }
       }
       if (this.carreras.length <= 1) {
-        this.cuposFiltrados = this.cuposAsignaturas;
+        this.cuposFiltrados = this.docentesAsignaturas;
         this.valorCheckbox = [];
         for (const cupo of this.cuposFiltrados) {
           if (cupo.estado === 'Asignado') {
@@ -136,13 +142,13 @@ export class SolicitudMatriculaComponent implements OnInit {
   }
 
   modificarEstado(i) {
-    this.cuposAsignaturas[i].estado = this.valorCheckbox[i] ? 'Aplicado' : 'Asignado';
-    console.log(this.cuposAsignaturas[i].estado);
+    this.docentesAsignaturas[i].estado = this.valorCheckbox[i] ? 'Aplicado' : 'Asignado';
+    console.log(this.docentesAsignaturas[i].estado);
   }
 
 
   datosFormulario() {
-    this.cuposFiltrados = this.cuposAsignaturas.filter(cupo => cupo.Asignatura.Malla.Carrera.id === this.carreraSelecionada);
+    this.cuposFiltrados = this.docentesAsignaturas.filter(cupo => cupo.Asignatura.Malla.Carrera.id === this.carreraSelecionada);
     console.log(this.cuposFiltrados);
     this.valorCheckbox = [];
     for (const cup of this.cuposFiltrados) {
