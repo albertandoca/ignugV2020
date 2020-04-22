@@ -16,7 +16,7 @@ let leerDocumentosMatricula = (req, res) => {
     let idEstudiante = null
     let idCarrera = null
     if (req.body.data.idEstudiante == undefined) {
-        idEstudiante = req.body.idPersona
+        idEstudiante = req.body.data.idEstudiante
         idCarrera = req.body.data.idCarrera
     } else {
         idEstudiante = req.body.data.idEstudiante

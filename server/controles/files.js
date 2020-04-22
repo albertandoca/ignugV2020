@@ -42,8 +42,6 @@ let verArchivo = (req, res) => {
   let pathFile = validaPath(urlFile, directorio)
   
   fs.exists(pathFile, (exists) => {
-    console.log(pathFile)
-    console.log(path.resolve(pathFile))
     if (exists) {
       return res.status(200).sendFile(path.resolve(pathFile))
     } else {
@@ -67,7 +65,6 @@ let eliminarArchivo = (req, res) => {
 }
 
 let modificarArchivo = (req, res) => {
-  console.log(req)   // crear funcion es apiService
   let urlFile = req.body.data.urlFile
   let directorio = req.body.data.directorio
   let pathFile = validaPath(urlFile, directorio)
@@ -79,7 +76,6 @@ let modificarArchivo = (req, res) => {
       msg: 'No existe el archivo de origen'
     })
   } else {
-    console.log(pathFile)
     fs.exists(pathFile, (exists) => {
       if (exists) {
         fs.unlinkSync(pathFile)
@@ -129,6 +125,15 @@ let validaPath = (urlFile, directorio) => {
   }
   if(directorio == 'pdf-ruc'){
     pathFile = `./files/pdf/ruc/${urlFile}`
+  }
+  if(directorio == 'pdf-titulo'){
+    pathFile = `./files/pdf/titulo/${urlFile}`
+  }
+  if(directorio == 'pdf-cupo'){
+    pathFile = `./files/pdf/cupo/${urlFile}`
+  }
+  if(directorio == 'pdf-cedula'){
+    pathFile = `./files/pdf/cedula/${urlFile}`
   }
 
 

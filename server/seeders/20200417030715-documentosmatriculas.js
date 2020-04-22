@@ -5,9 +5,9 @@ module.exports = {
 
       return queryInterface.bulkInsert('DocumentosMatriculas', [
         {
-          pdfTituloGrado:'4eo3zg2CEF6MSN9G8WPFSzF4.pdf',
-          pdfAsignacionCupo:'4eo3zg2CEF6MSN9G8WPFSzF4.pdf',
-          pdfCedula:'4eo3zg2CEF6MSN9G8WPFSzF4.pdf',
+          pdfTituloGrado:'etKIPZBjp0Mk5AGQVoPdwbmQ.pdf',
+          pdfAsignacionCupo:'RsK_lYY_x9cWJUvi7RtGCF66.pdf',
+          pdfCedula:'hRAEVlDD7lbXsN3lTKlA8u7K.pdf',
           idEstudiante:10,
           idCarrera:1,
           estado:true,
@@ -15,9 +15,19 @@ module.exports = {
           updatedAt: new Date()
         },
         {
-          pdfTituloGrado:'4eo3zg2CEF6MSN9G8WPFSzF4.pdf',
-          pdfAsignacionCupo:'4eo3zg2CEF6MSN9G8WPFSzF4.pdf',
-          pdfCedula:'4eo3zg2CEF6MSN9G8WPFSzF4.pdf',
+          pdfTituloGrado:'etKIPZBjp0Mk5AGQVoPdwbmQ.pdf',
+          pdfAsignacionCupo:'RsK_lYY_x9cWJUvi7RtGCF66.pdf',
+          pdfCedula:'hRAEVlDD7lbXsN3lTKlA8u7K.pdf',
+          idEstudiante:10,
+          idCarrera:3,
+          estado:true,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          pdfTituloGrado:'etKIPZBjp0Mk5AGQVoPdwbmQ.pdf',
+          pdfAsignacionCupo:'RsK_lYY_x9cWJUvi7RtGCF66.pdf',
+          pdfCedula:'hRAEVlDD7lbXsN3lTKlA8u7K.pdf',
           idEstudiante:11,
           idCarrera:1,
           estado:true,
@@ -25,9 +35,9 @@ module.exports = {
           updatedAt: new Date()
         },
         {
-          pdfTituloGrado:'4eo3zg2CEF6MSN9G8WPFSzF4.pdf',
-          pdfAsignacionCupo:'4eo3zg2CEF6MSN9G8WPFSzF4.pdf',
-          pdfCedula:'4eo3zg2CEF6MSN9G8WPFSzF4.pdf',
+          pdfTituloGrado:'etKIPZBjp0Mk5AGQVoPdwbmQ.pdf',
+          pdfAsignacionCupo:'RsK_lYY_x9cWJUvi7RtGCF66.pdf',
+          pdfCedula:'hRAEVlDD7lbXsN3lTKlA8u7K.pdf',
           idEstudiante:7,
           idCarrera:1,
           estado:true,

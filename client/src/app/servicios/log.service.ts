@@ -25,4 +25,18 @@ export class LogService {
   logIn(datos: any): Observable<DataRx> {
     return this.http.post<DataRx>(`${this.url}login`, datos);
   }
+
+  logOut(): Observable<DataRx> {
+    const dataTx: DataTx = {
+      idPersona: this.autorizado.getPersonaLogin().id,
+      data: null
+    };
+    const optionsHeaders = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.autorizado.getToken()
+      })
+    };
+    return this.http.post<DataRx>(`${this.url}logout`, dataTx, optionsHeaders);
+  }
 }

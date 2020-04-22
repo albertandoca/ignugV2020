@@ -13,6 +13,34 @@ let Op = Sequelize.Op
 // let bcrypt = require('bcrypt-nodejs')
 let jwt = require('jsonwebtoken')
 
+let leerUno = (req, res) => {
+
+    let idPersonaSeleccionada = null
+
+    if (req.body.data.idPersonaSeleccionada == undefined) {
+        idPersonaSeleccionada = req.body.data.idPersonaSeleccionada
+    } else {
+        idPersonaSeleccionada = req.body.data.idPersonaSeleccionada
+    }
+    console.log(idPersonaSeleccionada)
+    modelos.Personas.findOne({
+        where: {
+            id: idPersonaSeleccionada
+        }
+    }).then(data => {
+        return res.status(200).json({
+            transaccion: true,
+            data: data,
+            msg: data.length
+        })
+    }).catch(err => {
+        return res.status(500).json({
+            transaccion: false,
+            data: null,
+            msg: 'Error del servidor'
+        })
+    })
+}
 
 let leer = (req, res) => {
     let condicion = req.body.data || ['Activo', 'Actualiza'] 
@@ -122,7 +150,6 @@ let crear = (req, res) => {
                 let errores = []
                 let msg = ''
                 if (err.errors.length > 0) {
-                    console.log(err.errors)
                     err.errors.forEach(element => {
                         errores.push(element.path)
                     });
@@ -212,7 +239,6 @@ let logIn = (req, res) => {
             [modelos.PersonasRoles, 'id']
         ]
     }).then(persona => {
-        console.log(persona)
         if (persona) {
             if (persona.enLinea > fecha) {
                 res.status(400).json({
@@ -272,11 +298,40 @@ let logIn = (req, res) => {
             })
         }
     }).catch(err => {
-        console.log(err)
         res.status(500).json({
             transaccion: false,
             data: err,
             msg: 'Error del servidor, sí el problema persiste por favor comuníquese con el adminsitrador del sistema'
+        })
+    })
+}
+
+
+let logOut = (req, res) => {
+    let idPersona = req.body.idPersona
+    let datos = []
+    modelos.Personas.update(
+        {
+            semilla: 'nulnulnul',
+            enLinea: 100100100
+        },
+        {
+            where: {
+                id: idPersona
+            }
+        }
+    ).then(data => {
+        datos.push(data)
+        res.status(200).json({
+            transaccion: true,
+            data: datos,
+            msg: datos.length
+        })
+    }).catch(err => {
+        res.status(404).json({
+            transaccion: false,
+            data: err,
+            msg: 'Fallo actualización'
         })
     })
 }
@@ -289,5 +344,7 @@ module.exports = {
     crearMasivo,
     borrar,
     modificar,
-    logIn
+    logIn,
+    logOut,
+    leerUno
 }

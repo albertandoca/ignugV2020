@@ -47,15 +47,15 @@ tr.example-element-row:not(.example-expanded-row):active {
 .example-element-description {
   padding: 16px;
 }
-
 .example-element-description-attribution {
   opacity: 0.5;
 }
 .example-card {
-  align-content: center;
-  max-width: 400px;
+  display:inline-block;
+  text-align:center;
+  justify-content:center;
+  max-width: 500px;
 }
-
 .example-header-image {
   background-size: cover;
 }
@@ -65,4 +65,26 @@ tr.example-element-row:not(.example-expanded-row):active {
   margin-top: -1rem;
   padding: 0;
   border-radius: 100%;
+}
+.example-card1 {
+  max-width: 400px;
+  display:inline-block;
+  text-align:center;
+  justify-content:center;
+}
+
+.example-header-image1 {
+    background-size: cover;
+    height: 47px;
+    width: 47px;
+    margin-top: -10px;
+    padding: 0;
+    border-radius: 100%;
+    // border:1px solid #666;
+}
+.tamaño{
+  display:inline-block;
+  text-align:center;
+  justify-content:center;
+  font-size: small;
 }

@@ -22,7 +22,6 @@ let autenticado = (req, res, next) => {
             where: {id: idPersona}
         }).then(data => {
             if (data) {
-                console.log('semilla jwt', data.semilla)
                 jwt.verify(token, data.semilla, (err, decoded) => {
                     if (err) {
                         res.status(401).json({

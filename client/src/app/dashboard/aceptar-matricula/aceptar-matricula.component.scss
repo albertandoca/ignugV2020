@@ -1,13 +1,15 @@
 @import '../../../sass/mixins';
 
 @include mat-table-columns((
-  foto: (width: 4rem, padding-left: 0.5rem,aling: center),
-  identificacion: (width: 5rem,aling: center),
+  foto: (width: -3rem, padding-left: 0.1rem,aling: center),
+  identificacion: (width: 7rem,aling: center),
   primerNombre: (width: 4rem,aling: center),
   apellidoPaterno: (width: 4rem, aling: center),
-  codigoSolicitud: (width: 7rem),
-  createdAt: (width: 5rem, aling: center),
-  detalle: (width: 4rem),
+  codigoSolicitud: (width: 7rem,aling: center),
+  createdAt: (width: 7rem, aling: center),
+  detalle: (width: 15rem,aling: center),
+  malla:(width: 5rem,aling: center),
+  evento:(width: 4rem,aling: center)
 ));
 .fotografiaPersona{
   width: 80px;
@@ -18,4 +20,17 @@
 .paginador {
   padding: 0;
   margin-top: 0;
+}
+.centro {
+  display:inline-block;
+  text-align:center;
+  justify-content:center;
+}
+.filtro{
+  width: 80%;
+  padding: 0.5rem 2rem;
+}
+
+.filtro * {
+  width:  80%;
 }

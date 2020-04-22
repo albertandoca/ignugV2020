@@ -37,34 +37,55 @@ let obtenerAsignaturas = (req, res) => {
         where: {
             idEstudiante: idEstudiante,
             idPeriodoLectivo: idPeriodoLectivo,
+            estado: 'Aplicado'
         },
         include: [
-            {
-                model: modelos.Asignaturas,
-                attributes:{
-                    exclude:[
-                        'horasDocente',
-                        'horasPracticas',
-                        'horasAutonomas',
-                        'estado',
-                        'idMalla',
-                        'idUnidadCurricular',
-                        'idCampoFormacion',
-                        'createdAt',
-                        'updatedAt'
-                    ]
-                },
-                required: true,
-                include: [
                     {
-                        model: modelos.PeriodosAcademicos,
-                        attributes: ['nivel'],
+                        model: modelos.Asignaturas,
+                        attributes:{
+                            exclude:[
+                                'horasDocente',
+                                'horasPracticas',
+                                'horasAutonomas',
+                                'estado',
+                                'idMalla',
+                                'idUnidadCurricular',
+                                'idCampoFormacion',
+                                'createdAt',
+                                'updatedAt'
+                            ]
+                        },
                         required: true,
+                        include: [
+                            {
+                                model: modelos.PeriodosAcademicos,
+                                attributes: ['nivel'],
+                                required: true,
+                            },
+                            {
+                                model:modelos.Mallas,
+                                required: true,
+                                attributes:['idCarrera']
+                            }
+                        ],
+                    }, 
+                    {
+                        model: modelos.Personas,
+                        attributes:{
+                            exclude: [
+                                'id',
+                                'psw',
+                                'semilla',
+                                'enLinea',
+                                'estado',
+                                'createdAt',
+                                'updatedAt'
+                            ]
+                        },
+                        required:true
                     }
-                    
                 ]
-            }
-        ]
+
     }).then(data => {
         return res.status(200).json({
             transaccion: true,
@@ -83,7 +104,6 @@ let obtenerAsignaturas = (req, res) => {
 
 // Estudiante
 let obtenerCupo = (req, res) => {
-    console.log(req.body)
     let idEstudiante = null
     let idPeriodoLectivo = null
     if (typeof req.body.data.idEstudiante == 'undefined') {

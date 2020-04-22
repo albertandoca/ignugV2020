@@ -46,6 +46,15 @@ module.exports = (sequelize, DataTypes) => {
       },
       targetKey:'id'
     })
+    SolicitudesMatriculas.belongsTo(models.Carreras,{
+      foreignKey:{
+        type: DataTypes.INTEGER,
+        name: 'idCarrera',
+        allowNull:false,
+        unique:false
+      },
+      targetKey:'id'
+    })
   };
   return SolicitudesMatriculas;
 };

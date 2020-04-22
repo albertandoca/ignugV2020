@@ -55,6 +55,11 @@ let leerSolicitudesMatriculas = (req, res) => {
                     'idCarrera',
                     'idPersona'
                 ]
+            },
+            {
+                model: modelos.Carreras,
+                attributes:['detalle'],
+                required:true
             }
         ]
     }).then(data => {
