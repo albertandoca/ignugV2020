@@ -18,6 +18,8 @@ export class DistributivoDocenteComponent implements OnInit {
   public pieChartLegend = true;
   public pieChartPlugins = [];
 
+  charts: Array<any>;
+
   constructor() {
     monkeyPatchChartJsTooltip();
     monkeyPatchChartJsLegend();
@@ -25,6 +27,10 @@ export class DistributivoDocenteComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+
+  renderChart() {
+    console.log('chart1');
   }
 
 }

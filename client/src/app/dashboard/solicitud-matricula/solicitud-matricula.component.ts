@@ -66,9 +66,7 @@ export class SolicitudMatriculaComponent implements OnInit {
    // res.data simpre es un array;
   async periodoLectivoActivo() {
     const res = await this.api.sendApi('periodo-lectivo-activo');
-    console.log(res);
     this.periodoLectivo = res[0] || null;
-    console.log(this.periodoLectivo);
     this.obtenerCupos();
   }
 
@@ -137,13 +135,11 @@ export class SolicitudMatriculaComponent implements OnInit {
 
   modificarEstado(i) {
     this.cuposAsignaturas[i].estado = this.valorCheckbox[i] ? 'Aplicado' : 'Asignado';
-    console.log(this.cuposAsignaturas[i].estado);
   }
 
 
   datosFormulario() {
     this.cuposFiltrados = this.cuposAsignaturas.filter(cupo => cupo.Asignatura.Malla.Carrera.id === this.carreraSelecionada);
-    console.log(this.cuposFiltrados);
     this.valorCheckbox = [];
     for (const cup of this.cuposFiltrados) {
       if (cup.estado === 'Asignado') {

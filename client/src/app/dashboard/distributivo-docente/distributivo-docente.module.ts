@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { MaterialModule } from './../../material.module';
 import { NgModule } from '@angular/core';
@@ -13,7 +14,8 @@ import { DistributivoDocenteComponent } from './distributivo-docente.component';
     CommonModule,
     DistributivoDocenteRoutingModule,
     MaterialModule,
-    ChartsModule
+    ChartsModule,
+    FormsModule
   ]
 })
 export class DistributivoDocenteModule { }
