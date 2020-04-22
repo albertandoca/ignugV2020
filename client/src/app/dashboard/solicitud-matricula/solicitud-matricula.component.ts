@@ -33,7 +33,7 @@ export class SolicitudMatriculaComponent implements OnInit {
   isOptional: boolean;
   realizado: boolean;
   verFiltro: boolean;
-  cuposFiltrados: CupoAsignatura[];
+  cuposFiltrados: Array<CupoAsignatura>;
   selectedFile: File[];
   nombreArchivo: string;
 
