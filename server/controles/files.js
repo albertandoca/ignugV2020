@@ -37,6 +37,7 @@ let upload = (req, res, err) => {
 
 
 let verArchivo = (req, res) => {
+<<<<<<< HEAD
     let urlFile = req.params.urlFile
     let directorio = req.params.directorio
     let pathFile = validaPath(urlFile, directorio)
@@ -50,6 +51,19 @@ let verArchivo = (req, res) => {
             return res.status(200).send('No existe el archivo')
         }
     })
+=======
+  let urlFile = req.params.urlFile
+  let directorio = req.params.directorio
+  let pathFile = validaPath(urlFile, directorio)
+  
+  fs.exists(pathFile, (exists) => {
+    if (exists) {
+      return res.status(200).sendFile(path.resolve(pathFile))
+    } else {
+      return res.status(200).send('No existe el archivo')
+    }
+  })
+>>>>>>> d282a7f13557adaf4eae91b445ad01b6f92e0daa
 }
 
 let eliminarArchivo = (req, res) => {
@@ -67,12 +81,39 @@ let eliminarArchivo = (req, res) => {
 }
 
 let modificarArchivo = (req, res) => {
+<<<<<<< HEAD
     console.log(req) // crear funcion es ApiService
     let urlFile = req.body.data.urlFile
     let directorio = req.body.data.directorio
     let pathFile = validaPath(urlFile, directorio)
     if (file.originalFilename == '') {
         fs.unlinkSync(file.path)
+=======
+  let urlFile = req.body.data.urlFile
+  let directorio = req.body.data.directorio
+  let pathFile = validaPath(urlFile, directorio)
+  if (file.originalFilename == '') {
+    fs.unlinkSync(file.path)
+    return res.status(400).json({
+      transaccion: false,
+      data: [],
+      msg: 'No existe el archivo de origen'
+    })
+  } else {
+    fs.exists(pathFile, (exists) => {
+      if (exists) {
+        fs.unlinkSync(pathFile)
+        let url = file.path
+        url = url.split('/')
+        let urlFile = [url[url.length - 1]]
+        return res.status(200).json({
+          transaccion: true,
+          data: urlFile,
+          token: req.token,
+          msg: urlFile.length
+        })
+      } else {
+>>>>>>> d282a7f13557adaf4eae91b445ad01b6f92e0daa
         return res.status(400).json({
             transaccion: false,
             data: [],

@@ -1,10 +1,20 @@
+<<<<<<< HEAD
+=======
+import { ToastrService } from 'ngx-toastr';
+import { LogService } from './../servicios/log.service';
+>>>>>>> d282a7f13557adaf4eae91b445ad01b6f92e0daa
 import { ApiService } from './../servicios/api.service';
 import { MenuPrincipalService } from '../servicios/menu-principal.service';
 import { AutorizadoService } from './../servicios/autorizado.service';
 import { PersonaLogin } from './../modelos/persona-login';
+<<<<<<< HEAD
 import { Component, OnInit} from '@angular/core';
+=======
+import { Component, OnInit, HostListener} from '@angular/core';
+>>>>>>> d282a7f13557adaf4eae91b445ad01b6f92e0daa
 import { Router } from '@angular/router';
 import { ServerService } from '../servicios/server.service';
+import { log } from 'util';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,7 +36,13 @@ export class DashboardComponent implements OnInit {
     public menuService: MenuPrincipalService,
     private router: Router,
     private server: ServerService,
+<<<<<<< HEAD
     private api: ApiService
+=======
+    private api: ApiService,
+    private logService: LogService,
+    private toastr: ToastrService
+>>>>>>> d282a7f13557adaf4eae91b445ad01b6f92e0daa
   ) { }
 
   ngOnInit(): void {
@@ -36,6 +52,10 @@ export class DashboardComponent implements OnInit {
     this.iconoAgenda = 'more_vert';
     this.mensaje();
     this.notificacion();
+<<<<<<< HEAD
+=======
+
+>>>>>>> d282a7f13557adaf4eae91b445ad01b6f92e0daa
   }
 
   controlMenuPrincipal() {
@@ -75,7 +95,34 @@ export class DashboardComponent implements OnInit {
     };
     let res: any;
     res = await this.api.verFileServer('ver-archivo', datos);
-    console.log(res);
     return res;
+  }
+
+  logOut() {
+    localStorage.removeItem('loginKey');
+    localStorage.removeItem('titulo');
+    this.logService.logOut().subscribe(res => {
+      if (res.data[0] > 0) {
+        this.router.navigate(['/login']);
+      } else {
+        this.toastr.warning('No hay comunicación con el servidor, intente nuevamente', 'Logout fallo');
+      }
+    }, err => {
+      this.toastr.warning('No hay comunicación con el servidor, intente nuevamente', 'Logout fallo');
+    });
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  handleKeyDown(event: KeyboardEvent) {
+    if (event.key === 'F5' || event.code === 'F5') {
+      event.stopPropagation();
+      this.router.navigate([this.router.url]);
+    }
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  unloadHandler(event: Event) {
+    localStorage.setItem('titulo', this.menuService.titulo);
+    return;
   }
 }

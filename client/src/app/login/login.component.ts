@@ -6,7 +6,7 @@ import { OlvidoPswComponent } from './olvido-psw/olvido-psw.component';
 import { AutorizadoService } from './../servicios/autorizado.service';
 import { PersonaLogin } from './../modelos/persona-login';
 import { DataRx } from './../modelos/data-rx';
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, HostListener} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
@@ -88,8 +88,13 @@ export class LoginComponent implements OnInit {
       disableClose: true,
       autoFocus: true,
       data: {
+<<<<<<< HEAD
         // identificacion: this.identificacion,
         // emailInstitucional: this.emailInstitucional
+=======
+        identificacion: 'son mis datos',
+        emailInstitucional: this.emailInstitucional
+>>>>>>> d282a7f13557adaf4eae91b445ad01b6f92e0daa
       }
     });
 
@@ -98,6 +103,15 @@ export class LoginComponent implements OnInit {
       console.log(res);
     });
   }
+
+  @HostListener('window:keydown', ['$event'])
+  handleKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter' || event.code === 'Enter') {
+      event.preventDefault();
+      this.logIn();
+    }
+  }
+
 }
 
 

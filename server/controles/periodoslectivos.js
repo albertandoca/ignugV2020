@@ -24,7 +24,6 @@ let periodoLectivoActivo = (req, res) => {
             estado: true
         }
     }).then(data => {
-        console.log(data)
         let datos = [data]
         return res.status(200).json({
             transaccion: true,

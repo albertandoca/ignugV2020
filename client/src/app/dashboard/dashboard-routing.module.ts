@@ -17,10 +17,15 @@ const routes: Routes = [
       {path: 'institutos', loadChildren: () => import('./institutos/institutos.module').then(m => m.InstitutosModule)},
       {path: 'solicitud-matricula', loadChildren: () => import('./solicitud-matricula/solicitud-matricula.module')
       .then(m => m.SolicitudMatriculaModule)},
+<<<<<<< HEAD
       {path: 'docentes-asignaturas', loadChildren: () => import('./docentes-asignaturas/docentes-asignaturas.module')
       .then(m => m.DocentesAsignaturasModule)},
       {path: 'perfiles-docentes', loadChildren: () => import('./perfiles-docentes/perfiles-docentes.module')
       .then(m => m.PerfilesDocentesModule)},
+=======
+      {path: 'distributivo-docente', loadChildren: () => import('./distributivo-docente/distributivo-docente.module')
+      .then(m => m.DistributivoDocenteModule)}
+>>>>>>> d282a7f13557adaf4eae91b445ad01b6f92e0daa
     ]
   }
 ];

@@ -46,7 +46,6 @@ export class SolicitudMatriculaComponent implements OnInit {
 
   ngOnInit(): void {
     this.carreraSelecionada = 999;
-    this.openDialog();
     this.periodoLectivoActivo();
   }
 
@@ -77,12 +76,18 @@ export class SolicitudMatriculaComponent implements OnInit {
     this.carreras = [];
     this.verCuposAsignaturas = 0;
     this.verFiltro = true;
+<<<<<<< HEAD
     this.docentesAsignaturas = await this.api.sendApi('obtener-cupos', this.periodoLectivo.id);
     console.log(this.docentesAsignaturas);
     if (this.docentesAsignaturas) {
+=======
+    this.cuposAsignaturas = await this.api.sendApi('obtener-cupos', this.periodoLectivo.id);
+    if (!this.cuposAsignaturas || this.cuposAsignaturas.length === 0) {
+>>>>>>> d282a7f13557adaf4eae91b445ad01b6f92e0daa
       this.verCuposAsignaturas = 2;
       this.verFiltro = false;
     } else {
+      this.openDialog();
       const carrerasAux = [];
       for (const cupo of this.docentesAsignaturas) {
         await carrerasAux.push(cupo.Asignatura.Malla.Carrera);
