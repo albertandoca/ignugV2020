@@ -1,35 +1,112 @@
-<!--<main class="paginador" *ngIf="!nuevo">
+<main fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" *ngIf="!nuevo">
+    <div fxFlex="60%" class="filtro">
+        <mat-form-field>
+            <mat-label>Buscar</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+        </mat-form-field>
+    </div>
+    <div fxFlex="40%" class="botonesPrincipal">
+        <button mat-stroked-button class="icono" (click)="crearRegistro() " matTooltip="Nuevo registro">
+      <mat-icon>add_circle</mat-icon>
+    </button>
+    </div>
+</main>
+
+<main class="contenedorTabla" *ngIf="!nuevo">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!--checkbox-->
+        <ng-container matColumnDef="select" sticky="true">
+            <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                </mat-checkbox>
+            </td>
+        </ng-container>
+
+        <!--Columnas-->
+
+        <ng-container matColumnDef="areaAcademica">
+            <th mat-header-cell *matHeaderCellDef> Area Academica </th>
+            <td mat-cell *matCellDef="let element"> {{element.areaAcademica}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="detalle">
+            <th mat-header-cell *matHeaderCellDef> Detalle </th>
+            <td mat-cell *matCellDef="let element"> {{element.detalle}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="createdAt">
+            <th mat-header-cell *matHeaderCellDef> Creado el: </th>
+            <td mat-cell *matCellDef="let element"> {{element.createdAt | date: 'short'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="updatedAt">
+            <th mat-header-cell *matHeaderCellDef> Modificado el: </th>
+            <td mat-cell *matCellDef="let element"> {{element.updatedAt | date: 'short'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="evento" stickyEnd>
+            <th mat-header-cell *matHeaderCellDef> Evento</th>
+            <td class="edit" mat-cell *matCellDef="let element; let i = index">
+                <button mat-stroked-button mat-icon-button color="primary" aria-label="Editar registro" matTooltip="Editar registro" (click)="editar(element.id) ">
+          <mat-icon>edit</mat-icon>
+        </button>
+                <button mat-stroked-button mat-icon-button color="warn" aria-label="Eliminar registro" matTooltip="Eliminar registro" (click)="eliminar(element.id)">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="encabezadoTabla"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+</main>
+<main class="paginador" *ngIf="!nuevo">
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-</main>-->
+</main>
 
 formulario de ingreso o modificación de datos
 
 <!-- lado izquierdo  -->
 
-<!-- <main *ngIf="nuevo">-->
+<main *ngIf="nuevo">
 
-<!-- lado izquierdo  -->
-<!--<form [formGroup]="tipoInstalacionForm" enctype="multipart/form-data">
-    <mat-grid-list cols="2" rowHeight="500px">
-        <div class="controlesRegistro">
-            <input type="hidden" formControlName="id">
+    <!-- lado izquierdo  -->
+    <form [formGroup]="perfilDocenteForm" enctype="multipart/form-data">
+        <mat-grid-list cols="1" rowHeight="500px">
             <div class="controlesRegistro">
-                <button (click)="agregarDescripcion() " mat-raised-button color="primary">+ Añadir</button>
-            </div>
-            <h3>
-                <b>Ingrese el tipo de instalación:</b>
-            </h3>
-            <div formArrayName="descripciones" *ngFor="let descripcion of descripciones.controls; let i = index">
-                <div [formGroupName]="i">
-                    <div class="controlesRegistro row">
-                        <label [attr.for]="'descripcion' + i"></label >
-                             <input  type = "text" [attr.id] = "'descripcion' + i" matInput formControlName="descripcion" matInput placeholder="Descripción" >
+                <input type="hidden" formControlName="id">
+                <div class="controlesRegistro">
+                    <button (click)="agregarDetalle() " mat-raised-button color="primary">+ Añadir Conocimiento</button>
+                </div>
+                <h3>
+                    <b>Elija un Area y luego ingrese el tipo de conociemnto:</b>
+                </h3>
+                <div formArrayName="detalles" *ngFor="let detalle of detalles.controls; let i = index">
+                    <div [formGroupName]="i">
+                        <div class="controlesRegistro row">
+                            <label [attr.for]="'detalle' + i"></label >
+                             <input  type = "text" [attr.id] = "'detalle' + i" matInput formControlName="detalle" matInput placeholder="Descripción" >
                                 <mat-error>Este campo es obligatorio</mat-error>
                                 <div class="controlesRegistro">
-                                    <button (click)="removerDescripcion(i)" mat-raised-button color="accent">- Borrar</button>
+                                    <button (click)="removerDetalle(i)" mat-raised-button color="accent">- Borrar</button>
                                 </div>
                         </div>
                     </div>
+                    <mat-form-field>
+                  <mat-select formControlName="areaAcademica" placeholder="Area Academica">
+                    <ng-container *ngFor="let areaAcademica of areasAcademicas">
+                      <mat-option value="{{areaAcademica.value}}">{{areaAcademica.value}}</mat-option>
+                    </ng-container>
+                  </mat-select>
+                  <mat-error>Este campo es obligatorio</mat-error>
+                </mat-form-field>
                     <div class="controlesRegistro">
                         <button *ngIf="!agregar" (click)="guardarRegistro(i) " mat-raised-button color="primary">Agregar</button>
                         <button  *ngIf="!modificar" (click)="guardarEditar(i) " mat-raised-button color="primary">Modificar</button>
@@ -40,4 +117,4 @@ formulario de ingreso o modificación de datos
             </div>
         </mat-grid-list>
     </form>
-</main> -->
+</main>

@@ -44,6 +44,11 @@ export class PerfilesDocentesComponent implements OnInit {
   get detalles() {
     return this.perfilDocenteForm.get('descripciones') as FormArray;
   }
+  areasAcademicas = [
+    {id: 1, value: 'Ingeniería y Tecnología'},
+    {id: 2, value: 'Ciencias sociales Educación comercial y  derecho'},
+    {id: 3, value: 'Humanidades y Artes'}
+  ];
 
   ngOnInit(): void {
     this.nuevo = false;
@@ -52,16 +57,12 @@ export class PerfilesDocentesComponent implements OnInit {
   }
 
   // Trae los datos, establece columnas de la tabla, asigna datasource, paginator y selection (checkbox)
-  leerPerfilDocente() {
-    this.http.get<DataRx>(`${this.api.url}leer-tipo-instalaciones`)
-    .subscribe(res => {
-      if (res.transaccion) {
-        // tslint:disable-next-line:triple-equals
-        if (res.data.length.toString() == res.msg) {
-          this.perfilesDocentes = res.data;
+  async leerPerfilDocente() {
+    this.perfilDocente = await this.api.sendApi('leer-perfiles-docentes');
+    if (this.perfilDocente)   {
           this.displayedColumns = [
             'select',
-            'idDocente',
+            'areaAcademica',
             'detalle',
             'createdAt',
             'updatedAt',
@@ -71,8 +72,7 @@ export class PerfilesDocentesComponent implements OnInit {
           this.dataSource.paginator = this.paginator;
         }
       }
-    });
-  }
+
   cancelado() {
     this.nuevo = false;
     this.detalles.controls.splice(0, this.detalles.length);
@@ -99,28 +99,24 @@ export class PerfilesDocentesComponent implements OnInit {
     console.log(this.perfilDocenteForm.value);
   }
 
-  guardarEditar(i: number) {
+  async guardarEditar(i: number) {
     const datos = this.perfilDocenteForm.value;
     this.perfilDocente  = {
       id: 0,
       idDocente: 0,
-      detalle: datos.detalless[i].detalle,
+      areaAcademica: datos.areasAcademicas[i].areaAcademica,
+      detalle: datos.detalles[i].detalle,
       estado: true,
       createdAt: new Date(Date.now()),
       updatedAt: new Date(Date.now())
     };
 
-    this.http.put<DataRx>(`${this.api.url}modificar-tipo-instalaciones`, this.perfilDocente)
-    .subscribe(res => {
-      console.log(res);
-      if (res.transaccion) {
-        // tslint:disable-next-line:triple-equals
-        if (res.data.length.toString() == res.msg) {
-           // tslint:disable-next-line:quotemark
-           console.log("modificado");
+    this.perfilDocente = await this.api.sendApi('modificar-perfiles-docentes');
+    if (this.perfilDocente)    {
+           console.log('modificado');
         }
-      }
-    });
+
+
     // tslint:disable-next-line:quotemark
     this.openSnackBar(this.perfilDocente.detalle, '¡Ha sido Modificado con exito!');
     // this.leerPerfilDocente()
@@ -129,7 +125,7 @@ export class PerfilesDocentesComponent implements OnInit {
 
   eliminar(id: number) {
     this.perfilDocente = this.perfilesDocentes.find(element => element.id === id);
-    this.http.put<DataRx>(`${this.api.url}eliminar-tipo-instalaciones`, this.perfilDocente)
+    this.http.put<DataRx>(`${this.api.url}eliminar-perfiles-docentes`, this.perfilDocente)
     .subscribe(res => {
       console.log(res);
       if (res.transaccion) {
@@ -146,7 +142,7 @@ export class PerfilesDocentesComponent implements OnInit {
   }
 
   // formulario dinamico
-  agregarDescripcion() {
+  agregarDetalle() {
     const detalleFormGroup  = this.fb.group({
       // tslint:disable-next-line:max-line-length
       detalle: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('^[A-Z0-9 -_ÁÉÍÓÚÑÜ/#&]*$')]],
@@ -171,12 +167,13 @@ export class PerfilesDocentesComponent implements OnInit {
     this.perfilDocente = {
       id: 0,
       idDocente: 0,
+      areaAcademica: datos.areasAcademicas  [i].areaAcademica,
       detalle: datos.detalles[i].detalle,
       estado: true,
       createdAt: new Date(Date.now()),
       updatedAt: new Date(Date.now())
     };
-    this.http.post<DataRx>(`${this.api.url}crear-tipo-instalaciones`, this.perfilDocente)
+    this.http.post<DataRx>(`${this.api.url}crear-perfiles-docentes`, this.perfilDocente)
     .subscribe(res => {
       console.log(res);
       console.log('hola2');
@@ -217,7 +214,7 @@ export class PerfilesDocentesComponent implements OnInit {
   crearPerfilDocenteForm() {
     this.perfilDocenteForm = this.fb.group({
       id: ['0', [Validators.required, Validators.pattern('^[0-9]*$')]],
-      idDocente: ['0', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      areaAcademica: ['', [Validators.required]],
       detalles: this.fb.array([]),
       createdAt: [''],
       updatedAt: [''],
