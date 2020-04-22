@@ -18,6 +18,8 @@ const routes: Routes = [
       {path: 'solicitud-matricula', loadChildren: () => import('./solicitud-matricula/solicitud-matricula.module')
       .then(m => m.SolicitudMatriculaModule)},
       {path: 'aceptar-matricula', loadChildren: () => import('./aceptar-matricula/aceptar-matricula.module').then(m => m.AceptarMatriculaModule)},
+      {path: 'distributivo-docente', loadChildren: () => import('./distributivo-docente/distributivo-docente.module')
+      .then(m => m.DistributivoDocenteModule)}
     ]
   }
 ];

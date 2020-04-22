@@ -1,3 +1,4 @@
+import { InformacionComponent } from './dashboard/aceptar-matricula/informacion/informacion.component';
 import { MenuPrincipalService } from './servicios/menu-principal.service';
 import { apiService } from './servicios/api.service';
 import { LogService } from './servicios/log.service';
@@ -50,7 +51,8 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    OlvidoPswComponent
+    OlvidoPswComponent,
+    InformacionComponent
   ]
 })
 export class AppModule { }

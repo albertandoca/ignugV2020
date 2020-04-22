@@ -11,22 +11,23 @@ if (config.use_env_variable) {
 let modelos = require('../models')
 let Op = Sequelize.Op;
 
-let leerSolicitudesMatricula = (req, res) => {
 
-    modelos.Matriculas.findAll({
+let leerSolicitudesMatriculas = (req, res) => {
+    
+    modelos.SolicitudesMatriculas.findAll({
         where: {
             estado: 'Aplicado'
         },
-        include: [
+        include:[
             {
-                model: modelos.PeriodoLectivo,
-                attributes: ['detalle', 'fechaInicio','fechaFin'],
-                require: true,
+                model: modelos.PeriodosLectivos,
+                attributes:['detalle','fechaInicio','fechaFin'],
+                required: true,
             },
             {
                 model: modelos.PersonasRoles,
-                require: true,
-                include: [
+                required:true,
+                include:[
                     {
                         model: modelos.Personas,
                         attributes:{
@@ -41,13 +42,18 @@ let leerSolicitudesMatricula = (req, res) => {
                                 'updatedAt'
                             ]
                         },
-                        require: true
+                        required:true
                     },
                     {
                         model: modelos.Carreras,
-                        attributes: ['detalle', 'id'],
-                        require: true
+                        attributes:['detalle','id'],
+                        required:true
                     }
+                ],
+                exclude:
+                [
+                    'idCarrera',
+                    'idPersona'
                 ]
             }
         ]
@@ -66,24 +72,23 @@ let leerSolicitudesMatricula = (req, res) => {
     })
 }
 
-
 let leerSolicitudMatricula = (req, res) => {
     let idEstudiante = null
-    let idPeriodoAcademico = null
+    let idPeriodoLectivo = null
     if (req.body.data.idEstudiante == undefined) {
         idEstudiante = req.body.idPersona
         idPeriodoLectivo = req.body.data
     } else {
         idEstudiante = req.body.data.idEstudiante
-        idPeriodoLectivo = req.body.data
+        idPeriodoLectivo = req.body.data.idPeriodoLectivo
     }
     
-    console.log(id)
-    console.log(idPeriodoAcademico)
+    console.log(idEstudiante)
+    console.log(idPeriodoLectivo)
     modelos.SolicitudesMatriculas.findOne({
         where: {
-            idEstudiante: id,
-            idPeriodoAcademico: idPeriodoAcademico
+            idEstudiante: idEstudiante,
+            idPeriodoLectivo: idPeriodoLectivo
         }
     }).then(data => {
         return res.status(200).json({
@@ -143,8 +148,8 @@ let updateSolicitudMatricula = (req, res) => {
 }
 
 module.exports = {
-    leerSolicitudesMatricula,
     leerSolicitudMatricula,
     uploadSolicitudMatricula,
-    updateSolicitudMatricula
+    updateSolicitudMatricula,
+    leerSolicitudesMatriculas
 }

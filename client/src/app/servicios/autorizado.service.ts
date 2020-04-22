@@ -1,8 +1,8 @@
+import { MenuPrincipalService } from './menu-principal.service';
 import { Router } from '@angular/router';
 import { PersonaLogin } from './../modelos/persona-login';
 import { Injectable } from '@angular/core';
 import * as jwt_decode from 'jwt-decode';
-import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,8 @@ export class AutorizadoService {
   private token: string;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private menuService: MenuPrincipalService
   ) {
     const data = JSON.parse(localStorage.getItem('loginKey')) || null;
     if (data) {
@@ -30,19 +31,23 @@ export class AutorizadoService {
     this.iat = decoded.iat;
     this.exp = decoded.exp;
     this.token = token;
-    console.log(this.personaLogin);
     const data =  {
       persona: this.personaLogin,
       tok: this.token
     };
-    console.log(this.iat, '   ', this.exp , '  ', Date.now());
     if (this.exp * 1000 < Date.now() || !this.exp ) {
-      console.log('menr');
       localStorage.removeItem('loginKey');
-      //this.router.navigate(['/login']);
+      this.router.navigate(['/login']);
       return false;
     } else {
       localStorage.setItem('loginKey', JSON.stringify(data));
+      if (this.router.url !== '/dashboard/menu') {
+        this.menuService.estadoMenu(false, 'menu');
+        if (this.menuService.titulo === 'Menú principal') {
+          const titulo = localStorage.getItem('titulo');
+          this.menuService.cambiarTitulo(titulo);
+        }
+      }
       return true;
     }
 

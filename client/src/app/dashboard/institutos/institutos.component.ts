@@ -1,6 +1,6 @@
 import { ToastrService } from 'ngx-toastr';
 import { async } from '@angular/core/testing';
-import { apiService } from './../../servicios/api.service';
+import { ApiService } from './../../servicios/api.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { DataRx } from './../../modelos/data-rx';
@@ -33,7 +33,7 @@ export class InstitutosComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private api: apiService,
+    private api: ApiService,
     private server: ServerService,
     private toastr: ToastrService
   ) {
@@ -86,11 +86,8 @@ export class InstitutosComponent implements OnInit {
 
   // Funciones de gestión de registros
   editar(id: number) {
-    console.log(this.institutos);
     this.instituto = this.institutos.find(element => element.id === id);
     this.institutoForm.setValue(this.instituto);
-    console.log('jjj');
-    console.log(this.institutoForm.value);
   }
 
   eliminar(id: number) {
@@ -102,8 +99,6 @@ export class InstitutosComponent implements OnInit {
     const campo = 'createdAt';
     this.institutoForm.reset();
     this.institutoForm.controls[campo].setValue(new Date(Date.now()));
-    console.log(this.institutoForm.value);
-
   }
 
   guardarRegistro() {

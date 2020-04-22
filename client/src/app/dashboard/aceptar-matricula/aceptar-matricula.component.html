@@ -6,77 +6,59 @@
       <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
     </mat-form-field>
   </div>
+</main>
 
 <main class="contenedorTabla" *ngIf="!nuevo">
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  <!--checkbox-->
-  <ng-container matColumnDef="select">
-    <th mat-header-cell *matHeaderCellDef>
-      <mat-checkbox (change)="$event ? masterToggle() : null"
-                    [checked]="selection.hasValue() && isAllSelected()"
-                    [indeterminate]="selection.hasValue() && !isAllSelected()"
-                    [aria-label]="checkboxLabel()">
-      </mat-checkbox>
-    </th>
-    <td mat-cell *matCellDef="let row">
-      <mat-checkbox (click)="$event.stopPropagation()"
-                    (change)="$event ? selection.toggle(row) : null"
-                    [checked]="selection.isSelected(row)"
-                    [aria-label]="checkboxLabel(row)">
-      </mat-checkbox>
-    </td>
-  </ng-container>
 
   <!--Columnas-->
-
   <ng-container matColumnDef="foto">
     <th mat-header-cell *matHeaderCellDef> Solicitante </th>
     <td mat-cell *matCellDef="let element">
-      <img class="fotografiaPersona" src= "{{url}}ver-archivo/{{element.PersonaRole.Persona?.foto}}/imagen-persona">
+      <img class="fotografiaPersona" src= "{{url}}ver-archivo/{{element.PersonasRole.Persona.foto}}/imagen-persona">
     </td>
   </ng-container>
 
   <ng-container matColumnDef="identificacion">
-    <th mat-header-cell *matHeaderCellDef> Identificacion </th>
-    <td mat-cell *matCellDef="let element"> {{element.PersonaRole.Persona?.identificacion}} </td>
+    <th mat-header-cell *matHeaderCellDef> Identificación </th>
+    <td mat-cell *matCellDef="let element"> {{element.PersonasRole.Persona?.identificacion}} </td>
   </ng-container>
 
   <ng-container matColumnDef="primerNombre">
-    <th mat-header-cell *matHeaderCellDef> RUC </th>
-    <td mat-cell *matCellDef="let element"> {{element.PersonaRole.Persona?.primerNombre}} </td>
+    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+    <td mat-cell *matCellDef="let element"> {{element.PersonasRole.Persona?.primerNombre}} </td>
   </ng-container>
 
   <ng-container matColumnDef="apellidoPaterno">
-    <th mat-header-cell *matHeaderCellDef> RUC </th>
-    <td mat-cell *matCellDef="let element"> {{element.PersonaRole.Persona?.apellidoPaterno}} </td>
+    <th mat-header-cell *matHeaderCellDef> Apellido </th>
+    <td mat-cell *matCellDef="let element"> {{element.PersonasRole.Persona?.apellidoPaterno}} </td>
   </ng-container>
 
   <ng-container matColumnDef="codigoSolicitud">
-    <th mat-header-cell *matHeaderCellDef> Codigo Solicitud</th>
-    <td mat-cell *matCellDef="let element"> {{element.}} </td>
+    <th mat-header-cell *matHeaderCellDef> Código Solicitud </th>
+    <td mat-cell *matCellDef="let element"> {{element.codigoSolicitud}} </td>
   </ng-container>
 
   <ng-container matColumnDef="createdAt">
-    <th mat-header-cell *matHeaderCellDef> Creado el: </th>
+    <th mat-header-cell *matHeaderCellDef> Fecha de Solicitación </th>
     <td mat-cell *matCellDef="let element"> {{element.createdAt | date: 'short'}} </td>
   </ng-container>
 
   <ng-container matColumnDef="detalle">
     <th mat-header-cell *matHeaderCellDef> Periodo Lectivo </th>
-    <td mat-cell *matCellDef="let element"> {{element.updatedAt | date: 'short'}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.PeriodosLectivo.detalle}} </td>
   </ng-container>
+
 
   <ng-container matColumnDef="evento" stickyEnd>
     <th mat-header-cell *matHeaderCellDef> Evento</th>
     <td mat-cell *matCellDef="let element; let i = index">
-      <button mat-icon-button color="primary" aria-label="Editar registro" (click)="editar(element.id)">
+      <button mat-icon-button color="primary" aria-label="Revisar" (click)="openDialog(element.id)">
         <mat-icon>edit</mat-icon>
-      </button>
-      <button mat-icon-button color="warn" aria-label="Eliminar registro" (click)="eliminar(element.id)">
-        <mat-icon>delete_forever</mat-icon>
       </button>
     </td>
   </ng-container>
+
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="encabezadoTabla"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
@@ -86,61 +68,3 @@
 <main class="paginador" *ngIf="!nuevo">
 <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </main>
-
-
-
-<!-- formulario de ingreso o modificación de datos -->
-<main class="dasboardContenedor" *ngIf="nuevo" >
-
-<!-- lado izquierdo  -->
-
-<form [formGroup]="institutoForm">
-
-
-
-
-</form>
-
-lado derecho
-// 1  upload RUC -->
-
-<form enctype="multipart/form-data">
-
-<!-- Frame interno ver pdf -->
-<br>
-<label for="">Subir PDF RUC</label>
-<input type="file" accept="application/pdf" (change)="sendFile($event, 'pdf-ruc')">
-<br>
-{{nombreArchivo}}
-<br>
-<input type="image" (click)="verFile(nombreArchivo[0], 'pdf-ruc')" src="../../../assets/img/icon/adobe_pdf_32.png" >
-
-</form>
-
-
-
-
-
-<!--2  upload Resolución -->
-
-
-
-<mat-form-field>
-<mat-label>Titulo de bachillerato</mat-label>
-<ngx-mat-file-input #tituloBachiller  placeholder="PDF tulo de bachillerato" accept="application/pdf" (change)="sendFile($event, 'imagen-persona')"></ngx-mat-file-input>
-<mat-icon matPrefix color="primary">picture_as_pdf</mat-icon>
-<mat-icon matSuffix style="color:#4CAF50;" *ngIf="!tituloBachiller.empty">check</mat-icon>
-<mat-error *ngIf="tituloBachiller.empty">
-  Email es <strong>necesario</strong>
-</mat-error>
-</mat-form-field>
-{{nombreArchivo}}
-
-<!-- 3  upload Logotipo -->
-
-
-
-
-<input type="image" class="icono" (click)="guardarRegistro() " src="../../../assets/img/icon/check_32.png" matTooltip="Guardar registro" >
-</main>
-

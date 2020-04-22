@@ -10,30 +10,19 @@ import { Component, OnInit } from '@angular/core';
 export class MenuComponent implements OnInit {
 
   constructor(
-    private MenuService: MenuPrincipalService,
+    private menuService: MenuPrincipalService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-
+    this.menuService.cambiarTitulo('Menu principal');
+    this.menuService.estadoMenu(true, 'menu_open');
   }
 
-  personas() {
-    this.MenuService.estadoMenu(false, 'menu');
-    this.MenuService.cambiarTitulo('Personas');
-    this.router.navigate(['/dashboard/personas']);
-  }
-
-  institutos() {
-    this.MenuService.estadoMenu(false, 'menu');
-    this.MenuService.cambiarTitulo('Gestión de institutos');
-    this.router.navigate(['/dashboard/institutos']);
-  }
-
-  solicitudMatricula() {
-    this.MenuService.estadoMenu(false, 'menu');
-    this.MenuService.cambiarTitulo('Solicitud Matricula');
-    this.router.navigate(['/dashboard/solicitud-matricula']);
+  irComponente(titulo: string, url: string ) {
+    this.menuService.estadoMenu(false, 'menu');
+    this.menuService.cambiarTitulo(titulo);
+    this.router.navigate([`dashboard/${url}`]);
   }
 
   aceptarMatricula() {
