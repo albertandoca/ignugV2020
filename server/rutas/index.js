@@ -38,11 +38,7 @@ api.post('/modificar-persona', [autenticarControl.autenticado, sesionControl.act
 
 // EndPoint Log
 api.post('/login', personasControl.logIn)
-<<<<<<< HEAD
-    // api.post('/logout', personasControl.logOut)
-=======
 api.post('/logout', personasControl.logOut)
->>>>>>> d282a7f13557adaf4eae91b445ad01b6f92e0daa
 
 // EndPoint Mallas
 api.post('/leer-mallas', [autenticarControl.autenticado, sesionControl.actualiza], mallasControl.leer)
@@ -77,17 +73,11 @@ api.put('/imagen-logotipo', [autenticarControl.autenticado, sesionControl.actual
 api.put('/imagen-menu', [autenticarControl.autenticado, sesionControl.actualiza, imagenMenuMiddleware], filesControl.modificarArchivo)
 api.put('/imagen-persona', [autenticarControl.autenticado, sesionControl.actualiza, imagenPersonaMiddleware], filesControl.modificarArchivo)
 
-<<<<<<< HEAD
 api.post('/prb', prbControl.prb)
 api.post('/gestionar-docente-asignatura', /*[autenticarControl.autenticado, sesionControl.actualiza]*/ docentesAsignaturasControl.gestionarDocenteAsignatura)
     // EndPoint CuposAsignaturas
-api.post('/obtener-cupos', /*[autenticarControl.autenticado, sesionControl.actualiza],*/ cuposAsignaturasControl.obtenerCupo)
-api.put('/aplicar-cupos', /*[autenticarControl.autenticado, sesionControl.actualiza]*/ cuposAsignaturasControl.aplicarCupo)
-=======
-// EndPoint CuposAsignaturas
-api.post('/obtener-cupos', /*[autenticarControl.autenticado, sesionControl.actualiza], */cuposAsignaturasControl.obtenerCupo)
+api.post('/obtener-cupos', [autenticarControl.autenticado, sesionControl.actualiza], cuposAsignaturasControl.obtenerCupo)
 api.put('/aplicar-cupos', [autenticarControl.autenticado, sesionControl.actualiza], cuposAsignaturasControl.aplicarCupo)
->>>>>>> d282a7f13557adaf4eae91b445ad01b6f92e0daa
 
 
 // EndPoint documentosMatricula
@@ -102,14 +92,14 @@ api.post('/upload-solicitud-matricula', [autenticarControl.autenticado, sesionCo
 api.put('/update.solicitud.matricula', [autenticarControl.autenticado, sesionControl.actualiza], solicitudMatriculaControl.updateSolicitudMatricula)
 
 // EndPoint DocentesAsignaturas
-api.post('/leer-docente-asignatura', /*[autenticarControl.autenticado, sesionControl.actualiza]*/ docentesAsignaturasControl.leerDocenteAsignatura)
-api.post('/obtener-docente-asignatura', /*[autenticarControl.autenticado, sesionControl.actualiza]*/ docentesAsignaturasControl.obtenerDocenteAsignatura)
+api.post('/leer-docente-asignatura', [autenticarControl.autenticado, sesionControl.actualiza], docentesAsignaturasControl.leerDocenteAsignatura)
+api.post('/obtener-docente-asignatura', [autenticarControl.autenticado, sesionControl.actualiza], docentesAsignaturasControl.obtenerDocenteAsignatura)
 
 
 // PerfilesDocentes
-api.post('/leer-perfiles-docentes', [autenticarControl.autenticado, sesionControl.actualiza], perfilesDocentesControl.leerPerfilDocente)
-api.post('/crear-perfiles-docentes', [autenticarControl.autenticado, sesionControl.actualiza], perfilesDocentesControl.crearPerfilDocente)
-api.put('/modificar-perfiles-docentes', [autenticarControl.autenticado, sesionControl.actualiza], perfilesDocentesControl.modificarPerfilDocente)
+api.post('/leer-perfiles-docentes', /*[autenticarControl.autenticado, sesionControl.actualiza],*/ perfilesDocentesControl.leerPerfilDocente)
+api.post('/crear-perfiles-docentes', /*[autenticarControl.autenticado, sesionControl.actualiza],*/ perfilesDocentesControl.crearPerfilDocente)
+api.put('/modificar-perfiles-docentes', /*[autenticarControl.autenticado, sesionControl.actualiza],*/ perfilesDocentesControl.modificarPerfilDocente)
 
 
 // endPoint PeriodosLectivos

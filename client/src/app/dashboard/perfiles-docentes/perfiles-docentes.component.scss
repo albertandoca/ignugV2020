@@ -18,3 +18,37 @@ table {
 .selec {
     padding: 10px;
 }
+
+.logoInstituto {
+    width: 80px;
+    height: 40px;
+    padding-top: 0.2rem;
+    padding-bottom: 0;
+}
+
+.filtro {
+    width: 100%;
+    padding: 0.5rem 2rem;
+}
+
+.filtro * {
+    width: 100%;
+}
+
+.botonesPrincipal {
+    width: 100%;
+    padding: 0.5rem 2rem;
+    text-align: center;
+}
+
+.icono {
+    vertical-align: middle;
+    margin-right: 1rem;
+}
+
+.paginador {
+    padding: 0;
+    margin-top: 0;
+}
+
+@include mat-table-columns(( idDocente: (width: 4rem, padding-left: 0.5rem), areaAcademica: (width: 20rem), detalle: (width: 7rem), createdAt: (width: 8rem, color: gray), updatedAt: (width: 8rem, color: gray), evento: (width: 5rem, aling: center)));

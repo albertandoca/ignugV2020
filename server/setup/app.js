@@ -1,9 +1,9 @@
 ;
 let env = require('dotenv').config()
 
-const EXPRESS =  require('express'),
-      BODYPARSER = require('body-parser'),
-      HELMET = require('helmet')
+const EXPRESS = require('express'),
+    BODYPARSER = require('body-parser'),
+    HELMET = require('helmet')
 
 let app = EXPRESS(),
     passport = require('passport'),
@@ -17,7 +17,7 @@ let app = EXPRESS(),
         secret: process.env.KEY_SESSION,
         resave: false,
         saveUninitialized: true,
-        name : 'sessionID',
+        name: 'sessionID',
         cookie: {
             httpOnly: false,
             // expires: new Date(Date.now() + process.env.TIEMPO),
@@ -29,11 +29,11 @@ let app = EXPRESS(),
         optionsSuccessStatus: 200
     }
 
-    if (process.env.NODE_ENV === 'production') {
-        app.set('trust proxy', 1)
-        sess.cookie.secure = true
-    }
-    
+if (process.env.NODE_ENV === 'production') {
+    app.set('trust proxy', 1)
+    sess.cookie.secure = true
+}
+
 app.use(HELMET())
 
 app.use(BODYPARSER.urlencoded({
@@ -55,13 +55,11 @@ app.use(passport.session());
     req.session.views[pathname] = (req.session.views[pathname] || 0) + 1
     next()
 })
-
 app.get('/foo', (req, res, next) => {
     res.send('las visitas de esta página son ' + req.session.views['/foo'])
     console.log(req.session)
     console.log(req.sessionID)
 })
-
 app.get('/bar', (req, res, next) => {
     res.send('las visitas de esta página son ' + req.session.views['/bar'])
     console.log(req.session)
@@ -71,7 +69,7 @@ app.get('/bar', (req, res, next) => {
 modelos.sequelize.sync().then(() => {
     console.log('DB en línea...')
 }).catch(err => {
-    console.log(err) 
+    console.log(err)
 })
 
 app.use('/server', rutas)

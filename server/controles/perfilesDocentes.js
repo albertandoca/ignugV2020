@@ -11,17 +11,22 @@ if (config.use_env_variable) {
 let modelos = require('../models')
 let Op = Sequelize.Op;
 
-
 let leerPerfilDocente = (req, res) => {
     modelos.PerfilesDocentes.findAll({
+        attributes: {
+            exclude: [
+                'estado'
+            ]
+        },
         where: {
             estado: true
         }
-    }).then(instalaciones => {
+    }).then(perfilesDocentes => {
         return res.status(200).json({
             transaccion: true,
-            data: instalaciones,
-            msg: instalaciones.length
+            data: perfilesDocentes,
+            token: req.token,
+            msg: perfilesDocentes.length
         })
     }).catch(err => {
         return res.status(500).json({

@@ -1,6 +1,7 @@
+import { ServerService } from './../../servicios/server.service';
 import { ApiService } from './../../servicios/api.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
 import { MaterialModule } from './../../material.module';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
@@ -18,6 +19,7 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     CommonModule,
     DocentesAsignaturasRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     MaterialModule,
     MaterialFileInputModule,
     FlexLayoutModule

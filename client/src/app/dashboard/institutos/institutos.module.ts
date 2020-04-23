@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 import { ServerService } from './../../servicios/server.service';
 import { ApiService } from './../../servicios/api.service';
-=======
->>>>>>> d282a7f13557adaf4eae91b445ad01b6f92e0daa
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './../../material.module';

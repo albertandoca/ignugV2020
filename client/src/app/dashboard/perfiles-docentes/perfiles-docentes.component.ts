@@ -42,7 +42,7 @@ export class PerfilesDocentesComponent implements OnInit {
       this.selection = new SelectionModel<PerfilesDocentes>(true, []);
    }
   get detalles() {
-    return this.perfilDocenteForm.get('descripciones') as FormArray;
+    return this.perfilDocenteForm.get('detalles') as FormArray;
   }
   areasAcademicas = [
     {id: 1, value: 'Ingeniería y Tecnología'},
@@ -214,6 +214,7 @@ export class PerfilesDocentesComponent implements OnInit {
   crearPerfilDocenteForm() {
     this.perfilDocenteForm = this.fb.group({
       id: ['0', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      idDocente: ['0', [Validators.required, Validators.pattern('^[0-9]*$')]],
       areaAcademica: ['', [Validators.required]],
       detalles: this.fb.array([]),
       createdAt: [''],

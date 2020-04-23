@@ -75,7 +75,7 @@ drop(event: CdkDragDrop <string[]>) {
 
   // Trae los datos, establece columnas de la tabla, asigna datasource, paginator y selection (checkbox)
   async leerDocentesAsignaturas() {
-    this.docenteAsignaturas = await this.api.sendApi('leer-docenteAsignaturas');
+    this.docenteAsignaturas = await this.api.sendApi('leer-docente-asignatura');
     if (this.docenteAsignaturas) {
       this.displayedColumns = [
         'select',

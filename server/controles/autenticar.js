@@ -5,9 +5,9 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.js')[env]
 let sequelize;
 if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+    sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
+    sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 let modelos = require('../models')
 
@@ -19,7 +19,7 @@ let autenticado = (req, res, next) => {
     if (token && idPersona) {
         modelos.Personas.findOne({
             attributes: ['semilla'],
-            where: {id: idPersona}
+            where: { id: idPersona }
         }).then(data => {
             if (data) {
                 jwt.verify(token, data.semilla, (err, decoded) => {
@@ -31,7 +31,7 @@ let autenticado = (req, res, next) => {
                         })
                     } else {
                         req.decoded = decoded
-                        req.token = jwt.sign({data: req.decoded.data}, data.semilla, {
+                        req.token = jwt.sign({ data: req.decoded.data }, data.semilla, {
                             algorithm: 'HS256',
                             expiresIn: process.env.TIEMPO
                         })
