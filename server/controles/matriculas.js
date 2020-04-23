@@ -13,6 +13,26 @@ let Op = Sequelize.Op;
 
 
 // Estudiante
+
+let encontrarMatricula = (req, res) => {
+    
+    modelos.Matriculas.findAll({
+    }).then(data => {
+        return res.status(200).json({
+            transaccion: true,
+            data: data,
+            token: req.token,
+            msg: data.length
+        })
+    }).catch(err => {
+        return res.status(500).json({
+            transaccion: false,
+            data: null,
+            msg: 'Error del servidor'
+        })
+    })
+}   
+
 let guardarMatricula = (req, res) => {
     let data = req.body.data
     
@@ -52,5 +72,6 @@ let guardarMatricula = (req, res) => {
 
 
 module.exports = {
-    guardarMatricula
+    guardarMatricula,
+    encontrarMatricula
 }

@@ -5,6 +5,8 @@ module.exports = {
 
       return queryInterface.bulkInsert('DocumentosMatriculas', [
         {
+          //observaciones en blanco !
+          //
           pdfTituloGrado:'etKIPZBjp0Mk5AGQVoPdwbmQ.pdf',
           pdfAsignacionCupo:'RsK_lYY_x9cWJUvi7RtGCF66.pdf',
           pdfCedula:'hRAEVlDD7lbXsN3lTKlA8u7K.pdf',
@@ -25,6 +27,7 @@ module.exports = {
           updatedAt: new Date()
         },
         {
+
           pdfTituloGrado:'etKIPZBjp0Mk5AGQVoPdwbmQ.pdf',
           pdfAsignacionCupo:'RsK_lYY_x9cWJUvi7RtGCF66.pdf',
           pdfCedula:'hRAEVlDD7lbXsN3lTKlA8u7K.pdf',

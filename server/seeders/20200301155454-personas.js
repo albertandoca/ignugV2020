@@ -46,7 +46,7 @@ module.exports = {
         apellidoPaterno: 'GALLARDO',
         apellidoMaterno: 'GUERRERO',
         emailPersonal: 'gerf@ss.aa',
-        emailInstitucional: 'aaaf@yavirac.edu.ec',
+        emailInstitucional: 'meg.gallardo@yavirac.edu.ec',
         foto: '6cEXUdnfKMw4Q7Xzx4H3CtzH.png',
         psw: bcrypt.hashSync('12345678', bcrypt.genSaltSync(10), null),
         semilla: 'hfahlskdhfalskd',

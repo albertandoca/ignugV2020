@@ -25,8 +25,8 @@ let api = EXPRESS.Router(),
     documentosMatriculaControl = require('../controles/documentosmatricula'),
     solicitudMatriculaControl = require('../controles/solicitudesMatricula'),
     periodosLectivosControl = require('../controles/periodoslectivos'),
-    matriculaControl = require('../controles/matriculas')
-
+    matriculaControl = require('../controles/matriculas'),
+    carreraControl = require('../controles/carrera')
 // EndPoint Personas
 api.post('/leer-persona', [autenticarControl.autenticado, sesionControl.actualiza], personasControl.leer)
 api.post('/crear-persona', [autenticarControl.autenticado, sesionControl.actualiza], personasControl.crear)
@@ -96,6 +96,8 @@ api.post('/periodo-lectivo-activo', [autenticarControl.autenticado, sesionContro
 
 //End Point Matricula
 api.post('/guardar-matricula',matriculaControl.guardarMatricula)
-
+api.post('/encontrar-matricula',matriculaControl.encontrarMatricula)
+//End Point Carreras
+api.post('/leer-carrera',carreraControl.leerCarrera)
 module.exports = api
 

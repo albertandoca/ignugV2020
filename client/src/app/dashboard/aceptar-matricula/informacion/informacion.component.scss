@@ -54,7 +54,7 @@ tr.example-element-row:not(.example-expanded-row):active {
   display:inline-block;
   text-align:center;
   justify-content:center;
-  max-width: 500px;
+  max-width: 550px;
 }
 .example-header-image {
   background-size: cover;
@@ -67,7 +67,7 @@ tr.example-element-row:not(.example-expanded-row):active {
   border-radius: 100%;
 }
 .example-card1 {
-  max-width: 400px;
+  max-width: 700px;
   display:inline-block;
   text-align:center;
   justify-content:center;
@@ -84,7 +84,13 @@ tr.example-element-row:not(.example-expanded-row):active {
 }
 .tamaño{
   display:inline-block;
-  text-align:center;
+  text-align:left;
   justify-content:center;
   font-size: small;
+}
+.bordear{
+  margin-right: 10px;
+}
+.alineacion{
+  text-align: left;
 }

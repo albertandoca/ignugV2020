@@ -6,7 +6,7 @@ import { MaterialModule } from './../material.module';
 import { DashboardComponent } from './dashboard.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { AvisoLegalComponent } from './solicitud-matricula/aviso-legal/aviso-legal.component';
 
@@ -19,7 +19,9 @@ import { AvisoLegalComponent } from './solicitud-matricula/aviso-legal/aviso-leg
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    PdfViewerModule
+
   ],
   entryComponents: [
     AvisoLegalComponent
