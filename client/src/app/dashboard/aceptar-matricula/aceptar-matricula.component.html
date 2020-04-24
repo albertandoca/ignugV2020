@@ -8,8 +8,8 @@
   </div>
 </main>
 
-<main class="contenedorTabla" *ngIf="!nuevo">
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<main class="contenedorTabla centro" *ngIf="!nuevo">
+<table class="centro" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <!--Columnas-->
   <ng-container matColumnDef="foto">
@@ -49,6 +49,10 @@
     <td mat-cell *matCellDef="let element"> {{element.PeriodosLectivo.detalle}} </td>
   </ng-container>
 
+  <ng-container matColumnDef="malla">
+    <th mat-header-cell *matHeaderCellDef> Carrera </th>
+    <td mat-cell *matCellDef="let element"> {{element.Carrera.detalle}} </td>
+  </ng-container>
 
   <ng-container matColumnDef="evento" stickyEnd>
     <th mat-header-cell *matHeaderCellDef> Evento</th>

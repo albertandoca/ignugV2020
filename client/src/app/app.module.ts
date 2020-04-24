@@ -1,6 +1,6 @@
 import { InformacionComponent } from './dashboard/aceptar-matricula/informacion/informacion.component';
 import { MenuPrincipalService } from './servicios/menu-principal.service';
-import { apiService } from './servicios/api.service';
+import { ApiService } from './servicios/api.service';
 import { LogService } from './servicios/log.service';
 import { ServerService } from './servicios/server.service';
 import { AutorizadoService } from './servicios/autorizado.service';
@@ -20,6 +20,7 @@ import { MaterialModule } from './material.module';
 import { OlvidoPswComponent } from './login/olvido-psw/olvido-psw.component';
 import { ToastrModule } from 'ngx-toastr';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     FlexLayoutModule,
     MaterialModule,
     ToastrModule.forRoot(),
+    ChartsModule,
     MaterialFileInputModule
   ],
   exports: [
@@ -46,7 +48,7 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     AutorizadoService,
     ServerService,
     LogService,
-    apiService,
+    ApiService,
     MenuPrincipalService
   ],
   bootstrap: [AppComponent],

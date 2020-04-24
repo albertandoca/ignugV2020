@@ -1,3 +1,5 @@
+import { Persona } from './../../modelos/persona';
+import { ApiService } from './../../servicios/api.service';
 import { Solicitud } from './../../modelos/solicitud';
 import { InformacionComponent } from './informacion/informacion.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -5,7 +7,6 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { ServerService } from './../../servicios/server.service';
-import { apiService } from './../../servicios/api.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { trigger, transition, state, style, animate } from '@angular/animations';
@@ -31,13 +32,15 @@ export class AceptarMatriculaComponent implements OnInit {
   url: string;
   nuevo: boolean;
   public idEstudiante :number;
-  public idPeriodoLectivo: number
+  public idPeriodoLectivo: number;
+  public idPersonaSeleccionada: number;
+  public idCarrera: number;
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
   constructor(
     private dialog: MatDialog,
-    private api: apiService,
+    private api: ApiService,
     private server: ServerService,
     private toastr: ToastrService
   ) {
@@ -63,6 +66,7 @@ export class AceptarMatriculaComponent implements OnInit {
         'codigoSolicitud',
         'createdAt',
         'detalle',
+        'malla',
         'evento'
       ];
       this.dataSource = new MatTableDataSource(this.solicitudes);
@@ -78,7 +82,7 @@ isAllSelected() {
 
 applyFilter(event: Event) {
   const filterValue = (event.target as HTMLInputElement).value;
-  this.dataSource.filter = filterValue.trim().toLowerCase();
+  this.dataSource.filter = filterValue.trim().toUpperCase();
 }
 
 masterToggle() {
@@ -99,16 +103,20 @@ checkboxLabel(row?: Solicitud): string {
       if(iterador.id==id){
         this.idEstudiante = iterador.idEstudiante
         this.idPeriodoLectivo = iterador.idPeriodoLectivo
+        this.idPersonaSeleccionada = iterador.PersonasRole.idPersona
+        this.idCarrera = iterador.idCarrera
       }
     }
 
     const dialogRef = this.dialog.open(InformacionComponent, {
-      width: '700px',
+      width: '600px',
       disableClose: false,
       autoFocus: true,
       data: {
         idEstudiante: this.idEstudiante,
-        idPeriodoLectivo: this.idPeriodoLectivo
+        idPeriodoLectivo: this.idPeriodoLectivo,
+        idPersonaSeleccionada: this.idPersonaSeleccionada,
+        idCarrera: this.idCarrera
       }
     });
 

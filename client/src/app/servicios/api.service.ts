@@ -1,3 +1,4 @@
+  
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Injectable } from '@angular/core';
@@ -10,7 +11,7 @@ import { DataRx } from '../modelos/data-rx';
 @Injectable({
   providedIn: 'root'
 })
-export class apiService {
+export class ApiService {
   url: string;
   selectedFle: File;
   dataRx: any;
@@ -49,7 +50,6 @@ export class apiService {
         this.toastr.warning('No se pudo completar la transacción, verifique su conección a internet', 'Error en la conección');
       }
     }).catch(err => {
-      console.log(err.error);
       if (!err.error.transaccion) {
         if (err.error.msg === 'Falló autenticación') {
           this.toastr.warning('Su sesión caduco, por favor ingrese al sistema nuevamente', err.msg);
@@ -72,7 +72,6 @@ export class apiService {
     const formData = new FormData();
     formData.append('idPersona', idPersona.toString());
     formData.append('upload[]', datos[0], datos[0].name);
-    console.log(formData.getAll);
     const optionsHeaders = {
       headers: new HttpHeaders({
         Authorization: this.autorizado.getToken()
@@ -84,7 +83,6 @@ export class apiService {
               nombreArchivo = res.data[0];
               this.autorizado.tokenData(res.token);
             });
-    console.log(nombreArchivo);
     return nombreArchivo;
   }
 
@@ -117,7 +115,6 @@ export class apiService {
         data = true;
       }
     }).catch(err => {
-      console.log(err.error);
       if (!err.error.transaccion) {
         this.toastr.error(err.error.msg, 'Cupos Asignaturas sin acceso');
         if (err.error.msg === 'Falló autenticación') {
@@ -146,17 +143,13 @@ export class apiService {
         Authorization: this.autorizado.getToken()
       })
     };
-    console.log(dataTx);
     let data = null;
     await this.http.post<any>(`${this.url}${endPoint}`, dataTx, optionsHeaders).toPromise<any>()
     .then(res => {
-      console.log(res);
       data = res;
     }).catch(err => {
       this.toastr.warning('No existe el archivo o se encuntra dañado', 'Error de archivo');
     });
-    console.log(data);
     return data;
   }
-
 }

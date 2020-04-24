@@ -2,6 +2,8 @@ import { PersonaRol } from './persona-rol';
 import { PeriodoLectivo } from './periodo-lectivo';
 
 export interface Solicitud {
+    idCarrera: number;
+    id: number;
     pdfSolicitud: string;
     codigoSolicitud: string;
     idEstudiante: number;
