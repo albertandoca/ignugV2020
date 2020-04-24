@@ -16,11 +16,11 @@ let leerDocumentosMatricula = (req, res) => {
     let idEstudiante = null
     let idCarrera = null
     if (req.body.data.idEstudiante == undefined) {
-        idEstudiante = req.body.idPersona
-        idPeriodoLectivo = req.body.data
+        idEstudiante = req.body.data.idEstudiante
+        idCarrera = req.body.data.idCarrera
     } else {
         idEstudiante = req.body.data.idEstudiante
-        idPeriodoLectivo = req.body.data
+        idCarrera = req.body.data.idCarrera
     }
     
     modelos.DocumentosMatriculas.findOne({

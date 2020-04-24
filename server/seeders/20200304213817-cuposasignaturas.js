@@ -10,7 +10,7 @@ module.exports = {
           idPeriodoLectivo:3,
           creadoPor: 10,
           modificadoPor: 10,
-          estado:'Asignado',
+          estado:'Aplicado',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -20,7 +20,7 @@ module.exports = {
           idPeriodoLectivo:3,
           creadoPor: 10,
           modificadoPor: 10,
-          estado:'Asignado',
+          estado:'Aplicado',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -30,7 +30,7 @@ module.exports = {
           idPeriodoLectivo:3,
           creadoPor: 10,
           modificadoPor: 10,
-          estado:'Asignado',
+          estado:'Aplicado',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -40,7 +40,7 @@ module.exports = {
           idPeriodoLectivo:3,
           creadoPor: 10,
           modificadoPor: 10,
-          estado:'Asignado',
+          estado:'Aplicado',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -50,7 +50,7 @@ module.exports = {
           idPeriodoLectivo:3,
           creadoPor: 10,
           modificadoPor: 10,
-          estado:'Asignado',
+          estado:'Aplicado',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -60,7 +60,27 @@ module.exports = {
           idPeriodoLectivo:3,
           creadoPor: 10,
           modificadoPor: 10,
-          estado:'Asignado',
+          estado:'Aplicado',
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          idEstudiante: 10,
+          idAsignatura: 33,
+          idPeriodoLectivo:3,
+          creadoPor: 10,
+          modificadoPor: 10,
+          estado:'Aplicado',
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          idEstudiante: 10,
+          idAsignatura: 34,
+          idPeriodoLectivo:3,
+          creadoPor: 10,
+          modificadoPor: 10,
+          estado:'Aplicado',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -71,7 +91,7 @@ module.exports = {
           idPeriodoLectivo:3,
           creadoPor: 11,
           modificadoPor: 11,
-          estado:'Asignado',
+          estado:'Aplicado',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -81,7 +101,7 @@ module.exports = {
           idPeriodoLectivo:3,
           creadoPor: 11,
           modificadoPor: 11,
-          estado:'Asignado',
+          estado:'Aplicado',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -91,7 +111,7 @@ module.exports = {
           idPeriodoLectivo:3,
           creadoPor: 11,
           modificadoPor: 11,
-          estado:'Asignado',
+          estado:'Aplicado',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -101,7 +121,7 @@ module.exports = {
           idPeriodoLectivo:3,
           creadoPor: 11,
           modificadoPor: 11,
-          estado:'Asignado',
+          estado:'Aplicado',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -111,7 +131,7 @@ module.exports = {
           idPeriodoLectivo:3,
           creadoPor: 11,
           modificadoPor: 11,
-          estado:'Asignado',
+          estado:'Aplicado',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -121,30 +141,62 @@ module.exports = {
           idPeriodoLectivo:3,
           creadoPor: 11,
           modificadoPor: 11,
-          estado:'Asignado',
+          estado:'Aplicado',
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        //yo
+        {
+          idEstudiante: 7,
+          idAsignatura: 1,
+          idPeriodoLectivo:3,
+          creadoPor: 7,
+          modificadoPor: 7,
+          estado:'Aplicado',
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
-          idEstudiante: 10,
-          idAsignatura: 33,
+          idEstudiante: 7,
+          idAsignatura: 2,
           idPeriodoLectivo:3,
-          creadoPor: 10,
-          modificadoPor: 10,
-          estado:'Asignado',
+          creadoPor: 7,
+          modificadoPor: 7,
+          estado:'Aplicado',
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
-          idEstudiante: 10,
-          idAsignatura: 34,
+          idEstudiante: 7,
+          idAsignatura: 3,
           idPeriodoLectivo:3,
-          creadoPor: 10,
-          modificadoPor: 10,
-          estado:'Asignado',
+          creadoPor: 7,
+          modificadoPor: 7,
+          estado:'Aplicado',
           createdAt: new Date(),
           updatedAt: new Date()
         },
+        {
+          idEstudiante: 7,
+          idAsignatura: 4,
+          idPeriodoLectivo:3,
+          creadoPor: 7,
+          modificadoPor: 7,
+          estado:'Aplicado',
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          idEstudiante: 7,
+          idAsignatura: 5,
+          idPeriodoLectivo:3,
+          creadoPor: 7,
+          modificadoPor: 7,
+          estado:'Aplicado',
+          createdAt: new Date(),
+          updatedAt: new Date()
+        }
+        
     ], {});
     
   },

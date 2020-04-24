@@ -31,11 +31,11 @@ let api = EXPRESS.Router(),
 api.post('/leer-persona', [autenticarControl.autenticado, sesionControl.actualiza], personasControl.leer)
 api.post('/crear-persona', [autenticarControl.autenticado, sesionControl.actualiza], personasControl.crear)
 api.post('/modificar-persona', [autenticarControl.autenticado, sesionControl.actualiza], personasControl.modificar)
-
+api.post('/leer-uno',/*[autenticarControl.autenticado, sesionControl.actualiza],*/ personasControl.leerUno)
 
 // EndPoint Log
 api.post('/login', personasControl.logIn)
-// api.post('/logout', personasControl.logOut)
+api.post('/logout', personasControl.logOut)
 
 // EndPoint Mallas
 api.post('/leer-mallas', [autenticarControl.autenticado, sesionControl.actualiza], mallasControl.leer)
@@ -61,6 +61,9 @@ api.post('/pdf', [autenticarControl.autenticado, sesionControl.actualiza, filePd
 api.post('/pdf-resolucion', [autenticarControl.autenticado, sesionControl.actualiza, resolucionPdfMiddleware], filesControl.upload)
 api.post('/pdf-ruc', [autenticarControl.autenticado, sesionControl.actualiza, rucPdfMiddleware], filesControl.upload)
 api.post('/pdf-matricula', [autenticarControl.autenticado, sesionControl.actualiza, matriculaPdfMiddleware], filesControl.upload)
+//api.post('/pdf-cupo', [autenticarControl.autenticado, sesionControl.actualiza, matriculaPdfMiddleware], filesControl.upload)
+//api.post('/pdf-cedula', [autenticarControl.autenticado, sesionControl.actualiza, matriculaPdfMiddleware], filesControl.upload)
+
 
 api.get('/ver-archivo/:urlFile/:directorio', filesControl.verArchivo)
 api.delete('/eliminar-archivo', [autenticarControl.autenticado, sesionControl.actualiza], filesControl.eliminarArchivo)
@@ -71,13 +74,13 @@ api.put('/imagen-menu', [autenticarControl.autenticado, sesionControl.actualiza,
 api.put('/imagen-persona', [autenticarControl.autenticado, sesionControl.actualiza, imagenPersonaMiddleware], filesControl.modificarArchivo)
 
 // EndPoint CuposAsignaturas
-api.post('/obtener-cupos', [autenticarControl.autenticado, sesionControl.actualiza], cuposAsignaturasControl.obtenerCupo)
+api.post('/obtener-cupos', /*[autenticarControl.autenticado, sesionControl.actualiza], */cuposAsignaturasControl.obtenerCupo)
 api.put('/aplicar-cupos', [autenticarControl.autenticado, sesionControl.actualiza], cuposAsignaturasControl.aplicarCupo)
 api.post('/obtener-asignaturas',/*[autenticarControl.autenticado, sesionControl.actualiza],*/cuposAsignaturasControl.obtenerAsignaturas)
 
 // EndPoint documentosMatricula
 api.post('/leer-documentos-matricula', /*[autenticarControl.autenticado, sesionControl.actualiza],*/ documentosMatriculaControl.leerDocumentosMatricula)
-api.post('/upload-documentos-matricula', [autenticarControl.autenticado, sesionControl.actualiza], documentosMatriculaControl.uploadDocumentosMatricula)
+api.post('/upload-documentos-matricula', /*[autenticarControl.autenticado, sesionControl.actualiza],*/ documentosMatriculaControl.uploadDocumentosMatricula)
 api.put('/update.documentos.matricula', [autenticarControl.autenticado, sesionControl.actualiza], documentosMatriculaControl.updateDocumentosMatricula)
 
 

@@ -19,13 +19,13 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty:true
       }
     },
-    estado:{
+    estado: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         isIn: [['Asignado', 'Aplicado', 'Matriculado']],
-        }
-      },
+      }
+    }
   }, {});
   SolicitudesMatriculas.associate = function(models) {
     SolicitudesMatriculas.belongsTo(models.PersonasRoles,{
@@ -41,6 +41,15 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey:{
         type: DataTypes.INTEGER,
         name: 'idPeriodoLectivo',
+        allowNull:false,
+        unique:false
+      },
+      targetKey:'id'
+    })
+    SolicitudesMatriculas.belongsTo(models.Carreras,{
+      foreignKey:{
+        type: DataTypes.INTEGER,
+        name: 'idCarrera',
         allowNull:false,
         unique:false
       },

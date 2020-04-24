@@ -126,6 +126,15 @@ let validaPath = (urlFile, directorio) => {
   if(directorio == 'pdf-ruc'){
     pathFile = `./files/pdf/ruc/${urlFile}`
   }
+  if(directorio == 'pdf-titulo'){
+    pathFile = `./files/pdf/titulo/${urlFile}`
+  }
+  if(directorio == 'pdf-cupo'){
+    pathFile = `./files/pdf/cupo/${urlFile}`
+  }
+  if(directorio == 'pdf-cedula'){
+    pathFile = `./files/pdf/cedula/${urlFile}`
+  }
 
 
   return pathFile
