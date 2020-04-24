@@ -46,15 +46,8 @@
 
   <mat-sidenav-container>
       <mat-sidenav #agendaSidenav mode="side" position="end" [opened]="verAgenda">
-          <h6>Agenda</h6>
           <div>
-            <mat-form-field>
-              <mat-label>Buscar</mat-label>
-              <input matInput (keyup)="applyFilter($event)" >
-            </mat-form-field>
-          </div>
-          <div>
-            <!-- <app-agenda></app-agenda>  -->
+            <app-eventos></app-eventos>
           </div>
       </mat-sidenav>
       <mat-sidenav-content>

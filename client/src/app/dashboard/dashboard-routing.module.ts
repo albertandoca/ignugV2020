@@ -1,3 +1,4 @@
+import { EventosComponent } from './eventos/eventos.component';
 import { MenuComponent } from './menu/menu.component';
 import { DashboardComponent } from './dashboard.component';
 import { NgModule } from '@angular/core';
@@ -19,7 +20,8 @@ const routes: Routes = [
       .then(m => m.SolicitudMatriculaModule)},
       {path: 'aceptar-matricula', loadChildren: () =>import('./aceptar-matricula/aceptar-matricula.module').then(m=>m.AceptarMatriculaModule)},
       {path: 'distributivo-docente', loadChildren: () => import('./distributivo-docente/distributivo-docente.module')
-      .then(m => m.DistributivoDocenteModule)}
+      .then(m => m.DistributivoDocenteModule)},
+      {path: 'eventos',component: EventosComponent}
     ]
   }
 ];

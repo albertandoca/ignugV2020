@@ -1,3 +1,4 @@
+import { EventosComponent } from './eventos/eventos.component';
 import { InformacionComponent } from './aceptar-matricula/informacion/informacion.component';
 import { MenuComponent } from './menu/menu.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -12,7 +13,7 @@ import { AvisoLegalComponent } from './solicitud-matricula/aviso-legal/aviso-leg
 
 
 @NgModule({
-  declarations: [DashboardComponent, AvisoLegalComponent, InformacionComponent],
+  declarations: [DashboardComponent, AvisoLegalComponent, InformacionComponent,EventosComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

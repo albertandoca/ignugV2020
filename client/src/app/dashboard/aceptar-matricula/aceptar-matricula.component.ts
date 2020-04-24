@@ -1,4 +1,3 @@
-import { Persona } from './../../modelos/persona';
 import { ApiService } from './../../servicios/api.service';
 import { Solicitud } from './../../modelos/solicitud';
 import { InformacionComponent } from './informacion/informacion.component';
@@ -83,7 +82,7 @@ isAllSelected() {
 
 applyFilter(event: Event) {
   const filterValue = (event.target as HTMLInputElement).value;
-  this.dataSource.filter = filterValue.trim().toUpperCase();
+  this.dataSource.filter = filterValue.trim().toLowerCase();
 }
 
 masterToggle() {
