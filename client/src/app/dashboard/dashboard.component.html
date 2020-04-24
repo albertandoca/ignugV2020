@@ -1,65 +1,66 @@
 <main>
-  <mat-toolbar fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-    <div class="logo" fxFlex="10%">
-      <img src="../../assets/img/logo/ignug2020.png" alt="Logo Ignug">
-    </div>
-    <div class="menu" fxFlex="10%">
-      <button mat-icon-button color="primary" aria-label="Menu" (click)="controlMenuPrincipal()" [disabled]="menuService.verMenu" matTooltip="Menu principal">
+    <mat-toolbar fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+        <div class="logo" fxFlex="10%">
+            <img src="../../assets/img/logo/ignug2020.png" alt="Logo Ignug">
+        </div>
+        <div class="menu" fxFlex="10%">
+            <button mat-icon-button color="primary" aria-label="Menu" (click)="controlMenuPrincipal()" [disabled]="menuService.verMenu" matTooltip="Menu principal">
         <mat-icon>{{menuService.iconoMenu}}</mat-icon>
       </button>
-      <button mat-icon-button color="primary" aria-label="Agenga" (click)="reglamentos()" matTooltip="Reglamentos">
+            <button mat-icon-button color="primary" aria-label="Agenga" (click)="reglamentos()" matTooltip="Reglamentos">
         <mat-icon>policy</mat-icon>
       </button>
-    </div>
-    <div class="titulo" fxFlex="42%">
-      {{menuService.titulo | uppercase}}
-    </div>
-    <div class="avisos" fxFlex="10%">
-      <button mat-icon-button [color]="colorMensaje" aria-label="Menu" (click)="controlMenuPrincipal()" matTooltip="Mensajes">
+        </div>
+        <div class="titulo" fxFlex="42%">
+            {{menuService.titulo | uppercase}}
+        </div>
+        <div class="avisos" fxFlex="10%">
+            <button mat-icon-button [color]="colorMensaje" aria-label="Menu" (click)="controlMenuPrincipal()" matTooltip="Mensajes">
         <mat-icon>chat</mat-icon>
       </button>
-      <button mat-icon-button [color]="colorNotificacion" aria-label="Agenga" (click)="reglamentos()" matTooltip="Notificaciones">
+            <button mat-icon-button [color]="colorNotificacion" aria-label="Agenga" (click)="reglamentos()" matTooltip="Notificaciones">
         <mat-icon>notifications</mat-icon>
       </button>
-    </div>
-    <div class="usuario" fxFlex="20%">
-      <p>{{personaLogin.primerNombre | titlecase}} {{personaLogin.segundoNombre | titlecase}} {{personaLogin.apellidoPaterno | titlecase}} {{personaLogin.apellidoMaterno | titlecase}}</p>
-    </div>
-    <div class="usuario" fxFlex="4%">
-      <button mat-fab color="primary" [matMenuTriggerFor]="menuPersona">
+        </div>
+        <div class="usuario" fxFlex="20%">
+            <p>{{personaLogin.primerNombre | titlecase}} {{personaLogin.segundoNombre | titlecase}} {{personaLogin.apellidoPaterno | titlecase}} {{personaLogin.apellidoMaterno | titlecase}}</p>
+        </div>
+        <div class="usuario" fxFlex="4%">
+            <button mat-fab color="primary" [matMenuTriggerFor]="menuPersona">
          <img src="{{url}}ver-archivo/{{personaLogin.foto}}/imagen-persona" alt="">
       </button>
-      <mat-menu #menuPersona="matMenu" xPosition="before">
-        <button mat-menu-item>Item 1</button>
-        <button mat-menu-item>Item 2</button>
-        <button mat-icon-button color="warning" aria-label="Agenga" (click)="logOut()" matTooltip="logout">
+            <mat-menu #menuPersona="matMenu" xPosition="before">
+                <button mat-menu-item>Item 1</button>
+                <button (click)="irComponente('Configuración Perfil', 'cuentas')">Configuración</button>
+                <br>
+                <button mat-icon-button color="warning" aria-label="Agenga" (click)="logOut()" matTooltip="logout">
           <mat-icon>power_settings_new</mat-icon>
         </button>
-      </mat-menu>
-    </div>
-    <div class="agenda" fxFlex="4%">
-      <button mat-icon-button color="primary" aria-label="Agenga" (click)="agenda()">
+            </mat-menu>
+        </div>
+        <div class="agenda" fxFlex="4%">
+            <button mat-icon-button color="primary" aria-label="Agenga" (click)="agenda()">
         <mat-icon>{{iconoAgenda}}</mat-icon>
       </button>
-    </div>
-  </mat-toolbar>
+        </div>
+    </mat-toolbar>
 
-  <mat-sidenav-container>
-      <mat-sidenav #agendaSidenav mode="side" position="end" [opened]="verAgenda">
-          <h6>Agenda</h6>
-          <div>
-            <mat-form-field>
-              <mat-label>Buscar</mat-label>
-              <input matInput (keyup)="applyFilter($event)" >
-            </mat-form-field>
-          </div>
-          <div>
-            <!-- <app-agenda></app-agenda>  -->
-          </div>
-      </mat-sidenav>
-      <mat-sidenav-content>
-        <router-outlet></router-outlet>
-      </mat-sidenav-content>
-  </mat-sidenav-container>
+    <mat-sidenav-container>
+        <mat-sidenav #agendaSidenav mode="side" position="end" [opened]="verAgenda">
+            <h6>Agenda</h6>
+            <div>
+                <mat-form-field>
+                    <mat-label>Buscar</mat-label>
+                    <input matInput (keyup)="applyFilter($event)">
+                </mat-form-field>
+            </div>
+            <div>
+                <!-- <app-agenda></app-agenda>  -->
+            </div>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
 
 </main>

@@ -1,0 +1,47 @@
+main,
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.fondo {
+    position: fixed;
+    height: 100%;
+    width: 60%;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+@media screen and (max-width: 700px) {
+    .fondo {
+        position: fixed;
+        height: 100%;
+        width: 60%;
+        left: 0;
+        bottom: 0;
+        z-index: -1;
+    }
+    table {
+        width: 700px;
+    }
+    .example-container {
+        height: 400px;
+        width: 500px;
+        overflow: auto;
+    }
+    th.mat-column-position,
+    td.mat-column-position {
+        padding-left: 25px;
+    }
+    .mat-table-sticky:first-child {
+        border-right: 1px solid #e0e0e0;
+    }
+    .mat-table-sticky:last-child {
+        border-left: 1px solid #e0e0e0;
+    }
+}

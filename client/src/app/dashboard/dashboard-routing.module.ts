@@ -15,6 +15,7 @@ const routes: Routes = [
       {path: 'menu', component: MenuComponent, /*loadChildren: () => import('./menu/menu.module111').then(m => m.MenuModule)*/},
       {path: 'personas', loadChildren: () => import('./personas/personas.module').then(m => m.PersonasModule)},
       {path: 'institutos', loadChildren: () => import('./institutos/institutos.module').then(m => m.InstitutosModule)},
+      {path: 'cuentas', loadChildren: () => import('./cuentas/cuentas.module').then(m => m.CuentasModule)},
       {path: 'solicitud-matricula', loadChildren: () => import('./solicitud-matricula/solicitud-matricula.module')
       .then(m => m.SolicitudMatriculaModule)},
       {path: 'docentes-asignaturas', loadChildren: () => import('./docentes-asignaturas/docentes-asignaturas.module')

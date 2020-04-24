@@ -1,1 +1,71 @@
-<p>max-horas-docente works!</p>
+<!-- Tabla de inicio con todos los datos -->
+<main class="dashboardContenedor" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" *ngIf="!nuevo">
+    <div fxFlex="60%" class="filtro">
+        <mat-form-field>
+            <mat-label>Buscar</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+        </mat-form-field>
+    </div>
+    <div fxFlex="40%" class="botonesPrincipal">
+        <input type="image" class="icono" (click)="crearRegistro() " src="../../../assets/img/icon/plus_32.png" matTooltip="Nuevo registro">
+    </div>
+</main>
+
+<main class="contenedorTabla" *ngIf="!nuevo">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- Checkbox-->
+        <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                </mat-checkbox>
+            </td>
+        </ng-container>
+
+        <!-- Columnas-->
+
+        <ng-container matColumnDef="horas">
+            <th mat-header-cell *matHeaderCellDef>Horas</th>
+            <td mat-cell *matCellDef="let element">{{element.horas}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="idDocente">
+            <th mat-header-cell *matHeaderCellDef>Docente</th>
+            <td mat-cell *matCellDef="let element">{{element.idDocente}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="idPeriodoAcademico">
+            <th mat-header-cell *matHeaderCellDef>Periodo Academico</th>
+            <td mat-cell *matCellDef="let element">{{element.idPeridoAcademico}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="createdAt">
+            <th mat-header-cell *matHeaderCellDef>Creado el: </th>
+            <td mat-cell *matCellDef="let element">{{element.createdAt}}</td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="updatedAt">
+            <th mat-header-cell *matHeaderCellDef>Modificado el: </th>
+            <td mat-cell *matCellDef="let element">{{element.updatedAt}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="evento" stickyEnd>
+            <th mat-header-cell *matHeaderCellDef> Evento</th>
+            <td mat-cell *matCellDef="let element; let i = index">
+                <button mat-icon-button color="primary" aria-label="Editar registro" (click)="editar(element.id)">
+            <mat-icon>edit</mat-icon>
+          </button>
+                <button mat-icon-button color="warn" aria-label="Eliminar registro" (click)="eliminar(element.id)">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="encabezadoTabla"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</main>

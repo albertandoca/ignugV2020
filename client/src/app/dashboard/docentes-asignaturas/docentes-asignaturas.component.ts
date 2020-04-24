@@ -10,6 +10,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { SelectionModel } from '@angular/cdk/collections';
 import { ServerService } from 'src/app/servicios/server.service';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { Persona } from 'src/app/modelos/persona';
+import { Asignatura } from 'src/app/modelos/asignatura';
 
 @Component({
   selector: 'app-docentes-asignaturas',
@@ -27,6 +29,9 @@ export class DocentesAsignaturasComponent implements OnInit { docenteAsignaturaF
   selectedFile: File[];
   nombreArchivo: string;
   casa: number;
+  docentes: Persona[];
+  asignaturas: Asignatura[];
+  asignaturaDocente: Array<Array<Persona>>;
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
@@ -39,7 +44,7 @@ export class DocentesAsignaturasComponent implements OnInit { docenteAsignaturaF
     this.url = this.server.getUrl();
    }
 
-/*  asignaturas = [
+/*asignaturas = [
   'Fundamentos de Programación',
   'Matemática Discreta',
   'Análisis y Diseño de Sistemas',
@@ -52,25 +57,17 @@ docentes = [
   'Leonardo Cardenas'
 ];
 
-drop(event: CdkDragDrop <string[]>) {
-  if (event.previousContainer === event.container) {
-    moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-  } else {
-    transferArrayItem(event.previousContainer.data,
-                      event.container.data,
-                      event.previousIndex,
-                      event.currentIndex);
-  }
-}
-}*/
+*/
 
   ngOnInit(): void {
     this.nuevo = false;
     this.docenteAsignaturas = [];
+    this.leerAsignaturasPeriodoAcademico(3, 1);
     this.leerDocentesAsignaturas();
     this.crearDocenteAsignaturaForm();
     this.selection = new SelectionModel<DocenteAsignatura>(true, []);
     this.nombreArchivo = '';
+    this.leerDocentesCarreras(1);
   }
 
   // Trae los datos, establece columnas de la tabla, asigna datasource, paginator y selection (checkbox)
@@ -93,6 +90,35 @@ drop(event: CdkDragDrop <string[]>) {
     }
   }
 
+  drop(event: CdkDragDrop <string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);
+    }
+  }
+
+  async leerDocentesCarreras(idCarrera) {
+    this.docentes = await this.api.sendApi('leer-docentes-carreras', idCarrera);
+    console.log(this.docentes);
+  }
+
+  async leerAsignaturasPeriodoAcademico(idPA: number, idM: number) {
+    const datos = {
+      idPeriodoAcademico: idPA,
+      idMalla: idM
+    };
+    this.asignaturas = await this.api.sendApi('leer-asignaturas-periodo-academico', datos);
+    console.log(this.asignaturas);
+    this.asignaturaDocente = [];
+    for (let i = 0; i < this.asignaturas.length; i++) {
+      this.asignaturaDocente[i] = [];
+    }
+    console.log(this.asignaturaDocente);
+  }
   // Filtro de busqueda en la tabla
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

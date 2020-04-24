@@ -27,7 +27,10 @@ let api = EXPRESS.Router(),
     docentesAsignaturasControl = require('../controles/docentesasignaturas'),
     periodosLectivosControl = require('../controles/periodoslectivos'),
     perfilesDocentesControl = require('../controles/perfilesdocentes'),
-    prbControl = require('../controles/pruebadoc')
+    asignaturasControl = require('../controles/asignaturas'),
+    docentesControl = require('../controles/docentes'),
+    maxHorasDocenteControl = require('../controles/maxhorasdocente'),
+    cuentasControl = require('../controles/cuentas')
 
 
 // EndPoint Personas
@@ -52,6 +55,10 @@ api.post('/leer-tipos-identificaciones', [autenticarControl.autenticado, sesionC
 // EndPoint Institutos
 api.post('/leer-institutos', [autenticarControl.autenticado, sesionControl.actualiza], institutosControl.leer)
 
+// EndPoint Cuentas
+api.post('/leer-cuentas', [autenticarControl.autenticado, sesionControl.actualiza], cuentasControl.leer)
+api.post('/modificar-cuentas', [autenticarControl.autenticado, sesionControl.actualiza], cuentasControl.modificar)
+api.post('/eliminar-cuentas', [autenticarControl.autenticado, sesionControl.actualiza], cuentasControl.eliminar)
 
 
 // EndPoint Files
@@ -73,7 +80,7 @@ api.put('/imagen-logotipo', [autenticarControl.autenticado, sesionControl.actual
 api.put('/imagen-menu', [autenticarControl.autenticado, sesionControl.actualiza, imagenMenuMiddleware], filesControl.modificarArchivo)
 api.put('/imagen-persona', [autenticarControl.autenticado, sesionControl.actualiza, imagenPersonaMiddleware], filesControl.modificarArchivo)
 
-api.post('/prb', prbControl.prb)
+
 api.post('/gestionar-docente-asignatura', /*[autenticarControl.autenticado, sesionControl.actualiza]*/ docentesAsignaturasControl.gestionarDocenteAsignatura)
     // EndPoint CuposAsignaturas
 api.post('/obtener-cupos', [autenticarControl.autenticado, sesionControl.actualiza], cuposAsignaturasControl.obtenerCupo)
@@ -96,14 +103,27 @@ api.post('/leer-docente-asignatura', [autenticarControl.autenticado, sesionContr
 api.post('/obtener-docente-asignatura', [autenticarControl.autenticado, sesionControl.actualiza], docentesAsignaturasControl.obtenerDocenteAsignatura)
 
 
+// endPoint MaxHorasDocentes
+api.post('/leer-max-horas-docente', maxHorasDocenteControl.leerMaxHorasDocente)
+api.post('/leer-max-horas-docente-id', maxHorasDocenteControl.leerMaxhorasDocenteId)
+api.post('/crear-modificar-max-horas-docente', maxHorasDocenteControl.crearModificarMaxHorasDocente)
+
 // PerfilesDocentes
-api.post('/leer-perfiles-docentes', /*[autenticarControl.autenticado, sesionControl.actualiza],*/ perfilesDocentesControl.leerPerfilDocente)
-api.post('/crear-perfiles-docentes', /*[autenticarControl.autenticado, sesionControl.actualiza],*/ perfilesDocentesControl.crearPerfilDocente)
-api.put('/modificar-perfiles-docentes', /*[autenticarControl.autenticado, sesionControl.actualiza],*/ perfilesDocentesControl.modificarPerfilDocente)
+api.post('/leer-perfil-docente', /*[autenticarControl.autenticado, sesionControl.actualiza],*/ perfilesDocentesControl.leerPerfilDocente)
+api.post('/crear-perfil-docente', /*[autenticarControl.autenticado, sesionControl.actualiza],*/ perfilesDocentesControl.crearPerfilDocente)
+api.put('/modificar-perfil-docente', /*[autenticarControl.autenticado, sesionControl.actualiza],*/ perfilesDocentesControl.modificarPerfilDocente)
+api.put('/eliminar-perfil-docente', /*[autenticarControl.autenticado, sesionControl.actualiza],*/ perfilesDocentesControl.eliminarPerfilDocente)
 
 
 // endPoint PeriodosLectivos
 api.post('/periodo-lectivo-activo', [autenticarControl.autenticado, sesionControl.actualiza], periodosLectivosControl.periodoLectivoActivo)
 
+
+// asignaturas
+api.post('/leer-asignaturas-periodo-academico', asignaturasControl.leerAsignaturasPeriodoAcademico)
+api.post('/contar-asignaturas', asignaturasControl.contarAsignaturas)
+
+// docentes
+api.post('/leer-docentes-carreras', docentesControl.leerDocentesCarreras)
 
 module.exports = api

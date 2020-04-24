@@ -58,8 +58,8 @@ export class PerfilesDocentesComponent implements OnInit {
 
   // Trae los datos, establece columnas de la tabla, asigna datasource, paginator y selection (checkbox)
   async leerPerfilDocente() {
-    this.perfilDocente = await this.api.sendApi('leer-perfiles-docentes');
-    if (this.perfilDocente)   {
+    this.perfilesDocentes = await this.api.sendApi('leer-perfil-docente');
+    if (this.perfilesDocentes)   {
           this.displayedColumns = [
             'select',
             'areaAcademica',
@@ -111,7 +111,7 @@ export class PerfilesDocentesComponent implements OnInit {
       updatedAt: new Date(Date.now())
     };
 
-    this.perfilDocente = await this.api.sendApi('modificar-perfiles-docentes');
+    this.perfilDocente = await this.api.sendApi('modificar-perfil-docente');
     if (this.perfilDocente)    {
            console.log('modificado');
         }
@@ -125,7 +125,7 @@ export class PerfilesDocentesComponent implements OnInit {
 
   eliminar(id: number) {
     this.perfilDocente = this.perfilesDocentes.find(element => element.id === id);
-    this.http.put<DataRx>(`${this.api.url}eliminar-perfiles-docentes`, this.perfilDocente)
+    this.http.put<DataRx>(`${this.api.url}eliminar-perfil-docente`, this.perfilDocente)
     .subscribe(res => {
       console.log(res);
       if (res.transaccion) {

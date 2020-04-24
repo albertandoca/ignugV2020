@@ -110,4 +110,10 @@ export class DashboardComponent implements OnInit {
     localStorage.setItem('titulo', this.menuService.titulo);
     return;
   }
+
+  irComponente(titulo: string, url: string ) {
+    this.menuService.estadoMenu(false, 'cuentas');
+    this.menuService.cambiarTitulo(titulo);
+    this.router.navigate([`/cuentas`]);
+  }
 }

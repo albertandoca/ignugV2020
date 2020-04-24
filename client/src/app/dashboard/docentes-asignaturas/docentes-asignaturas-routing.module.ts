@@ -4,7 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-  {path: '', component: DocentesAsignaturasComponent}
+  {path: '', component: DocentesAsignaturasComponent},
+  {path: 'max-horas-docentes', loadChildren: () => import('./max-horas-docente/max-horas-docente.module')
+      .then(m => m.MaxHorasDocenteModule)},
 ];
 
 @NgModule({
