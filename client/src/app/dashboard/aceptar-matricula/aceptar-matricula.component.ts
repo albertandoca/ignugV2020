@@ -48,6 +48,7 @@ export class AceptarMatriculaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.nuevo = false;
     this.leerSolcicitudes();
     this.selection = new SelectionModel<Solicitud>(true, []);
@@ -109,9 +110,10 @@ checkboxLabel(row?: Solicitud): string {
     }
 
     const dialogRef = this.dialog.open(InformacionComponent, {
-      width: '600px',
+      width: '750px',
       disableClose: false,
-      autoFocus: true,
+      maxHeight: '90vh',
+      autoFocus: false,
       data: {
         idEstudiante: this.idEstudiante,
         idPeriodoLectivo: this.idPeriodoLectivo,

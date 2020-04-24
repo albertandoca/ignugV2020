@@ -55,7 +55,7 @@ module.exports = {
       },
       {
         idPersona: 3,
-        idRol: 3,
+        idRol: 7,
         idCarrera: 2,
         urlDesignacion: 'sin url',
         observaciones: 'no hay observaciones',
@@ -65,7 +65,7 @@ module.exports = {
       },
       {
         idPersona: 6,
-        idRol: 6,
+        idRol: 4,
         idCarrera: 1,
         urlDesignacion: 'sin url',
         observaciones: 'no hay observaciones',
@@ -85,7 +85,7 @@ module.exports = {
       },
       {
         idPersona: 8,
-        idRol: 4,
+        idRol: 6,
         idCarrera: 1,
         urlDesignacion: 'sin url',
         observaciones: 'no hay observaciones',

@@ -82,6 +82,33 @@ module.exports = {
           estado:true,
           createdAt: new Date(),
           updatedAt: new Date()
+        },
+        //YO
+        {
+          idEstudiante: 7,
+          idAsignatura: 4,
+          codigo:'2020_3_DS_MD_1',
+          tipoMatricula: 'Ordinaria',
+          numeroMatricula: 'Primera',
+          pdfMatricula: '4eo3zg2CEF6MSffN9G8WPFSzF4.pdf',
+          creadoPor:7,
+          modificadoPor:7,
+          estado:true,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          idEstudiante: 7,
+          idAsignatura: 5,
+          codigo:'2020_3_DS_MD_1',
+          tipoMatricula: 'Ordinaria',
+          numeroMatricula: 'Primera',
+          pdfMatricula: '4eo3zg2CEF6MSffN9G8WPFSzF4.pdf',
+          creadoPor:7,
+          modificadoPor:7,
+          estado:true,
+          createdAt: new Date(),
+          updatedAt: new Date()
         }
     ], {});
     

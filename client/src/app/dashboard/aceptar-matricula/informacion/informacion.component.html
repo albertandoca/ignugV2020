@@ -1,35 +1,5 @@
+  
 <mat-tab-group  mat-align-tabs="center">
-  <mat-tab   label="Informacion">
-
-    <ng-template mat-tab-label>
-      <mat-icon class="example-tab-icon">perm_identityt</mat-icon>
-      Informacion
-    </ng-template>
-
-    <mat-card class="example-card1">
-      <mat-card-header>
-        <div mat-card-avatar >
-          <img class="example-header-image1" src="{{url}}ver-archivo/{{persona.foto}}/imagen-persona" alt="">
-        </div>
-        <mat-card-title class="tamaño">{{persona.primerNombre}} {{persona.apellidoPaterno}} {{persona.segundoNombre}} {{persona.apellidoMaterno}}</mat-card-title>
-        <mat-card-subtitle>{{persona.identificacion}}</mat-card-subtitle>
-      </mat-card-header>
-
-      <mat-card-content>
-        <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-          bred for hunting.
-        </p>
-      </mat-card-content>
-
-      <mat-card-actions>
-        <button mat-button>SIGUIENTE</button>
-      </mat-card-actions>
-    </mat-card>
-
-  </mat-tab>
-
   <mat-tab label="Asignaturas">
     <ng-template mat-tab-label>
       <mat-icon class="example-tab-icon">subject</mat-icon>
@@ -61,15 +31,19 @@
           <td mat-cell *matCellDef="let element"> {{element.Asignatura?.PeriodosAcademico?.nivel}} </td>
         </ng-container>
 
+        <ng-container matColumnDef="numeroMatricula">
+          <th mat-header-cell *matHeaderCellDef> N° Matricula </th>
+          <td mat-cell *matCellDef="let element"> {{element.textoMatricula}} </td>
+        </ng-container>
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="encabezadoTabla"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
 
       </table>
+
+
       <mat-card-content>
       </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>SIGUIENTE</button>
-      </mat-card-actions>
     </mat-card>
   </mat-tab>
 
@@ -90,30 +64,40 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
 
-        <div>
-          <input class="miniaturas"  type="image" (click)="verFile(documentoMatricula.pdfTituloGrado, 'pdf-titulo')" src="../../../../assets/img/icon/adobe_pdf_48.png" >
-          <button mat-raised-button color="primary">Aceptar</button>
-          <button mat-raised-button color="warn">Rechazar</button>
+        <div style="height:300px;">
+          <pdf-viewer (click)="verFile(pdfTituloGrado,'pdf-titulo')" src="{{url}}ver-archivo/{{pdfTituloGrado}}/pdf-titulo"
+          [render-text]="true"
+          [original-size]="false"
+          [autoresize]="true"
+          [show-borders]="true"
+          style="display: block; width: 650px; height: 400px;"
+          ></pdf-viewer>
         </div>
 
       </mat-expansion-panel>
 
-      <mat-expansion-panel  (opened)="panelOpenState = true"
-                            (closed)="panelOpenState = false">
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <mat-icon class="example-tab-icon">picture_as_pdf</mat-icon>
           </mat-panel-title>
           <mat-panel-description>
+
             PDF Asignación de cupo
+
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <div>
-          <input class="miniaturas"  type="image" (click)="verFile(documentoMatricula.pdfAsignacionCupo, 'pdf-cupo')" src="../../../../assets/img/icon/adobe_pdf_48.png" >
-          <button mat-raised-button color="primary">Aceptar</button>
-          <button mat-raised-button color="warn">Rechazar</button>
-        </div>
 
+        <div style="height:300px;">
+          <pdf-viewer (click)="verFile(pdfAsignacionCupo,'pdf-cupo')" src="{{url}}ver-archivo/{{pdfAsignacionCupo}}/pdf-cupo"
+          [render-text]="true"
+          style="display: block; width: 650px; height: 400px;"
+          [original-size]="false"
+          [autoresize]="true"
+          [show-borders]="true"
+          ></pdf-viewer>
+        </div>
       </mat-expansion-panel>
 
       <mat-expansion-panel (opened)="panelOpenState = true"
@@ -126,20 +110,78 @@
           PDF Cédula
       </mat-panel-description>
       </mat-expansion-panel-header>
-      <div>
-        <input class="miniaturas"  type="image" (click)="verFile(documentoMatricula.pdfCedula, 'pdf-cedula')" src="../../../../assets/img/icon/adobe_pdf_48.png" >
-        <button mat-raised-button color="primary">Aceptar</button>
-        <button mat-raised-button color="warn">Rechazar</button>
+      <div style="height:300px;">
+        <pdf-viewer  (click)="verFile(pdfCedula,'pdf-cedula')" src="{{url}}ver-archivo/{{pdfCedula}}/pdf-cedula"
+        [render-text]="true"
+        [original-size]="false"
+        [autoresize]="true"
+        [show-borders]="true"
+        style="display: block; width: 650px; height: 400px;"
+        ></pdf-viewer>
       </div>
       </mat-expansion-panel>
 
     </mat-accordion>
+    <div style="margin-top: 30px;">
+      <section class="example-section">
 
-    <div style="margin-top: 15px;">
-      <button mat-fab color="warn" aria-label="Example icon button with a home icon">
-        <mat-icon>save</mat-icon>
-      </button>
+        <mat-slide-toggle>Anular el PDF título de grado</mat-slide-toggle><br>
+        <mat-slide-toggle>Anular el PDF de asignación de cupo</mat-slide-toggle><br>
+        <mat-slide-toggle>Anular el PDF de cédula</mat-slide-toggle>
+
+      </section>
     </div>
+  </mat-tab>
+
+  <mat-tab   label="Informacion">
+
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">how_to_reg</mat-icon>
+      Informacion
+    </ng-template>
+
+    <mat-card class="example-card1">
+      <mat-card-header>
+        <div mat-card-avatar >
+          <img class="example-header-image1" src="{{url}}ver-archivo/{{foto}}/imagen-persona" alt="">
+        </div>
+        <mat-card-title class="tamaño">{{pNombre}} {{pApellido}} {{sNombre}} {{mApellido}}</mat-card-title>
+        <mat-card-subtitle>{{identificacion}}</mat-card-subtitle>
+
+      </mat-card-header>
+
+      <mat-card-content class="alineacion">
+        <div>
+          <mat-card-title  class="tamaño">Email Institucional</mat-card-title>
+          <mat-card-subtitle>{{emailInstitucional}}</mat-card-subtitle>
+        </div>
+        <div>
+          <mat-card-title  class="tamaño">Email Personal</mat-card-title>
+          <mat-card-subtitle>{{emailPersonal}}</mat-card-subtitle>
+        </div>
+        <div>
+          <mat-card-title  class="tamaño">Carrera</mat-card-title>
+          <mat-card-subtitle>{{carrera}}</mat-card-subtitle>
+        </div>
+        <div>
+          <mat-card-title  class="tamaño">Nivel</mat-card-title>
+          <mat-card-subtitle>{{nivel}}</mat-card-subtitle>
+        </div>
+        <div>
+          <mat-card-title  class="tamaño">Recomendaciones para los PDFs</mat-card-title>
+        </div>
+        <div class="alineacion">
+          <mat-form-field style="width: 350px;" appearance="fill">
+            <mat-label style="width: 350px;" >Recomendaciones</mat-label>
+            <textarea  matInput></textarea>
+          </mat-form-field>
+        </div>
+        <div style="text-align: right;">
+          <button mat-flat-button color="accent">Enviar</button>
+        </div>
+      </mat-card-content>
+
+    </mat-card>
 
   </mat-tab>
 

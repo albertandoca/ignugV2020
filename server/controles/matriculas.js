@@ -11,44 +11,67 @@ if (config.use_env_variable) {
 let modelos = require('../models')
 let Op = Sequelize.Op;
 
+
 // Estudiante
+
+let encontrarMatricula = (req, res) => {
+    
+    modelos.Matriculas.findAll({
+    }).then(data => {
+        return res.status(200).json({
+            transaccion: true,
+            data: data,
+            token: req.token,
+            msg: data.length
+        })
+    }).catch(err => {
+        return res.status(500).json({
+            transaccion: false,
+            data: null,
+            msg: 'Error del servidor'
+        })
+    })
+}   
+
 let guardarMatricula = (req, res) => {
     let data = req.body.data
-
+    
     data.createdAt = new Date(Date.now())
     data.updatedAt = new Date(Date.now())
 
     modelos.Matriculas.create(data)
-    .then(data => {
+    .then(respuesta => {
         console.log(respuesta.dataValues)
-        return res.status(200).json({
+        res.status(200).json({
             transaccion: true,
             data: [respuesta.dataValues],
             msg: data.length
         })
-    }).catch(err => {
-        let errores = []
+    })
+    .catch(err => {
+        console.log(err)
+        let errors = []
         let msg = ''
-        if (err.parent){
-            errores.push(err.parent.defail)
-                msg = 'Registro duplicado'
-            }
+        if (err.parent) {
+            errors.push(err.parent.detail)
+            msg = 'Registro duplicado'
+        }
         if (err.errors.length > 0) {
-            console.log(err.errors)
             err.errors.forEach(element => {
-                errores.push(element.path)
+                errors.push(element.path)
             });
             msg = 'Datos no validos'
         }
         res.status(400).json({
             transaccion: false,
-            data: errores,
+            data: errors,
             msg: msg
         })
     })
-} 
+}
 
 
 module.exports = {
-    guardarMatricula
+    guardarMatricula,
+    encontrarMatricula
 }

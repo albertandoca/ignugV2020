@@ -1,26 +1,19 @@
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
-
-import { MaterialModule } from 'src/app/material.module';
 import { AceptarMatriculaComponent } from './aceptar-matricula.component';
-import { NgModule } from '@angular/core';
+import { MaterialModule } from './../../material.module';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { AceptarMatriculaRoutingModule } from './aceptar-matricula-routing.module';
-import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 
 @NgModule({
-  declarations: [
-    AceptarMatriculaComponent
-  ],
+  declarations: [AceptarMatriculaComponent],
   imports: [
     CommonModule,
     AceptarMatriculaRoutingModule,
-    FormsModule,
     MaterialModule,
-    MaterialFileInputModule,
-    FlexLayoutModule
-  ]
+    PdfViewerModule
+  ],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
 })
 export class AceptarMatriculaModule { }

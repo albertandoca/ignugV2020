@@ -1,3 +1,4 @@
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { InformacionComponent } from './dashboard/aceptar-matricula/informacion/informacion.component';
 import { MenuPrincipalService } from './servicios/menu-principal.service';
 import { ApiService } from './servicios/api.service';
@@ -40,7 +41,8 @@ import { ChartsModule } from 'ng2-charts';
     MaterialModule,
     ToastrModule.forRoot(),
     ChartsModule,
-    MaterialFileInputModule
+    MaterialFileInputModule,
+    PdfViewerModule
   ],
   exports: [
   ],
