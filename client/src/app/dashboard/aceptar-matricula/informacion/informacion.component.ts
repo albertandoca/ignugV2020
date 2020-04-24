@@ -1,6 +1,7 @@
+import { Observacion } from './../../../modelos/observacion';
+import { AutorizadoService } from './../../../servicios/autorizado.service';
+import { PersonaLogin } from './../../../modelos/persona-login';
 import { Carrera } from './../../../modelos/carrera';
-import { Malla } from './../../../modelos/malla';
-import { Asignatura } from './../../../modelos/asignatura';
 import { Matricula } from './../../../modelos/matricula';
 import { DocumentoMatricula } from './../../../modelos/documento-matricula';
 import { Persona } from './../../../modelos/persona';
@@ -28,6 +29,7 @@ import { trigger, state, transition, style, animate } from '@angular/animations'
 
 export class InformacionComponent implements OnInit {
 
+  personaLogin: PersonaLogin;
   datos;
   expandedElement: any;
   asignaturasSolicitadas: CupoAsignatura[];
@@ -60,8 +62,16 @@ export class InformacionComponent implements OnInit {
   Carrera : Carrera;
   checked = false;
   indeterminate = false;
+  resultado= [];
+  slider : boolean [];
+  mostrar: boolean;
+  mostrar1: boolean;
+  mostrar2: boolean;
+  ninguno : boolean;
+  recomendacion : string;
 
   constructor(
+    private autorizado: AutorizadoService,
     private api: ApiService,
     private server: ServerService,
     public dialogRef: MatDialogRef<InformacionComponent>,
@@ -69,7 +79,12 @@ export class InformacionComponent implements OnInit {
       //En datos esta el idEstudiante refiriendose a personaRol y periodoLectivo
       //idPersona Seleccionada
       //y tambien el idCarrera
+      // tambien envio el idSolicitud
     this.datos=data
+    this.mostrar = false;
+    this.mostrar1 = false;
+    this.mostrar2= false;
+    this.ninguno = true;
     this.idEstudiante = this.datos.idEstudiante
     this.url = this.server.getUrl();
     this.foto='';
@@ -84,9 +99,13 @@ export class InformacionComponent implements OnInit {
     this.emailPersonal='';
     this.nivel='';
     this.carrera='';
+    this.recomendacion='';
+    this.slider = [false,false,false];
   }
 
   ngOnInit(): void {
+
+    this.personaLogin = this.autorizado.getPersonaLogin();
     this.traerInformacion()
     this.traerAsignaturas()
     this.traerDocumentos()
@@ -97,7 +116,6 @@ export class InformacionComponent implements OnInit {
     console.log(this.datos.idCarrera)
     this.asignaturasSolicitadas = await this.api.sendApi('obtener-asignaturas',this.datos);
 
-    const resultado=[];
     const textoMatricula =[];
     if(this.asignaturasSolicitadas){
       for(const iterador of this.asignaturasSolicitadas){
@@ -108,30 +126,6 @@ export class InformacionComponent implements OnInit {
       }
 
   }
-
-  this.matriculas = await this.api.sendApi('encontrar-matricula',this.datos);
-
-  for(let i=0; i<this.auxiliarAsignaturasSolicitadas.length;i++)
-  {
-    for(let j= 0; j<this.matriculas.length;j++)
-    {
-      if(this.auxiliarAsignaturasSolicitadas[i].idAsignatura==this.matriculas[j].idAsignatura && this.idEstudiante==this.matriculas[j].idEstudiante)
-      {
-        resultado[i]=1
-      }
-    }
-  }
-
-  for(let i=0; i<resultado.length;i++)
-  {
-    if(resultado[i]==1){
-      textoMatricula.push("Segunda Matricula")
-    }
-    else
-    {
-      textoMatricula.push("Primera Matricula")
-    }
-  }
   this.displayedColumns =[
     'codigoAsignatura',
     'detalle',
@@ -141,6 +135,26 @@ export class InformacionComponent implements OnInit {
   ];
   this.dataSource = new MatTableDataSource(this.auxiliarAsignaturasSolicitadas);
   this.nivel =  this.auxiliarAsignaturasSolicitadas[0].Asignatura.PeriodosAcademico.nivel
+
+
+  this.matriculas = await this.api.sendApi('encontrar-matricula',this.datos);
+
+  for(let k =0 ; k<this.auxiliarAsignaturasSolicitadas.length;k++)
+  {
+    this.resultado[k]=0
+  }
+
+   for(let i=0; i<this.auxiliarAsignaturasSolicitadas.length;i++)
+  {
+    for(let j= 0; j<this.matriculas.length;j++)
+    {
+      if(this.auxiliarAsignaturasSolicitadas[i].idAsignatura===this.matriculas[j].idAsignatura && this.idEstudiante===this.matriculas[j].idEstudiante)
+      {
+        this.resultado[i] = this.resultado[i] + 1
+      }
+    }
+  }
+  //console.log(this.resultado)
 }
 
 
@@ -169,6 +183,86 @@ export class InformacionComponent implements OnInit {
     window.open(`${this.url}ver-archivo/${urlFile}/${directorio}`, 'blank');
 
   }
+ cambiar(opcion: number)
+ {
+   if(opcion==1)
+   {
+    this.mostrar=!this.mostrar
+   }
+   if(opcion==2)
+   {
+    this.mostrar1=!this.mostrar1
+   }
+   if(opcion==3)
+   {
+    this.mostrar2=!this.mostrar2
+   }
+   this.ninguno=false;
+ }
+ async enviarInformacion()
+  {
+    for(let m=0;m<this.slider.length;m++)
+    {
+      if(this.slider[0]==true){
+      }
+      if(this.slider[1]==true){
+      }
+      if(this.slider[2]==true){
+      }
+    }
+  if(this.slider[0]==false&&this.slider[1]==false&&this.slider[2]==false){
+    let numeroMatriculaAux = " ";
+    console.log("Entre")
+    console.log(this.datos.idEstudiante)
+    //Cuando todo esta correcto
+    for(let i=0; i<this.resultado.length;i++){
+      if(this.resultado[i]==0)
+      {
+        numeroMatriculaAux = "Primera"
+      }
+      if(this.resultado[i]==1)
+      {
+        numeroMatriculaAux = "Segunda"
+      }
+      if(this.resultado[i]==2)
+      {
+        numeroMatriculaAux = "Tercera"
+      }
+      const matricula: Matricula = {
+        idEstudiante: this.datos.idEstudiante,
+        idAsignatura: this.auxiliarAsignaturasSolicitadas[i].idAsignatura,
+        codigo: "2020_3_DF_US_1",
+        tipoMatricula:  "Ordinaria",
+        numeroMatricula : numeroMatriculaAux,
+        pdfMatricula:  "asdasdasdas.pdf",
+        creadoPor: this.personaLogin.id,
+        modificadoPor: this.personaLogin.id,
+        estado: true
+      };
+      //Este crea un registro en matriculas por cada asignatura ya funciona
+      await this.api.sendApi('guardar-matricula',matricula);
+    }
+    //Este cambia la solicitud de aplicado a matriculado ya esto hecho tambien
+      await this.api.sendApiPut('update.solicitud.matricula',this.datos)
 
+      //Este cambia el estado de los cupos de  Aplicado a Matriculado en la tabla cupos asignaturas ya funciona
+      await this.api.sendApiPut('matricular-cupo', this.auxiliarAsignaturasSolicitadas);
+  }
+  else
+  {
+    //Primero cambiar la solicitud de Aplicado->Erroneo
+    await this.api.sendApiPut('update.solicitud.matricula.erroneo',this.datos)
+    //Segundo no guardar matricula
+    //Tercero se queda en aplicado no hago nada
+    //Agregar observacion en tabla de documentos
+    const observacion: Observacion = {
+      idCarrera: this.datos.idCarrera,
+      idEstudiante: this.datos.idEstudiante,
+      observacion: this.recomendacion
+    };
+    console.log('AQuideberia ir ')
+    await this.api.sendApiPut('update.documentos.matricula.erroneo',observacion)
+  }
+}
 }
 

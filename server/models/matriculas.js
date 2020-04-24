@@ -21,7 +21,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.ENUM,
       values: ['Primera', 'Segunda','Tercera'],
       notEmpty: true
-
     },
     pdfMatricula: 
     {

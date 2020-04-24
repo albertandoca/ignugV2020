@@ -1,5 +1,10 @@
 <main>
   <mat-toolbar fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+    <div class="agenda" fxFlex="4%">
+      <button mat-icon-button color="primary" aria-label="Agenga" (click)="agenda()">
+        <mat-icon>{{iconoAgenda}}</mat-icon>
+      </button>
+    </div>
     <div class="logo" fxFlex="10%">
       <img src="../../assets/img/logo/ignug2020.png" alt="Logo Ignug">
     </div>
@@ -37,15 +42,11 @@
         </button>
       </mat-menu>
     </div>
-    <div class="agenda" fxFlex="4%">
-      <button mat-icon-button color="primary" aria-label="Agenga" (click)="agenda()">
-        <mat-icon>{{iconoAgenda}}</mat-icon>
-      </button>
-    </div>
+
   </mat-toolbar>
 
   <mat-sidenav-container>
-      <mat-sidenav #agendaSidenav mode="side" position="end" [opened]="verAgenda">
+      <mat-sidenav #agendaSidenav mode="side" position="start" [opened]="verAgenda">
           <div>
             <app-eventos></app-eventos>
           </div>

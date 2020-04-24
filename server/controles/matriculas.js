@@ -33,12 +33,17 @@ let encontrarMatricula = (req, res) => {
     })
 }   
 
+
+
 let guardarMatricula = (req, res) => {
+
     let data = req.body.data
-    
+
+    data.estado = true
     data.createdAt = new Date(Date.now())
     data.updatedAt = new Date(Date.now())
 
+    
     modelos.Matriculas.create(data)
     .then(respuesta => {
         console.log(respuesta.dataValues)

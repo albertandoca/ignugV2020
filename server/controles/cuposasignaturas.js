@@ -23,19 +23,19 @@ let promocionCupos = (req, res) => {
 
 let obtenerAsignaturas = (req, res) => {
     console.log(req.body)
-    let idEstudiante = null
+    let idPersonaSeleccionada = null
     let idPeriodoLectivo = null
-    if (typeof req.body.data.idEstudiante == 'undefined') {
-        idEstudiante = req.body.data.idEstudiante
+    if (typeof req.body.data.idPersonaSeleccionada == 'undefined') {
+        idPersonaSeleccionada = req.body.data.idPersonaSeleccionada
         idPeriodoLectivo = req.body.data.idPeriodoLectivo
     } else {
-        idEstudiante = req.body.data.idEstudiante
+        idPersonaSeleccionada = req.body.data.idPersonaSeleccionada
         idPeriodoLectivo = req.body.data.idPeriodoLectivo
     }
 
     modelos.CuposAsignaturas.findAll({
         where: {
-            idEstudiante: idEstudiante,
+            idEstudiante: idPersonaSeleccionada,
             idPeriodoLectivo: idPeriodoLectivo,
             estado: 'Aplicado'
         },
@@ -192,6 +192,7 @@ let aplicarCupo = (req, res) => {
     })
 }
 
+// Estudiante
 let matricularCupo = (req, res) => {
     let cuposAsignaturas = req.body.data
     let datos = []
@@ -201,7 +202,8 @@ let matricularCupo = (req, res) => {
             {estado: 'Matriculado'},
             {
                 where: {
-                    id: cupo.id,
+                    idEstudiante: cupo.idEstudiante,
+                    idAsignatura: cupo.idAsignatura,
                     estado: 'Aplicado'
                 }
             }).then(data => {

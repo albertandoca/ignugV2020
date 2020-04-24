@@ -127,27 +127,66 @@ let uploadSolicitudMatricula = (req, res) => {
         })
     })
 }
-
 let updateSolicitudMatricula = (req, res) => {
-    let solicitudMatricula = req.body.data
-    modelos.solicitudesMatricula.update(solicitudMatricula, {
-        where: {
-            id: solicitudMatricula.id,
-            idPeriodoAcademico: solicitudMatricula.idPeriodoAcademico
+
+    let data = req.body.data
+    let idCarrera = req.body.data.idCarrera
+    let idEstudiante = req.body.data.idEstudiante
+    data.estado = 'Matriculado'
+    console.log(idCarrera)
+    console.log(idEstudiante)
+    modelos.SolicitudesMatriculas.findOne({
+        where:{
+            idCarrera: idCarrera,
+            idEstudiante: idEstudiante,
+            estado: {
+                [Op.or]: ['Aplicado', 'Matriculado']
+            }
         }
-    })
-    .then(data => {
+    }).then(cambio => {
+        cambio.update(data)
         return res.status(200).json({
             transaccion: true,
-            data: data,
-            token: req.token,
-            msg: data.length
+            data: [],
+            msg: 'Solicitud Matriculada'
         })
-    }).catch(err => {
+    }).catch(err=>{
         return res.status(500).json({
             transaccion: false,
-            data: null,
-            msg: 'Error del servidor'
+            data: err,
+            msg: 'Servidor no disponible'
+        })
+    })
+}
+
+let updateSolicitudMatriculaErroneo = (req, res) => {
+
+    let data = req.body.data
+    let idCarrera = req.body.data.idCarrera
+    let idEstudiante = req.body.data.idEstudiante
+    data.estado = 'Erroneo'
+    console.log(idCarrera)
+    console.log(idEstudiante)
+    modelos.SolicitudesMatriculas.findOne({
+        where:{
+            idCarrera: idCarrera,
+            idEstudiante: idEstudiante,
+            estado: {
+                [Op.or]: ['Aplicado', 'Erroneo']
+            }
+        }
+    }).then(cambio => {
+        cambio.update(data)
+        return res.status(200).json({
+            transaccion: true,
+            data: [],
+            msg: 'Solicitud Rechazada'
+        })
+    }).catch(err=>{
+        return res.status(500).json({
+            transaccion: false,
+            data: err,
+            msg: 'Servidor no disponible'
         })
     })
 }
@@ -156,5 +195,7 @@ module.exports = {
     leerSolicitudMatricula,
     uploadSolicitudMatricula,
     updateSolicitudMatricula,
-    leerSolicitudesMatriculas
+    leerSolicitudesMatriculas,
+    updateSolicitudMatriculaErroneo,
+    updateSolicitudMatricula
 }
