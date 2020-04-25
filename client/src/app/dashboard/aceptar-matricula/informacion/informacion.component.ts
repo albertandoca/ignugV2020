@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Observacion } from './../../../modelos/observacion';
 import { AutorizadoService } from './../../../servicios/autorizado.service';
 import { PersonaLogin } from './../../../modelos/persona-login';
@@ -74,6 +75,7 @@ export class InformacionComponent implements OnInit {
     private autorizado: AutorizadoService,
     private api: ApiService,
     private server: ServerService,
+    private toastr: ToastrService,
     public dialogRef: MatDialogRef<InformacionComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any){
       //En datos esta el idEstudiante refiriendose a personaRol y periodoLectivo
@@ -81,9 +83,6 @@ export class InformacionComponent implements OnInit {
       //y tambien el idCarrera
       // tambien envio el idSolicitud
     this.datos=data
-    this.mostrar = false;
-    this.mostrar1 = false;
-    this.mostrar2= false;
     this.ninguno = true;
     this.idEstudiante = this.datos.idEstudiante
     this.url = this.server.getUrl();
@@ -101,6 +100,7 @@ export class InformacionComponent implements OnInit {
     this.carrera='';
     this.recomendacion='';
     this.slider = [false,false,false];
+
   }
 
   ngOnInit(): void {
@@ -183,33 +183,8 @@ export class InformacionComponent implements OnInit {
     window.open(`${this.url}ver-archivo/${urlFile}/${directorio}`, 'blank');
 
   }
- cambiar(opcion: number)
- {
-   if(opcion==1)
-   {
-    this.mostrar=!this.mostrar
-   }
-   if(opcion==2)
-   {
-    this.mostrar1=!this.mostrar1
-   }
-   if(opcion==3)
-   {
-    this.mostrar2=!this.mostrar2
-   }
-   this.ninguno=false;
- }
  async enviarInformacion()
   {
-    for(let m=0;m<this.slider.length;m++)
-    {
-      if(this.slider[0]==true){
-      }
-      if(this.slider[1]==true){
-      }
-      if(this.slider[2]==true){
-      }
-    }
   if(this.slider[0]==false&&this.slider[1]==false&&this.slider[2]==false){
     let numeroMatriculaAux = " ";
     console.log("Entre")
@@ -239,18 +214,19 @@ export class InformacionComponent implements OnInit {
         modificadoPor: this.personaLogin.id,
         estado: true
       };
-      //Este crea un registro en matriculas por cada asignatura ya funciona
+      //Este crea un registro en matriculas por cada asignatura funciona
       await this.api.sendApi('guardar-matricula',matricula);
     }
-    //Este cambia la solicitud de aplicado a matriculado ya esto hecho tambien
+    //Este cambia la solicitud de aplicado a matriculado funciona (error transaccion)
       await this.api.sendApiPut('update.solicitud.matricula',this.datos)
 
-      //Este cambia el estado de los cupos de  Aplicado a Matriculado en la tabla cupos asignaturas ya funciona
-      await this.api.sendApiPut('matricular-cupo', this.auxiliarAsignaturasSolicitadas);
+      //Este cambia el estado de los cupos de  Aplicado a Matriculado en la tabla cupos asignaturas  (no funciona pero funcionaba)
+       //await this.api.sendApiPut('matricular-cupo', this.auxiliarAsignaturasSolicitadas);
   }
   else
   {
-    //Primero cambiar la solicitud de Aplicado->Erroneo
+    this.toastr.info('no envio informacio un pdf esta erroneo')
+    //Primero cambiar la solicitud de Aplicado->Erroneo funciona (error transaccion)
     await this.api.sendApiPut('update.solicitud.matricula.erroneo',this.datos)
     //Segundo no guardar matricula
     //Tercero se queda en aplicado no hago nada
@@ -260,8 +236,8 @@ export class InformacionComponent implements OnInit {
       idEstudiante: this.datos.idEstudiante,
       observacion: this.recomendacion
     };
-    console.log('AQuideberia ir ')
-    await this.api.sendApiPut('update.documentos.matricula.erroneo',observacion)
+    //Enviar la informacion erronea
+    //await this.api.sendApiPut('update.documentos.matricula.erroneo',observacion)
   }
 }
 }

@@ -53,7 +53,7 @@
       Documentos
     </ng-template>
     <mat-accordion>
-      <mat-expansion-panel>
+      <mat-expansion-panel *ngIf="!slider[0]">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <mat-icon class="example-tab-icon">picture_as_pdf</mat-icon>
@@ -63,7 +63,7 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
 
-        <div style="height:300px;">
+        <div  style="height:300px;">
           <pdf-viewer (click)="verFile(pdfTituloGrado,'pdf-titulo')" src="{{url}}ver-archivo/{{pdfTituloGrado}}/pdf-titulo"
           [render-text]="true"
           [original-size]="false"
@@ -76,7 +76,8 @@
       </mat-expansion-panel>
 
       <mat-expansion-panel (opened)="panelOpenState = true"
-                           (closed)="panelOpenState = false">
+                           (closed)="panelOpenState = false"
+                           *ngIf="!slider[1]">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <mat-icon class="example-tab-icon">picture_as_pdf</mat-icon>
@@ -100,7 +101,8 @@
       </mat-expansion-panel>
 
       <mat-expansion-panel (opened)="panelOpenState = true"
-      (closed)="panelOpenState = false">
+      (closed)="panelOpenState = false"
+      *ngIf="!slider[2]">
       <mat-expansion-panel-header>
       <mat-panel-title>
          <mat-icon class="example-tab-icon">picture_as_pdf</mat-icon>
@@ -122,9 +124,9 @@
 
     </mat-accordion>
     <div style="margin-top: 30px;">
-        <mat-slide-toggle (click)="cambiar(1)" [(ngModel)]="slider[0]">Anular el PDF título de grado</mat-slide-toggle><br>
-        <mat-slide-toggle (click)="cambiar(2)" [(ngModel)]="slider[1]">Anular el PDF de asignación de cupo</mat-slide-toggle><br>
-        <mat-slide-toggle (click)="cambiar(3)" [(ngModel)]="slider[2]">Anular el PDF de cédula</mat-slide-toggle>
+        <mat-slide-toggle  [(ngModel)]="slider[0]">Anular el PDF título de grado</mat-slide-toggle><br>
+        <mat-slide-toggle  [(ngModel)]="slider[1]">Anular el PDF de asignación de cupo</mat-slide-toggle><br>
+        <mat-slide-toggle  [(ngModel)]="slider[2]">Anular el PDF de cédula</mat-slide-toggle>
     </div>
   </mat-tab>
 
@@ -163,22 +165,24 @@
           <mat-card-subtitle>{{nivel}}</mat-card-subtitle>
         </div>
         <div>
-          <mat-card-title  class="tamaño">PDF erroneos: </mat-card-title>
-          <mat-card-subtitle *ngIf="ninguno" >Ninguno</mat-card-subtitle>
-          <mat-card-subtitle *ngIf="mostrar" >PDF Título de grado</mat-card-subtitle>
-          <mat-card-subtitle *ngIf="mostrar1">PDF Asignación de cupo</mat-card-subtitle>
-          <mat-card-subtitle *ngIf="mostrar2">PDF Cédula</mat-card-subtitle>
+          <mat-card-title *ngIf="slider[0]||slider[1]||slider[2]" class="tamaño">PDF erroneos: </mat-card-title>
+          <mat-card-subtitle *ngIf="slider[0]" >PDF Título de grado</mat-card-subtitle>
+          <mat-card-subtitle *ngIf="slider[1]">PDF Asignación de cupo</mat-card-subtitle>
+          <mat-card-subtitle *ngIf="slider[2]">PDF Cédula</mat-card-subtitle>
         </div>
 
-        <div>
-          <mat-card-title  class="tamaño">Recomendaciones para los PDFs</mat-card-title>
+        <div *ngIf="slider[0]||slider[1]||slider[2]">
+          <div>
+            <mat-card-title  class="tamaño">Recomendaciones para los PDFs</mat-card-title>
+          </div>
+          <div class="alineacion">
+            <mat-form-field style="width: 350px;" appearance="fill">
+              <mat-label style="width: 350px;" >Recomendaciones</mat-label>
+              <textarea matInput [(ngModel)]="recomendacion"></textarea>
+            </mat-form-field>
+          </div>
         </div>
-        <div class="alineacion">
-          <mat-form-field style="width: 350px;" appearance="fill">
-            <mat-label style="width: 350px;" >Recomendaciones</mat-label>
-            <textarea matInput [(ngModel)]="recomendacion"></textarea>
-          </mat-form-field>
-        </div>
+
         <div style="text-align: right;">
           <button (click)="enviarInformacion()" mat-flat-button color="accent">Enviar</button>
         </div>

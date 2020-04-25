@@ -150,12 +150,6 @@ let updateSolicitudMatricula = (req, res) => {
             data: [],
             msg: 'Solicitud Matriculada'
         })
-    }).catch(err=>{
-        return res.status(500).json({
-            transaccion: false,
-            data: err,
-            msg: 'Servidor no disponible'
-        })
     })
 }
 
@@ -181,12 +175,6 @@ let updateSolicitudMatriculaErroneo = (req, res) => {
             transaccion: true,
             data: [],
             msg: 'Solicitud Rechazada'
-        })
-    }).catch(err=>{
-        return res.status(500).json({
-            transaccion: false,
-            data: err,
-            msg: 'Servidor no disponible'
         })
     })
 }

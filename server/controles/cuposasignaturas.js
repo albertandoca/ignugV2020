@@ -304,64 +304,6 @@ let eliminarCupo = (req, res) => {
     })
 }
 
-let obtenerCupoMatricula = (req, res) => {
-    console.log(req.body)
-    let idEstudiante = null
-    let idPeriodoLectivo = null
-    if (typeof req.body.data.idEstudiante == 'undefined') {
-        idEstudiante = req.body.idPersona
-        idPeriodoLectivo = req.body.data
-    } else {
-        idEstudiante = req.body.data.idEstudiante
-        idPeriodoLectivo = req.body.data
-    }
-
-    modelos.CuposAsignaturas.findAll({
-        where: {
-            idEstudiante: idEstudiante,
-            idPeriodoLectivo: idPeriodoLectivo,
-            
-            estado: {
-                [Op.or]: ['Asignado', 'Aplicado']
-            }
-        },
-        include: [
-            {
-                model: modelos.Asignaturas,
-                attributes: ['id', 'detalle', 'codigoAsignatura'],
-                required: true,
-                include: [
-                    {
-                        model: modelos.Mallas,
-                        attributes: ['id', 'detalle'],
-                        required: true,
-                        include: [
-                            {
-                                model: modelos.Carreras,
-                                attributes: ['id', 'detalle'],
-                                required: true
-                            }
-                        ]
-                    }
-                    
-                ]
-            }
-        ]
-    }).then(data => {
-        return res.status(200).json({
-            transaccion: true,
-            data: data,
-            token: req.token,
-            msg: data.length
-        })
-    }).catch(err => {
-        return res.status(500).json({
-            transaccion: false,
-            data: null,
-            msg: 'Error del servidor'
-        })
-    })
-}
 
 
 module.exports = {
