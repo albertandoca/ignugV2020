@@ -135,7 +135,9 @@ let validaPath = (urlFile, directorio) => {
   if(directorio == 'pdf-cedula'){
     pathFile = `./files/pdf/cedula/${urlFile}`
   }
-
+  if(directorio == 'imagen-evento'){
+    pathFile = `./files/imagen/evento/${urlFile}`
+  }
 
   return pathFile
 }

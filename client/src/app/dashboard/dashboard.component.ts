@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.url = this.server.getUrl();
     this.personaLogin = this.autorizado.getPersonaLogin();
-    this.verAgenda = true;
+    this.verAgenda = false;
     this.iconoAgenda = 'more_vert';
     this.mensaje();
     this.notificacion();

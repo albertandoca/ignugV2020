@@ -170,4 +170,5 @@ export class InformacionComponent implements OnInit {
 
   }
 
+
 }

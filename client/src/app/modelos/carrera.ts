@@ -1,5 +1,4 @@
 import { Instituto } from './instituto';
-
 export interface Carrera {
   id: number;
   idInstituto?: number;

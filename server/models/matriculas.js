@@ -31,39 +31,43 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true
       }
     },
-    creadoPor: {
-      type: DataTypes.STRING,
+    creadoPor:
+    {
+      type: DataTypes.INTEGER,
       notEmpty: true
     },
-    modificadoPor: {
-      type: DataTypes.STRING,
+    modificadoPor:
+    {
+      type: DataTypes.INTEGER,
       notEmpty: true
     },
-    estado: {
-      type: DataTypes.BOOLEAN, 
+    estado: 
+    {
+      type: DataTypes.BOOLEAN,
+      defaultValue : true,
       allowNull: false,
-      defaultValue: true
+      notEmpty: true
     }
   }, {});
   Matriculas.associate = function(models) {
-    Matriculas.belongsTo(models.PersonasRoles, {
-      foreignKey: {
+    Matriculas.belongsTo(models.PersonasRoles,{
+      foreignKey:{
         type: DataTypes.INTEGER,
         name: 'idEstudiante',
         allowNull: false,
         unique: false
       },
       targetKey: 'id'
+    }),
+    Matriculas.belongsTo(models.Asignaturas,{
+      foreignKey:{
+        type: DataTypes.INTEGER,
+        name: 'idAsignatura',
+        allowNull: false,
+        unique: false
+      },
+      targetKey: 'id'
     })
-    Matriculas.belongsTo(models.Asignaturas, {
-        foreignKey: {
-          type: DataTypes.INTEGER,
-          name: 'idAsignatura',
-          allowNull: false,
-          unique: false
-        },
-        targetKey: 'id'
-      })
   };
   return Matriculas;
 };

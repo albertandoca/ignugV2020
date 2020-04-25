@@ -8,6 +8,7 @@ let api = EXPRESS.Router(),
     imagenAgendaMiddleware = MULTIPARTY({uploadDir: './files/imagen/agenda'}),
     imagenLogotipoMiddleware = MULTIPARTY({uploadDir: './files/imagen/logotipo'}),
     imagenMenuMiddleware = MULTIPARTY({uploadDir: './files/imagen/menu'}),
+    imagenEventoMiddleware = MULTIPARTY({uploadDir: './files/imagen/evento'}),
     imagenPersonaMiddleware = MULTIPARTY({uploadDir: './files/imagen/persona'}),
     filePdfMiddleware = MULTIPARTY({uploadDir: './files/pdf'}),
     resolucionPdfMiddleware = MULTIPARTY({uploadDir: './files/pdf/resolucion'}),
@@ -26,7 +27,9 @@ let api = EXPRESS.Router(),
     solicitudMatriculaControl = require('../controles/solicitudesMatricula'),
     periodosLectivosControl = require('../controles/periodoslectivos'),
     matriculaControl = require('../controles/matriculas'),
-    carreraControl = require('../controles/carrera')
+    carreraControl = require('../controles/carrera'),
+    eventosControl = require('../controles/eventos')
+
 // EndPoint Personas
 api.post('/leer-persona', [autenticarControl.autenticado, sesionControl.actualiza], personasControl.leer)
 api.post('/crear-persona', [autenticarControl.autenticado, sesionControl.actualiza], personasControl.crear)
@@ -56,7 +59,9 @@ api.post('/imagen-agenda', [autenticarControl.autenticado, sesionControl.actuali
 api.post('/imagen-logotipo', [autenticarControl.autenticado, sesionControl.actualiza, imagenLogotipoMiddleware], filesControl.upload)
 api.post('/imagen-menu', [autenticarControl.autenticado, sesionControl.actualiza, imagenMenuMiddleware], filesControl.upload)
 api.post('/imagen-persona', [autenticarControl.autenticado, sesionControl.actualiza, imagenPersonaMiddleware], filesControl.upload)
+api.post('/imagen-evento',[autenticarControl.autenticado, sesionControl.actualiza, imagenPersonaMiddleware], imagenEventoMiddleware, filesControl.upload)
 // api.post('/imagen-...', imagenAgendaMiddleware], filesControl.upload)
+
 api.post('/pdf', [autenticarControl.autenticado, sesionControl.actualiza, filePdfMiddleware], filesControl.upload)
 api.post('/pdf-resolucion', [autenticarControl.autenticado, sesionControl.actualiza, resolucionPdfMiddleware], filesControl.upload)
 api.post('/pdf-ruc', [autenticarControl.autenticado, sesionControl.actualiza, rucPdfMiddleware], filesControl.upload)
@@ -94,14 +99,17 @@ api.put('/update.solicitud.matricula', [autenticarControl.autenticado, sesionCon
 // endPoint PeriodosLectivos
 api.post('/periodo-lectivo-activo', [autenticarControl.autenticado, sesionControl.actualiza], periodosLectivosControl.periodoLectivoActivo)
 
-
 //End Point Matricula
 api.post('/guardar-matricula',matriculaControl.guardarMatricula)
 api.post('/encontrar-matricula',matriculaControl.encontrarMatricula)
-
 
 //End Point Carreras
 api.post('/leer-carrera',carreraControl.leerCarrera)
 
 
+//EndPoint Eventos
+api.post('/leer-eventos',eventosControl.leer)
+api.post('/crear-eventos',eventosControl.crear)
+
 module.exports = api
+

@@ -3,17 +3,17 @@ import { PeriodoAcademico } from './periodo-academico';
 import { Malla } from './malla';
 export interface Asignatura {
   id: number;
-  codigoAsignatura: string;
+  codigoAsignatura: string,
   detalle: string;
   creditos?: number;
   horasDocente?: number;
   horasPracticas?: number;
   horasAutonomas?: number;
-  estado?: true;
+  estado?: boolean;
   idMalla?: number;
   idPeriodoAcademico?: number;
-  idCampoFormacion: number;
   idUnidadCurricular?: number;
+  idCampoFormacion?: number;
   Malla?: Malla;
   PeriodosAcademico?: PeriodoAcademico;
   FormacionCampo?: CampoFormacion;
