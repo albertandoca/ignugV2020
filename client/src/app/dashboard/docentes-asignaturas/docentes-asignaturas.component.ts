@@ -9,7 +9,7 @@ import { DocenteAsignatura } from 'src/app/modelos/docente-asignatura';
 import { MatPaginator } from '@angular/material/paginator';
 import { SelectionModel } from '@angular/cdk/collections';
 import { ServerService } from 'src/app/servicios/server.service';
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {CdkDragDrop, moveItemInArray, transferArrayItem, CdkDrag, CdkDropList, CdkDragExit, CdkDragEnter } from '@angular/cdk/drag-drop';
 import { Persona } from 'src/app/modelos/persona';
 import { Asignatura } from 'src/app/modelos/asignatura';
 
@@ -30,6 +30,7 @@ export class DocentesAsignaturasComponent implements OnInit { docenteAsignaturaF
   nombreArchivo: string;
   casa: number;
   docentes: Persona[];
+  docente: Persona;
   asignaturas: Asignatura[];
   asignaturaDocente: Array<Array<Persona>>;
 
@@ -44,20 +45,7 @@ export class DocentesAsignaturasComponent implements OnInit { docenteAsignaturaF
     this.url = this.server.getUrl();
    }
 
-/*asignaturas = [
-  'Fundamentos de Programación',
-  'Matemática Discreta',
-  'Análisis y Diseño de Sistemas',
-  'Desarrollo del Pensamiento'
-];
 
-docentes = [
-  'Bryan Espinoza',
-  'Fabian Llanos',
-  'Leonardo Cardenas'
-];
-
-*/
 
   ngOnInit(): void {
     this.nuevo = false;
@@ -90,7 +78,13 @@ docentes = [
     }
   }
 
-  drop(event: CdkDragDrop <string[]>) {
+  drop(event: CdkDragDrop <number[]>) {
+    if (event.container.data.length > 0) {
+      return false;
+    } else {
+      // aqui mandamos a guardar
+      console.log(event.container);
+    }
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -100,6 +94,46 @@ docentes = [
                         event.currentIndex);
     }
   }
+
+  dropDocente(event: CdkDragDrop<number[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);
+    }
+  }
+
+
+  confirmar(i: number) {
+    console.log(this.asignaturas[i]);
+    console.log(this.asignaturaDocente[i]);
+
+  }
+/*
+guardarEditar() {
+
+    this.instituto = this.institutoForm.value
+    this.instituto.pdfRuc = this.rucArchivo
+    this.instituto.pdfResolucion = this.resolucionArchivo
+    this.instituto.logotipo = this.logotipoImg
+
+    this.http.put<DataRx>(`${this.apiUrl.url}modificar-institutos`, this.instituto)
+    .subscribe(res => {
+      console.log(res);
+      if (res.transaccion) {
+        if (res.data.length.toString() == res.msg){
+           console.log("modificado");
+        }
+      }
+    });
+    this.openSnackBar(this.instituto.razonSocial,"¡Ha sido Modificado con exito!")
+    this.leerInstitutos()
+    this.nuevo=false;
+  }
+  */
 
   async leerDocentesCarreras(idCarrera) {
     this.docentes = await this.api.sendApi('leer-docentes-carreras', idCarrera);
@@ -169,28 +203,6 @@ docentes = [
     this.selectedFile = e.target.files;
     this.nombreArchivo =  await this.api.sendFile(endPoint, this.selectedFile);
   }
-
-
-  // Funciones para crear archivos descargables
-  crearPdf() {
-
-  }
-
-  crearXls() {
-
-  }
-
-  async verImagen( nombreFile: string, carpeta: string): Promise<any> {
-    alert('jjjj');
-    const datos = {
-      urlFile: nombreFile,
-      directorio: carpeta
-    };
-    let res: any;
-    res = await this.api.verFileServer('ver-archivo', datos);
-    return res;
-  }
-
 
   // Funciones para el manejo del checkbox de la tabla
   // En this.selection.selected se encuentran los registros seleccionados por el checkbox

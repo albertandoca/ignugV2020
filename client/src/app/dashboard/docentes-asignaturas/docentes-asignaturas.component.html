@@ -2,17 +2,19 @@
     <div class="example-container" *ngFor="let asignatura of asignaturas; let i = index">
         <label> {{asignatura.codigoAsignatura}}  {{asignatura.detalle}}</label>
 
-        <div cdkDropList [cdkDropListData]="asignaturaDocente[i]" class="example-list" (cdkDropListDropped)="drop($event)">
+        <div id="asignaturaDocente[i]" cdkDropList [cdkDropListData]="asignaturaDocente[i]" cdkDropListConnectedTo="docentes" class="example-list" (cdkDropListDropped)="drop($event)">
             <div class="example-box" *ngFor="let docente of asignaturaDocente[i]" cdkDrag>{{docente.apellidoPaterno}} {{docente.apellidoMaterno}} {{docente.primerNombre}} {{docente.segundoNombre}} </div>
         </div>
+        <button (click)="confirmar(i)">confirmar</button>
     </div>
 
 
     <div class="example-container">
         <h2>Docentes</h2>
 
-        <div cdkDropList [cdkDropListData]="docentes" class="example-list" (cdkDropListDropped)="drop($event)">
-            <div class="example-box" *ngFor="let docente of docentes" cdkDrag>{{docente.apellidoPaterno}} {{docente.apellidoMaterno}} {{docente.primerNombre}} {{docente.segundoNombre}} </div>
+        <div id="docentes" cdkDropList [cdkDropListData]="docentes" cdkDropListConnectedTo="asignaturaDocente[i]" class="example-list" (cdkDropListDropped)="dropDocente($event)">
+            <div class="example-box" *ngFor="let docente of docentes" cdkDrag>
+                {{docente.apellidoPaterno}} {{docente.apellidoMaterno}} {{docente.primerNombre}} {{docente.segundoNombre}} </div>
         </div>
     </div>
 </div>

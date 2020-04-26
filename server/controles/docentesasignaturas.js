@@ -144,78 +144,14 @@ let gestionarDocenteAsignatura = (req, res) => {
     }
 }
 
-let establecerDocenteAsignatura = (req, res) => {
-    let docenteAsignatura = req.body.data
-    for (let docente of docentesAsignaturas) {
-        modelos.DocentesAsignaturas.update(docenteAsignatura, {
 
-            where: {
-                id: docente.id
-            }
-        }).then(data => {
-            datos.push(docente.Asignatura.detalle)
-        }).catch(err => {
-            error.push(docenteAsignatura.detalle)
-        })
-    }
-    return res.status(200).json({
-        transaccion: true,
-        data: datos,
-        token: req.token,
-        error: error
-    })
-}
-
-let asignarDocenteAsignatura = (req, res) => {
-    let docentesAsignaturas = req.body.data
-    let datos = []
-    let error = []
-    for (let docente of docentesAsignaturas) {
-        modelos.DocentesAsignaturas.update({
-            where: {
-                id: docente.id
-            }
-        }).then(data => {
-            datos.push(docente.Asignatura.detalle)
-        }).catch(err => {
-            error.push(docenteAsignatura.detalle)
-        })
-    }
-    return res.status(200).json({
-        transaccion: true,
-        data: datos,
-        token: req.token,
-        error: error
-    })
-}
-
-let anularDocenteAsignatura = (req, res) => {
-    let docentesAsignaturas = req.body.data
-    let datos = []
-    let error = []
-    for (letvdocente of docentesAsignaturas) {
-        modelos.DocentesAsignaturas.update({
-            where: {
-                id: docente.id
-            }
-        }).then(data => {
-            datos.push(docente.Asignatura.detalle)
-        }).catch(err => {
-            error.push(docenteAsignatura.detalle)
-        })
-    }
-    return res.status(200).json({
-        transaccion: true,
-        data: datos,
-        token: req.token,
-        error: error
-    })
-}
 
 let eliminarDocenteAsignatura = (req, res) => {
     let docentesAsignaturas = req.body.data
     let datos = []
     let error = []
+    data.updatedAt = new Date(Date.now());
+    data.estado = false;
     for (let docente of docentesAsignaturas) {
         modelos.DocentesAsignaturas.update({
             where: {
@@ -240,8 +176,5 @@ module.exports = {
     leerDocenteAsignatura,
     obtenerDocenteAsignatura,
     gestionarDocenteAsignatura,
-    asignarDocenteAsignatura,
-    establecerDocenteAsignatura,
-    anularDocenteAsignatura,
     eliminarDocenteAsignatura
 }
