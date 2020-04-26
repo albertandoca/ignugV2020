@@ -89,34 +89,25 @@ let updateDocumentosMatricula = (req, res) => {
 
 let updateDocumentosMatriculaErroneo = (req, res) => {
 
-    let data = req.body.data
-    let idCarrera = req.body.data.idCarrera
-    let idEstudiante = req.body.data.idEstudiante
-    data.obervacion = req.body.data.observacion
-    
-    console.log(idCarrera)
-    console.log(idEstudiante)
-
-    modelos.DocumentosMatriculas.findOne({
-        where:{
-            idCarrera: idCarrera,
-            idEstudiante: idEstudiante,
-            obervacion: {
-                [Op.or]: ['', data.obervacion]
-            }
+    let datos = req.body.data
+    modelos.DocumentosMatriculas.update({
+        observacion: datos.observacion
+    }, {
+        where: {
+            idEstudiante: datos.idEstudiante,
+            idCarrera: datos.idCarrera
         }
-    }).then(cambio => {
-        cambio.update(data)
+    }).then(data => {
         return res.status(200).json({
             transaccion: true,
-            data: [],
-            msg: 'Observacion agregada'
+            data: [data],
+            msg: data.length
         })
-    }).catch(err=>{
+    }).catch(err => {
         return res.status(500).json({
             transaccion: false,
-            data: err,
-            msg: 'Servidor no disponible'
+            data: [],
+            msg: 'Servidor error'
         })
     })
 }

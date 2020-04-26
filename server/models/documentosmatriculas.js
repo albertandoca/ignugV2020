@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true
       }
     },
-    obervacion:{
+    observacion:{
       type: DataTypes.STRING(200),
       allowNull: false,
       validate: {

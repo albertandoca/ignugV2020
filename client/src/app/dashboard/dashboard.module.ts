@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { AvisoLegalComponent } from './solicitud-matricula/aviso-legal/aviso-legal.component';
+import { SolicitarAnulacionMatriculaComponent } from './solicitar-anulacion-matricula/solicitar-anulacion-matricula.component';
 
 
 @NgModule({

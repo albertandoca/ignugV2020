@@ -21,7 +21,9 @@ const routes: Routes = [
       {path: 'aceptar-matricula', loadChildren: () =>import('./aceptar-matricula/aceptar-matricula.module').then(m=>m.AceptarMatriculaModule)},
       {path: 'distributivo-docente', loadChildren: () => import('./distributivo-docente/distributivo-docente.module')
       .then(m => m.DistributivoDocenteModule)},
-      {path: 'eventos',component: EventosComponent}
+      {path: 'eventos',component: EventosComponent},
+      {path: 'solicitar-anulacion-matricula', loadChildren: () =>import('./solicitar-anulacion-matricula/solicitar-anulacion-matricula.module').then(m=>m.SolicitarAnulacionMatriculaModule)},
+
     ]
   }
 ];

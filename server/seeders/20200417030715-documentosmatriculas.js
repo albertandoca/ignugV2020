@@ -10,7 +10,7 @@ module.exports = {
           pdfCedula:'hRAEVlDD7lbXsN3lTKlA8u7K.pdf',
           idEstudiante:11,
           idCarrera:1,
-          obervacion:'',
+          observacion:'',
           estado:true,
           createdAt: new Date(),
           updatedAt: new Date()
@@ -21,7 +21,7 @@ module.exports = {
           pdfCedula:'hRAEVlDD7lbXsN3lTKlA8u7K.pdf',
           idEstudiante:11,
           idCarrera:3,
-          obervacion:'',
+          observacion:'',
           estado:true,
           createdAt: new Date(),
           updatedAt: new Date()
@@ -32,7 +32,7 @@ module.exports = {
           pdfCedula:'hRAEVlDD7lbXsN3lTKlA8u7K.pdf',
           idEstudiante:12,
           idCarrera:1,
-          obervacion:'',
+          observacion:'',
           estado:true,
           createdAt: new Date(),
           updatedAt: new Date()
@@ -43,7 +43,7 @@ module.exports = {
           pdfCedula:'hRAEVlDD7lbXsN3lTKlA8u7K.pdf',
           idEstudiante:7,
           idCarrera:1,
-          obervacion:'',
+          observacion:'',
           estado:true,
           createdAt: new Date(),
           updatedAt: new Date()

@@ -103,36 +103,17 @@ checkboxLabel(row?: Solicitud): string {
   //return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id}`;
 }
 
-  openDialog(id:number): void {
-    for(const iterador of this.solicitudes){
-      if(iterador.id==id){
-        this.idEstudiante = iterador.idEstudiante
-        this.idPeriodoLectivo = iterador.idPeriodoLectivo
-        this.idPersonaSeleccionada = iterador.PersonasRole.idPersona
-        this.idCarrera = iterador.idCarrera
-        this.idSolicitud = iterador.id
-      }
-    }
-
+  openDialog(i:number): void {
     const dialogRef = this.dialog.open(InformacionComponent, {
       width: '750px',
       disableClose: false,
       maxHeight: '90vh',
       autoFocus: false,
-      data: {
-        idSolicitud : this.idSolicitud,
-        idEstudiante: this.idEstudiante,
-        idPeriodoLectivo: this.idPeriodoLectivo,
-        idPersonaSeleccionada: this.idPersonaSeleccionada,
-        idCarrera: this.idCarrera
-      }
+      data: this.solicitudes[i]
     });
 
     dialogRef.afterClosed().subscribe(res => {
-
       this.leerSolcicitudes()
-      console.log("volvi a recargar todo")
-
     });
   }
 }
