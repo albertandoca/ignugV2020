@@ -87,8 +87,43 @@ let updateDocumentosMatricula = (req, res) => {
     })
 }
 
+let updateDocumentosMatriculaErroneo = (req, res) => {
+
+    let data = req.body.data
+    let idCarrera = req.body.data.idCarrera
+    let idEstudiante = req.body.data.idEstudiante
+    data.obervacion = req.body.data.observacion
+    
+    console.log(idCarrera)
+    console.log(idEstudiante)
+
+    modelos.DocumentosMatriculas.findOne({
+        where:{
+            idCarrera: idCarrera,
+            idEstudiante: idEstudiante,
+            obervacion: {
+                [Op.or]: ['', data.obervacion]
+            }
+        }
+    }).then(cambio => {
+        cambio.update(data)
+        return res.status(200).json({
+            transaccion: true,
+            data: [],
+            msg: 'Observacion agregada'
+        })
+    }).catch(err=>{
+        return res.status(500).json({
+            transaccion: false,
+            data: err,
+            msg: 'Servidor no disponible'
+        })
+    })
+}
+
 module.exports = {
     leerDocumentosMatricula,
     uploadDocumentosMatricula,
-    updateDocumentosMatricula
+    updateDocumentosMatricula,
+    updateDocumentosMatriculaErroneo
 }

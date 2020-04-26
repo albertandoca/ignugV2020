@@ -10,7 +10,7 @@ export interface Matricula {
   pdfMatricula: string;
   creadoPor?: number;
   modificadoPor?: number;
-  estado: string;
+  estado: boolean;
   PersonaRol?: PersonaRol;
   Asignatura?: Asignatura
   createdAt?: Date;

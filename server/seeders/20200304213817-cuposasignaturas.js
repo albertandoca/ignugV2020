@@ -147,7 +147,7 @@ module.exports = {
         },
         //yo
         {
-          idEstudiante: 7,
+          idEstudiante: 6,
           idAsignatura: 1,
           idPeriodoLectivo:3,
           creadoPor: 7,
@@ -157,7 +157,7 @@ module.exports = {
           updatedAt: new Date()
         },
         {
-          idEstudiante: 7,
+          idEstudiante: 6,
           idAsignatura: 2,
           idPeriodoLectivo:3,
           creadoPor: 7,
@@ -167,17 +167,17 @@ module.exports = {
           updatedAt: new Date()
         },
         {
-          idEstudiante: 7,
+          idEstudiante: 6,
           idAsignatura: 3,
           idPeriodoLectivo:3,
-          creadoPor: 7,
+          creadoPor: 6,
           modificadoPor: 7,
           estado:'Aplicado',
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
-          idEstudiante: 7,
+          idEstudiante: 6,
           idAsignatura: 4,
           idPeriodoLectivo:3,
           creadoPor: 7,
@@ -187,7 +187,7 @@ module.exports = {
           updatedAt: new Date()
         },
         {
-          idEstudiante: 7,
+          idEstudiante: 6,
           idAsignatura: 5,
           idPeriodoLectivo:3,
           creadoPor: 7,
@@ -195,7 +195,58 @@ module.exports = {
           estado:'Aplicado',
           createdAt: new Date(),
           updatedAt: new Date()
-        }
+        },
+        //Karina
+        {
+          idEstudiante: 7,
+          idAsignatura: 1,
+          idPeriodoLectivo:3,
+          creadoPor: 7,
+          modificadoPor: 7,
+          estado:'Asignado',
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          idEstudiante: 7,
+          idAsignatura: 2,
+          idPeriodoLectivo:3,
+          creadoPor: 7,
+          modificadoPor: 7,
+          estado:'Asignado',
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          idEstudiante: 7,
+          idAsignatura: 3,
+          idPeriodoLectivo:3,
+          creadoPor: 6,
+          modificadoPor: 7,
+          estado:'Asignado',
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          idEstudiante: 7,
+          idAsignatura: 4,
+          idPeriodoLectivo:3,
+          creadoPor: 7,
+          modificadoPor: 7,
+          estado:'Asignado',
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          idEstudiante: 7,
+          idAsignatura: 5,
+          idPeriodoLectivo:3,
+          creadoPor: 7,
+          modificadoPor: 7,
+          estado:'Asignado',
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
     ], {});
     
   },

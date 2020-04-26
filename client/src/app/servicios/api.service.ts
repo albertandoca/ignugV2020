@@ -91,6 +91,7 @@ export class ApiService {
       idPersona: this.autorizado.getPersonaLogin().id,
       data: datos
     };
+    console.log(dataTx)
     const optionsHeaders = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

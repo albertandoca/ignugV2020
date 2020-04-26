@@ -1,3 +1,4 @@
+import { Persona } from './../../modelos/persona';
 import { ApiService } from './../../servicios/api.service';
 import { Solicitud } from './../../modelos/solicitud';
 import { InformacionComponent } from './informacion/informacion.component';
@@ -29,11 +30,14 @@ export class AceptarMatriculaComponent implements OnInit {
   dataSource: any;
   selection: any;
   url: string;
+  persona: Persona;
   nuevo: boolean;
   public idEstudiante :number;
   public idPeriodoLectivo: number;
   public idPersonaSeleccionada: number;
   public idCarrera: number;
+  public idSolicitud: number;
+  public idPersona: number;
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
@@ -72,6 +76,7 @@ export class AceptarMatriculaComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.solicitudes);
       this.dataSource.paginator = this.paginator;
     }
+
   }
 
 isAllSelected() {
@@ -107,6 +112,7 @@ checkboxLabel(row?: Solicitud): string {
         this.idPeriodoLectivo = iterador.idPeriodoLectivo
         this.idPersonaSeleccionada = iterador.PersonasRole.idPersona
         this.idCarrera = iterador.idCarrera
+        this.idSolicitud = iterador.id
       }
     }
 
@@ -116,6 +122,7 @@ checkboxLabel(row?: Solicitud): string {
       maxHeight: '90vh',
       autoFocus: false,
       data: {
+        idSolicitud : this.idSolicitud,
         idEstudiante: this.idEstudiante,
         idPeriodoLectivo: this.idPeriodoLectivo,
         idPersonaSeleccionada: this.idPersonaSeleccionada,
@@ -124,6 +131,9 @@ checkboxLabel(row?: Solicitud): string {
     });
 
     dialogRef.afterClosed().subscribe(res => {
+
+      this.leerSolcicitudes()
+      console.log("volvi a recargar todo")
 
     });
   }
