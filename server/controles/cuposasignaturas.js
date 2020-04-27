@@ -48,7 +48,6 @@ let obtenerAsignaturas = (req, res) => {
                                 'horasPracticas',
                                 'horasAutonomas',
                                 'estado',
-                                'idMalla',
                                 'idUnidadCurricular',
                                 'idCampoFormacion',
                                 'createdAt',
@@ -65,7 +64,13 @@ let obtenerAsignaturas = (req, res) => {
                             {
                                 model:modelos.Mallas,
                                 required: true,
-                                attributes:['idCarrera']
+                                attributes:['idCarrera','id'],
+                                include:[
+                                    {
+                                        model: modelos.Carreras,
+                                        required: true
+                                    }
+                                ]
                             }
                         ],
                     }, 

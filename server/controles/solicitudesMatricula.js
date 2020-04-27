@@ -57,9 +57,15 @@ let leerSolicitudesMatriculas = (req, res) => {
                 ]
             },
             {
-                model: modelos.Carreras,
-                attributes:['detalle'],
-                required:true
+                model: modelos.Mallas,
+                required:true,
+                include:[
+                    {
+                        model: modelos.Carreras,
+                        attributes:['detalle'],
+                        required:true
+                    }
+                ]
             }
         ]
     }).then(data => {

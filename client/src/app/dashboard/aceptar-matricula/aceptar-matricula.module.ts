@@ -4,11 +4,11 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/cor
 import { CommonModule } from '@angular/common';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { AceptarMatriculaRoutingModule } from './aceptar-matricula-routing.module';
-import { EnvioComponent } from './informacion/envio/envio.component';
+
 
 
 @NgModule({
-  declarations: [AceptarMatriculaComponent, EnvioComponent],
+  declarations: [AceptarMatriculaComponent],
   imports: [
     CommonModule,
     AceptarMatriculaRoutingModule,

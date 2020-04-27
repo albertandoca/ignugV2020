@@ -10,7 +10,7 @@ export interface CupoAsignatura {
   modificadoPor: number;
   estado: string;
   Persona?: Persona;
-  Asignatura?: Asignatura;
+  Asignatura: Asignatura;
   PeriodosLectivo: PeriodoLectivo;
   createdAt: Date;
   updatedAt: Date;

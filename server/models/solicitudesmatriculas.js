@@ -46,10 +46,10 @@ module.exports = (sequelize, DataTypes) => {
       },
       targetKey:'id'
     })
-    SolicitudesMatriculas.belongsTo(models.Carreras,{
+    SolicitudesMatriculas.belongsTo(models.Mallas,{
       foreignKey:{
         type: DataTypes.INTEGER,
-        name: 'idCarrera',
+        name: 'idMalla',
         allowNull:false,
         unique:false
       },

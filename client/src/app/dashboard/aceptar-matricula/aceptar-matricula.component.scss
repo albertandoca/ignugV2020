@@ -3,13 +3,13 @@
 @include mat-table-columns((
   foto: (width: -3rem, padding-left: 0.1rem,aling: center),
   identificacion: (width: 7rem,aling: center),
-  primerNombre: (width: 4rem,aling: center),
-  apellidoPaterno: (width: 4rem, aling: center),
-  codigoSolicitud: (width: 7rem,aling: center),
-  createdAt: (width: 7rem, aling: center),
+  primerNombre: (width: 7rem,aling: center),
+  apellidoPaterno: (width: 7rem, aling: center),
+  codigoSolicitud: (width: 9rem,aling: center),
+  createdAt: (width: 10rem, aling: center),
   detalle: (width: 15rem,aling: center),
   malla:(width: 5rem,aling: center),
-  evento:(width: 4rem,aling: center)
+  evento:(width: 9rem,aling: center)
 ));
 .fotografiaPersona{
   width: 80px;

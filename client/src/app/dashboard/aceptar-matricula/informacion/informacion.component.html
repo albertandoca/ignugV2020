@@ -1,7 +1,7 @@
 <mat-tab-group  mat-align-tabs="center">
-  <mat-tab label="Asignaturas">
+  <mat-tab  *ngIf="mostrar" label="Asignaturas">
     <ng-template mat-tab-label>
-      <mat-icon class="example-tab-icon">subject</mat-icon>
+      <mat-icon style="color: #ff944d;" class="example-tab-icon">subject</mat-icon>
       Asignaturas
     </ng-template>
 
@@ -21,18 +21,18 @@
         </ng-container>
 
         <ng-container matColumnDef="creditos">
-          <th mat-header-cell *matHeaderCellDef> Número de créditos </th>
-          <td mat-cell *matCellDef="let element"> {{element.Asignatura?.creditos}} </td>
+          <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Número de créditos </th>
+          <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.Asignatura?.creditos}} </td>
         </ng-container>
 
         <ng-container matColumnDef="nivel">
           <th mat-header-cell *matHeaderCellDef> Nivel </th>
-          <td mat-cell *matCellDef="let element"> {{element.Asignatura?.PeriodosAcademico?.nivel}} </td>
+          <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.Asignatura?.PeriodosAcademico?.nivel}} </td>
         </ng-container>
 
         <ng-container matColumnDef="numeroMatricula">
-          <th mat-header-cell *matHeaderCellDef> N° Matricula </th>
-          <td mat-cell *matCellDef="let element"> {{element.textoMatricula}} </td>
+          <th mat-header-cell *matHeaderCellDef style="text-align: center;"> N° Matricula </th>
+          <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.numeroMatricula}} </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="encabezadoTabla"></tr>
@@ -46,17 +46,17 @@
     </mat-card>
   </mat-tab>
 
-  <mat-tab label="Documentos">
+  <mat-tab   *ngIf="mostrar" label="Documentos">
 
     <ng-template mat-tab-label>
-      <mat-icon class="example-tab-icon">picture_as_pdf</mat-icon>
+      <mat-icon mat-stroked-button color="warn" class="example-tab-icon">picture_as_pdf</mat-icon>
       Documentos
     </ng-template>
     <mat-accordion>
       <mat-expansion-panel *ngIf="!slider[0]">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            <mat-icon class="example-tab-icon">picture_as_pdf</mat-icon>
+            <mat-icon  mat-raised-button color="warn" class="example-tab-icon">picture_as_pdf</mat-icon>
           </mat-panel-title>
           <mat-panel-description>
             PDF Título de grado
@@ -80,7 +80,7 @@
                            *ngIf="!slider[1]">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            <mat-icon class="example-tab-icon">picture_as_pdf</mat-icon>
+            <mat-icon mat-raised-button color="warn" class="example-tab-icon">picture_as_pdf</mat-icon>
           </mat-panel-title>
           <mat-panel-description>
 
@@ -105,7 +105,7 @@
       *ngIf="!slider[2]">
       <mat-expansion-panel-header>
       <mat-panel-title>
-         <mat-icon class="example-tab-icon">picture_as_pdf</mat-icon>
+         <mat-icon mat-raised-button color="warn" class="example-tab-icon">picture_as_pdf</mat-icon>
       </mat-panel-title>
       <mat-panel-description>
           PDF Cédula
@@ -123,18 +123,20 @@
       </mat-expansion-panel>
 
     </mat-accordion>
+
     <div style="margin-top: 30px;">
-        <mat-slide-toggle  [(ngModel)]="slider[0]">Anular el PDF título de grado</mat-slide-toggle><br>
-        <mat-slide-toggle  [(ngModel)]="slider[1]">Anular el PDF de asignación de cupo</mat-slide-toggle><br>
-        <mat-slide-toggle  [(ngModel)]="slider[2]">Anular el PDF de cédula</mat-slide-toggle>
+        <mat-slide-toggle  mat-raised-button color="warn" [(ngModel)]="slider[0]">Anular el PDF título de grado</mat-slide-toggle><br>
+        <mat-slide-toggle  mat-raised-button color="warn" [(ngModel)]="slider[1]">Anular el PDF de asignación de cupo</mat-slide-toggle><br>
+        <mat-slide-toggle  mat-raised-button color="warn" [(ngModel)]="slider[2]">Anular el PDF de cédula</mat-slide-toggle>
     </div>
+
   </mat-tab>
 
-  <mat-tab   label="Informacion">
+  <mat-tab   *ngIf="mostrar"  label="Información">
 
     <ng-template mat-tab-label>
-      <mat-icon class="example-tab-icon">how_to_reg</mat-icon>
-      Informacion
+      <mat-icon mat-stroked-button color="primary" class="example-tab-icon">how_to_reg</mat-icon>
+      Información
     </ng-template>
 
     <mat-card class="example-card1">
@@ -166,7 +168,7 @@
         </div>
         <div>
           <mat-card-title *ngIf="slider[0]||slider[1]||slider[2]" class="tamaño">PDF erroneos: </mat-card-title>
-          <mat-card-subtitle *ngIf="slider[0]" >PDF Título de grado</mat-card-subtitle>
+          <mat-card-subtitle *ngIf="slider[0]">PDF Título de grado</mat-card-subtitle>
           <mat-card-subtitle *ngIf="slider[1]">PDF Asignación de cupo</mat-card-subtitle>
           <mat-card-subtitle *ngIf="slider[2]">PDF Cédula</mat-card-subtitle>
         </div>
@@ -184,7 +186,7 @@
         </div>
 
         <div style="text-align: right;">
-          <button [mat-dialog-close]="cerrar"(click)="enviarInformacion()" mat-flat-button color="accent">Enviar</button>
+          <button mat-button color="primary" matTooltip="Enviar la información de {{persona.primerNombre}} {{persona.apellidoPaterno}}"(click)="cambio()">Enviar</button>
         </div>
       </mat-card-content>
 
@@ -192,4 +194,32 @@
 
   </mat-tab>
 
+  <mat-tab *ngIf="!mostrar"  label="¿Desea continuar?">
+
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">error_outline</mat-icon>
+      ¿Desea continuar?
+    </ng-template>
+
+    <mat-card  style="border-top: 50px;" class="example-card1">
+      <mat-card-content class="alineacion">
+      <div style="border-top: 40px;">
+
+        <div style="border-right: 30px; display: inline;" >
+
+          <button matTooltip="Aceptar" style="border-right: 75px;" mat-button mat-stroked-button color="primary" [mat-dialog-close]="cerrar" (click)="enviarInformacion()">Aceptar</button>
+
+        </div>
+        <div style="display:inline;">
+
+          <button matTooltip="Cancelar" mat-button mat-stroked-button color="accent" (click)="cambio()">Cancelar</button>
+
+        </div>
+
+      </div>
+    </mat-card-content>
+    </mat-card>
+  </mat-tab>
+
 </mat-tab-group>
+

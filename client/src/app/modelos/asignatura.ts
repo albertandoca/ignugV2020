@@ -10,7 +10,7 @@ export interface Asignatura {
   horasPracticas?: number;
   horasAutonomas?: number;
   estado?: boolean;
-  idMalla?: number;
+  idMalla: number;
   idPeriodoAcademico?: number;
   idUnidadCurricular?: number;
   idCampoFormacion?: number;
