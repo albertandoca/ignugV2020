@@ -3,7 +3,7 @@ import { Rol } from './rol';
 import { Persona } from './persona';
 export interface PersonaRol {
   id: number;
-  idPersona?: number;
+  idPersona: number;
   idRol?: number;
   idInstituto?: number;
   urlDesignacion: string;

@@ -18,7 +18,12 @@ mat-sidenav {
   background-color: #f77129c2;
   height: 550px;
 }
-
+.tamaño{
+  display:inline-block;
+  text-align:left;
+  justify-content:center;
+  font-size: small;
+}
 .contenedorTabla {
   height: auto;
   overflow: auto;

@@ -64,7 +64,7 @@
         </mat-expansion-panel-header>
 
         <div  style="height:300px;">
-          <pdf-viewer (click)="verFile(pdfTituloGrado,'pdf-titulo')" src="{{url}}ver-archivo/{{pdfTituloGrado}}/pdf-titulo"
+          <pdf-viewer (click)="verFile(documento.pdfTituloGrado,'pdf-titulo')" src="{{url}}ver-archivo/{{documento.pdfTituloGrado}}/pdf-titulo"
           [render-text]="true"
           [original-size]="false"
           [autoresize]="true"
@@ -90,7 +90,7 @@
         </mat-expansion-panel-header>
 
         <div style="height:300px;">
-          <pdf-viewer (click)="verFile(pdfAsignacionCupo,'pdf-cupo')" src="{{url}}ver-archivo/{{pdfAsignacionCupo}}/pdf-cupo"
+          <pdf-viewer (click)="verFile(documento.pdfAsignacionCupo,'pdf-cupo')" src="{{url}}ver-archivo/{{documento.pdfAsignacionCupo}}/pdf-cupo"
           [render-text]="true"
           style="display: block; width: 650px; height: 400px;"
           [original-size]="false"
@@ -112,7 +112,7 @@
       </mat-panel-description>
       </mat-expansion-panel-header>
       <div style="height:300px;">
-        <pdf-viewer  (click)="verFile(pdfCedula,'pdf-cedula')" src="{{url}}ver-archivo/{{pdfCedula}}/pdf-cedula"
+        <pdf-viewer  (click)="verFile(documento.pdfCedula,'pdf-cedula')" src="{{url}}ver-archivo/{{documento.pdfCedula}}/pdf-cedula"
         [render-text]="true"
         [original-size]="false"
         [autoresize]="true"
@@ -140,21 +140,21 @@
     <mat-card class="example-card1">
       <mat-card-header>
         <div mat-card-avatar >
-          <img class="example-header-image1" src="{{url}}ver-archivo/{{foto}}/imagen-persona" alt="">
+          <img class="example-header-image1" src="{{url}}ver-archivo/{{persona.foto}}/imagen-persona" alt="">
         </div>
-        <mat-card-title class="tamaño">{{pNombre}} {{pApellido}} {{sNombre}} {{mApellido}}</mat-card-title>
-        <mat-card-subtitle>{{identificacion}}</mat-card-subtitle>
+        <mat-card-title class="tamaño">{{persona.primerNombre}} {{persona.apellidoPaterno}} {{persona.segundoNombre}} {{persona.apellidoMaterno}}</mat-card-title>
+        <mat-card-subtitle>{{persona.identificacion}}</mat-card-subtitle>
 
       </mat-card-header>
 
       <mat-card-content class="alineacion">
         <div>
           <mat-card-title  class="tamaño">Email Institucional</mat-card-title>
-          <mat-card-subtitle>{{emailInstitucional}}</mat-card-subtitle>
+          <mat-card-subtitle>{{persona.emailInstitucional}}</mat-card-subtitle>
         </div>
         <div>
           <mat-card-title  class="tamaño">Email Personal</mat-card-title>
-          <mat-card-subtitle>{{emailPersonal}}</mat-card-subtitle>
+          <mat-card-subtitle>{{persona.emailPersonal}}</mat-card-subtitle>
         </div>
         <div>
           <mat-card-title  class="tamaño">Carrera</mat-card-title>
@@ -184,7 +184,7 @@
         </div>
 
         <div style="text-align: right;">
-          <button (click)="enviarInformacion()" mat-flat-button color="accent">Enviar</button>
+          <button [mat-dialog-close]="cerrar"(click)="enviarInformacion()" mat-flat-button color="accent">Enviar</button>
         </div>
       </mat-card-content>
 

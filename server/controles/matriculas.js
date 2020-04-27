@@ -16,12 +16,18 @@ let Op = Sequelize.Op;
 
 let encontrarMatricula = (req, res) => {
     
+    let idEstudiante = req.body.data.idEstudiante
+    let idAsignatura = req.body.data.idAsignatura
     modelos.Matriculas.findAll({
+        where: {
+            idEstudiante: idEstudiante,
+            idAsignatura: idAsignatura
+        }
     }).then(data => {
         return res.status(200).json({
             transaccion: true,
             data: data,
-            token: req.token,
+            //token: req.token,
             msg: data.length
         })
     }).catch(err => {

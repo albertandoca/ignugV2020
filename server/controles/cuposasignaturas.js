@@ -194,11 +194,35 @@ let aplicarCupo = (req, res) => {
 
 // Estudiante
 let matricularCupo = (req, res) => {
+
+    let datos = req.body.data
+    modelos.CuposAsignaturas.update({
+        estado: 'Matriculado'
+    }, {
+        where: {
+            id: datos.id
+        }
+    }).then(data => {
+        return res.status(200).json({
+            transaccion: true,
+            data: [data],
+            msg: data.length
+        })
+    }).catch(err => {
+        return res.status(500).json({
+            transaccion: false,
+            data: [],
+            msg: 'Servidor error'
+        })
+    })
+}
+
+let matricularCupos = async (req, res) => {
     let cuposAsignaturas = req.body.data
     let datos = []
-    let error = []
-    for (let cupo of cuposAsignaturas) {
-        modelos.CuposAsignaturas.update(
+    let error1 = []
+     for (let cupo of cuposAsignaturas) {
+        await modelos.CuposAsignaturas.update(
             {estado: 'Matriculado'},
             {
                 where: {
@@ -209,15 +233,17 @@ let matricularCupo = (req, res) => {
             }).then(data => {
                 datos.push(cupo.Asignatura.detalle)
             }).catch(err => {
-                error.push(cupoAsignatura.detalle)
+                error1.push(cupo.Asignatura.detalle)
             }
         )
     }
+    console.log(datos)
+    console.log(error1)
     return res.status(200).json({
         transaccion: true,
         data: datos,
-        token: req.token,
-        error: error
+        //token: req.token,
+        error: error1
     })
 }
 

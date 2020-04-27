@@ -13,7 +13,7 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 @NgModule({
   declarations: [
-    SolicitudMatriculaComponent
+    SolicitudMatriculaComponent,
   ],
   imports: [
     CommonModule,

@@ -127,54 +127,51 @@ let uploadSolicitudMatricula = (req, res) => {
         })
     })
 }
+
 let updateSolicitudMatricula = (req, res) => {
 
-    let data = req.body.data
-    let idCarrera = req.body.data.idCarrera
-    let idEstudiante = req.body.data.idEstudiante
-    data.estado = 'Matriculado'
-    console.log(idCarrera)
-    console.log(idEstudiante)
-    modelos.SolicitudesMatriculas.findOne({
-        where:{
-            idCarrera: idCarrera,
-            idEstudiante: idEstudiante,
-            estado: {
-                [Op.or]: ['Aplicado', 'Matriculado']
-            }
+    let datos = req.body.data
+    modelos.SolicitudesMatriculas.update({
+        estado: datos.estado
+    }, {
+        where: {
+            id: datos.id
         }
-    }).then(cambio => {
-        cambio.update(data)
+    }).then(data => {
         return res.status(200).json({
             transaccion: true,
+            data: [data],
+            msg: data.length
+        })
+    }).catch(err => {
+        return res.status(500).json({
+            transaccion: false,
             data: [],
-            msg: 'Solicitud Matriculada'
+            msg: 'Servidor error'
         })
     })
 }
 
 let updateSolicitudMatriculaErroneo = (req, res) => {
 
-    let data = req.body.data
-    let idCarrera = req.body.data.idCarrera
-    let idEstudiante = req.body.data.idEstudiante
-    data.estado = 'Erroneo'
-    console.log(idCarrera)
-    console.log(idEstudiante)
-    modelos.SolicitudesMatriculas.findOne({
-        where:{
-            idCarrera: idCarrera,
-            idEstudiante: idEstudiante,
-            estado: {
-                [Op.or]: ['Aplicado', 'Erroneo']
-            }
+    let datos = req.body.data
+    modelos.SolicitudesMatriculas.update({
+        estado: datos.estado
+    }, {
+        where: {
+            id: datos.id
         }
-    }).then(cambio => {
-        cambio.update(data)
+    }).then(data => {
         return res.status(200).json({
             transaccion: true,
+            data: [data],
+            msg: data.length
+        })
+    }).catch(err => {
+        return res.status(500).json({
+            transaccion: false,
             data: [],
-            msg: 'Solicitud Rechazada'
+            msg: 'Servidor error'
         })
     })
 }

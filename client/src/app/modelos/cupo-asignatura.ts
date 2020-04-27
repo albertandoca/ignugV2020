@@ -14,4 +14,5 @@ export interface CupoAsignatura {
   PeriodosLectivo: PeriodoLectivo;
   createdAt: Date;
   updatedAt: Date;
+  numeroMatricula?: string;
 }

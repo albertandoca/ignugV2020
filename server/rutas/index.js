@@ -82,22 +82,22 @@ api.put('/imagen-persona', [autenticarControl.autenticado, sesionControl.actuali
 api.post('/obtener-cupos', /*[autenticarControl.autenticado, sesionControl.actualiza], */cuposAsignaturasControl.obtenerCupo)
 api.put('/aplicar-cupos', [autenticarControl.autenticado, sesionControl.actualiza], cuposAsignaturasControl.aplicarCupo)
 api.post('/obtener-asignaturas',/*[autenticarControl.autenticado, sesionControl.actualiza],*/cuposAsignaturasControl.obtenerAsignaturas)
-api.put('/matricular-cupo',/*[autenticarControl.autenticado, sesionControl.actualiza],*/cuposAsignaturasControl.matricularCupo)
+api.post('/matricular-cupo',/*[autenticarControl.autenticado, sesionControl.actualiza],*/cuposAsignaturasControl.matricularCupo)
 
 
 // EndPoint documentosMatricula
 api.post('/leer-documentos-matricula', /*[autenticarControl.autenticado, sesionControl.actualiza],*/ documentosMatriculaControl.leerDocumentosMatricula)
 api.post('/upload-documentos-matricula', [autenticarControl.autenticado, sesionControl.actualiza], documentosMatriculaControl.uploadDocumentosMatricula)
 api.put('/update.documentos.matricula', [autenticarControl.autenticado, sesionControl.actualiza], documentosMatriculaControl.updateDocumentosMatricula)
-api.put('/update.documentos.matricula.erroneo', /*[autenticarControl.autenticado, sesionControl.actualiza],*/ documentosMatriculaControl.updateDocumentosMatriculaErroneo)
+api.post('/update.documentos.matricula.erroneo', /*[autenticarControl.autenticado, sesionControl.actualiza],*/ documentosMatriculaControl.updateDocumentosMatriculaErroneo)
 
 
 // EndPoint solicitudMatricula
 api.post('/leer-solicitudes-matriculas',solicitudMatriculaControl.leerSolicitudesMatriculas)
 api.post('/leer-solicitud-matricula', /*[autenticarControl.autenticado, sesionControl.actualiza], */solicitudMatriculaControl.leerSolicitudMatricula)
 api.post('/upload-solicitud-matricula', [autenticarControl.autenticado, sesionControl.actualiza], solicitudMatriculaControl.uploadSolicitudMatricula)
-api.put('/update.solicitud.matricula', /*[autenticarControl.autenticado, sesionControl.actualiza],*/ solicitudMatriculaControl.updateSolicitudMatricula)
-api.put('/update.solicitud.matricula.erroneo', /*[autenticarControl.autenticado, sesionControl.actualiza],*/ solicitudMatriculaControl.updateSolicitudMatriculaErroneo)
+api.post('/update.solicitud.matricula', /*[autenticarControl.autenticado, sesionControl.actualiza],*/ solicitudMatriculaControl.updateSolicitudMatricula)
+api.post('/update.solicitud.matricula.erroneo', /*[autenticarControl.autenticado, sesionControl.actualiza],*/ solicitudMatriculaControl.updateSolicitudMatriculaErroneo)
 
 
 // endPoint PeriodosLectivos
