@@ -1,4 +1,4 @@
-import { EnvioComponent } from './envio/envio.component';
+import { PersonaRol } from './../../../modelos/persona-rol';
 import { Solicitud } from './../../../modelos/solicitud';
 import { ToastrService } from 'ngx-toastr';
 import { AutorizadoService } from './../../../servicios/autorizado.service';
@@ -70,8 +70,6 @@ export class InformacionComponent implements OnInit {
   resultado= [];
   slider : boolean [];
   mostrar: boolean;
-  mostrar1: boolean;
-  mostrar2: boolean;
   ninguno : boolean;
   recomendacion : string;
   asignaturasSolicitadasMalla: CupoAsignatura[];
@@ -124,7 +122,7 @@ export class InformacionComponent implements OnInit {
       pdfTituloGrado: '',
       pdfAsignacionCupo: ''
     }
-
+    this.mostrar =true;
     this.personaLogin = this.autorizado.getPersonaLogin();
     this.traerAsignaturas()
     this.traerDocumentos()
@@ -137,18 +135,10 @@ export class InformacionComponent implements OnInit {
       idPersonaSeleccionada: this.data.PersonasRole.idPersona,
       idPeriodoLectivo: this.data.idPeriodoLectivo
     }
-    console.log(this.datos.idCarrera)
+    //console.log(this.datos.idCarrera)
     this.asignaturasSolicitadas = await this.api.sendApi('obtener-asignaturas',this.datos);
-    this.asignaturasSolicitadasMalla = this.asignaturasSolicitadas.filter(asignatura => asignatura.Asignatura.Malla.idCarrera == this.data.idCarrera)
+    this.asignaturasSolicitadasMalla = this.asignaturasSolicitadas.filter(asignatura => asignatura.Asignatura.idMalla == this.data.idMalla)
     this.auxiliarAsignaturasSolicitadas = this.asignaturasSolicitadasMalla
-    this.displayedColumns =[
-      'codigoAsignatura',
-      'detalle',
-      'creditos',
-      'nivel',
-      'numeroMatricula'
-    ];
-  this.dataSource = new MatTableDataSource(this.asignaturasSolicitadasMalla);
     let i = 0
   for (const asignatura of this.asignaturasSolicitadasMalla)  {
     this.datos = {
@@ -158,7 +148,7 @@ export class InformacionComponent implements OnInit {
     this.matriculas = await this.api.sendApi('encontrar-matricula',this.datos);
     this.resultado.push(this.matriculas.length + 1)
     if (this.matriculas.length === 0) {
-      this.asignaturasSolicitadasMalla[i]. numeroMatricula = 'Primera';
+      this.asignaturasSolicitadasMalla[i].numeroMatricula = 'Primera';
     }
     if (this.matriculas.length === 1) {
       this.asignaturasSolicitadasMalla[i].numeroMatricula = 'Segunda';
@@ -168,10 +158,18 @@ export class InformacionComponent implements OnInit {
     }
     i++
   }
+  this.displayedColumns =[
+    'codigoAsignatura',
+    'detalle',
+    'creditos',
+    'nivel',
+    'numeroMatricula'
+  ];
+  this.dataSource = new MatTableDataSource(this.asignaturasSolicitadasMalla);
 }
 
   async traerInformacion(){
-    this.carrera = this.data.Carrera.detalle
+    this.carrera = this.data.PersonasRole.Carrera.detalle
     this.datos ={
       idPersonaSeleccionada: this.data.PersonasRole.idPersona
     }
@@ -182,7 +180,7 @@ export class InformacionComponent implements OnInit {
   async traerDocumentos(){
     this.datos = {
       idEstudiante: this.data.idEstudiante,
-      idCarrera:   this.data.idCarrera
+      idCarrera:   this.data.Malla.idCarrera
     }
     this.documento = await this.api.sendApi('leer-documentos-matricula',this.datos);
   }
@@ -194,31 +192,13 @@ export class InformacionComponent implements OnInit {
 
  async enviarInformacion()
   {
-    /*let opcion;
-    const dialogRef = this.dialog.open(EnvioComponent, {
-      width: '350px',
-      disableClose: false,
-      autoFocus: true,
-    });
-
-    dialogRef.afterClosed().subscribe( res => {
-        if(res==1)
-        {
-          opcion=res
-        }
-        if(res==2)
-        {
-          opcion=res
-        }
-    });
-
-  if(opcion==1)
-  {*/
+    this.mostrar=false
     if(this.slider[0]==false&&this.slider[1]==false&&this.slider[2]==false){
      for (const asignatura of this.asignaturasSolicitadasMalla){
         const matricula: Matricula = {
           idEstudiante: this.data.idEstudiante,
           idAsignatura: asignatura.idAsignatura,
+          //Año//PeriodoLectivo//Carrera//Nombre de la asignatura//nivel
           codigo: "2020_3_DF_US_1",
           tipoMatricula:  "Ordinaria",
           numeroMatricula : asignatura.numeroMatricula,
@@ -230,7 +210,7 @@ export class InformacionComponent implements OnInit {
         await this.api.sendApi('guardar-matricula',matricula);
       }
 
-      this.datos ={
+      this.datos = {
         estado: 'Matriculado',
         id: this.data.id
       }
@@ -241,7 +221,7 @@ export class InformacionComponent implements OnInit {
       {
         await this.api.sendApi('matricular-cupo', asig);
       }
-      this.toastr.info('Se matriculo correctamente al alumno')
+      this.toastr.info('Se envio correctamente la información')
     }
     else
     {
@@ -251,23 +231,18 @@ export class InformacionComponent implements OnInit {
       }
       await this.api.sendApi('update.solicitud.matricula.erroneo',this.datos);
       this.dato = {
-        idCarrera: this.data.idCarrera,
+        idCarrera: this.data.Malla.idCarrera,
         idEstudiante: this.data.idEstudiante,
         observacion: this.recomendacion
       }
       await this.api.sendApi('update.documentos.matricula.erroneo',this.dato)
       this.toastr.info('Se enviaron correctamente las recomendaciones para arreglar los PDF')
     }
-    this.toastr.info('Se envio la información con exito')
-  /*}
-  if(opcion==2)
-  {
-    this.toastr.info('Se cancelo el envio')
-  }
-  else{
-    this.toastr.info('Aun no tengo informacion')
-  }*/
+    this.toastr.info('Se envio correctamente la información')
 }
-
+cambio()
+{
+  this.mostrar=!this.mostrar
+}
 }
 

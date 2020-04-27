@@ -70,7 +70,7 @@ export class AceptarMatriculaComponent implements OnInit {
         'codigoSolicitud',
         'createdAt',
         'detalle',
-        'malla',
+        'carrera',
         'evento'
       ];
       this.dataSource = new MatTableDataSource(this.solicitudes);
@@ -79,28 +79,10 @@ export class AceptarMatriculaComponent implements OnInit {
 
   }
 
-isAllSelected() {
-  const numSelected = this.selection.selected.length;
-  const numRows = this.dataSource.data.length;
-  return numSelected === numRows;
-}
 
 applyFilter(event: Event) {
   const filterValue = (event.target as HTMLInputElement).value;
   this.dataSource.filter = filterValue.trim().toLowerCase();
-}
-
-masterToggle() {
-  this.isAllSelected() ?
-      this.selection.clear() :
-      this.dataSource.data.forEach(row => this.selection.select(row));
-}
-
-checkboxLabel(row?: Solicitud): string {
-  if (!row) {
-    return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
-  }
-  //return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id}`;
 }
 
   openDialog(i:number): void {

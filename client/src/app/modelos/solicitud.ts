@@ -1,4 +1,4 @@
-import { Carrera } from './carrera';
+import { Malla } from './malla';
 import { PeriodoLectivo } from './periodo-lectivo';
 import { PersonaRol } from './persona-rol';
 export interface Solicitud {
@@ -6,12 +6,12 @@ export interface Solicitud {
   pdfSolicitud: string;
   codigoSolicitud: string;
   idEstudiante: number;
-  idCarrera:number;
+  idMalla:number;
   idPeriodoLectivo: number;
   estado: string;
   createdAt?: Date;
   updatedAt?: Date;
   PersonasRole: PersonaRol;
   PeriodosLectivo: PeriodoLectivo;
-  Carrera: Carrera;
+  Malla: Malla;
 }

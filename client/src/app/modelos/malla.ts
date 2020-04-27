@@ -12,6 +12,6 @@ export interface Malla {
   estado?: boolean;
   createdAt?:  Date;
   updatedAt?:  Date;
-  Carrera?: Carrera;
+  Carrera: Carrera;
   Modalidad?: Modalidad;
 }
