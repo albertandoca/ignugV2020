@@ -35,7 +35,10 @@ import { ChartsModule } from 'ng2-charts';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    FlexLayoutModule,
+    FlexLayoutModule.withConfig({
+      useColumnBasisZero: false,
+      printWithBreakpoints: ['md', 'lt-lg', 'lt-xl', 'gt-sm', 'gt-xs']
+    }),
     MaterialModule,
     ToastrModule.forRoot(),
     ChartsModule,

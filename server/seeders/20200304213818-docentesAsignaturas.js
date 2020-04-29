@@ -6,7 +6,7 @@ module.exports = {
         return queryInterface.bulkInsert('DocentesAsignaturas', [{
                 idDocente: 11,
                 idAsignatura: 1,
-                idPeriodoLectivo: 1,
+                idPeriodoLectivo: 3,
                 idJornada: 1,
                 idParalelo: 3,
                 estado: true,
@@ -16,7 +16,7 @@ module.exports = {
             {
                 idDocente: 12,
                 idAsignatura: 3,
-                idPeriodoLectivo: 1,
+                idPeriodoLectivo: 3,
                 idJornada: 2,
                 idParalelo: 2,
                 estado: true,
@@ -25,8 +25,8 @@ module.exports = {
             },
             {
                 idDocente: 13,
-                idAsignatura: 6,
-                idPeriodoLectivo: 1,
+                idAsignatura: 3,
+                idPeriodoLectivo: 3,
                 idJornada: 3,
                 idParalelo: 2,
                 estado: true,
@@ -36,7 +36,7 @@ module.exports = {
             {
                 idDocente: 14,
                 idAsignatura: 8,
-                idPeriodoLectivo: 1,
+                idPeriodoLectivo: 3,
                 idJornada: 4,
                 idParalelo: 1,
                 estado: true,
@@ -46,9 +46,29 @@ module.exports = {
             {
                 idDocente: 15,
                 idAsignatura: 10,
-                idPeriodoLectivo: 1,
-                idJornada: 3,
-                idParalelo: 2,
+                idPeriodoLectivo: 3,
+                idJornada: 4,
+                idParalelo: 1,
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: new Date()
+            },
+            {
+                idDocente: 14,
+                idAsignatura: 33,
+                idPeriodoLectivo: 3,
+                idJornada: 4,
+                idParalelo: 1,
+                estado: true,
+                createdAt: new Date(),
+                updatedAt: new Date()
+            },
+            {
+                idDocente: 15,
+                idAsignatura: 32,
+                idPeriodoLectivo: 3,
+                idJornada: 4,
+                idParalelo: 1,
                 estado: true,
                 createdAt: new Date(),
                 updatedAt: new Date()

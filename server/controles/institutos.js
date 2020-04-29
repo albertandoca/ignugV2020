@@ -14,15 +14,24 @@ let Op = Sequelize.Op
 
 
 let leer = (req, res) => {
+    let idsInstitutos = req.body.data
+    let condicionInstitutos = {
+        estado: true
+    }
+    if (idsInstitutos) {
+        condicionInstitutos.id = {
+            [Op.in]: idsInstitutos
+        }
+    }
     modelos.Institutos.findAll({
         attributes: {
             exclude: [
-                'estado'
+                'estado',
+                'createdAt',
+                'updatedAt'
             ]
         },
-        where:{
-            estado: true
-        }
+        where: condicionInstitutos
     }).then(institutos => {
         return res.status(200).json({
             transaccion: true,

@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-    const MaxHorasDocente = sequelize.define('MaxHorasDocente', {
+    const MaxHorasDocentes = sequelize.define('MaxHorasDocentes', {
         horas: {
             type: DataTypes.INTEGER,
             validate: {
@@ -14,8 +14,8 @@ module.exports = (sequelize, DataTypes) => {
             defaultValue: true
         }
     }, {});
-    MaxHorasDocente.associate = function(models) {
-        MaxHorasDocente.belongsTo(models.Personas, {
+    MaxHorasDocentes.associate = function(models) {
+        MaxHorasDocentes.belongsTo(models.Personas, {
             foreignKey: {
                 type: DataTypes.INTEGER,
                 name: 'idDocente',
@@ -24,15 +24,15 @@ module.exports = (sequelize, DataTypes) => {
             },
             targetKey: 'id'
         });
-        MaxHorasDocente.belongsTo(models.PeriodosAcademicos, {
+        MaxHorasDocentes.belongsTo(models.PeriodosLectivos, {
             foreignKey: {
                 type: DataTypes.INTEGER,
-                name: 'idPeriodoAcademico',
+                name: 'idPeriodoLectivo',
                 allowNull: false,
                 unique: false
             },
             targetKey: 'id'
         })
     };
-    return MaxHorasDocente;
+    return MaxHorasDocentes;
 };

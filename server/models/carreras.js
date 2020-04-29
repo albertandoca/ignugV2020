@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: {
         type: DataTypes.INTEGER,
         name: 'idCarrera',
-        allowNull: false,
+        allowNull: true,
         unique: false
       },
       sourceKey: 'id'

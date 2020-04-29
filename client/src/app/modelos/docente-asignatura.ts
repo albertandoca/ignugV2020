@@ -14,9 +14,9 @@ export interface DocenteAsignatura  {
         estado?: string;
         Persona?: Persona;
         Asignatura?: Asignatura;
-        PeriodosLectivo: PeriodoLectivo;
-        Jornada: Jornada;
-        Paralelo: Paralelo;
+        PeriodosLectivo?: PeriodoLectivo;
+        Jornada?: Jornada;
+        Paralelo?: Paralelo;
         createdAt?: Date;
         updatedAt?: Date;
 }
