@@ -217,7 +217,7 @@ export class InformacionComponent implements OnInit {
 
       await this.api.sendApi('update.solicitud.matricula',this.datos);
 
-       for(const asig of this.auxiliarAsignaturasSolicitadas)
+      for(const asig of this.auxiliarAsignaturasSolicitadas)
       {
         await this.api.sendApi('matricular-cupo', asig);
       }

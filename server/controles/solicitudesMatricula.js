@@ -12,8 +12,7 @@ let modelos = require('../models')
 let Op = Sequelize.Op;
 
 
-let leerSolicitudesMatriculas = (req, res) => {
-    
+let leerSolicitudesMatriculas = (req, res) => {  
     modelos.SolicitudesMatriculas.findAll({
         where: {
             estado: 'Aplicado'
