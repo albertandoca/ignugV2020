@@ -1,3 +1,5 @@
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { MaterialModule } from './../../material.module';
@@ -15,7 +17,9 @@ import { DistributivoDocenteComponent } from './distributivo-docente.component';
     DistributivoDocenteRoutingModule,
     MaterialModule,
     ChartsModule,
-    FormsModule
+    FormsModule,
+    FlexLayoutModule,
+    ScrollingModule
   ]
 })
 export class DistributivoDocenteModule { }

@@ -6,7 +6,8 @@ module.exports = {
       {
         idPersona: 1,
         idRol: 1,
-        idCarrera: 1,
+        idInstituto: 1,
+        idCarrera: null,
         urlDesignacion: 'sin url',
         observaciones: 'no hay observaciones',
         estado: true,
@@ -16,6 +17,7 @@ module.exports = {
       {
         idPersona: 1,
         idRol: 2,
+        idInstituto: 3,
         idCarrera: 2,
         urlDesignacion: 'sin url',
         observaciones: 'no hay observaciones',
@@ -25,17 +27,8 @@ module.exports = {
       },
       {
         idPersona: 2,
-        idRol: 1,
-        idCarrera: 2,
-        urlDesignacion: 'sin url',
-        observaciones: 'no hay observaciones',
-        estado: true,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        idPersona: 1,
-        idRol: 3,
+        idRol: 4,
+        idInstituto: 1,
         idCarrera: 1,
         urlDesignacion: 'sin url',
         observaciones: 'no hay observaciones',
@@ -45,7 +38,41 @@ module.exports = {
       },
       {
         idPersona: 2,
-        idRol: 3,
+        idRol: 5,
+        idInstituto: 2,
+        idCarrera: 3,
+        urlDesignacion: 'sin url',
+        observaciones: 'no hay observaciones',
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        idPersona: 2,
+        idRol: 1,
+        idInstituto: 3,
+        idCarrera: 2,
+        urlDesignacion: 'sin url',
+        observaciones: 'no hay observaciones',
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        idPersona: 1,
+        idRol: 5,
+        idInstituto: 1,
+        idCarrera: 1,
+        urlDesignacion: 'sin url',
+        observaciones: 'no hay observaciones',
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        idPersona: 2,
+        idRol: 5,
+        idInstituto: 1,
         idCarrera: 1,
         urlDesignacion: 'sin url',
         observaciones: 'no hay observaciones',
@@ -56,6 +83,7 @@ module.exports = {
       {
         idPersona: 3,
         idRol: 3,
+        idInstituto: 3,
         idCarrera: 2,
         urlDesignacion: 'sin url',
         observaciones: 'no hay observaciones',
@@ -66,6 +94,7 @@ module.exports = {
       {
         idPersona: 6,
         idRol: 6,
+        idInstituto: 1,
         idCarrera: 1,
         urlDesignacion: 'sin url',
         observaciones: 'no hay observaciones',
@@ -76,6 +105,7 @@ module.exports = {
       {
         idPersona: 7,
         idRol: 6,
+        idInstituto: 1,
         idCarrera: 1,
         urlDesignacion: 'sin url',
         observaciones: 'no hay observaciones',
@@ -86,6 +116,7 @@ module.exports = {
       {
         idPersona: 8,
         idRol: 6,
+        idInstituto: 1,
         idCarrera: 1,
         urlDesignacion: 'sin url',
         observaciones: 'no hay observaciones',
@@ -96,6 +127,7 @@ module.exports = {
       {
         idPersona: 9,
         idRol: 6,
+        idInstituto: 1,
         idCarrera: 1,
         urlDesignacion: 'sin url',
         observaciones: 'no hay observaciones',
@@ -105,7 +137,8 @@ module.exports = {
       },
       {
         idPersona: 10,
-        idRol: 4,
+        idRol: 5,
+        idInstituto: 1,
         idCarrera: 1,
         urlDesignacion: 'sin url',
         observaciones: 'no hay observaciones',
@@ -115,8 +148,118 @@ module.exports = {
       },
       {
         idPersona: 11,
-        idRol: 4,
+        idRol: 5,
+        idInstituto: 1,
         idCarrera: 1,
+        urlDesignacion: 'sin url',
+        observaciones: 'no hay observaciones',
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        idPersona: 11,
+        idRol: 5,
+        idInstituto: 2,
+        idCarrera: 3,
+        urlDesignacion: 'sin url',
+        observaciones: 'no hay observaciones',
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        idPersona: 11,
+        idRol: 5,
+        idInstituto: 3,
+        idCarrera: 2,
+        urlDesignacion: 'sin url',
+        observaciones: 'no hay observaciones',
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        idPersona: 12,
+        idRol: 5,
+        idInstituto: 1,
+        idCarrera: 1,
+        urlDesignacion: 'sin url',
+        observaciones: 'no hay observaciones',
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        idPersona: 12,
+        idRol: 5,
+        idInstituto: 2,
+        idCarrera: 3,
+        urlDesignacion: 'sin url',
+        observaciones: 'no hay observaciones',
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        idPersona: 13,
+        idRol: 5,
+        idInstituto: 2,
+        idCarrera: 3,
+        urlDesignacion: 'sin url',
+        observaciones: 'no hay observaciones',
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        idPersona: 13,
+        idRol: 5,
+        idInstituto: 1,
+        idCarrera: 1,
+        urlDesignacion: 'sin url',
+        observaciones: 'no hay observaciones',
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        idPersona: 14,
+        idRol: 5,
+        idInstituto: 3,
+        idCarrera: 2,
+        urlDesignacion: 'sin url',
+        observaciones: 'no hay observaciones',
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        idPersona: 14,
+        idRol: 5,
+        idInstituto: 2,
+        idCarrera: 3,
+        urlDesignacion: 'sin url',
+        observaciones: 'no hay observaciones',
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },{
+        idPersona: 15,
+        idRol: 5,
+        idInstituto: 1,
+        idCarrera: 1,
+        urlDesignacion: 'sin url',
+        observaciones: 'no hay observaciones',
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        idPersona: 15,
+        idRol: 5,
+        idInstituto: 2,
+        idCarrera: 3,
         urlDesignacion: 'sin url',
         observaciones: 'no hay observaciones',
         estado: true,

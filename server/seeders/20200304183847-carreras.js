@@ -6,13 +6,6 @@ module.exports = {
       return queryInterface.bulkInsert('Carreras', [
         {
           idInstituto: 1,
-          detalle: 'Todas',
-          estado: true,
-          createdAt: new Date(),
-          updatedAt: new Date()
-        },
-        {
-          idInstituto: 1,
           detalle: 'Desarrollo de Software',
           estado: true,
           createdAt: new Date(),
@@ -34,14 +27,14 @@ module.exports = {
         },
         {
           idInstituto: 2,
-          detalle: 'Control de incendios',
+          detalle: 'Control de Incendios',
           estado: true,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           idInstituto: 2,
-          detalle: 'Guia nacional de turismo',
+          detalle: 'Guia Nacional de Turismo',
           estado: true,
           createdAt: new Date(),
           updatedAt: new Date()
@@ -55,7 +48,7 @@ module.exports = {
         },
         {
           idInstituto: 1,
-          detalle: 'Analisis de sistemas',
+          detalle: 'Analisis de Sistemas',
           estado: false,
           createdAt: new Date(),
           updatedAt: new Date()

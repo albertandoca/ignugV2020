@@ -2,10 +2,10 @@
 
 module.exports = {
     up: (queryInterface, Sequelize) => {
-        return queryInterface.bulkInsert('MaxHorasDocente', [{
+        return queryInterface.bulkInsert('MaxHorasDocentes', [{
                 idDocente: 11,
                 horas: 10,
-                idPeriodoAcademico: 3,
+                idPeriodoLectivo: 3,
                 estado: true,
                 createdAt: new Date(),
                 updatedAt: new Date()
@@ -13,7 +13,7 @@ module.exports = {
             {
                 idDocente: 12,
                 horas: 5,
-                idPeriodoAcademico: 3,
+                idPeriodoLectivo: 3,
                 estado: true,
                 createdAt: new Date(),
                 updatedAt: new Date()
@@ -21,7 +21,7 @@ module.exports = {
             {
                 idDocente: 14,
                 horas: 24,
-                idPeriodoAcademico: 3,
+                idPeriodoLectivo: 3,
                 estado: true,
                 createdAt: new Date(),
                 updatedAt: new Date()
@@ -31,6 +31,6 @@ module.exports = {
     },
 
     down: (queryInterface, Sequelize) => {
-        return queryInterface.bulkDelete('MaxHorasDocente', null, {});
+        return queryInterface.bulkDelete('MaxHorasDocentes', null, {});
     }
 };
