@@ -1,10 +1,14 @@
+import { MatTableDataSource } from '@angular/material/table';
+import { Evento } from './../modelos/evento';
+import { FormControl } from '@angular/forms';
+import { MatSidenav } from '@angular/material/sidenav';
 import { ToastrService } from 'ngx-toastr';
 import { LogService } from './../servicios/log.service';
 import { ApiService } from './../servicios/api.service';
 import { MenuPrincipalService } from '../servicios/menu-principal.service';
 import { AutorizadoService } from './../servicios/autorizado.service';
 import { PersonaLogin } from './../modelos/persona-login';
-import { Component, OnInit, HostListener} from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServerService } from '../servicios/server.service';
 import { log } from 'util';
@@ -15,13 +19,20 @@ import { log } from 'util';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  @ViewChild('sidenav') sidenav: MatSidenav;
+  reason = '';
+  eventos: Evento[];
+  url: string;
+  displayedColumns: string[];
+  dataSource: any;
+  date = new FormControl(new Date());
+  serializedDate = new FormControl((new Date()).toISOString());
 
   personaLogin: PersonaLogin;
   iconoAgenda: string;
   verAgenda: boolean;
   colorMensaje: string;
   colorNotificacion: string;
-  url: string;
   fotoPersona: any;
 
   constructor(
@@ -35,6 +46,7 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.leerEventos();
     this.url = this.server.getUrl();
     this.personaLogin = this.autorizado.getPersonaLogin();
     this.verAgenda = false;
@@ -51,7 +63,14 @@ export class DashboardComponent implements OnInit {
   }
 
   agenda() {
-    this.verAgenda = !this.verAgenda;
+    this.verAgenda=!this.verAgenda
+    if(this.verAgenda==true)
+    {
+      this.sidenav.open()
+    }
+    else{
+      this.sidenav.close();
+    }
     this.iconoAgenda = this.verAgenda ? 'more_vert' : 'drag_indicator';
   }
 
@@ -110,5 +129,25 @@ export class DashboardComponent implements OnInit {
   unloadHandler(event: Event) {
     localStorage.setItem('titulo', this.menuService.titulo);
     return;
+  }
+  async leerEventos()
+  {
+
+    this.eventos = await this.api.sendApi('leer-eventos');
+
+    this.displayedColumns = [
+      'unico',
+    ];
+
+    this.dataSource = new MatTableDataSource(this.eventos);
+  }
+  applyFilters(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  close(reason: string) {
+    this.verAgenda=!this.verAgenda
+    this.sidenav.close();
+    this.iconoAgenda = this.verAgenda ? 'more_vert' : 'drag_indicator';
   }
 }

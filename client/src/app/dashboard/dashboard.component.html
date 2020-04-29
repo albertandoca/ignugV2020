@@ -1,10 +1,6 @@
 <main>
   <mat-toolbar fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-    <div class="agenda" fxFlex="4%">
-      <button mat-icon-button color="primary" aria-label="Agenga" (click)="agenda()">
-        <mat-icon>{{iconoAgenda}}</mat-icon>
-      </button>
-    </div>
+
     <div class="logo" fxFlex="10%">
       <img src="../../assets/img/logo/ignug2020.png" alt="Logo Ignug">
     </div>
@@ -42,16 +38,81 @@
         </button>
       </mat-menu>
     </div>
+    <div class="agenda" fxFlex="4%">
+      <button mat-icon-button color="primary" aria-label="Agenga" (click)="agenda()">
+        <mat-icon>{{iconoAgenda}}</mat-icon>
+      </button>
+    </div>
 
   </mat-toolbar>
 
-  <mat-sidenav-container>
-      <mat-sidenav #agendaSidenav mode="side" position="start" [opened]="verAgenda">
+  <mat-sidenav-container (backdropClick)="close('backdrop')">
+      <mat-sidenav #sidenav (keydown.escape)="close('escape')" position="end"  disableClose>
           <div>
-            <app-eventos></app-eventos>
+            <mat-form-field>
+              <mat-label>Buscar</mat-label>
+              <input matInput (keyup)="applyFilters($event)" placeholder="Ejemplo Aniversario">
+            </mat-form-field>
+
+              <div>
+
+                <table style="max-width: 320px;" mat-table [dataSource]="dataSource">
+
+                  <!-- Position Column -->
+                  <ng-container matColumnDef="unico" >
+                    <th mat-header-cell *matHeaderCellDef style="text-align: center; font-size:medium;" >AGENDA</th>
+                    <td mat-cell *matCellDef="let element">
+                      <mat-card class="contenedorCarta">
+                        <mat-card-header  class="alineacion">
+                          <div mat-card-avatar class="example-header-image"></div>
+                          <mat-card-title>{{element.titulo}}</mat-card-title>
+                          <mat-card-subtitle>{{element.organizador}}</mat-card-subtitle>
+                        </mat-card-header>
+
+                        <img mat-card-image src= "{{url}}ver-archivo/{{element.urlImagenEvento}}/imagen-evento">
+
+                        <mat-card-content class="alineacion">
+                          <p>
+                            {{element.descripcion}}
+                          </p>
+
+                          <mat-card-title class="tamaño">Lugar</mat-card-title>
+                          <mat-card-subtitle>{{element.lugar}}</mat-card-subtitle>
+
+                          <mat-card-title class="tamaño">Fecha</mat-card-title>
+                          <mat-card-subtitle>{{element.fecha}}</mat-card-subtitle>
+
+                          <mat-card-title class="tamaño">Hora</mat-card-title>
+                          <mat-card-subtitle>{{element.hora}}:{{element.minuto}} </mat-card-subtitle>
+
+                        </mat-card-content>
+
+                        <mat-card-footer>
+
+
+
+                        </mat-card-footer>
+
+                      <!-- <mat-form-field>
+                          <mat-label>Angular forms</mat-label>
+                          <input matInput [matDatepicker]="picker1" [formControl]="date">
+                          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                          <mat-datepicker #picker1></mat-datepicker>
+                        </mat-form-field>-->
+
+                      </mat-card>
+                    </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+              </div>
+
           </div>
       </mat-sidenav>
-      <mat-sidenav-content>
+
+      <mat-sidenav-content >
         <router-outlet></router-outlet>
       </mat-sidenav-content>
   </mat-sidenav-container>
