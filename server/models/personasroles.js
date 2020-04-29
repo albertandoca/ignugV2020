@@ -8,9 +8,8 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: true,
       allowNull: true
     }
-  }, {
-  });
-  PersonasRoles.associate = function(models) {
+  }, {});
+  PersonasRoles.associate = function (models) {
     PersonasRoles.belongsTo(models.Personas, {
       foreignKey: {
         type: DataTypes.INTEGER,
@@ -33,28 +32,19 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: {
         type: DataTypes.INTEGER,
         name: 'idCarrera',
-        allowNull: false,
+        allowNull: true,
         unique: false
       },
       targetKey: 'id'
     })
-    PersonasRoles.hasMany(models.DocumentosMatriculas, {
+    PersonasRoles.belongsTo(models.Institutos, {
       foreignKey: {
         type: DataTypes.INTEGER,
-        name: 'idEstudiante',
+        name: 'idInstituto',
         allowNull: false,
         unique: false
       },
-      sourceKey: 'id'
-    })
-    PersonasRoles.hasMany(models.SolicitudesMatriculas, {
-      foreignKey: {
-        type: DataTypes.INTEGER,
-        name: 'idEstudiante',
-        allowNull: false,
-        unique: false
-      },
-      sourceKey: 'id'
+      targetKey: 'id'
     })
     PersonasRoles.hasMany(models.Matriculas, {
       foreignKey: {

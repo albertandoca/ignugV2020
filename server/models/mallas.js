@@ -87,6 +87,15 @@ module.exports = (sequelize, DataTypes) => {
       },
       sourceKey: 'id'
     })
+    Mallas.hasMany(models.PeriodosAcademicosParalelos, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idMalla',
+        allowNull: false,
+        unique: false
+      },
+      sourceKey: 'id'
+    })
   };
   return Mallas;
 };

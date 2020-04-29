@@ -87,11 +87,14 @@ mat-sidenav-container {
 
 mat-sidenav {
   position: absolute;
-  max-width: 320px;
+  max-width: 18rem;;
   background-color: #f77129c2;
   height: 550px;
 }
-
+.example-header-image {
+  background-image: url('../../assets/img/logo/logo-circular.png');
+  background-size: cover;;
+}
 mat-sidenav-content {
   background-color: #fff;
   height: 550px;
@@ -108,4 +111,7 @@ mat-sidenav-content {
  border-radius: 10px;
  background-color: white;
  box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+}
+.alineacion{
+  text-align: left;
 }

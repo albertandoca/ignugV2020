@@ -8,7 +8,7 @@ module.exports = {
         {
           codigoAsignatura:'DS_MD_1',
           detalle: "Matemática Discreta",
-          creditos: 3,
+          creditos: 4,
           horasDocente: 1,
           horasPracticas: 2,
           horasAutonomas: 2,
@@ -24,7 +24,7 @@ module.exports = {
         {
           codigoAsignatura:'DS_IDS_1',
           detalle: "Introducción al Desarrollo de Software",
-          creditos: 3,
+          creditos: 10,
           horasDocente: 1,
           horasPracticas: 2,
           horasAutonomas: 2,
@@ -40,7 +40,7 @@ module.exports = {
         {
           codigoAsignatura:'DS_ADS_5',
           detalle: "Análisis de Diseño de Sistemas",
-          creditos: 3,
+          creditos: 5,
           horasDocente: 1,
           horasPracticas: 2,
           horasAutonomas: 2,
@@ -56,7 +56,7 @@ module.exports = {
         {
           codigoAsignatura:'DS_FP_1',
           detalle: "Fundamentos de Programación",
-          creditos: 3,
+          creditos: 6,
           horasDocente: 1,
           horasPracticas: 2,
           horasAutonomas: 2,
@@ -72,7 +72,7 @@ module.exports = {
         {
           codigoAsignatura:'DS_DP_1',
           detalle: "Desarrollo del Pensamiento",
-          creditos: 3,
+          creditos: 1,
           horasDocente: 1,
           horasPracticas: 2,
           horasAutonomas: 2,
@@ -453,8 +453,8 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
-
-        //Aqui empieza las asignaturas de arte culinario
+        
+        //Aqui empieza las asignaturas de arte culinario29
 
         {
           codigoAsignatura:'ACE_FCC_1',
@@ -824,7 +824,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
-        //Aqui van diseño de modas
+        //Aqui van diseño de modas 52
         {
           codigoAsignatura: 'DM_HMT_1',
           detalle: 'Historia de moda y textiles',
@@ -921,7 +921,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date()
       },
-
+        //Segundo nivel diseño de modas 58
       {
           codigoAsignatura: 'DM_MF_2',
           detalle: 'Matematica financiera',
@@ -1018,7 +1018,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date()
       },
-
+      // Tercer nivel de diseño de modas 64
       {
           codigoAsignatura: 'DM_CG_3',
           detalle: 'Contabilidad General',
@@ -1115,7 +1115,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date()
       },
-
+      // Cuarto nivel diseño de modas 70
       {
           codigoAsignatura: 'DM_CI_4',
           detalle: 'Costos industriales',
@@ -1212,7 +1212,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date()
       },
-
+      // Quinto nivel diseño modas 76
       {     
           codigoAsignatura: 'DM_GC_5',
           detalle: 'Gestion de la calidad',
@@ -1309,7 +1309,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date()
       },
-        //Aqui va guia nacional de turismo
+        //Aqui va guia nacional de turismo 82
         {
           codigoAsignatura: 'GT_GTE_1',
           detalle: 'Geografía Turística Ecuatoriana',
@@ -1439,6 +1439,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date()
        },
+       //Turismo segundo nivel  90
        {
           codigoAsignatura: 'GT_C_2', 
           detalle: 'Cartografía',
@@ -1567,6 +1568,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date()
        },
+       //turismo tercer nivel 98
        {
           codigoAsignatura: 'GT_AE_3',
           detalle: 'Arte Ecuatoriano',
@@ -1759,6 +1761,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date()
        },
+       //Turismo cuarto nivel 110
        {
           codigoAsignatura:'GT_SGEPT_4',
           detalle: 'Sistemas Gestión y Evaluación de Proyectos Turísticos',
@@ -1887,7 +1890,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date()
        },
-        //Aqui va marketing
+        //Aqui va marketing 118
 
         {
           codigoAsignatura:'22',
@@ -2017,7 +2020,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
-        // maketing 2 semestre
+        // maketing 2 semestre 
         {
           codigoAsignatura:'22',
           detalle: "Comportamiento del consumidor",

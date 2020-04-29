@@ -8,7 +8,7 @@
       <button mat-icon-button color="primary" aria-label="Menu" (click)="controlMenuPrincipal()" [disabled]="menuService.verMenu" matTooltip="Menu principal">
         <mat-icon>{{menuService.iconoMenu}}</mat-icon>
       </button>
-      <button mat-icon-button color="primary" aria-label="Agenga" (click)="reglamentos()" matTooltip="Reglamentos">
+      <button mat-icon-button color="primary" aria-label="Reglamentos" (click)="reglamentos()" matTooltip="Reglamentos">
         <mat-icon>policy</mat-icon>
       </button>
     </div>
@@ -54,22 +54,20 @@
               <input matInput (keyup)="applyFilters($event)" placeholder="Ejemplo Aniversario">
             </mat-form-field>
 
-              <div>
-
-                <table style="max-width: 320px;" mat-table [dataSource]="dataSource">
+                <table style="max-width: 16rem;" mat-table [dataSource]="dataSource">
 
                   <!-- Position Column -->
                   <ng-container matColumnDef="unico" >
                     <th mat-header-cell *matHeaderCellDef style="text-align: center; font-size:medium;" >AGENDA</th>
-                    <td mat-cell *matCellDef="let element">
-                      <mat-card class="contenedorCarta">
+                    <td mat-cell style="max-width: 14rem;"*matCellDef="let element">
+                      <mat-card>
                         <mat-card-header  class="alineacion">
                           <div mat-card-avatar class="example-header-image"></div>
                           <mat-card-title>{{element.titulo}}</mat-card-title>
                           <mat-card-subtitle>{{element.organizador}}</mat-card-subtitle>
                         </mat-card-header>
 
-                        <img mat-card-image src= "{{url}}ver-archivo/{{element.urlImagenEvento}}/imagen-evento">
+                        <img mat-card-image style="width: 13rem;" src= "{{url}}ver-archivo/{{element.urlImagenEvento}}/imagen-evento">
 
                         <mat-card-content class="alineacion">
                           <p>
@@ -107,9 +105,7 @@
                   <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
                   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>
-              </div>
-
-          </div>
+           </div>
       </mat-sidenav>
 
       <mat-sidenav-content >

@@ -22,15 +22,24 @@ module.exports = (sequelize, DataTypes) => {
     }    
   }, {});
   PeriodosAcademicos.associate = function(models) {
-   PeriodosAcademicos.hasMany(models.Asignaturas, {
-    foreignKey: {
-      type: DataTypes.INTEGER,
-      name: 'idPeriodoAcademico',
-      allowNull: false,
-      unique: false
-    },
-    sourceKey: 'id'
-  })
+    PeriodosAcademicos.hasMany(models.Asignaturas, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idPeriodoAcademico',
+        allowNull: false,
+        unique: false
+      },
+      sourceKey: 'id'
+    })
+    PeriodosAcademicos.hasMany(models.PeriodosAcademicosParalelos, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idPeriodoAcademico',
+        allowNull: false,
+        unique: false
+      },
+      sourceKey: 'id'
+    })
   };
   return PeriodosAcademicos;
 };
