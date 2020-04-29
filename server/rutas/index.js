@@ -24,7 +24,8 @@ let api = EXPRESS.Router(),
     cuposAsignaturasControl = require('../controles/cuposasignaturas'),
     documentosMatriculaControl = require('../controles/documentosmatricula'),
     solicitudMatriculaControl = require('../controles/solicitudesMatricula'),
-    periodosLectivosControl = require('../controles/periodoslectivos')
+    periodosLectivosControl = require('../controles/periodoslectivos'),
+    asignaturasControl = require('../controles/asignaturas')
 
 
 // EndPoint Personas
@@ -90,5 +91,9 @@ api.put('/update.solicitud.matricula', [autenticarControl.autenticado, sesionCon
 // endPoint PeriodosLectivos
 api.post('/periodo-lectivo-activo', [autenticarControl.autenticado, sesionControl.actualiza], periodosLectivosControl.periodoLectivoActivo)
 
+
+// asignaturas
+
+api.post('/contar-asignaturas', asignaturasControl.contarAsignaturas)
 
 module.exports = api

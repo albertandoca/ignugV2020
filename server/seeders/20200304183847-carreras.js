@@ -6,6 +6,13 @@ module.exports = {
       return queryInterface.bulkInsert('Carreras', [
         {
           idInstituto: 1,
+          detalle: 'Todas',
+          estado: true,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          idInstituto: 1,
           detalle: 'Desarrollo de Software',
           estado: true,
           createdAt: new Date(),

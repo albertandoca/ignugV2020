@@ -1,10 +1,15 @@
-<div class="chart-wrapper">
-  <canvas baseChart
-  [data]="pieChartData"
-  [labels]="pieChartLabels"
-  [chartType]="pieChartType"
-  [options]="pieChartOptions"
-  [plugins]="pieChartPlugins"
-  [legend]="pieChartLegend">
-</canvas>
-</div>
+<main>
+  <div class="chart-wrapper" *ngFor="let chart of charts; let i = index">
+    <canvas baseChart
+      [data]="chart.data"
+      [labels]="chart.label"
+      [chartType]="pieChartType"
+      [options]="pieChartOptions"
+      [plugins]="pieChartPlugins"
+      [legend]="pieChartLegend"
+      (click)="renderChart()">
+    </canvas>
+  </div>
+</main>
+
+
