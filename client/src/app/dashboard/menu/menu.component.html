@@ -1,9 +1,54 @@
-<button (click)="irComponente('Gestión Institutos', 'institutos')" >institutos</button>
-<button (click)="irComponente('Gestión Personas', 'personas')" >personas</button>
-<button (click)="irComponente('Solicitud de Matricula', 'solicitud-matricula')">solicitud matricula</button>
-<button (click)="irComponente('Distributivo Docente', 'distributivo-docente')">distributivo Docente</button>
-<button (click)="irComponente('Aceptar matricula', 'aceptar-matricula')">Aceptar matricula</button>
-<button (click)="irComponente('Solicitud anulacion matricula', 'solicitar-anulacion-matricula')">Anular matricula</button>
+<div>
+<br>
+<br>
+</div>
+<div class="contenedor-principal">
+  <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="2%" fxLayoutAlign="center" class="menu-container-p">
+    <div fxFlex= "20%" class="menu-container">
+      <button (click)="irComponente('Gestión Institutos', 'institutos')" >
+        <img src="../../../assets/img/menu/instituto.png" width="150" height="100" alt="">
+        <p>Gestion de Institutos</p>
+      </button>
+    </div>
+    <div fxFlex= "20%" class="menu-container">
+      <button (click)="irComponente('Gestión Personas', 'personas')" >
+        <img src="../../../assets/img/menu/persona.png" width="150" height="100" alt="">
+        <p>Gestion de Usuarios</p>
+      </button>
+    </div>
+    <div fxFlex= "20%" class="menu-container">
+      <button (click)="irComponente('Solicitud de Matricula', 'solicitud-matricula')">
+        <img src="../../../assets/img/menu/solicitar.png" width="150" height="100" alt="">
+        <p>Solicitud de Matricula</p>
+      </button>
+    </div>
+    <div fxFlex= "20%" class="menu-container">
+      <button (click)="irComponente('Distributivo Docente', 'distributivo-docente')">
+        <img src="../../../assets/img/menu/distributivo.jpg" width="150" height="100" alt="">
+        <p>Distributivo Docente</p>
+      </button>
+    </div>
+    <div fxFlex= "20%" class="menu-container">
+      <button (click)="irComponente('Aceptar matricula', 'aceptar-matricula')">
+        <img src="../../../assets/img/menu/icono-matricula-16.png" width="150" height="100" alt="">
+        <p>Gestión Matriculas Solicitadas</p>
+      </button>
+    </div>
+    <div fxFlex= "20%" class="menu-container">
+      <button (click)="irComponente('Solicitud anulacion matricula', 'solicitar-anulacion-matricula')" disabled>
+        <img src="../../../assets/img/menu/anular.png" width="150" height="100" alt="">
+        <p>Solicitudes Anulación Enviadas</p>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
 
 
 

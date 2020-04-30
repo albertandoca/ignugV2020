@@ -129,7 +129,6 @@ export class InstitutosComponent implements OnInit {
   }
 
   async verImagen( nombreFile: string, carpeta: string): Promise<any> {
-    alert('jjjj');
     const datos = {
       urlFile: nombreFile,
       directorio: carpeta

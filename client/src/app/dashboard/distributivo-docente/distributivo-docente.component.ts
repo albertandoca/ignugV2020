@@ -13,6 +13,7 @@ import { Label, SingleDataSet, monkeyPatchChartJsTooltip, monkeyPatchChartJsLege
 import { CdkDragDrop, moveItemInArray, transferArrayItem, CdkDropListGroup } from '@angular/cdk/drag-drop';
 import 'chartjs-plugin-labels';
 import { Persona } from 'src/app/modelos/persona';
+import { isNgTemplate } from '@angular/compiler';
 
 
 
@@ -76,6 +77,10 @@ export class DistributivoDocenteComponent implements OnInit {
   iChart: number;
   ordHora: boolean;
   ordNombre: boolean;
+  cargaHorariaOk: Array<any>;
+  cargaHorariaInsuficiente: Array<any>;
+  cargaHorariaPeligro: Array<any>;
+  chartCargaHoraria: Array<any>;
 
   constructor(
     private apiService: ApiService,
@@ -93,6 +98,10 @@ export class DistributivoDocenteComponent implements OnInit {
     this.docentes = [];
     this.iconoChart = [];
     this.ultimoIds = [[], [], [], []];
+    this.cargaHorariaOk = [];
+    this.cargaHorariaInsuficiente = [];
+    this.cargaHorariaPeligro = [];
+    this.chartCargaHoraria = [];
     this.ordHora = true;
     this.ordNombre = true;
     this.verAsignatura = false;
@@ -312,7 +321,7 @@ export class DistributivoDocenteComponent implements OnInit {
       for (const contenedor of this.contenedorAsignatura) {
         if (contenedor[0]) {
           this.docentes = this.docentes.filter(docente => {
-            if ( docente.id === contenedor[0].id) {
+            if (docente.id === contenedor[0].id) {
               return false;
             } else {
               return true;
@@ -359,7 +368,7 @@ export class DistributivoDocenteComponent implements OnInit {
     } else if (this.vistaChart === 3) {
       this.vistaChart = 1;
       this.dataChart(this.ultimoIds[1]);
-    } else if (this.vistaChart === 2) {
+    } else if (this.vistaChart === 2 || this.vistaChart === 6) {
       this.vistaChart = 0;
       this.dataChart(this.ultimoIds[0]);
     }
@@ -401,12 +410,12 @@ export class DistributivoDocenteComponent implements OnInit {
 
     if (event.previousContainer.id === 'docentes') {
       id = i;
-      this.contenedorAsignatura[i][0].horas =  parseInt(this.contenedorAsignatura[i][0].horas) + this.asignaturas[i].creditos;
+      this.contenedorAsignatura[i][0].horas = parseInt(this.contenedorAsignatura[i][0].horas) + this.asignaturas[i].creditos;
       this.iconoGuardaDocenteAsignatura[i] = false;
     } else {
       id = parseInt(event.previousContainer.id);
-      this.contenedorAsignatura[i][0].horas =  parseInt(this.contenedorAsignatura[i][0].horas) +
-                                               this.asignaturas[i].creditos - this.asignaturas[id].creditos;
+      this.contenedorAsignatura[i][0].horas = parseInt(this.contenedorAsignatura[i][0].horas) +
+        this.asignaturas[i].creditos - this.asignaturas[id].creditos;
       if (this.iconoGuardaDocenteAsignatura[id]) {
         this.iconoGuardaDocenteAsignatura[i] = false;
         this.iconoGuardaDocenteAsignatura[id] = false;
@@ -414,11 +423,11 @@ export class DistributivoDocenteComponent implements OnInit {
           if (docente.idAsignatura === this.asignaturas[id].id &&
             docente.idJornada === this.idJornada &&
             docente.idParalelo === this.idParalelo) {
-              this.guardarDocentesAsignaturas[id] = docente;
-              this.guardarDocentesAsignaturas[id].estado = false;
-              delete this.guardarDocentesAsignaturas[id].Persona;
-              delete this.guardarDocentesAsignaturas[id].Asignatura;
-            }
+            this.guardarDocentesAsignaturas[id] = docente;
+            this.guardarDocentesAsignaturas[id].estado = false;
+            delete this.guardarDocentesAsignaturas[id].Persona;
+            delete this.guardarDocentesAsignaturas[id].Asignatura;
+          }
           break;
         }
       } else {
@@ -431,11 +440,11 @@ export class DistributivoDocenteComponent implements OnInit {
       if (docente.idAsignatura === this.asignaturas[i].id &&
         docente.idJornada === this.idJornada &&
         docente.idParalelo === this.idParalelo) {
-          this.guardarDocentesAsignaturas[i] = docente;
-          delete this.guardarDocentesAsignaturas[i].Persona;
-          delete this.guardarDocentesAsignaturas[i].Asignatura;
-          bandera = false;
-        }
+        this.guardarDocentesAsignaturas[i] = docente;
+        delete this.guardarDocentesAsignaturas[i].Persona;
+        delete this.guardarDocentesAsignaturas[i].Asignatura;
+        bandera = false;
+      }
       break;
     }
     if (bandera) {
@@ -465,20 +474,20 @@ export class DistributivoDocenteComponent implements OnInit {
     if (event.previousContainer.id !== 'docente') {
       const idOld = parseInt(event.previousContainer.id);
       const idNew = event.currentIndex;
-      this.docentes[idNew].horas =  parseInt(this.docentes[idNew].horas) - this.asignaturas[idOld].creditos;
+      this.docentes[idNew].horas = parseInt(this.docentes[idNew].horas) - this.asignaturas[idOld].creditos;
 
       if (this.iconoGuardaDocenteAsignatura[idOld]) {
         for (const docente of this.docentesAsignaturas) {
           if (docente.idAsignatura === this.asignaturas[idOld].id &&
             docente.idJornada === this.idJornada &&
             docente.idParalelo === this.idParalelo) {
-              this.guardarDocentesAsignaturas[idOld] = docente;
-              this.guardarDocentesAsignaturas[idOld].estado = false;
-              delete this.guardarDocentesAsignaturas[idOld].Persona;
-              delete this.guardarDocentesAsignaturas[idOld].Asignatura;
-            } else {
-              this.guardarDocentesAsignaturas[idOld] = null;
-            }
+            this.guardarDocentesAsignaturas[idOld] = docente;
+            this.guardarDocentesAsignaturas[idOld].estado = false;
+            delete this.guardarDocentesAsignaturas[idOld].Persona;
+            delete this.guardarDocentesAsignaturas[idOld].Asignatura;
+          } else {
+            this.guardarDocentesAsignaturas[idOld] = null;
+          }
           break;
         }
         if (this.guardarDocentesAsignaturas[idOld]) {
@@ -505,7 +514,7 @@ export class DistributivoDocenteComponent implements OnInit {
         const segundoNombre = docente.segundoNombre.trim().toLowerCase();
 
         if (apellidoPaterno.includes(filtro) || apellidoMaterno.includes(filtro) ||
-        primerNombre.includes(filtro) || segundoNombre.includes(filtro)) {
+          primerNombre.includes(filtro) || segundoNombre.includes(filtro)) {
           return true;
         }
       });
@@ -577,4 +586,18 @@ export class DistributivoDocenteComponent implements OnInit {
     this.ordHora ? this.docentes.sort((a, b) => a.horas - b.horas) : this.docentes.sort((a, b) => b.horas - a.horas);
     this.ordHora = !this.ordHora;
   }
+
+  async cargaHorariaDocente() {
+    this.vistaChart = 6;
+    this.docentesOrg = await this.apiService.sendApi('leer-docentes-carreras', this.idCarrera);
+    console.log(this.docentesOrg)
+    this.docentes = this.docentesOrg;
+    await this.contarHorasDocente();
+    console.log()
+    this.cargaHorariaOk = this.docentes.filter(item => item.hora > 19 && item.hora < 25);
+    this.cargaHorariaInsuficiente = this.docentes.filter(item => item.hora < 20);
+    this.cargaHorariaPeligro = this.docentes.filter(item => item.hora > 24);
+
+  }
+
 }
