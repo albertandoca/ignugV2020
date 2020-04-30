@@ -20,7 +20,7 @@ export class AvisoLegalComponent implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close();
-    this.router.navigate(['/dashboard/menu']);
+    this.router.navigate(['/dashboard/solicitud-matricula']);
   }
 
 }

@@ -12,21 +12,94 @@ let modelos = require('../models')
 let Op = Sequelize.Op;
 
 
+let leerSolicitudesMatriculas = (req, res) => {
+    
+    modelos.SolicitudesMatriculas.findAll({
+        where: {
+            estado: 'Aplicado'
+        },
+        include:[
+            {
+                model: modelos.PeriodosLectivos,
+                attributes:['detalle','fechaInicio','fechaFin'],
+                required: true,
+            },
+            {
+                model: modelos.PersonasRoles,
+                required:true,
+                include:[
+                    {
+                        model: modelos.Personas,
+                        attributes:{
+                            exclude: [
+                                'id',
+                                'emailPersonal',
+                                'psw',
+                                'semilla',
+                                'enLinea',
+                                'estado',
+                                'createdAt',
+                                'updatedAt'
+                            ]
+                        },
+                        required:true
+                    },
+                    {
+                        model: modelos.Carreras,
+                        attributes:['detalle','id'],
+                        required:true
+                    }
+                ],
+                exclude:
+                [
+                    'idCarrera',
+                    'idPersona'
+                ]
+            },
+            {
+                model: modelos.Mallas,
+                required:true,
+                include:[
+                    {
+                        model: modelos.Carreras,
+                        attributes:['detalle'],
+                        required:true
+                    }
+                ]
+            }
+        ]
+    }).then(data => {
+        return res.status(200).json({
+            transaccion: true,
+            data: data,
+            msg: data.length
+        })
+    }).catch(err => {
+        return res.status(500).json({
+            transaccion: false,
+            data: null,
+            msg: 'Error del servidor'
+        })
+    })
+}
+
 let leerSolicitudMatricula = (req, res) => {
     let idEstudiante = null
-    let idPeriodoAcademico = null
+    let idPeriodoLectivo = null
     if (req.body.data.idEstudiante == undefined) {
         idEstudiante = req.body.idPersona
         idPeriodoLectivo = req.body.data
     } else {
         idEstudiante = req.body.data.idEstudiante
-        idPeriodoLectivo = req.body.data
+        idPeriodoLectivo = req.body.data.idPeriodoLectivo
     }
-
+    
+    console.log(idEstudiante)
+    console.log(idPeriodoLectivo)
     modelos.SolicitudesMatriculas.findOne({
         where: {
-            idEstudiante: id,
-            idPeriodoAcademico: idPeriodoAcademico
+            idEstudiante: idEstudiante,
+            idPeriodoLectivo: idPeriodoLectivo
         }
     }).then(data => {
         return res.status(200).json({
@@ -62,25 +135,49 @@ let uploadSolicitudMatricula = (req, res) => {
 }
 
 let updateSolicitudMatricula = (req, res) => {
-    let solicitudMatricula = req.body.data
-    modelos.solicitudesMatricula.update(solicitudMatricula, {
+
+    let datos = req.body.data
+    modelos.SolicitudesMatriculas.update({
+        estado: datos.estado
+    }, {
         where: {
-            id: solicitudMatricula.id,
-            idPeriodoAcademico: solicitudMatricula.idPeriodoAcademico
+            id: datos.id
         }
-    })
-    .then(data => {
+    }).then(data => {
         return res.status(200).json({
             transaccion: true,
-            data: data,
-            token: req.token,
+            data: [data],
             msg: data.length
         })
     }).catch(err => {
         return res.status(500).json({
             transaccion: false,
-            data: null,
-            msg: 'Error del servidor'
+            data: [],
+            msg: 'Servidor error'
+        })
+    })
+}
+
+let updateSolicitudMatriculaErroneo = (req, res) => {
+
+    let datos = req.body.data
+    modelos.SolicitudesMatriculas.update({
+        estado: datos.estado
+    }, {
+        where: {
+            id: datos.id
+        }
+    }).then(data => {
+        return res.status(200).json({
+            transaccion: true,
+            data: [data],
+            msg: data.length
+        })
+    }).catch(err => {
+        return res.status(500).json({
+            transaccion: false,
+            data: [],
+            msg: 'Servidor error'
         })
     })
 }
@@ -88,5 +185,8 @@ let updateSolicitudMatricula = (req, res) => {
 module.exports = {
     leerSolicitudMatricula,
     uploadSolicitudMatricula,
+    updateSolicitudMatricula,
+    leerSolicitudesMatriculas,
+    updateSolicitudMatriculaErroneo,
     updateSolicitudMatricula
 }

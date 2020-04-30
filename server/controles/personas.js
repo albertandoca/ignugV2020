@@ -13,6 +13,34 @@ let Op = Sequelize.Op
 // let bcrypt = require('bcrypt-nodejs')
 let jwt = require('jsonwebtoken')
 
+let leerUno = (req, res) => {
+
+    let idPersonaSeleccionada = null
+
+    if (req.body.data.idPersonaSeleccionada == undefined) {
+        idPersonaSeleccionada = req.body.data.idPersonaSeleccionada
+    } else {
+        idPersonaSeleccionada = req.body.data.idPersonaSeleccionada
+    }
+    console.log(idPersonaSeleccionada)
+    modelos.Personas.findOne({
+        where: {
+            id: idPersonaSeleccionada
+        }
+    }).then(data => {
+        return res.status(200).json({
+            transaccion: true,
+            data: data,
+            msg: data.length
+        })
+    }).catch(err => {
+        return res.status(500).json({
+            transaccion: false,
+            data: null,
+            msg: 'Error del servidor'
+        })
+    })
+}
 
 let leer = (req, res) => {
     let condicion = req.body.data || ['Activo', 'Actualiza'] 
@@ -317,5 +345,6 @@ module.exports = {
     borrar,
     modificar,
     logIn,
-    logOut
+    logOut,
+    leerUno
 }

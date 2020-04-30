@@ -3,7 +3,7 @@ import { Rol } from './rol';
 import { Persona } from './persona';
 export interface PersonaRol {
   id: number;
-  idPersona?: number;
+  idPersona: number;
   idRol?: number;
   idInstituto?: number;
   urlDesignacion: string;
@@ -11,7 +11,7 @@ export interface PersonaRol {
   estado: boolean;
   createdAt: Date;
   updatedAt: Date;
-  Persona?: Persona;
+  Persona: Persona;
   Role: Rol;
   Carrera: Carrera;
 }

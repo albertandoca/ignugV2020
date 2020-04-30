@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
@@ -69,6 +70,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
+    PdfViewerModule,
     ScrollingModule,
     DragDropModule
   ],

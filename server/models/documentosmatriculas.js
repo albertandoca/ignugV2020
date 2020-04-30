@@ -28,6 +28,13 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true
       }
     },
+    observacion:{
+      type: DataTypes.STRING(200),
+      allowNull: false,
+      validate: {
+        is: /^[a-z A-Z 0-9 ÑÁÉÍÓÚÜ áéíóú]+$/i,
+      }
+    },
     estado: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,

@@ -16,11 +16,11 @@ let leerDocumentosMatricula = (req, res) => {
     let idEstudiante = null
     let idCarrera = null
     if (req.body.data.idEstudiante == undefined) {
-        idEstudiante = req.body.idPersona
-        idPeriodoLectivo = req.body.data
+        idEstudiante = req.body.data.idEstudiante
+        idCarrera = req.body.data.idCarrera
     } else {
         idEstudiante = req.body.data.idEstudiante
-        idPeriodoLectivo = req.body.data
+        idCarrera = req.body.data.idCarrera
     }
     
     modelos.DocumentosMatriculas.findOne({
@@ -87,8 +87,34 @@ let updateDocumentosMatricula = (req, res) => {
     })
 }
 
+let updateDocumentosMatriculaErroneo = (req, res) => {
+
+    let datos = req.body.data
+    modelos.DocumentosMatriculas.update({
+        observacion: datos.observacion
+    }, {
+        where: {
+            idEstudiante: datos.idEstudiante,
+            idCarrera: datos.idCarrera
+        }
+    }).then(data => {
+        return res.status(200).json({
+            transaccion: true,
+            data: [data],
+            msg: data.length
+        })
+    }).catch(err => {
+        return res.status(500).json({
+            transaccion: false,
+            data: [],
+            msg: 'Servidor error'
+        })
+    })
+}
+
 module.exports = {
     leerDocumentosMatricula,
     uploadDocumentosMatricula,
-    updateDocumentosMatricula
+    updateDocumentosMatricula,
+    updateDocumentosMatriculaErroneo
 }

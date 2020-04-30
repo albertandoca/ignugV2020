@@ -73,15 +73,6 @@ module.exports = (sequelize, DataTypes) => {
       },
       targetKey: 'id'
     });
-    Asignaturas.belongsTo(models.CamposFormacion, {
-      foreignKey: {
-        type: DataTypes.INTEGER,
-        name: 'idCampoFormacion',
-        allowNull: false,
-        unique: false
-      },
-      targetKey: 'id'
-    });
     Asignaturas.belongsTo(models.UnidadesCurriculares, {
       foreignKey: {
         type: DataTypes.INTEGER,
@@ -90,8 +81,26 @@ module.exports = (sequelize, DataTypes) => {
         unique: false
       },
       targetKey: 'id'
-    });
+    }); 
     Asignaturas.hasMany(models.CuposAsignaturas, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idAsignatura',
+        allowNull: false,
+        unique: false
+      },
+      sourceKey: 'id'
+    });
+    Asignaturas.belongsTo(models.CamposFormaciones, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idCampoFormacion',
+        allowNull: false,
+        unique: false
+      },
+      targetKey: 'id'
+    });
+    Asignaturas.hasMany(models.Matriculas, {
       foreignKey: {
         type: DataTypes.INTEGER,
         name: 'idAsignatura',

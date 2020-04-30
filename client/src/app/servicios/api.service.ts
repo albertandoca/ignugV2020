@@ -25,10 +25,12 @@ export class ApiService {
   }
 
   async sendApi(endPoint: string, datos: any = null): Promise<any> {
+    console.log(datos)
     const dataTx: DataTx = {
       idPersona: this.autorizado.getPersonaLogin().id,
       data: datos
     };
+    console.log(dataTx)
     const optionsHeaders = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -88,6 +90,7 @@ export class ApiService {
       idPersona: this.autorizado.getPersonaLogin().id,
       data: datos
     };
+    console.log(dataTx)
     const optionsHeaders = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

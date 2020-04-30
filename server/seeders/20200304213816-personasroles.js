@@ -70,6 +70,17 @@ module.exports = {
         updatedAt: new Date()
       },
       {
+        idPersona: 6,
+        idRol: 6,
+        idInstituto: 1,
+        idCarrera: 1,
+        urlDesignacion: 'sin url',
+        observaciones: 'no hay observaciones',
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
         idPersona: 2,
         idRol: 5,
         idInstituto: 1,
@@ -92,7 +103,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        idPersona: 6,
+        idPersona: 7,
         idRol: 6,
         idInstituto: 1,
         idCarrera: 1,
@@ -103,7 +114,18 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        idPersona: 7,
+        idPersona: 10,
+        idRol: 6,
+        idInstituto: 1,
+        idCarrera: 1,
+        urlDesignacion: 'sin url',
+        observaciones: 'no hay observaciones',
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        idPersona: 11,
         idRol: 6,
         idInstituto: 1,
         idCarrera: 1,
@@ -244,7 +266,8 @@ module.exports = {
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
-      },{
+      },
+      {
         idPersona: 15,
         idRol: 5,
         idInstituto: 1,
@@ -265,7 +288,34 @@ module.exports = {
         estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      //Para solicitudes
+      //27
+      //Bryan roberto estudiante 
+      {
+        idPersona: 17,
+        idRol: 6,
+        idInstituto: 2,
+        idCarrera: 3,
+        urlDesignacion: 'sin url',
+        observaciones: 'no hay observaciones',
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      //Antonio fernando 28
+      {
+        idPersona: 18,
+        idRol: 6,
+        idInstituto: 3,
+        idCarrera: 3,
+        urlDesignacion: 'sin url',
+        observaciones: 'no hay observaciones',
+        estado: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
+      
     ], {});
   },
 

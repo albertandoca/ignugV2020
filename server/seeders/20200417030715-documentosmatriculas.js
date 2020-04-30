@@ -5,21 +5,90 @@ module.exports = {
 
       return queryInterface.bulkInsert('DocumentosMatriculas', [
         {
-          pdfTituloGrado:'4eo3zg2CEF6MSN9G8WPFSzF4.pdf',
-          pdfAsignacionCupo:'4eo3zg2CEF6MSN9G8WPFSzF4.pdf',
-          pdfCedula:'4eo3zg2CEF6MSN9G8WPFSzF4.pdf',
-          idEstudiante:10,
+          pdfTituloGrado:'etKIPZBjp0Mk5AGQVoPdwbmQ.pdf',
+          pdfAsignacionCupo:'RsK_lYY_x9cWJUvi7RtGCF66.pdf',
+          pdfCedula:'hRAEVlDD7lbXsN3lTKlA8u7K.pdf',
+          idEstudiante:11,
           idCarrera:1,
+          observacion:'',
           estado:true,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
-          pdfTituloGrado:'4eo3zg2CEF6MSN9G8WPFSzF4.pdf',
-          pdfAsignacionCupo:'4eo3zg2CEF6MSN9G8WPFSzF4.pdf',
-          pdfCedula:'4eo3zg2CEF6MSN9G8WPFSzF4.pdf',
+          pdfTituloGrado:'etKIPZBjp0Mk5AGQVoPdwbmQ.pdf',
+          pdfAsignacionCupo:'RsK_lYY_x9cWJUvi7RtGCF66.pdf',
+          pdfCedula:'hRAEVlDD7lbXsN3lTKlA8u7K.pdf',
           idEstudiante:11,
+          idCarrera:3,
+          observacion:'',
+          estado:true,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          pdfTituloGrado:'etKIPZBjp0Mk5AGQVoPdwbmQ.pdf',
+          pdfAsignacionCupo:'RsK_lYY_x9cWJUvi7RtGCF66.pdf',
+          pdfCedula:'hRAEVlDD7lbXsN3lTKlA8u7K.pdf',
+          idEstudiante:12,
           idCarrera:1,
+          observacion:'',
+          estado:true,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          pdfTituloGrado:'etKIPZBjp0Mk5AGQVoPdwbmQ.pdf',
+          pdfAsignacionCupo:'RsK_lYY_x9cWJUvi7RtGCF66.pdf',
+          pdfCedula:'hRAEVlDD7lbXsN3lTKlA8u7K.pdf',
+          idEstudiante:7,
+          idCarrera:1,
+          observacion:'',
+          estado:true,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          pdfTituloGrado:'etKIPZBjp0Mk5AGQVoPdwbmQ.pdf',
+          pdfAsignacionCupo:'RsK_lYY_x9cWJUvi7RtGCF66.pdf',
+          pdfCedula:'hRAEVlDD7lbXsN3lTKlA8u7K.pdf',
+          idEstudiante:10,
+          idCarrera:1,
+          observacion:'',
+          estado:true,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          pdfTituloGrado:'etKIPZBjp0Mk5AGQVoPdwbmQ.pdf',
+          pdfAsignacionCupo:'RsK_lYY_x9cWJUvi7RtGCF66.pdf',
+          pdfCedula:'hRAEVlDD7lbXsN3lTKlA8u7K.pdf',
+          idEstudiante:10,
+          idCarrera:6,
+          observacion:'',
+          estado:true,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        //id estudiante es de rol
+        {
+          pdfTituloGrado:'etKIPZBjp0Mk5AGQVoPdwbmQ.pdf',
+          pdfAsignacionCupo:'RsK_lYY_x9cWJUvi7RtGCF66.pdf',
+          pdfCedula:'hRAEVlDD7lbXsN3lTKlA8u7K.pdf',
+          idEstudiante:27,
+          idCarrera:6,
+          observacion:'',
+          estado:true,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          pdfTituloGrado:'etKIPZBjp0Mk5AGQVoPdwbmQ.pdf',
+          pdfAsignacionCupo:'RsK_lYY_x9cWJUvi7RtGCF66.pdf',
+          pdfCedula:'hRAEVlDD7lbXsN3lTKlA8u7K.pdf',
+          idEstudiante:28,
+          idCarrera:6,
+          observacion:'',
           estado:true,
           createdAt: new Date(),
           updatedAt: new Date()

@@ -1,0 +1,57 @@
+.contenedorCarta {
+  max-width: 180px;
+}
+.example-header-image {
+  background-image: url('../../../assets/img/logo/logo-circular.png');
+  background-size: cover;;
+}
+.fondo {
+  position: fixed;
+  height: 100%;
+  width: 60%;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+}
+mat-sidenav {
+  width: 17rem;
+  background-color: #f77129c2;
+  height: 550px;
+}
+.tamaño{
+  display:inline-block;
+  text-align:left;
+  justify-content:center;
+  font-size: small;
+}
+.contenedorTabla {
+  height: auto;
+  overflow: auto;
+  border-top: medium;
+}
+.navIzquierdo {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+table {
+  max-width: 100%;
+}
+.alineacion{
+  text-align: left;
+}
+::-webkit-scrollbar{
+  width: 8px;
+}
+::-webkit-scrollbar-thumb{
+  border-radius: 10px;
+  background-color: #a6a6a6;
+  box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+}
+::-webkit-scrollbar-track{
+ border-radius: 10px;
+ background-color: white;
+ box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+}

@@ -69,6 +69,15 @@ PeriodosLectivos.associate = function(models) {
       },
       sourceKey: 'id'
     })
+    PeriodosLectivos.hasMany(models.SolicitudesMatriculas, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idPeriodoLectivo',
+        allowNull: false,
+        unique: false
+      },
+      sourceKey: 'id'
+    })
     PeriodosLectivos.hasMany(models.PeriodosAcademicosParalelos, {
         foreignKey: {
           type: DataTypes.INTEGER,

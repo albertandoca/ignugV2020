@@ -21,6 +21,92 @@ let promocionCupos = (req, res) => {
 
 }
 
+let obtenerAsignaturas = (req, res) => {
+    console.log(req.body)
+    let idPersonaSeleccionada = null
+    let idPeriodoLectivo = null
+    if (typeof req.body.data.idPersonaSeleccionada == 'undefined') {
+        idPersonaSeleccionada = req.body.data.idPersonaSeleccionada
+        idPeriodoLectivo = req.body.data.idPeriodoLectivo
+    } else {
+        idPersonaSeleccionada = req.body.data.idPersonaSeleccionada
+        idPeriodoLectivo = req.body.data.idPeriodoLectivo
+    }
+
+    modelos.CuposAsignaturas.findAll({
+        where: {
+            idEstudiante: idPersonaSeleccionada,
+            idPeriodoLectivo: idPeriodoLectivo,
+            estado: 'Aplicado'
+        },
+        include: [
+                    {
+                        model: modelos.Asignaturas,
+                        attributes:{
+                            exclude:[
+                                'horasDocente',
+                                'horasPracticas',
+                                'horasAutonomas',
+                                'estado',
+                                'idUnidadCurricular',
+                                'idCampoFormacion',
+                                'createdAt',
+                                'updatedAt'
+                            ]
+                        },
+                        required: true,
+                        include: [
+                            {
+                                model: modelos.PeriodosAcademicos,
+                                attributes: ['nivel'],
+                                required: true,
+                            },
+                            {
+                                model:modelos.Mallas,
+                                required: true,
+                                attributes:['idCarrera','id'],
+                                include:[
+                                    {
+                                        model: modelos.Carreras,
+                                        required: true
+                                    }
+                                ]
+                            }
+                        ],
+                    }, 
+                    {
+                        model: modelos.Personas,
+                        attributes:{
+                            exclude: [
+                                'id',
+                                'psw',
+                                'semilla',
+                                'enLinea',
+                                'estado',
+                                'createdAt',
+                                'updatedAt'
+                            ]
+                        },
+                        required:true
+                    }
+                ]
+
+    }).then(data => {
+        return res.status(200).json({
+            transaccion: true,
+            data: data,
+            token: req.token,
+            msg: data.length
+        })
+    }).catch(err => {
+        return res.status(500).json({
+            transaccion: false,
+            data: null,
+            msg: 'Error del servidor'
+        })
+    })
+}
+
 // Estudiante
 let obtenerCupo = (req, res) => {
     let idEstudiante = null
@@ -30,13 +116,14 @@ let obtenerCupo = (req, res) => {
         idPeriodoLectivo = req.body.data
     } else {
         idEstudiante = req.body.data.idEstudiante
-        idPeriodoLectivo = req.body.data.idPeriodoLectivo
+        idPeriodoLectivo = req.body.data
     }
 
     modelos.CuposAsignaturas.findAll({
         where: {
             idEstudiante: idEstudiante,
             idPeriodoLectivo: idPeriodoLectivo,
+            
             estado: {
                 [Op.or]: ['Asignado', 'Aplicado']
             }
@@ -110,30 +197,58 @@ let aplicarCupo = (req, res) => {
     })
 }
 
+// Estudiante
 let matricularCupo = (req, res) => {
+
+    let datos = req.body.data
+    modelos.CuposAsignaturas.update({
+        estado: 'Matriculado'
+    }, {
+        where: {
+            id: datos.id
+        }
+    }).then(data => {
+        return res.status(200).json({
+            transaccion: true,
+            data: [data],
+            msg: data.length
+        })
+    }).catch(err => {
+        return res.status(500).json({
+            transaccion: false,
+            data: [],
+            msg: 'Servidor error'
+        })
+    })
+}
+
+let matricularCupos = async (req, res) => {
     let cuposAsignaturas = req.body.data
     let datos = []
-    let error = []
-    for (let cupo of cuposAsignaturas) {
-        modelos.CuposAsignaturas.update(
+    let error1 = []
+     for (let cupo of cuposAsignaturas) {
+        await modelos.CuposAsignaturas.update(
             {estado: 'Matriculado'},
             {
                 where: {
-                    id: cupo.id,
+                    idEstudiante: cupo.idEstudiante,
+                    idAsignatura: cupo.idAsignatura,
                     estado: 'Aplicado'
                 }
             }).then(data => {
                 datos.push(cupo.Asignatura.detalle)
             }).catch(err => {
-                error.push(cupoAsignatura.detalle)
+                error1.push(cupo.Asignatura.detalle)
             }
         )
     }
+    console.log(datos)
+    console.log(error1)
     return res.status(200).json({
         transaccion: true,
         data: datos,
-        token: req.token,
-        error: error
+        //token: req.token,
+        error: error1
     })
 }
 
@@ -220,11 +335,14 @@ let eliminarCupo = (req, res) => {
     })
 }
 
+
+
 module.exports = {
     obtenerCupo,
     aplicarCupo,
     matricularCupo,
     anularCupo,
     noUtilizadoCupo,
-    eliminarCupo
+    eliminarCupo,
+    obtenerAsignaturas
 }

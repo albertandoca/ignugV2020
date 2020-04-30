@@ -1,5 +1,5 @@
 export interface Modalidad {
-  id: number;
+  id:number;
   detalle: string;
   createdAt?: Date;
   updatedAt?: Date;
