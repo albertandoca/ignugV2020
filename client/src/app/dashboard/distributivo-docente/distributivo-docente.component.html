@@ -22,7 +22,7 @@
         <button mat-icon-button color="primary" aria-label="Docentes" (click)="verDocentes()" matTooltip="Docentes">
           <mat-icon>supervisor_account</mat-icon>
         </button>
-        <button mat-icon-button color="warning" aria-label="Ayuda" [matMenuTriggerFor]="ayuda" matTooltip="Ayuda">
+        <button mat-icon-button color="warning" aria-label="Ayuda" [matMenuTriggerFor]="ayuda" matTooltip="Ayuda" (click)="txtAyuda()">
           <mat-icon>contact_support</mat-icon>
         </button>
         <mat-menu #ayuda="matMenu" xPosition="before">
@@ -37,7 +37,7 @@
         <mat-card-content class="chart-wrapper">
           <canvas baseChart [data]="chart.data" [labels]="pieChartLabels" [chartType]="pieChartType"
             [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend"
-            (click)="dataChart(chart.id, true, chart.idPeriodoAcademico)">
+            (click)="dataChart(chart.id, chart.idPeriodoAcademico)">
           </canvas>
         </mat-card-content>
         <mat-card-footer class="chart-container">
@@ -63,14 +63,13 @@
       </div>
     </div>
     <div fxFlex="29%">
-      <button mat-icon-button color="primary" aria-label="Anterior" (click)="dataChart(ultimoIds, false)"
-        matTooltip="Anterior">
+      <button mat-icon-button color="primary" aria-label="Anterior" (click)="backDataChart()" matTooltip="Anterior">
         <mat-icon>arrow_back</mat-icon>
       </button>
       <button mat-icon-button color="primary" aria-label="Docentes" (click)="verDocentes()" matTooltip="Docentes">
         <mat-icon>supervisor_account</mat-icon>
       </button>
-      <button mat-icon-button color="warning" aria-label="Ayuda" [matMenuTriggerFor]="ayuda" matTooltip="Ayuda">
+      <button mat-icon-button color="warning" aria-label="Ayuda" [matMenuTriggerFor]="ayuda" matTooltip="Ayuda" (click)="txtAyuda()">
         <mat-icon>contact_support</mat-icon>
       </button>
       <mat-menu #ayuda="matMenu" xPosition="before">
@@ -95,13 +94,13 @@
             <p class="tituloContenedorAsignatura">ASIGNATURA</p>
           </div>
           <div fxFlex=4%>
-            <mat-icon>home</mat-icon>
+            <mat-icon color="primary">schedule</mat-icon>
           </div>
           <div fxFlex=38%>
             <p class="tituloContenedorAsignatura">DOCENTE</p>
           </div>
           <div fxFlex=5%>
-            <p class="tituloContenedorAsignatura">CONFIMA</p>
+
           </div>
         </div>
         <div class="container-asignatura">
@@ -130,8 +129,8 @@
                 </div>
               </div>
               <div fxFlex=4%>
-                <button mat-icon-button color="primary" aria-label="Docentes" (click)="guardarDocenteAsignatura()" matTooltip="Docentes">
-                  <mat-icon>supervisor_account</mat-icon>
+                <button mat-icon-button color="primary" aria-label="Guardar" (click)="guardarDocenteAsignatura(i)" matTooltip="Guardar" [disabled]="iconoGuardaDocenteAsignatura[i]">
+                  <mat-icon [style.color]="iconoGuardaDocenteAsignatura[i] ? 'gainsboro' : 'limegreen'">save</mat-icon>
                 </button>
               </div>
             </div>
@@ -140,19 +139,22 @@
       </div>
       <div fxFlex="30%">
         <h4>Docentes</h4>
-        <div>
-          <mat-form-field>
-            <mat-label>Filter</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia">
-          </mat-form-field>
-        </div>
-        <div>
-          <button mat-icon-button color="primary" aria-label="Docentes" (click)="verDocentes()" matTooltip="Docentes">
-            <mat-icon>supervisor_account</mat-icon>
-          </button>
-          <button mat-icon-button color="primary" aria-label="Docentes" (click)="verDocentes()" matTooltip="Docentes">
-            <mat-icon>supervisor_account</mat-icon>
-          </button>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%" fxLayoutAlign="center">
+          <div fxFlex="70%">
+            <mat-form-field>
+              <mat-label>Filtro</mat-label>
+              <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia">
+              <mat-icon matPrefix color="primary">search</mat-icon>
+            </mat-form-field>
+          </div>
+          <div fxFlex="28%">
+            <button mat-icon-button color="primary" aria-label="Docentes" (click)="ordenarNombre()" matTooltip="Docentes">
+              <mat-icon>swap_vert</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" aria-label="Docentes" (click)="ordenarHora()" matTooltip="Docentes">
+              <mat-icon>schedule</mat-icon>
+            </button>
+          </div>
         </div>
         <div class="drag.container-docente">
           <div id="docentes" cdkDropList [cdkDropListData]="docentes" cdkDropListConnectedTo="contenedorAsignatura[i]"

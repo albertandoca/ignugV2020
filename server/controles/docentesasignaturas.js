@@ -382,9 +382,6 @@ let leerDocenteAsignaturaParalelo = (req, res) => {
     modelos.DocentesAsignaturas.findAll({
         attributes: {
             exclude: [
-                'idPerioLectivo',
-                'idParalelo',
-                'idJornada',
                 'estado',
                 'createdAt',
                 'updatedAt'
@@ -393,7 +390,8 @@ let leerDocenteAsignaturaParalelo = (req, res) => {
         where: {
             idPeriodoLectivo : idPeriodoLectivo,
             idParalelo: idParalelo,
-            idJornada: idJornada
+            idJornada: idJornada,
+            estado: true
         },
         include: [
             {
@@ -440,7 +438,8 @@ let contarHorasDocentes = (req, res) => {
     modelos.DocentesAsignaturas.findAll({
        attributes: ['DocentesAsignaturas.idDocente', [sequelize.fn('sum', sequelize.col('Asignatura.creditos')), 'total']],
         where: {
-            idPeriodoLectivo: idPeriodoLectivo
+            idPeriodoLectivo: idPeriodoLectivo,
+            estado: true
         },
         include: {
             model: modelos.Asignaturas,

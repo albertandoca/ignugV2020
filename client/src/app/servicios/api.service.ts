@@ -49,13 +49,18 @@ export class ApiService {
         this.toastr.warning('No se pudo completar la transacción, verifique su conección a internet', 'Error en la conección');
       }
     }).catch(err => {
-      if (!err.error.transaccion) {
-        if (err.error.msg === 'Falló autenticación') {
-          this.toastr.warning('Su sesión caduco, por favor ingrese al sistema nuevamente', err.msg);
-          localStorage.removeItem('loginKey');
-          this.router.navigate(['/login']);
+      if (typeof err.error !== 'undefined' || !err.error) {
+        if (!err.error.transaccion) {
+          if (err.error.msg === 'Falló autenticación') {
+            this.toastr.warning('Su sesión caduco, por favor ingrese al sistema nuevamente', err.msg);
+            localStorage.removeItem('loginKey');
+            this.router.navigate(['/login']);
+          } else {
+            this.toastr.warning(err.msg, 'Error en la conección');
+            this.router.navigate(['/dashboard/menu']);
+          }
         } else {
-          this.toastr.warning(err.msg, 'Error en la conección');
+          this.toastr.warning('No se pudo completar la transacción, verifique su conección a internet', 'Error en la conección');
           this.router.navigate(['/dashboard/menu']);
         }
       } else {

@@ -156,6 +156,7 @@ api.post('/contar-docentes-asignaturas', docentesAsignaturasControl.contarDocent
 api.post('/contar-docentes-asignaturas-paralelos', docentesAsignaturasControl.contarDocentesAsignaturasParalelo)
 api.post('/leer-docentes-asignaturas-paralelos', docentesAsignaturasControl.leerDocenteAsignaturaParalelo)
 api.post('/contar-horas-docentes', docentesAsignaturasControl.contarHorasDocentes)
+api.post('/gestionar-docente-asignatura', docentesAsignaturasControl.gestionarDocenteAsignatura)
 // docentes
 
 api.post('/leer-docentes-carreras', docentesControl.leerDocentesCarreras)
