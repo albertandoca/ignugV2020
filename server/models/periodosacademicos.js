@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   PeriodosAcademicos.associate = function(models) {
     PeriodosAcademicos.hasMany(models.Asignaturas, {
+<<<<<<< HEAD
     foreignKey: {
       type: DataTypes.INTEGER,
       name: 'idPeriodoAcademico',
@@ -31,6 +32,34 @@ module.exports = (sequelize, DataTypes) => {
     },
     sourceKey: 'id'
   })
+=======
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idPeriodoAcademico',
+        allowNull: false,
+        unique: false
+      },
+      sourceKey: 'id'
+    })
+    PeriodosAcademicos.hasMany(models.SolicitudesMatriculas, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idPeriodoAcademico',
+        allowNull: false,
+        unique: false
+      },
+      sourceKey: 'id'
+    })
+    PeriodosAcademicos.hasMany(models.PeriodosAcademicosParalelos, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idPeriodoAcademico',
+        allowNull: false,
+        unique: false
+      },
+      sourceKey: 'id'
+    })
+>>>>>>> 00605721b705d0ac52d0714139627526c4a54213
   };
   return PeriodosAcademicos;
 };

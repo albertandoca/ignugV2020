@@ -8,7 +8,7 @@ module.exports = {
         {
           codigoAsignatura:'DS_MD_1',
           detalle: "Matemática Discreta",
-          creditos: 3,
+          creditos: 4,
           horasDocente: 1,
           horasPracticas: 2,
           horasAutonomas: 2,
@@ -24,7 +24,7 @@ module.exports = {
         {
           codigoAsignatura:'DS_IDS_1',
           detalle: "Introducción al Desarrollo de Software",
-          creditos: 3,
+          creditos: 10,
           horasDocente: 1,
           horasPracticas: 2,
           horasAutonomas: 2,
@@ -40,7 +40,7 @@ module.exports = {
         {
           codigoAsignatura:'DS_ADS_5',
           detalle: "Análisis de Diseño de Sistemas",
-          creditos: 3,
+          creditos: 5,
           horasDocente: 1,
           horasPracticas: 2,
           horasAutonomas: 2,
@@ -56,7 +56,7 @@ module.exports = {
         {
           codigoAsignatura:'DS_FP_1',
           detalle: "Fundamentos de Programación",
-          creditos: 3,
+          creditos: 6,
           horasDocente: 1,
           horasPracticas: 2,
           horasAutonomas: 2,
@@ -72,7 +72,7 @@ module.exports = {
         {
           codigoAsignatura:'DS_DP_1',
           detalle: "Desarrollo del Pensamiento",
-          creditos: 3,
+          creditos: 1,
           horasDocente: 1,
           horasPracticas: 2,
           horasAutonomas: 2,

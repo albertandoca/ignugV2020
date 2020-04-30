@@ -4,7 +4,7 @@ let bcrypt = require('bcrypt-nodejs');
 module.exports = (sequelize, DataTypes) => {
   const Personas = sequelize.define('Personas', {
     identificacion: {
-      type: DataTypes.STRING(20), 
+      type: DataTypes.STRING(20),
       allowNull: false,
       unique: true,
       validate: {
@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     primerNombre: {
-      type: DataTypes.STRING(50), 
+      type: DataTypes.STRING(50),
       allowNull: false,
       validate: {
         is: /^[A-Z ÑÁÉÍÓÚÜ]+$/i,
@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     segundoNombre: {
-      type: DataTypes.STRING(50), 
+      type: DataTypes.STRING(50),
       allowNull: true,
       validate: {
         is: /^[A-Z ÑÁÉÍÓÚÜ]+$/i,
@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     apellidoPaterno: {
-      type: DataTypes.STRING(50), 
+      type: DataTypes.STRING(50),
       allowNull: false,
       validate: {
         is: /^[A-Z ÑÁÉÍÓÚÜ]+$/i,
@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     apellidoMaterno: {
-      type: DataTypes.STRING(50), 
+      type: DataTypes.STRING(50),
       allowNull: false,
       validate: {
         is: /^[A-Z ÑÁÉÍÓÚÜ]+$/i,
@@ -49,7 +49,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     emailPersonal: {
-      type: DataTypes.STRING(80), 
+      type: DataTypes.STRING(80),
       allowNull: false,
       unique: true,
       validate: {
@@ -57,35 +57,34 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     emailInstitucional: {
-      type: DataTypes.STRING(80), 
+      type: DataTypes.STRING(80),
       allowNull: false,
       unique: true,
       validate: {
         isEmail: true
       }
     },
-    foto:
-      {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          is: /^[a-zA-Z0-9_-]*(.jpg|.svg|.png)+$/i,
-          notEmpty: true
-        }
-      },
+    foto: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        is: /^[a-zA-Z0-9_-]*(.jpg|.svg|.png)+$/i,
+        notEmpty: true
+      }
+    },
     psw: {
       type: DataTypes.STRING,
       allowNull: false
     },
     semilla: {
-      type: DataTypes.STRING, 
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notEmpty: true
       }
     },
     enLinea: {
-      type: DataTypes.DATE, 
+      type: DataTypes.DATE,
       allowNull: false,
       validate: {
         isDate: true
@@ -93,13 +92,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     estado: {
       type: DataTypes.ENUM,
-      values: ['Activo', 'Actualiza', 'Inactivo'], 
+      values: ['Activo', 'Actualiza', 'Inactivo'],
       allowNull: false,
       default: 'Actualiza'
     }
-  }, 
-  {
-  });
+  }, {});
 
   Personas.beforeSave((persona, options) => {
     if (persona.changed('psw')) {
@@ -108,7 +105,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Personas.beforeUpdate((persona, option) => {
-    
+
   })
 
   Personas.prototype.comparePassword = function (passw, cb) {
@@ -119,7 +116,7 @@ module.exports = (sequelize, DataTypes) => {
       cb(null, isMatch);
     })
   }
-  Personas.associate = function(models) {
+  Personas.associate = function (models) {
     Personas.hasMany(models.PersonasRoles, {
       foreignKey: {
         type: DataTypes.INTEGER,
@@ -128,7 +125,7 @@ module.exports = (sequelize, DataTypes) => {
         unique: false
       },
       sourceKey: 'id'
-    });
+    })
     Personas.belongsTo(models.TiposIdentificaciones, {
       foreignKey: {
         type: DataTypes.INTEGER,
@@ -137,7 +134,7 @@ module.exports = (sequelize, DataTypes) => {
         unique: false
       },
       targetKey: 'id'
-    });
+    })
     Personas.hasMany(models.CuposAsignaturas, {
       foreignKey: {
         type: DataTypes.INTEGER,
@@ -146,8 +143,35 @@ module.exports = (sequelize, DataTypes) => {
         unique: false
       },
       sourceKey: 'id'
-    });
+    })
+    Personas.hasMany(models.MaxHorasDocentes, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idDocente',
+        allowNull: false,
+        unique: false
+      },
+      sourceKey: 'id'
+    })
+    Personas.hasMany(models.DocumentosMatriculas, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idEstudiante',
+        allowNull: false,
+        unique: false
+      },
+      sourceKey: 'id'
+    })
+    Personas.hasMany(models.SolicitudesMatriculas, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idEstudiante',
+        allowNull: false,
+        unique: false
+      },
+      sourceKey: 'id'
+    })
   };
-  
+
   return Personas;
 };

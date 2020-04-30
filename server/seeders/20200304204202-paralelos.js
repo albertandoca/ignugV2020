@@ -7,16 +7,19 @@ module.exports = {
       Example:
       return queryInterface.bulkInsert('Paralelos', [{
         detalle: 'A',
+        estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         detalle: 'B',
+        estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         detalle: 'C',
+        estado: true,
         createdAt: new Date(),
         updatedAt: new Date()
       }

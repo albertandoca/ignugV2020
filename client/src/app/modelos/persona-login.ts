@@ -12,5 +12,5 @@ export interface PersonaLogin {
   emailInstitucional: string;
   TiposIdentificacione: TipoIdentificacion;
   foto: string;
-  PersonasRoles: PersonaRol;
+  PersonasRoles: PersonaRol[];
 }

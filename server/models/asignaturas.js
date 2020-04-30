@@ -4,9 +4,9 @@ module.exports = (sequelize, DataTypes) => {
     codigoAsignatura: {
       type: DataTypes.STRING(),
       allowNull: false,
-      validate:{
+      validate: {
         is: /^[A-ZA-Z0-9 -_áéíóúñüÁÉÍÓÚÑÜ/#&.]+$/i,
-        notEmpty:true
+        notEmpty: true
       }
     },
     detalle: {
@@ -21,40 +21,40 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER(10),
       allowNull: false,
       validate: {
-        len: [2,5], 
+        len: [2, 5],
       }
     },
-    horasDocente:{
+    horasDocente: {
       type: DataTypes.INTEGER(5),
       allowNull: false,
       validate: {
-        len: [1,2]
+        len: [1, 2]
       }
-    
+
     },
     horasPracticas: {
       type: DataTypes.INTEGER(5),
       allowNull: false,
       validate: {
-        len: [1,2]
-    }
-  },
-    horasAutonomas:{
+        len: [1, 2]
+      }
+    },
+    horasAutonomas: {
       type: DataTypes.INTEGER(5),
       allowNull: false,
       validate: {
-        len: [1,2]
-    }
-  },
+        len: [1, 2]
+      }
+    },
     estado: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
       allowNull: true
     }
   }, {});
-  Asignaturas.associate = function(models) {
+  Asignaturas.associate = function (models) {
     // associations can be defined here
-    
+
     Asignaturas.belongsTo(models.Mallas, {
       foreignKey: {
         type: DataTypes.INTEGER,
@@ -81,8 +81,13 @@ module.exports = (sequelize, DataTypes) => {
         unique: false
       },
       targetKey: 'id'
+<<<<<<< HEAD
     }); 
     Asignaturas.hasMany(models.CuposAsignaturas, {
+=======
+    });
+    Asignaturas.belongsTo(models.UnidadesCurriculares, {
+>>>>>>> 00605721b705d0ac52d0714139627526c4a54213
       foreignKey: {
         type: DataTypes.INTEGER,
         name: 'idAsignatura',
@@ -100,6 +105,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       targetKey: 'id'
     });
+<<<<<<< HEAD
     Asignaturas.hasMany(models.Matriculas, {
       foreignKey: {
         type: DataTypes.INTEGER,
@@ -110,6 +116,9 @@ module.exports = (sequelize, DataTypes) => {
       sourceKey: 'id'
     });
     Asignaturas.hasMany(models.Matriculas, {
+=======
+    Asignaturas.hasMany(models.CuposAsignaturas, {
+>>>>>>> 00605721b705d0ac52d0714139627526c4a54213
       foreignKey: {
         type: DataTypes.INTEGER,
         name: 'idAsignatura',
@@ -118,7 +127,16 @@ module.exports = (sequelize, DataTypes) => {
       },
       sourceKey: 'id'
     });
+    Asignaturas.hasMany(models.DocentesAsignaturas, {
+      foreignKey: {
+        type: DataTypes.INTEGER,
+        name: 'idAsignatura',
+        allowNull: false,
+        unique: false
+      },
+      sourceKey: 'id'
+    })
   };
-  
+
   return Asignaturas;
 };

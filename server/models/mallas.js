@@ -78,7 +78,11 @@ module.exports = (sequelize, DataTypes) => {
       },
       sourceKey: 'id'
     })
+<<<<<<< HEAD
     Mallas.hasMany(models.SolicitudesMatriculas, {
+=======
+    Mallas.hasMany(models.PeriodosAcademicosParalelos, {
+>>>>>>> 00605721b705d0ac52d0714139627526c4a54213
       foreignKey: {
         type: DataTypes.INTEGER,
         name: 'idMalla',
