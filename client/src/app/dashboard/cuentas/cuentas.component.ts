@@ -47,6 +47,10 @@ export class CuentasComponent implements OnInit {
   ) {
     this.url = this.server.getUrl();
    }
+   idTipoIdentificaciones = [
+    {id: 1, value: 'Cédula'},
+    {id: 2, value: 'Pasaporte'}
+  ];
 
   ngOnInit(): void {
     this.nuevo = false;
@@ -173,7 +177,7 @@ export class CuentasComponent implements OnInit {
     crearCuentaForm() {
       this.cuentaForm = this._fb.group({
         id: ['0', [Validators.required, Validators.pattern('^[0-9]*$')]],
-        idTipoIdentificacion: ['', [Validators.required, Validators.pattern('^[A-Z0-9 -_ÁÉÍÓÚÑÜ/#&]*$')]],
+        idTipoIdentificacion:  ['', [Validators.required]],
         identificacion:  ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13), Validators.pattern('^[0-9]*$')]],
         foto: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_-]*(.jpg|.svg|.png)$')]],
         // tslint:disable-next-line:max-line-length

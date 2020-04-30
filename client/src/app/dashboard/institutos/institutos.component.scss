@@ -1,13 +1,21 @@
 @import '../../../sass/mixins';
 
-.logoInstituto {
-  width: 80px;
-  height: 40px;
-  padding-top: 0.2rem;
-  padding-bottom: 0;
+main, table {
+  width: 97%;
 }
 
 
+.logoInstituto {
+  width: 100px;
+  height: 50px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+
+.formu{
+
+}
 .filtro{
   width: 100%;
   padding: 0.5rem 2rem;
@@ -24,8 +32,34 @@
 }
 
 .icono {
+  background-color: chartreuse;;
+  position: relative;
   vertical-align: middle;
   margin-right: 1rem;
+  padding: 10px;
+  left: 43%;
+}
+.edit{
+  left: 2px;
+  padding: 2px;
+}
+.miniaturas
+{
+  width: 20px;
+  height: 20px;
+}
+
+.contenedorTabla{
+  height: 78%;
+  width: 97%;
+  overflow: auto;
+  padding-left: 2rem;
+  //padding-right: 1rem;
+}
+
+.encabezadoTabla {
+  background-color: #f77129c2;
+  font-family: 'Poppins', sans-serif;
 }
 
 .paginador {
@@ -44,6 +78,29 @@
   logotipo: (width: 7rem, aling: center),
   createdAt: (width: 8rem, color: gray),
   updatedAt: (width: 8rem, color: gray),
-  evento: (width: 5rem, aling: center)
+  evento: (width: 1.5rem, aling: center)
 ));
+
+/*.mat-table-sticky:first-child {
+  border-right: 1px solid #e0e0e0;
+}*/
+
+.mat-table-sticky:last-child {
+  border-left: 1px solid #e0e0e0;
+}
+.controles-container
+{
+  width: 500px;
+  height: 425px;
+  padding-top: 10%;
+  padding-left: 10%;
+}
+.controles-container>*
+{
+  width: 100%;
+}
+.selec
+{
+  padding: 10px;
+}
 

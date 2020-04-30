@@ -81,8 +81,8 @@ api.put('/imagen-menu', [autenticarControl.autenticado, sesionControl.actualiza,
 api.put('/imagen-persona', [autenticarControl.autenticado, sesionControl.actualiza, imagenPersonaMiddleware], filesControl.modificarArchivo)
 
 
-api.post('/gestionar-docente-asignatura', /*[autenticarControl.autenticado, sesionControl.actualiza]*/ docentesAsignaturasControl.gestionarDocenteAsignatura)
-    // EndPoint CuposAsignaturas
+
+// EndPoint CuposAsignaturas
 api.post('/obtener-cupos', [autenticarControl.autenticado, sesionControl.actualiza], cuposAsignaturasControl.obtenerCupo)
 api.put('/aplicar-cupos', [autenticarControl.autenticado, sesionControl.actualiza], cuposAsignaturasControl.aplicarCupo)
 
@@ -101,7 +101,7 @@ api.put('/update.solicitud.matricula', [autenticarControl.autenticado, sesionCon
 // EndPoint DocentesAsignaturas
 api.post('/leer-docente-asignatura', [autenticarControl.autenticado, sesionControl.actualiza], docentesAsignaturasControl.leerDocenteAsignatura)
 api.post('/obtener-docente-asignatura', [autenticarControl.autenticado, sesionControl.actualiza], docentesAsignaturasControl.obtenerDocenteAsignatura)
-
+api.post('/gestionar-docente-asignatura', [autenticarControl.autenticado, sesionControl.actualiza], docentesAsignaturasControl.gestionarDocenteAsignatura)
 
 // endPoint MaxHorasDocentes
 api.post('/leer-max-horas-docente', maxHorasDocenteControl.leerMaxHorasDocente)

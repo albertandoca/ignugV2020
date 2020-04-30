@@ -26,6 +26,7 @@ export class DocentesAsignaturasComponent implements OnInit { docenteAsignaturaF
   selection: any;
   url: string;
   nuevo: boolean;
+  agregar: boolean;
   selectedFile: File[];
   nombreArchivo: string;
   casa: number;
@@ -56,6 +57,7 @@ export class DocentesAsignaturasComponent implements OnInit { docenteAsignaturaF
     this.selection = new SelectionModel<DocenteAsignatura>(true, []);
     this.nombreArchivo = '';
     this.leerDocentesCarreras(1);
+    this.agregar = false;
   }
 
   // Trae los datos, establece columnas de la tabla, asigna datasource, paginator y selection (checkbox)
@@ -107,9 +109,14 @@ export class DocentesAsignaturasComponent implements OnInit { docenteAsignaturaF
   }
 
 
-  confirmar(i: number) {
+   async confirmar(i: number) {
     console.log(this.asignaturas[i]);
     console.log(this.asignaturaDocente[i]);
+    this.nuevo = false;
+    this.docenteAsignaturas = await this.api.sendApi('gestionar-docente-asignatura');
+    if ( this.docenteAsignaturas )  {
+    }
+    this.leerDocentesAsignaturas();
 
   }
 /*
@@ -188,7 +195,6 @@ guardarEditar() {
   }
 
   guardarRegistro() {
-    this.nuevo = false;
   }
 
 

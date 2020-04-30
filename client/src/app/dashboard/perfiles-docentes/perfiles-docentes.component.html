@@ -79,6 +79,7 @@ formulario de ingreso o modificación de datos
     <form [formGroup]="perfilDocenteForm" enctype="multipart/form-data">
         <mat-grid-list cols="2" rowHeight="500px">
             <div class="controlesRegistro">
+                <mat-grid-tile class="marcar"></mat-grid-tile>
                 <input type="hidden" formControlName="id">
                 <input type="hidden" formControlName="idDocente">
                 <div class="controlesRegistro">
@@ -90,6 +91,7 @@ formulario de ingreso o modificación de datos
                 <div formArrayName="detalles" *ngFor="let detalle of detalles.controls; let i = index">
                     <div [formGroupName]="i">
                         <div class="controlesRegistro row">
+
                             <label [attr.for]="'detalle' + i"></label >
                                 <mat-form-field>
                                     <mat-select formControlName="areaAcademica" placeholder="Area Academica">
@@ -99,9 +101,10 @@ formulario de ingreso o modificación de datos
                                     </mat-select>
                                     <mat-error>Este campo es obligatorio</mat-error>
                                   </mat-form-field>
-                             <input  type = "text" [attr.id] = "'detalle' + i" matInput formControlName="detalle" matInput placeholder="Descripción" >
+                                  <mat-form-field>
+                             <input  type = "text" [attr.id] = "'detalle' + i" matInput formControlName="detalle" placeholder="Descripción" >
                                 <mat-error>Este campo es obligatorio</mat-error>
-                                
+                            </mat-form-field>
                                 
                                 <div class="controlesRegistro">
                                     <button (click)="removerDetalle(i)" mat-raised-button color="accent">- Borrar</button>
@@ -109,11 +112,12 @@ formulario de ingreso o modificación de datos
                         </div>
                     </div>
                     
-                    <div class="controlesRegistro">
-                        <button *ngIf="!agregar" (click)="guardarRegistro(i) " mat-raised-button color="primary">Agregar</button>
-                        <button  *ngIf="!modificar" (click)="guardarEditar(i) " mat-raised-button color="primary">Modificar</button>
-                        <button (click)="cancelado()" mat-raised-button color="warn">Cancelar</button>
-                    </div>
+                    
+                </div>
+                <div class="controlesRegistro">
+                    <button *ngIf="!agregar" (click)="guardarRegistro(i) " mat-raised-button color="primary">Agregar</button>
+                    <button  *ngIf="!modificar" (click)="guardarEditar(i) " mat-raised-button color="primary">Modificar</button>
+                    <button (click)="cancelado()" mat-raised-button color="warn">Cancelar</button>
                 </div>
                     
             </div>

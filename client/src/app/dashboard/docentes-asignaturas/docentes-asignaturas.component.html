@@ -5,7 +5,7 @@
         <div id="asignaturaDocente[i]" cdkDropList [cdkDropListData]="asignaturaDocente[i]" cdkDropListConnectedTo="docentes" class="example-list" (cdkDropListDropped)="drop($event)">
             <div class="example-box" *ngFor="let docente of asignaturaDocente[i]" cdkDrag>{{docente.apellidoPaterno}} {{docente.apellidoMaterno}} {{docente.primerNombre}} {{docente.segundoNombre}} </div>
         </div>
-        <button (click)="confirmar(i)">confirmar</button>
+        <button [disabled]="asignatura.invalid" *ngIf="!agregar" (click)="confirmar(i)" mat-raised-button color="primary">Confirmar</button>
     </div>
 
 

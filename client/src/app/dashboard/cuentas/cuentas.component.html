@@ -131,7 +131,7 @@
 
 
 
-<!-- formulario de ingreso o modificación de datos-->
+
 
 <main>
     <mat-horizontal-stepper #stepper>
@@ -148,25 +148,60 @@
                             <input type="hidden" formControlName="createdAt">
                             <input type="hidden" formControlName="updatedAt">
                             <input type="hidden" formControlName="estado">
+
+
+                            <ng-template matStepLabel>Información Personal</ng-template>
+                            <mat-form-field>
+                                <mat-select matInput placeholder="Elija el tipo de Identificacion" formControlName="let idTipoIdentificacion" required>
+                                    <ng-container *ngFor="let idTipoIdentificacion of idTipoIdentificaciones">
+                                        <mat-option value="{{idTipoIdentificacion.value}}">{{idTipoIdentificacion.value}}</mat-option>
+                                    </ng-container>
+                                </mat-select>
+                                <mat-error>Este campo es obligatorio</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field>
+                                <input matInput placeholder="Foto" formControlName="foto" required>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput placeholder="Primer Nombre" formControlName="primerNombre" required>
+                                <mat-error>Este campo es obligatorio</mat-error>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput placeholder="Apellido Paterno" formControlName="apellidoPaterno" required>
+                                <mat-error>Este campo es obligatorio</mat-error>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput placeholder="Email Institucional" formControlName="emailInstitucional" required>
+                                <mat-error>Este campo es obligatorio</mat-error>
+                            </mat-form-field>
+
+                        </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <div class="controlesRegistro">
+                            <mat-form-field>
+                                <input matInput placeholder="Identificacion/Cedula" formControlName="identificacion" required>
+                                <mat-error>Este campo es obligatorio</mat-error>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput placeholder="Segundo Nombre" formControlName="segundoNombre" required>
+                                <mat-error>Este campo es obligatorio</mat-error>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput placeholder="Apellido Materno" formControlName="apellidoMaterno" required>
+                                <mat-error>Este campo es obligatorio</mat-error>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput placeholder="Email Personal" formControlName="emailPersonal" required>
+                                <mat-error>Este campo es obligatorio</mat-error>
+                            </mat-form-field>
+
+
                         </div>
                     </mat-grid-tile>
                 </mat-grid-list>
-                <ng-template matStepLabel>Información Personal</ng-template>
-                <mat-form-field>
-                    <input matInput placeholder="Elija el tipo de identificacion" formControlName="idTipoIdentificacion" required>
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput placeholder="Identificacion/Cedula" formControlName="identificacion" required>
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput placeholder="Foto" formControlName="foto" required>
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput placeholder="Primer Nombre" formControlName="primerNombre" required>
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput placeholder="Segundo Nombre" formControlName="segundoNombre" required>
-                </mat-form-field>
+
                 <div>
                     <button mat-button matStepperNext>Siguiente</button>
                 </div>
@@ -175,14 +210,36 @@
 
         </mat-step>
         <mat-step [stepControl]="cuentaForm">
-
-
+            <mat-card-header>
+                <mat-icon matPrefix color="black">settings</mat-icon>
+                <mat-card-title>Configuración de Perfil</mat-card-title>
+            </mat-card-header>
             <form [formGroup]="cuentaForm">
-                <ng-template matStepLabel>Informacion General</ng-template>
-                <mat-form-field>
-                    <input matInput placeholder="Address" formControlName="secondCtrl" required>
-                </mat-form-field>
+                <mat-grid-list cols="2" rowHeight="300px">
+                    <mat-grid-tile>
+                        <div class="controlesRegistro">
+                            <ng-template matStepLabel>Informacion General</ng-template>
 
+                            <mat-form-field>
+                                <input matInput placeholder="Direccion" formControlName="direccion" required>
+                                <mat-error>Este campo es obligatorio</mat-error>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput placeholder="Telefonos" formControlName="telefonos" required>
+                                <mat-error>Este campo es obligatorio</mat-error>
+                            </mat-form-field>
+
+                        </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <div class="controlesRegistro">
+                            <mat-form-field>
+                                <input matInput placeholder="Operadora" formControlName="operadora" required>
+                                <mat-error>Este campo es obligatorio</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </mat-grid-tile>
+                </mat-grid-list>
 
                 <div>
                     <button mat-button matStepperPrevious>Back</button>
@@ -195,8 +252,8 @@
 
         </mat-step>
         <mat-step>
-            <ng-template matStepLabel>Done</ng-template>
-            You are now done.
+            <ng-template matStepLabel>Fin</ng-template>
+            Ya has terminado 🌈
 
 
             <div>
