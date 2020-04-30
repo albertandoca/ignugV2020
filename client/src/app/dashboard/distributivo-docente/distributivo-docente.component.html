@@ -19,10 +19,11 @@
           *ngIf="vistaChart > 1">
           <mat-icon>arrow_back</mat-icon>
         </button>
-        <button mat-icon-button color="primary" aria-label="Docentes" (click)="verDocentes()" matTooltip="Docentes">
+        <button mat-icon-button color="primary" aria-label="Docentes" (click)="cargaHorariaDocente()" matTooltip="Docentes">
           <mat-icon>supervisor_account</mat-icon>
         </button>
-        <button mat-icon-button color="warning" aria-label="Ayuda" [matMenuTriggerFor]="ayuda" matTooltip="Ayuda" (click)="txtAyuda()">
+        <button mat-icon-button color="warning" aria-label="Ayuda" [matMenuTriggerFor]="ayuda" matTooltip="Ayuda"
+          (click)="txtAyuda()">
           <mat-icon>contact_support</mat-icon>
         </button>
         <mat-menu #ayuda="matMenu" xPosition="before">
@@ -53,7 +54,7 @@
     <div fxFlex="70%">
       <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%" [fxLayoutAlign]="centrarParalelos"
         class="scroll_horizontal">
-        <div fxFlex="15%" fxFlexFill *ngFor="let chart of charts; let i = index" class="chart-container-paralelo" >
+        <div fxFlex="15%" fxFlexFill *ngFor="let chart of charts; let i = index" class="chart-container-paralelo">
           <canvas baseChart [data]="chart.data" [labels]="pieChartLabels" [chartType]="pieChartType"
             [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend"
             (click)="asignarDocentesParalelos(chart.idMalla, chart.idPeriodoAcademico, chart.idParalelo, chart.idJornada, i)">
@@ -66,10 +67,11 @@
       <button mat-icon-button color="primary" aria-label="Anterior" (click)="backDataChart()" matTooltip="Anterior">
         <mat-icon>arrow_back</mat-icon>
       </button>
-      <button mat-icon-button color="primary" aria-label="Docentes" (click)="verDocentes()" matTooltip="Docentes">
+      <button mat-icon-button color="primary" aria-label="Docentes" (click)="cargaHorariaDocente()" matTooltip="Docentes">
         <mat-icon>supervisor_account</mat-icon>
       </button>
-      <button mat-icon-button color="warning" aria-label="Ayuda" [matMenuTriggerFor]="ayuda" matTooltip="Ayuda" (click)="txtAyuda()">
+      <button mat-icon-button color="warning" aria-label="Ayuda" [matMenuTriggerFor]="ayuda" matTooltip="Ayuda"
+        (click)="txtAyuda()">
         <mat-icon>contact_support</mat-icon>
       </button>
       <mat-menu #ayuda="matMenu" xPosition="before">
@@ -90,7 +92,7 @@
           <div fxFlex=10%>
             <p class="tituloContenedorAsignatura">CÓDIGO</p>
           </div>
-          <div fxFlex=33% >
+          <div fxFlex=33%>
             <p class="tituloContenedorAsignatura">ASIGNATURA</p>
           </div>
           <div fxFlex=4%>
@@ -105,7 +107,8 @@
         </div>
         <div class="container-asignatura">
           <div *ngFor="let asignatura of asignaturas; let i = index" class="drag-container-asignatura">
-            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%" fxLayoutAlign="start start" class="rowContenedorAsignatura">
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%" fxLayoutAlign="start start"
+              class="rowContenedorAsignatura">
               <div fxFlex=13%>
                 {{asignatura.codigoAsignatura}}
               </div>
@@ -117,8 +120,10 @@
               </div>
               <div fxFlex=38%>
                 <div id="{{i}}" cdkDropList [cdkDropListData]="contenedorAsignatura[i]"
-                  cdkDropListConnectedTo="docentes" class="drag-list-asignatura" (cdkDropListDropped)="drop($event, i)" cdkDragHandle>
-                  <div class="drag-box-asignatura" *ngFor="let data of contenedorAsignatura[i]" cdkDrag [style.backgroundColor]="data.horas > 8 ? 'red' : data.horas > 4 && data.horas <=8 ? 'green' : 'yellow'">
+                  cdkDropListConnectedTo="docentes" class="drag-list-asignatura" (cdkDropListDropped)="drop($event, i)"
+                  cdkDragHandle>
+                  <div class="drag-box-asignatura" *ngFor="let data of contenedorAsignatura[i]" cdkDrag
+                    [style.backgroundColor]="data.horas > 8 ? 'red' : data.horas > 4 && data.horas <=8 ? 'green' : 'yellow'">
                     <div class="nombeDocente">
                       {{data.apellidoPaterno}} {{data.apellidoMaterno}} {{data.primerNombre}} {{data.segundoNombre}}
                     </div>
@@ -129,7 +134,8 @@
                 </div>
               </div>
               <div fxFlex=4%>
-                <button mat-icon-button color="primary" aria-label="Guardar" (click)="guardarDocenteAsignatura(i)" matTooltip="Guardar" [disabled]="iconoGuardaDocenteAsignatura[i]">
+                <button mat-icon-button color="primary" aria-label="Guardar" (click)="guardarDocenteAsignatura(i)"
+                  matTooltip="Guardar" [disabled]="iconoGuardaDocenteAsignatura[i]">
                   <mat-icon [style.color]="iconoGuardaDocenteAsignatura[i] ? 'gainsboro' : 'limegreen'">save</mat-icon>
                 </button>
               </div>
@@ -148,7 +154,8 @@
             </mat-form-field>
           </div>
           <div fxFlex="28%">
-            <button mat-icon-button color="primary" aria-label="Docentes" (click)="ordenarNombre()" matTooltip="Docentes">
+            <button mat-icon-button color="primary" aria-label="Docentes" (click)="ordenarNombre()"
+              matTooltip="Docentes">
               <mat-icon>swap_vert</mat-icon>
             </button>
             <button mat-icon-button color="primary" aria-label="Docentes" (click)="ordenarHora()" matTooltip="Docentes">
@@ -159,7 +166,8 @@
         <div class="drag.container-docente">
           <div id="docentes" cdkDropList [cdkDropListData]="docentes" cdkDropListConnectedTo="contenedorAsignatura[i]"
             class="drag-list-docente" (cdkDropListDropped)="dropDocente($event)">
-            <div class="drag-box-docente" *ngFor="let data of docentes" cdkDrag [style.backgroundColor]="data.horas > 8 ? 'red' : data.horas > 4 && data.horas <=8 ? 'green' : 'yellow'">
+            <div class="drag-box-docente" *ngFor="let data of docentes" cdkDrag
+              [style.backgroundColor]="data.horas > 8 ? 'red' : data.horas > 4 && data.horas <=8 ? 'green' : 'yellow'">
               <div class="nombeDocente">
                 {{data.apellidoPaterno}} {{data.apellidoMaterno}} {{data.primerNombre}} {{data.segundoNombre}}
               </div>
@@ -176,6 +184,79 @@
 
 </main>
 
+<main *ngIf="vistaChart === 6">
+  <button mat-icon-button color="primary" aria-label="Anterior" (click)="backDataChart()" matTooltip="Anterior">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%" fxLayoutAlign="center">
+    <div fxFlex="49%">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            Carga Horaria OK
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div *ngFor="let data of cargaHorariaOk">
+            <div class="nombeDocente">
+              {{data.apellidoPaterno}} {{data.apellidoMaterno}} {{data.primerNombre}} {{data.segundoNombre}}
+            </div>
+            <div class="horas">
+              {{data.horas}}
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div fxFlex="49%">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            Carga Horaria Insuficiente
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div *ngFor="let data of cargaHorariaInsuficiente">
+            <div class="nombeDocente">
+              {{data.apellidoPaterno}} {{data.apellidoMaterno}} {{data.primerNombre}} {{data.segundoNombre}}
+            </div>
+            <div class="horas">
+              {{data.horas}}
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%" fxLayoutAlign="center">
+    <div fxFlex="49%">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            SObre carga horaria
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div *ngFor="let data of cargaHorariaPeligro">
+            <div class="nombeDocente">
+              {{data.apellidoPaterno}} {{data.apellidoMaterno}} {{data.primerNombre}} {{data.segundoNombre}}
+            </div>
+            <div class="horas">
+              {{data.horas}}
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div fxFlex="49%">
+      <canvas baseChart [data]="chartCargaHoraria" [labels]="pieChartLabels" [chartType]="pieChartType"
+        [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend">
+      </canvas>
+    </div>
+  </div>
+
+
+</main>
 <!--
 
   {{data.ApellidoPaterno}} {{data.apellidoMaterno}} {{data.primerNombre}} {{data.segundoNombre}}

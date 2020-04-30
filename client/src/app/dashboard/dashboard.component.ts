@@ -63,12 +63,10 @@ export class DashboardComponent implements OnInit {
   }
 
   agenda() {
-    this.verAgenda=!this.verAgenda
-    if(this.verAgenda==true)
-    {
-      this.sidenav.open()
-    }
-    else{
+    this.verAgenda = !this.verAgenda;
+    if (this.verAgenda === true) {
+      this.sidenav.open();
+    } else {
       this.sidenav.close();
     }
     this.iconoAgenda = this.verAgenda ? 'more_vert' : 'drag_indicator';
@@ -93,7 +91,6 @@ export class DashboardComponent implements OnInit {
   }
 
   async verImagen( nombreFile: string, carpeta: string): Promise<any> {
-    alert('iiiii');
     const datos = {
       urlFile: nombreFile,
       directorio: carpeta
@@ -130,8 +127,7 @@ export class DashboardComponent implements OnInit {
     localStorage.setItem('titulo', this.menuService.titulo);
     return;
   }
-  async leerEventos()
-  {
+  async leerEventos() {
 
     this.eventos = await this.api.sendApi('leer-eventos');
 
@@ -146,7 +142,7 @@ export class DashboardComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   close(reason: string) {
-    this.verAgenda=!this.verAgenda
+    this.verAgenda = !this.verAgenda;
     this.sidenav.close();
     this.iconoAgenda = this.verAgenda ? 'more_vert' : 'drag_indicator';
   }
