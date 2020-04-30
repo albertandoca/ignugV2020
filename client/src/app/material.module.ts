@@ -70,12 +70,9 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-<<<<<<< HEAD
-    PdfViewerModule
-=======
+    PdfViewerModule,
     ScrollingModule,
     DragDropModule
->>>>>>> 00605721b705d0ac52d0714139627526c4a54213
   ],
   exports: [
     MatCheckboxModule,

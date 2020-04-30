@@ -1,4 +1,4 @@
-;
+    ;
 const EXPRESS = require('express')
 const MULTIPARTY = require('connect-multiparty')
 const filePdf = require('connect-multiparty')
@@ -29,6 +29,9 @@ let api = EXPRESS.Router(),
     matriculaPdfMiddleware = MULTIPARTY({
         uploadDir: './files/pdf/matricula'
     }),
+    imagenEventoMiddleware = MULTIPARTY({
+        uploadDir: './files/imagen/evento'})
+
     // filePdfMiddleware = MULTIPARTY({uploadDir: './files/pdf'}),
     personasControl = require('../controles/personas'),
     mallasControl = require('../controles/mallas'),

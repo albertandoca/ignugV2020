@@ -69,27 +69,24 @@ PeriodosLectivos.associate = function(models) {
       },
       sourceKey: 'id'
     })
-<<<<<<< HEAD
     PeriodosLectivos.hasMany(models.SolicitudesMatriculas, {
       foreignKey: {
         type: DataTypes.INTEGER,
         name: 'idPeriodoLectivo',
         allowNull: false,
         unique: false
-      },
-      sourceKey: 'id'
+        },
+    sourceKey: 'id'
     })
-=======
     PeriodosLectivos.hasMany(models.PeriodosAcademicosParalelos, {
         foreignKey: {
-          type: DataTypes.INTEGER,
-          name: 'idPeriodoLectivo',
-          allowNull: false,
-          unique: false
+            type: DataTypes.INTEGER,
+            name: 'idPeriodoLectivo',
+            allowNull: false,
+            unique: false
         },
         sourceKey: 'id'
-      })
->>>>>>> 00605721b705d0ac52d0714139627526c4a54213
+    })
   };
   return PeriodosLectivos;
 };
